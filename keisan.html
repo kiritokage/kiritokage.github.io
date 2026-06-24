@@ -1788,6 +1788,12 @@
   .warn{ background:#FDECEA; border:1.5px solid #F0B6B0; border-radius:14px; padding:13px 15px; font-size:.86rem; color:#9E3B33; margin:14px 0; font-weight:600; }
   .warn b{ color:#C2493E; }
 
+  .omewrap{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow:var(--shadow); margin:12px 0; }
+  .omerow{ display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+  .omebox{ background:#F3ECF5; color:var(--plum-deep); border-radius:10px; padding:7px 12px; font-family:"Zen Maru Gothic"; font-weight:900; font-size:.84rem; }
+  .omearrow{ text-align:center; color:var(--persimmon-deep); font-weight:900; font-size:.86rem; margin:8px 0; font-family:"Zen Maru Gothic"; }
+  .omecommon{ text-align:center; background:linear-gradient(180deg,#E7F2F7,#D7EAF2); color:var(--sky-deep); border-radius:12px; padding:12px; font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.02rem; border:1.5px solid #BBDCE8; }
+
   .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
   .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
   .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
@@ -5122,8 +5128,14 @@
   <!-- C rotation -->
   <section>
     <div class="step-no"><span class="dot">C</span>オピオイド換算</div>
-    <h2>薬・経路を変える＝比で移す</h2>
-    <p class="lead-line">別のオピオイドや別の経路に変えるとき、<b class="kb">換算比</b>を使って量を移します。これは塩・無水換算やパーセントと同じ <b class="k">×（比）</b>。さらに安全のため<b class="kr">いったん減量して開始</b>するのが基本です（不完全交叉耐性）。</p>
+    <h2>共通のものさし「経口モルヒネ換算」</h2>
+    <p class="lead-line">オキシコドン・フェンタニル…と、オピオイドは強さも単位も製品もバラバラ。そこで全部を<b class="kb">「もし経口モルヒネだったら何mg？」</b>に揃えます。これが<b class="kb">経口モルヒネ換算（OME）</b>＝共通のものさしです。</p>
+    <div class="omewrap">
+      <div class="omerow"><span class="omebox">オキシコドン</span><span class="omebox">フェンタニル</span><span class="omebox">ヒドロモルフォン</span><span class="omebox">…</span></div>
+      <div class="omearrow">↓ それぞれ ×換算比</div>
+      <div class="omecommon">経口モルヒネ換算量（共通の数）</div>
+    </div>
+    <p class="lead-line">こうすると、別々の薬を<b class="kb">同じ土俵で比べられる</b>し、別のオピオイドに<b class="kb">切り替える量も計算</b>できます。換算の中身は「元の薬 × その薬の換算比」。<b class="k">塩・無水換算やパーセントと同じ ×（比）</b>です。さらに安全のため<b class="kr">いったん減量して開始</b>するのが基本（不完全交叉耐性）。</p>
     <div class="panel">
       <div class="twoin">
         <div><div class="w-lab">いまの1日量</div><div class="w-in"><input type="number" id="rotDay" value="60" min="0"><span class="w-unit">mg/日</span></div></div>
@@ -5132,7 +5144,7 @@
       <div class="w-lab" style="margin-top:8px;">安全のための減量</div>
       <div class="seg2" id="rotCut"><button data-c="0">減量なし</button><button class="on" data-c="25">−25%</button><button data-c="50">−50%</button></div>
       <div class="twobase" style="margin-top:8px;">
-        <div class="basecard base"><div class="t">単純換算</div><div class="v"><span id="rotPlain">30</span><small> mg/日</small></div></div>
+        <div class="basecard base"><div class="t">単純換算（OME相当）</div><div class="v"><span id="rotPlain">30</span><small> mg/日</small></div></div>
         <div class="basecard resc"><div class="t">減量後の開始量</div><div class="v"><span id="rotStart">22.5</span><small> mg/日</small></div></div>
       </div>
       <div class="w-steps" id="rotSteps"></div>
@@ -5171,7 +5183,7 @@
   <p class="closing">
     <span class="leaf">🦎</span><br>
     ベース ＝ <b>1日量÷24÷濃度</b>（mL/時）。レスキューは<b>ベースから</b>。<br>
-    換算は<b>×比＋安全のため減量</b>。<br>
+    換算は<b>経口モルヒネ換算（共通のものさし）に×比＋安全のため減量</b>。<br>
     高リスク薬。割合・比・上限は<b>必ず基準で確認、ダブルチェック</b>。
   </p>
   <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
