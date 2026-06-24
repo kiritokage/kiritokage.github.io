@@ -685,7 +685,6 @@
 <button class="lcard" onclick="openTheme('percent')"><span class="ic">🟧</span><span class="tx"><span class="t">パーセント</span><span class="s">%↔mg/g・成分⇄製剤</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('hirei')"><span class="ic">🧮</span><span class="tx"><span class="t">比例・あたり</span><span class="s">1つあたりで考える</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('units')"><span class="ic">🪜</span><span class="tx"><span class="t">単位の階段</span><span class="s">μg・mg・g の1000</span></span><span class="badge done">できた</span></button>
-<div class="lcard soon"><span class="ic">🍰</span><span class="tx"><span class="t">分数・小数・%</span><span class="s">同じ量の3つの顔</span></span><span class="badge soon">準備中</span></div>
 <button class="lcard" onclick="openTheme('dilution')"><span class="ic">💧</span><span class="tx"><span class="t">倍と希釈</span><span class="s">薄めると濃度が下がる</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#F08A4B">基礎〜中級（毎日）</span></div><div class="cards">
@@ -712,7 +711,7 @@
 <div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 4 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 4 / 20 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -874,6 +873,60 @@
       <input type="range" id="s6s" min="0" max="100" value="30">
     </div>
     <div class="big-point">「200の30％」＝「1マス2が30個」＝ <b class="k">60</b>。<br>これが「<b>○○ × △ ÷ 100</b>」の正体。式じゃなくて、<b class="k">マスの足し算</b>として見えていればOKです。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 6b. ÷％で全体にもどる ===== -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--sky)">÷</span>もどす</div>
+    <h2>割ると、「全体」にもどる</h2>
+    <p class="lead-line">掛け算と割り算は、行きと帰り。<b class="kb">全体に ×％ すると一部</b>。逆に、<b class="kb">一部を ÷％ すると、全体にもどります</b>。</p>
+    <p>「<b class="k">60は30％にあたる。じゃあ全体は？</b>」みたいなとき。30マスで60なら、1マス＝60÷30＝2。全体（100マス）＝2×100＝<b class="kb">200</b>。これが「<b class="kb">何か ÷ 何か％</b>」の正体です。</p>
+    <div class="panel">
+      <div class="w-in" style="margin-bottom:6px;">一部 ＝ <input type="number" id="s6wpart" value="60" min="0"> 個</div>
+      <div class="slabels"><span>1%</span><span>100%</span></div>
+      <input type="range" id="s6wpct" min="1" max="100" value="30">
+      <div style="text-align:center;"><span class="perpill"><span id="s6wpctlab">30</span>％にあたる → 1マス ＝ <span id="s6wpa">60</span> ÷ <span id="s6wpb">30</span> ＝ <span id="s6wper">2</span></span></div>
+      <div class="worth-grid" id="s6wgrid" style="margin-top:10px;"></div>
+      <div class="worth-readout">
+        <div class="lab">点灯マス＝一部。100マス全部が…</div>
+        <div class="tot">全体 <span id="s6wtot">200</span></div>
+      </div>
+      <div class="w-steps" id="s6wsteps"></div>
+    </div>
+    <div class="big-point blue">
+      全体 <b class="kb">×％</b> → 一部　（行き）<br>
+      一部 <b class="kb">÷％</b> → 全体　（帰り：もとの全体にもどる）
+    </div>
+    <p class="soft">「<b>何か ÷ 何か％</b>」は、掛けたのを<b>もとに戻す</b>動き。だから答えは“もとの全体”になります。「<b class="kb">全体は？って聞かれたら ÷％</b>」でOK。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 6c. 割り算の向き（何%） ===== -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--sky)">％</span>何％</div>
+    <h2>「何％か」を出すのは、割り算</h2>
+    <p class="lead-line">さっきは「全体 → ×％ → 一部」（掛け算）でした。今度はその逆。<b class="kb">「この一部は、全体の何％？」を知るには ÷（割り算）</b>です。</p>
+    <p>絵はまったく同じ。<b class="k">1マスの値打ち＝全体÷100</b>。一部が「そのマス何個ぶん」かを数えれば、それが<b class="kb">そのまま％</b>になります。</p>
+    <div class="panel">
+      <div class="w-in" style="margin-bottom:6px;">「ぜんぶ」＝ <input type="number" id="s6bn" value="200" min="1"> 個</div>
+      <div style="text-align:center;"><span class="perpill">1マスの値打ち ＝ <span id="s6bn2">200</span> ÷ 100 ＝ <span id="s6bper">2</span></span></div>
+      <div class="worth-grid" id="s6bgrid" style="margin-top:10px;"></div>
+      <div class="worth-readout">
+        <div class="lab">一部 <span id="s6bpart">60</span> は、1マス<span id="s6bper2">2</span> が <span id="s6bcnt">30</span>個ぶん</div>
+        <div class="tot"><span id="s6bpct">30</span>%</div>
+      </div>
+      <div class="slabels"><span>一部 0</span><span>一部 ＝ ぜんぶ</span></div>
+      <input type="range" id="s6bs" min="0" max="200" value="60">
+      <div class="w-steps" id="s6bsteps"></div>
+    </div>
+    <div class="big-point blue">
+      ・「全体の○％は<b>いくつ</b>？」 → <b class="kb">全体 × ○％</b>（×で、<b>量</b>を取り出す）<br>
+      ・「この一部は全体の<b>何％</b>？」 → <b class="kb">一部 ÷ 全体</b>（÷で、<b>割合</b>を出す）
+    </div>
+    <p class="soft">同じパーセントでも、<b>×は「量」</b>を出し、<b>÷は「％（割合）」</b>を出す。やりたいことが逆なんです。まよったら——<b class="kb">「何％？」って聞かれたら割り算</b>、と覚えてOK。</p>
   </section>
 
   <hr class="hr">
@@ -2198,6 +2251,42 @@ function init_percent(){
     seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); inEl.value= mode==='gtomg'?50:30; r();});
     document.querySelectorAll('.qb[data-ex]').forEach(b=>b.onclick=()=>{ const[m,cv,av]=b.dataset.ex.split('|'); mode=m; cc.value=cv; inEl.value=av; seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.m===m)); r();});
     r();
+  })();
+
+  /* 6b: ÷% → 全体にもどる */
+  (function(){
+    const grid=document.getElementById('s6wgrid'); if(!grid) return;
+    const cells=[]; for(let i=0;i<100;i++){const d=document.createElement('div');d.className='wg';grid.appendChild(d);cells.push(d);}
+    const partIn=document.getElementById('s6wpart'),s=document.getElementById('s6wpct'),tot=document.getElementById('s6wtot'),per=document.getElementById('s6wper'),
+      lab=document.getElementById('s6wpctlab'),pa=document.getElementById('s6wpa'),pb=document.getElementById('s6wpb'),steps=document.getElementById('s6wsteps');
+    function r(){
+      let part=parseFloat(partIn.value)||0; let pct=parseFloat(s.value)||1; if(pct<1)pct=1;
+      const perv=part/pct, whole=perv*100;
+      lab.textContent=fmt(pct); pa.textContent=fmt(part); pb.textContent=fmt(pct); per.textContent=fmt(perv); tot.textContent=fmt(whole);
+      const lit=Math.max(0,Math.min(100,Math.round(pct)));
+      cells.forEach((c,i)=>c.classList.toggle('on', i<lit));
+      steps.innerHTML=`1マス ＝ ${fmt(part)} ÷ ${fmt(pct)} ＝ ${fmt(perv)}　→　全体 ＝ ${fmt(perv)} × 100 ＝ <b>${fmt(whole)}</b>`;
+    }
+    partIn.oninput=r; s.oninput=r; r();
+  })();
+
+  /* 6b: 何%か（割り算の向き） */
+  (function(){
+    const grid=document.getElementById('s6bgrid'); if(!grid) return;
+    const cells=[]; for(let i=0;i<100;i++){const d=document.createElement('div');d.className='wg';grid.appendChild(d);cells.push(d);}
+    const nIn=document.getElementById('s6bn'),n2=document.getElementById('s6bn2'),per=document.getElementById('s6bper'),per2=document.getElementById('s6bper2'),
+      s=document.getElementById('s6bs'),partEl=document.getElementById('s6bpart'),cnt=document.getElementById('s6bcnt'),pct=document.getElementById('s6bpct'),steps=document.getElementById('s6bsteps');
+    function r(){
+      let whole=parseFloat(nIn.value)||1; if(whole<=0)whole=1;
+      s.max=whole; let part=parseFloat(s.value)||0; if(part>whole){part=whole;s.value=whole;}
+      const p=part/whole*100, perv=whole/100, cntv=perv>0?part/perv:0;
+      n2.textContent=fmt(whole); per.textContent=fmt(perv); per2.textContent=fmt(perv);
+      partEl.textContent=fmt(part); cnt.textContent=fmt(Math.round(cntv)); pct.textContent=fmt(p);
+      const lit=Math.max(0,Math.min(100,Math.round(p)));
+      cells.forEach((c,i)=>c.classList.toggle('on', i<lit));
+      steps.innerHTML=`一部 ${fmt(part)} ÷ ぜんぶ ${fmt(whole)} ＝ ${fmt(part/whole)} → ×100 ＝ <b>${fmt(p)}%</b>`;
+    }
+    nIn.oninput=r; s.oninput=r; r();
   })();
 
   /* 濃度 color swatch + samples */
