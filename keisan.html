@@ -520,6 +520,130 @@
   .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
   .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
 
+/* ---- style: dilution ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.85rem,7.4vw,2.5rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.42rem,6vw,1.85rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.15rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .twoin{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:70px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; padding:9px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .slabels{ display:flex; justify-content:space-between; font-size:.76rem; color:var(--ink-soft); padding:12px 2px 4px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:34px; height:34px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.45); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  input[type=range]:focus-visible{ box-shadow:0 0 0 4px rgba(79,163,199,.4); }
+  .qbs{ display:flex; gap:7px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .qb{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff; color:var(--ink); padding:6px 12px; border-radius:999px; cursor:pointer; }
+  .qb:active,.qb.on{ background:var(--persimmon-soft); border-color:var(--persimmon); color:var(--persimmon-deep); }
+  .perpill{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-family:"Zen Maru Gothic"; font-weight:900; border-radius:999px; padding:7px 16px; font-size:1.05rem; margin:6px 0; }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.1rem; color:var(--persimmon-deep); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .track{ height:26px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+  .fill{ height:100%; width:0%; border-radius:999px; transition:width .14s; background:linear-gradient(90deg,var(--sky),var(--sky-deep)); }
+  .barlab{ display:flex; justify-content:space-between; font-size:.82rem; font-weight:700; margin:9px 0 3px; }
+
+  /* beaker / swatch */
+  .beaker-wrap{ display:flex; align-items:flex-end; justify-content:center; gap:18px; margin:6px 0 4px; }
+  .beaker{ width:96px; border:3px solid #CBB89B; border-top:none; border-radius:0 0 18px 18px; height:140px; position:relative; overflow:hidden; background:#fff; }
+  .beaker .liquid{ position:absolute; left:0; right:0; bottom:0; transition:height .15s, background .15s; }
+  .beaker .drug{ position:absolute; left:50%; bottom:8px; transform:translateX(-50%); font-size:1.1rem; }
+  .swatchpill{ text-align:center; }
+  .swatchpill .c{ width:64px; height:64px; border-radius:14px; border:2px solid var(--line); margin:0 auto 6px; transition:background .15s; }
+  .swatchpill .t{ font-size:.74rem; color:var(--ink-soft); }
+
+  /* ratio bar */
+  .ratiobar{ display:flex; height:30px; border-radius:10px; overflow:hidden; border:1px solid var(--line); margin:10px 0 4px; }
+  .ratiobar .drugseg{ background:linear-gradient(90deg,var(--persimmon),var(--persimmon-deep)); color:#fff; display:grid; place-items:center; font-weight:700; font-size:.78rem; }
+  .ratiobar .waterseg{ background:#DCEFF6; color:var(--sky-deep); display:grid; place-items:center; font-weight:700; font-size:.78rem; }
+
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  .druggallery{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .dcard{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px 10px; box-shadow:var(--shadow); text-align:center; }
+  .dcard .e{ font-size:1.5rem; } .dcard .nm{ font-weight:700; font-size:.84rem; margin:2px 0 7px; line-height:1.3; }
+  .dcard .conv{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1rem; }
+  .dcard .pc{ color:var(--ink); } .dcard .ar{ color:var(--sky-deep); font-size:.8rem; } .dcard .mg{ color:var(--persimmon-deep); }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.02rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .realrow{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:14px; }
+  .rcard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); }
+  .rcard h4{ margin:0 0 6px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.92rem; } .rcard .e{ margin-right:5px; }
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
 
   /* ===== app shell ===== */
   #themeView .topnav .inner{ gap:8px; }
@@ -562,7 +686,7 @@
 <button class="lcard" onclick="openTheme('hirei')"><span class="ic">🧮</span><span class="tx"><span class="t">比例・あたり</span><span class="s">1つあたりで考える</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('units')"><span class="ic">🪜</span><span class="tx"><span class="t">単位の階段</span><span class="s">μg・mg・g の1000</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">🍰</span><span class="tx"><span class="t">分数・小数・%</span><span class="s">同じ量の3つの顔</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">倍と希釈</span><span class="s">薄めると濃度が下がる</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openTheme('dilution')"><span class="ic">💧</span><span class="tx"><span class="t">倍と希釈</span><span class="s">薄めると濃度が下がる</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#F08A4B">基礎〜中級（毎日）</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">📅</span><span class="tx"><span class="t">1日量↔1回量</span><span class="s">分けて・まとめて</span></span><span class="badge soon">準備中</span></div>
@@ -588,7 +712,7 @@
 <div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 3 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 4 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -1611,6 +1735,213 @@
 
 </div><!-- /page2 -->
 </template>
+<template id="tpl-dilution">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">土台④ ・ とことん版</span>
+    <h1>薄めると、<br><span class="hl">濃さは下がる</span>。</h1>
+    <p class="lead">水を足しても、薬の量は同じ。<br>“全体”だけが増えるから、濃さが下がります。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>まず「○倍」</div>
+    <h2>「○倍」＝ ○つ分にする</h2>
+    <p class="lead-line">2倍は<b class="k">2つ分</b>、3倍は<b class="k">3つ分</b>。ただ「かける」だけ。</p>
+    <div class="panel" style="text-align:center;">
+      <div style="font-size:1.6rem; letter-spacing:6px;">🟧</div><div class="soft" style="font-size:.8rem;">もとの量（1倍）</div>
+      <div style="font-size:1.6rem; letter-spacing:6px; margin-top:8px;">🟧🟧</div><div class="soft" style="font-size:.8rem;">2倍（2つ分）</div>
+      <div style="font-size:1.6rem; letter-spacing:6px; margin-top:8px;">🟧🟧🟧</div><div class="soft" style="font-size:.8rem;">3倍（3つ分）</div>
+    </div>
+    <p class="soft">希釈の話は、この「倍」と、パーセントの「濃さ」を合わせるだけ。難しくありません。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>希釈の正体</div>
+    <h2>水を足す＝“全体”が増える</h2>
+    <p class="lead-line">「薄める（希釈）」＝<b class="kb">水を足して、全体の量を増やすこと</b>。</p>
+    <p>このとき大事なのは——<b class="k">中の薬の量は、増えも減りもしません。</b>同じ量の薬が、より広い水の中に散らばるから、<b class="k">1つあたりが薄くなる</b>＝濃度が下がる、というだけ。</p>
+    <div class="big-point blue">薬の量は<b class="kb">そのまま</b>。水（全体）が増える → 1つあたりが減る → <b class="kb">濃度が下がる</b>。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>動かしてみる</div>
+    <h2>○倍に薄めると、どうなる？</h2>
+    <p class="lead-line">原液（10%）を、何倍に薄めるか動かしてください。<b class="kb">全体は増え、色（濃さ）は薄く</b>なります。でも<b class="k">薬の量は変わりません</b>。</p>
+    <div class="panel">
+      <div class="slabels"><span>1倍（原液）</span><span>10倍に薄める</span></div>
+      <input type="range" id="dilN" min="1" max="10" value="2" step="1">
+      <div class="beaker-wrap">
+        <div style="text-align:center;">
+          <div class="beaker"><div class="liquid" id="dilLiquid" style="height:30%"></div><div class="drug">💊</div></div>
+          <div class="soft" style="font-size:.75rem; margin-top:4px;">全体 <span id="dilVol">2</span> 杯ぶん</div>
+        </div>
+        <div class="swatchpill">
+          <div class="c" id="dilSwatch"></div>
+          <div class="t">濃さ</div>
+          <div style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.2rem;"><span id="dilConc">5</span>%</div>
+        </div>
+      </div>
+      <div class="w-steps" id="dilSteps"></div>
+    </div>
+    <div class="big-point"><b class="k">○倍に薄める</b>＝ 全体を○倍にする ＝ 濃度は <b class="kb">1/○</b> になる。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 4 -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>逆数の関係</div>
+    <h2>倍率と濃度は、シーソー</h2>
+    <p class="lead-line">全体を増やすほど、濃度は下がる。<b class="kb">全体○倍 ⇄ 濃度 1/○</b>。きれいに逆さまです。</p>
+    <table style="width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);">
+      <tr><td style="padding:10px; background:#E7F2F7; font-family:'Zen Maru Gothic'; font-weight:700; color:var(--sky-deep);">薄める倍率</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900;">2倍</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900;">5倍</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900;">10倍</td></tr>
+      <tr><td style="padding:10px; background:#FFF3E9; font-family:'Zen Maru Gothic'; font-weight:700; color:var(--persimmon-deep); border-top:1px solid var(--line);">濃度は</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); border-top:1px solid var(--line);">1/2</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); border-top:1px solid var(--line);">1/5</td><td style="padding:10px; text-align:center; font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); border-top:1px solid var(--line);">1/10</td></tr>
+    </table>
+    <div class="big-point mint" style="margin-top:16px;">だから「<b class="kg">薄めた後の濃度</b>」＝ もとの濃度 <b class="kg">÷ 倍率</b>。<br>例）10%を5倍 → 10 ÷ 5 ＝ <b class="kg">2%</b>。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- pitfalls -->
+  <section>
+    <div class="step-no"><span class="dot">5</span>つまずき</div>
+    <h2>ここだけ気をつける</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「2倍希釈」は“濃く”じゃなく“薄く”。</b><br><span class="soft">2倍に薄める＝全体2倍＝濃度は半分。倍率が上がるほど薄くなる。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>薬の量は変わらない。</b><br><span class="soft">水を足しても中身は同じ。変わるのは「全体の量」と「濃度」だけ。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>「全体○倍」と「水を○倍足す」は別。</b><br><span class="soft">10倍希釈＝全体を10倍（原液1＋水9）。水を10足すと全体11倍になってしまう。次のページで実際に作ります。</span></p></div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">薄める＝全体を増やす、はバッチリ。<br>じゃあ、実際に作ってみよう。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 薬剤師の現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ 作る・読む</span>
+    <h1>希釈液を<br><span class="hl">作ってみる</span>。</h1>
+    <p class="lead">消毒薬の希釈も、粉の倍散も、<br>「原液いくつ＋水いくつ」で全部出せます。</p>
+  </header>
+
+  <div class="big-point">合言葉：<b class="k">○倍希釈＝全体を○倍</b>（原液1＋水(○−1)）。<br>薄めた後の濃度＝<b class="kb">もとの濃度 ÷ 倍率</b>。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>現場の希釈たち</h2>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🧴</span><span class="txt"><span class="per">消毒薬の希釈</span>（原液を○倍にして使う）</span></div>
+      <div class="peritem"><span class="emo">🥄</span><span class="txt"><span class="per">倍散</span>（粉薬を賦形剤で薄めたもの。10倍散など）</span></div>
+      <div class="peritem"><span class="emo">🥤</span><span class="txt"><span class="per">シロップの希釈</span>（飲みやすく薄める）</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B 希釈レシピ -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>希釈 ①</div>
+    <h2>○倍希釈を作る（原液＋水）</h2>
+    <p class="lead-line">「○倍希釈を、ぜんぶで△mL作る」とき。<b class="kb">原液＝全体÷倍率</b>、残りが水です。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">作りたい全体量</div><div class="w-in"><input type="number" id="rxVol" value="100" min="1"><span class="w-unit">mL</span></div></div>
+        <div><div class="w-lab">希釈倍率</div><div class="w-in"><input type="number" id="rxN" value="10" min="1" step="1"><span class="w-unit">倍</span></div></div>
+      </div>
+      <div class="ratiobar"><div class="drugseg" id="rxDrugSeg" style="flex:1">原液</div><div class="waterseg" id="rxWaterSeg" style="flex:9">水</div></div>
+      <div class="twoin" style="margin-top:8px;">
+        <div class="bigout"><div class="lab">原液</div><div class="v"><span id="rxStock">10</span> mL</div></div>
+        <div class="bigout"><div class="lab">水</div><div class="v" style="color:var(--sky-deep)"><span id="rxWater">90</span> mL</div></div>
+      </div>
+      <div class="w-steps" id="rxSteps"></div>
+    </div>
+    <p class="soft">例）10倍希釈100mL ＝ 原液10mL ＋ 水90mL。<br>原液1：水9（合わせて全体10）＝ ちゃんと10倍になってます。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C 倍散 -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>希釈 ②（キリの本業）</div>
+    <h2>倍散（粉の希釈）</h2>
+    <p class="lead-line"><b class="k">○倍散</b>＝ 薬を○倍に薄めた粉。中の薬は <b class="kb">1/○</b>。<br>つまり「<b>薬1：賦形剤(○−1)</b>」で混ぜたもの。</p>
+    <p class="soft">使う式：<b>中の薬 ＝ 倍散の量 ÷ 倍率</b>（10倍散なら ÷10）</p>
+    <div class="panel">
+      <div class="w-lab">どの倍散？</div>
+      <div class="seg2" id="bsKind"><button class="on" data-x="10">10倍散</button><button data-x="100">100倍散</button><button data-x="custom">その他</button></div>
+      <div class="w-in" id="bsCustomWrap" style="display:none; margin-bottom:8px;"><span class="w-unit">何倍散？</span><input type="number" id="bsCustom" value="20" min="2" step="1"><span class="w-unit">倍散</span></div>
+      <div class="w-lab">使う量</div><div class="w-in"><input type="number" id="bsAmt" value="2" min="0" step="0.1"><span class="w-unit">g</span></div>
+      <div class="ratiobar" style="margin-top:12px;"><div class="drugseg" id="bsDrugSeg" style="flex:1">薬</div><div class="waterseg" id="bsExSeg" style="flex:9">賦形剤</div></div>
+      <div class="bigout" style="margin-top:6px;"><div class="lab">中に入っている薬の量</div><div class="v"><span id="bsRes">200</span> mg</div></div>
+      <div class="w-steps" id="bsSteps"></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D 濃度で確かめ -->
+  <section>
+    <div class="step-no"><span class="dot">D</span>確かめ</div>
+    <h2>薄めた後の濃度（÷ 倍率）</h2>
+    <p class="lead-line">作った液が結局「何%か」は、<b class="kb">もとの濃度 ÷ 倍率</b>で出ます。パーセントの回とつながります。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">もとの濃度</div><div class="w-in"><input type="number" id="ccC" value="10" min="0" step="0.1"><span class="w-unit">%</span></div></div>
+        <div><div class="w-lab">薄める倍率</div><div class="w-in"><input type="number" id="ccN" value="5" min="1" step="1"><span class="w-unit">倍</span></div></div>
+      </div>
+      <div class="bigout" style="margin-top:8px;"><div class="lab">薄めた後の濃度</div><div class="v" style="color:var(--mint-deep)"><span id="ccRes">2</span> %</div></div>
+      <div class="w-steps" id="ccSteps"></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>希釈ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- F つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「原液＝全体÷倍率」、水はその残り。</b><br><span class="soft">10倍希釈100mLなら原液10mL＋水90mL。水を100mL足さない。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>倍散の数字が大きいほど“薄い”。</b><br><span class="soft">100倍散は10倍散より薄い（中の薬が1/100）。数字が大きい＝薄い。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>薄めた後の濃度は「÷倍率」。</b><br><span class="soft">×ではなく÷。倍率を上げるほど濃度は下がる（シーソー）。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    薄める＝<b>全体を増やす</b>。薬の量は同じ。<br>
+    ○倍希釈は濃度 <b>1/○</b>、原液は <b>全体÷倍率</b>。<br>
+    これで消毒も倍散も、もう怖くありません。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
 <script>
 
   function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
@@ -2114,8 +2445,98 @@ function init_units(){
 
 }
 
-  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段"};
-  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units};
+function init_dilution(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+
+  /* P1-3: dilution beaker + swatch */
+  (function(){
+    const s=document.getElementById('dilN'),liquid=document.getElementById('dilLiquid'),sw=document.getElementById('dilSwatch'),
+      conc=document.getElementById('dilConc'),vol=document.getElementById('dilVol'),steps=document.getElementById('dilSteps');
+    const ORIG=10;
+    function alphaFor(c){ return Math.min(1, 0.08 + Math.sqrt(Math.max(0,c)/10)*0.92); }
+    function r(N){ N=+N; const c=ORIG/N; conc.textContent=fmt(c); vol.textContent=N;
+      liquid.style.height=(20+ (N/10)*78)+'%';
+      const a=alphaFor(c); liquid.style.background='rgba(79,163,199,'+(a*0.9).toFixed(3)+')'; sw.style.background='rgba(79,163,199,'+a.toFixed(3)+')';
+      steps.innerHTML=`原液 ${ORIG}% を ${N}倍に薄める。<br>濃度：${ORIG} ÷ ${N} ＝ <b>${fmt(c)}%</b>（薬の量は変わらず、全体が ${N}倍）`;
+    }
+    s.oninput=e=>r(e.target.value); r(2);
+  })();
+
+  /* P2-B: dilution recipe */
+  (function(){
+    const V=document.getElementById('rxVol'),N=document.getElementById('rxN'),stock=document.getElementById('rxStock'),water=document.getElementById('rxWater'),
+      dseg=document.getElementById('rxDrugSeg'),wseg=document.getElementById('rxWaterSeg'),steps=document.getElementById('rxSteps');
+    function r(){ const v=parseFloat(V.value)||0; let n=parseFloat(N.value)||1; if(n<1)n=1; const st=v/n, wa=v-st;
+      stock.textContent=fmt(st); water.textContent=fmt(wa);
+      dseg.style.flex='1'; wseg.style.flex=String(Math.max(0,n-1)); dseg.textContent='原液'; wseg.textContent= n>1?'水':'（水なし）';
+      steps.innerHTML=`原液：${fmt(v)} ÷ ${fmt(n)} ＝ <b>${fmt(st)}mL</b><br>水：${fmt(v)} − ${fmt(st)} ＝ <b>${fmt(wa)}mL</b>（原液1：水${fmt(n-1)}）`;
+    }
+    V.oninput=r; N.oninput=r; r();
+  })();
+
+  /* P2-C: baisan */
+  (function(){
+    let kind=10;
+    const seg=document.getElementById('bsKind'),cw=document.getElementById('bsCustomWrap'),cu=document.getElementById('bsCustom'),amt=document.getElementById('bsAmt'),
+      res=document.getElementById('bsRes'),dseg=document.getElementById('bsDrugSeg'),eseg=document.getElementById('bsExSeg'),steps=document.getElementById('bsSteps');
+    function curX(){ return kind==='custom' ? Math.max(2,parseFloat(cu.value)||2) : kind; }
+    function r(){ const X=curX(); const g=parseFloat(amt.value)||0; const drugG=g/X, drugMg=drugG*1000;
+      res.textContent=fmt(drugMg);
+      dseg.style.flex='1'; eseg.style.flex=String(X-1); dseg.textContent='薬1'; eseg.textContent='賦形剤'+(X-1);
+      steps.innerHTML=`${X}倍散は「薬1：賦形剤${X-1}」。中の薬は 1/${X}。<br>${fmt(g)}g ÷ ${X} ＝ <b>${fmt(drugG)}g ＝ ${fmt(drugMg)}mg</b>`;
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{kind=b.dataset.x==='custom'?'custom':parseInt(b.dataset.x);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));cw.style.display=(kind==='custom')?'flex':'none';r();});
+    amt.oninput=r; cu.oninput=r; r();
+  })();
+
+  /* P2-D: after-dilution concentration */
+  (function(){
+    const C=document.getElementById('ccC'),N=document.getElementById('ccN'),res=document.getElementById('ccRes'),steps=document.getElementById('ccSteps');
+    function r(){ const c=parseFloat(C.value)||0; let n=parseFloat(N.value)||1; if(n<1)n=1; const out=c/n; res.textContent=fmt(out);
+      steps.innerHTML=`${fmt(c)}% ÷ ${fmt(n)}倍 ＝ <b>${fmt(out)}%</b>`; }
+    C.oninput=r; N.oninput=r; r();
+  })();
+
+  /* P2-E: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=0,suf='',locked=false;
+    function shuffle(x){for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const types=[
+        ()=>{const v=[50,100,200][Math.floor(Math.random()*3)];const n=[2,5,10][Math.floor(Math.random()*3)];return{q:`${n}倍希釈を ${v}mL 作る。原液は何mL？`,ans:v/n,suf:'mL',hint:'原液＝全体÷倍率'};},
+        ()=>{const x=[10,100][Math.floor(Math.random()*2)];const g=[1,2,5][Math.floor(Math.random()*3)];return{q:`${x}倍散 ${g}g の中の薬は何mg？`,ans:g/x*1000,suf:'mg',hint:'量÷倍率（mgに直す）'};},
+        ()=>{const c=[10,5,20][Math.floor(Math.random()*3)];const n=[2,5,10][Math.floor(Math.random()*3)];return{q:`${c}% を ${n}倍に薄めると何%？`,ans:c/n,suf:'%',hint:'もとの濃度÷倍率'};},
+      ];
+      const t=types[Math.floor(Math.random()*types.length)]();
+      answer=Math.round(t.ans*1000)/1000; suf=t.suf; Q.innerHTML=t.q; hint.textContent='ヒント：'+t.hint;
+      const set=new Set([answer]); const mult=[2,0.5,10,0.1,5]; let g=0;
+      while(set.size<4 && g<60){ g++; const m=mult[Math.floor(Math.random()*mult.length)]; const w=Math.round(answer*m*1000)/1000; if(w>0 && Math.abs(w-answer)>1e-6) set.add(w); }
+      const choices=shuffle([...set]); opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=fmt(ch)+suf;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(Math.abs(ch-answer)<1e-6){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+fmt(answer)+suf;fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===fmt(answer)+suf)o.classList.add('correct');});fb.textContent='❌ 正解は '+fmt(answer)+suf;fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段","dilution":"倍と希釈"};
+  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units,"dilution":init_dilution};
   function openTheme(id){
     const tpl=document.getElementById('tpl-'+id);
     if(!tpl) return;
