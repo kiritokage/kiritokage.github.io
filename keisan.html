@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* ---- style: percent ---- */
 
   :root{
     --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
@@ -219,6 +220,306 @@
   .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
   .w-steps b{ color:var(--ink); }
 
+/* ---- style: hirei ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff;
+    color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em;
+    color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.9rem,7.6vw,2.6rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:30ch; }
+
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900;
+    color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.42rem,6vw,1.85rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* per-unit list */
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); }
+
+  /* 2-step flow */
+  .flow{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:18px 16px; margin:16px 0; }
+  .fstep{ border-radius:16px; padding:14px; text-align:center; }
+  .fstep .n{ display:inline-block; width:26px; height:26px; line-height:26px; border-radius:50%; color:#fff; font-family:"Zen Maru Gothic"; font-weight:900; font-size:.9rem; margin-bottom:6px; }
+  .fstep.one{ background:#E7F2F7; } .fstep.one .n{ background:var(--sky); }
+  .fstep.two{ background:var(--persimmon-soft); } .fstep.two .n{ background:var(--persimmon); }
+  .fstep .h{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.1rem; }
+  .fstep.one .h{ color:var(--sky-deep); } .fstep.two .h{ color:var(--persimmon-deep); }
+  .fstep .d{ font-size:.85rem; color:var(--ink-soft); margin-top:2px; }
+  .fmid{ text-align:center; padding:6px 0; color:var(--ink-soft); font-size:1.3rem; }
+  .fex{ text-align:center; margin-top:12px; background:#FBF4EB; border-radius:12px; padding:12px; font-weight:700; }
+  .fex .a{ color:var(--sky-deep); } .fex .b{ color:var(--persimmon-deep); }
+
+  /* widgets shared */
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.1rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .twoin{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .slabels{ display:flex; justify-content:space-between; font-size:.76rem; color:var(--ink-soft); padding:12px 2px 4px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:34px; height:34px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.45); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  input[type=range]:focus-visible{ box-shadow:0 0 0 4px rgba(79,163,199,.4); }
+  .qbs{ display:flex; gap:7px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .qb{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff; color:var(--ink); padding:6px 12px; border-radius:999px; cursor:pointer; }
+  .qb:active,.qb.on{ background:var(--persimmon-soft); border-color:var(--persimmon); color:var(--persimmon-deep); }
+  .qb:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .perpill{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-family:"Zen Maru Gothic"; font-weight:900; border-radius:999px; padding:7px 16px; font-size:1.05rem; margin:6px 0; }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.1rem; color:var(--persimmon-deep); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .seg2{ display:flex; gap:6px; margin:6px 0; }
+  .seg2 button{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; padding:8px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--mint); background:#E9F6ED; color:var(--mint-deep); }
+
+  /* item blocks (coins / pills) */
+  .blocks{ display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:12px 0 6px; min-height:30px; }
+  .blk{ width:30px; height:30px; border-radius:50%; display:grid; place-items:center; color:#fff; font-size:.62rem; font-weight:700; line-height:1; }
+  .blk.coin{ background:linear-gradient(180deg,var(--gold),#C8901E); }
+  .blk.pill{ background:linear-gradient(180deg,var(--persimmon),var(--persimmon-deep)); border-radius:14px; }
+  .gmore{ align-self:center; color:var(--ink-soft); font-weight:700; font-size:.8rem; }
+
+  /* dual bars */
+  .track{ height:28px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+  .fill{ height:100%; width:0%; border-radius:999px; transition:width .13s; background:linear-gradient(90deg,var(--persimmon),var(--persimmon-deep)); }
+  .fill.sky{ background:linear-gradient(90deg,var(--sky),var(--sky-deep)); }
+  .barlab{ display:flex; justify-content:space-between; font-size:.82rem; font-weight:700; margin:9px 0 3px; }
+
+  /* dose chips */
+  .doses{ display:flex; gap:8px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+  .dosechip{ background:#E9F6ED; border:1px solid #CDE9D5; border-radius:12px; padding:10px 14px; text-align:center; min-width:84px; }
+  .dosechip .t{ font-size:.72rem; color:var(--ink-soft); } .dosechip .v{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--mint-deep); font-size:1.1rem; }
+
+  /* 対応表 */
+  .tbl{ width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); }
+  .tbl th,.tbl td{ padding:11px 8px; text-align:center; border:1px solid var(--line); font-family:"Zen Maru Gothic"; font-weight:700; }
+  .tbl th{ background:#E7F2F7; color:var(--sky-deep); font-size:.85rem; }
+  .tbl td .arw{ color:var(--persimmon-deep); font-size:.8rem; }
+
+  /* quiz/drill */
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.05rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .realrow{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:14px; }
+  .rcard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); }
+  .rcard h4{ margin:0 0 6px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.92rem; } .rcard .e{ margin-right:5px; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
+/* ---- style: units ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.85rem,7.4vw,2.5rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.42rem,6vw,1.85rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* shared widget bits */
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.15rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; }
+  .seg2 button{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; padding:9px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .qbs{ display:flex; gap:7px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .qb{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff; color:var(--ink); padding:6px 12px; border-radius:999px; cursor:pointer; }
+  .qb:active,.qb.on{ background:var(--persimmon-soft); border-color:var(--persimmon); color:var(--persimmon-deep); }
+  .ctrlbtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.95rem; border:1.5px solid var(--line); background:#fff; color:var(--sky-deep); padding:11px 18px; border-radius:999px; cursor:pointer; }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.1rem; color:var(--persimmon-deep); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+
+  /* staircase */
+  .staircase{ display:flex; align-items:flex-end; justify-content:center; gap:0; margin:18px 0 4px; }
+  .stair{ text-align:center; border:2px solid var(--line); border-bottom:none; padding:10px 4px 8px; width:33%; border-radius:12px 12px 0 0; transition:background .12s; }
+  .stair.s1{ height:80px; background:#EAF5F9; } .stair.s2{ height:120px; background:#DCEFF6; } .stair.s3{ height:160px; background:#CDE7F1; }
+  .stair .u{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.25rem; color:var(--sky-deep); }
+  .stair .ex{ font-size:.74rem; color:var(--ink-soft); margin-top:2px; }
+  .stairbase{ height:8px; background:var(--line); border-radius:0 0 8px 8px; }
+  .stair-arrows{ display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; color:var(--sky-deep); margin-top:6px; padding:0 4px; }
+
+  /* unit table */
+  .utable{ width:100%; border-collapse:collapse; margin-top:14px; border-radius:14px; overflow:hidden; border:1px solid var(--line); }
+  .utable td{ padding:12px 10px; text-align:center; border-bottom:1px solid var(--line); }
+  .utable tr:last-child td{ border-bottom:none; }
+  .utable .un{ font-family:"Zen Maru Gothic"; font-weight:700; color:var(--ink-soft); width:40%; }
+  .utable .uv{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.2rem; color:var(--sky-deep); }
+  .utable tr.hot td{ background:#EAF5F9; }
+
+  /* money analogy */
+  .moneyrow{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+  .moneycard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 6px; text-align:center; box-shadow:var(--shadow); }
+  .moneycard .big{ font-size:1.5rem; } .moneycard .lbl{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.95rem; margin-top:4px; } .moneycard .sub{ font-size:.72rem; color:var(--ink-soft); }
+
+  /* stepper */
+  .stepper-disp{ text-align:center; font-family:"Zen Maru Gothic"; font-weight:900; margin:8px 0; }
+  .stepper-disp .num{ font-size:2.4rem; color:var(--sky-deep); } .stepper-disp .un{ font-size:1.2rem; color:var(--ink-soft); }
+  .stepper-btns{ display:flex; gap:10px; justify-content:center; margin-top:8px; }
+
+  /* convert big display */
+  .convbox{ text-align:center; margin:8px 0; }
+  .convbox .from{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.1rem; color:var(--ink); }
+  .convbox .from .u{ font-size:1rem; color:var(--ink-soft); }
+  .convbox .eqs{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.2rem; margin:0 4px; }
+  .convbox .eqs.up{ color:var(--rose-deep); }
+  .convbox .to{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.1rem; color:var(--persimmon-deep); }
+  .convbox .to .u{ font-size:.95rem; color:var(--persimmon); }
+  .warn{ text-align:center; background:#FDECEA; border-radius:12px; padding:10px 12px; font-size:.9rem; color:var(--rose-deep); font-weight:700; margin:10px 0; }
+
+  /* galleries / cards */
+  .druggallery{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .dcard{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px 10px; box-shadow:var(--shadow); text-align:center; }
+  .dcard .e{ font-size:1.5rem; } .dcard .nm{ font-weight:700; font-size:.84rem; margin:2px 0 7px; line-height:1.3; }
+  .dcard .conv{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.02rem; }
+  .dcard .pc{ color:var(--ink); } .dcard .ar{ color:var(--sky-deep); font-size:.8rem; } .dcard .mg{ color:var(--persimmon-deep); }
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  /* decimal figure */
+  .decrow{ display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:12px 0; }
+  .deccard{ border-radius:14px; padding:12px 6px; text-align:center; border:1px solid var(--line); }
+  .deccard .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.2rem; } .deccard .u{ font-size:.72rem; color:var(--ink-soft); }
+  .deccard.lo{ background:#EAF5F9; } .deccard.lo .v{ color:var(--sky-deep); }
+  .deccard.mid{ background:#FFF3E9; } .deccard.mid .v{ color:var(--persimmon-deep); }
+  .deccard.hi{ background:#FDECEA; } .deccard.hi .v{ color:var(--rose-deep); }
+
+  /* quiz */
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.02rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .realrow{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:14px; }
+  .rcard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); }
+  .rcard h4{ margin:0 0 6px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.92rem; } .rcard .e{ margin-right:5px; }
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
 
   /* ===== app shell ===== */
   #themeView .topnav .inner{ gap:8px; }
@@ -259,7 +560,7 @@
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#4FA3C7">超基礎（土台）</span></div><div class="cards">
 <button class="lcard" onclick="openTheme('percent')"><span class="ic">🟧</span><span class="tx"><span class="t">パーセント</span><span class="s">%↔mg/g・成分⇄製剤</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('hirei')"><span class="ic">🧮</span><span class="tx"><span class="t">比例・あたり</span><span class="s">1つあたりで考える</span></span><span class="badge done">できた</span></button>
-<div class="lcard soon"><span class="ic">🪜</span><span class="tx"><span class="t">単位の階段</span><span class="s">μg・mg・g の1000</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openTheme('units')"><span class="ic">🪜</span><span class="tx"><span class="t">単位の階段</span><span class="s">μg・mg・g の1000</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">🍰</span><span class="tx"><span class="t">分数・小数・%</span><span class="s">同じ量の3つの顔</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">倍と希釈</span><span class="s">薄めると濃度が下がる</span></span><span class="badge soon">準備中</span></div>
 </div></div>
@@ -287,7 +588,7 @@
 <div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 2 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 3 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -1084,6 +1385,232 @@
 
 </div><!-- /page2 -->
 </template>
+<template id="tpl-units">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">土台③ ・ とことん版</span>
+    <h1>大きい単位ほど、<br><span class="hl">数は小さい</span>。</h1>
+    <p class="lead">μg → mg → g は「1段ごとに ×1000」の階段。<br>ケタ間違いは、ここをほどけば消えます。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>階段の正体</div>
+    <h2>1段のぼると、1000で割る</h2>
+    <p class="lead-line">μg・mg・g は、<b class="kb">1段あがるごとに ÷1000、1段おりるごとに ×1000</b> の階段。</p>
+    <p>同じ量でも、<b class="k">大きい単位で言うと数字は小さく</b>、小さい単位で言うと数字は大きくなります。</p>
+    <div class="big-point blue"><b class="kb">1g ＝ 1,000mg ＝ 1,000,000μg</b>（ぜんぶ同じ量）</div>
+
+    <div class="staircase">
+      <div class="stair s1"><div class="u">μg</div><div class="ex">1,000,000</div></div>
+      <div class="stair s2"><div class="u">mg</div><div class="ex">1,000</div></div>
+      <div class="stair s3"><div class="u">g</div><div class="ex">1</div></div>
+    </div>
+    <div class="stairbase"></div>
+    <div class="stair-arrows"><span>← おりる ×1000（数ふえる）</span><span>のぼる ÷1000（数へる）→</span></div>
+    <p class="soft" style="text-align:center; font-size:.85rem;">※ 上は「1g」を例にした見え方。単位が小さいほど、数字は大きくなります。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>なぜ？</div>
+    <h2>“お金の数え方”と同じ</h2>
+    <p class="lead-line">同じ「1万円」でも、数える単位を変えると<b class="k">枚数（＝数字）が変わります</b>。</p>
+    <p>大きい単位（1万円札）で数えれば枚数は少なく、小さい単位（百円玉）で数えれば枚数は多い。<b class="k">単位もこれと同じ</b>です。</p>
+    <div class="moneyrow">
+      <div class="moneycard"><div class="big">💴</div><div class="lbl">1万円札 ×1枚</div><div class="sub">大きい単位＝数少ない</div></div>
+      <div class="moneycard"><div class="big">💵</div><div class="lbl">千円札 ×10枚</div><div class="sub">↓</div></div>
+      <div class="moneycard"><div class="big">🪙</div><div class="lbl">百円玉 ×100枚</div><div class="sub">小さい単位＝数多い</div></div>
+    </div>
+    <p class="soft" style="text-align:center;">ぜんぶ「1万円」。中身は同じで、数え方（単位）が違うだけ。<br>「1g＝1000mg＝1,000,000μg」も、まったく同じ話です。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>変換してみる</div>
+    <h2>数を入れて、全部の単位で見る</h2>
+    <p class="lead-line">どれか1つの単位で入れると、<b class="kb">残りの単位ぜんぶ</b>に直して見せます。階段のどこにいるかも光ります。</p>
+    <div class="panel">
+      <div class="w-lab">数を入れる</div><div class="w-in"><input type="number" id="cvVal" value="1" min="0" step="any"></div>
+      <div class="w-lab" style="margin-top:10px;">その単位は？</div>
+      <div class="seg2" id="cvUnit"><button data-u="ug">μg</button><button class="on" data-u="mg">mg</button><button data-u="g">g</button></div>
+      <div class="staircase" style="margin-top:14px;">
+        <div class="stair s1" id="stUg"><div class="u">μg</div></div>
+        <div class="stair s2" id="stMg"><div class="u">mg</div></div>
+        <div class="stair s3" id="stG"><div class="u">g</div></div>
+      </div>
+      <table class="utable">
+        <tr class="r-ug"><td class="un">μg にすると</td><td class="uv"><span id="oUg">1000</span> μg</td></tr>
+        <tr class="r-mg"><td class="un">mg にすると</td><td class="uv"><span id="oMg">1</span> mg</td></tr>
+        <tr class="r-g"><td class="un">g にすると</td><td class="uv"><span id="oG">0.001</span> g</td></tr>
+      </table>
+      <div class="qbs">
+        <button class="qb" data-set="ug|500">500μg</button>
+        <button class="qb" data-set="mg|0.25">0.25mg</button>
+        <button class="qb" data-set="mg|5">5mg</button>
+        <button class="qb" data-set="g|0.5">0.5g</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 4 -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>上り下り</div>
+    <h2>同じ量で、階段を歩く</h2>
+    <p class="lead-line">中身（量）は変えずに、<b class="kb">階段を上り下り</b>してみてください。のぼると数が減り、おりると数が増えるのが見えます。</p>
+    <div class="panel">
+      <div class="stepper-disp"><span class="num" id="spNum">5</span> <span class="un" id="spUn">mg</span></div>
+      <div class="stepper-btns">
+        <button class="ctrlbtn" id="spUp">↑ のぼる（÷1000）</button>
+        <button class="ctrlbtn" id="spDown">↓ おりる（×1000）</button>
+      </div>
+      <p class="soft" style="text-align:center; margin:12px 0 0; font-size:.85rem;" id="spNote"></p>
+    </div>
+    <div class="big-point">のぼる（小さい単位→大きい単位）＝<b class="kb">÷1000</b>（数が減る）。<br>おりる（大きい単位→小さい単位）＝<b class="k">×1000</b>（数が増える）。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 5 -->
+  <section>
+    <div class="step-no"><span class="dot">5</span>かさ（体積）も同じ</div>
+    <h2>mL と L も「1000の階段」</h2>
+    <p class="lead-line">液体の「かさ」も同じ仕組み。<b class="kb">1L ＝ 1000mL</b>。</p>
+    <p class="soft">点滴500mL は 0.5L。1L = 1000mL。重さの階段（μg/mg/g）と、まったく同じ「1000ずつ」です。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- pitfalls -->
+  <section>
+    <div class="step-no"><span class="dot">6</span>つまずき</div>
+    <h2>ここだけ気をつける</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>μg と mg は1000倍ちがい。</b><br><span class="soft">0.25mg と 250μg は同じ量。0.25mg と 250mg は1000倍ちがい。μgが出たら一拍おく。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>小数点1つで10倍ずれる。</b><br><span class="soft">0.5mg・0.05mg・5mg は全部ちがう量。ゼロの数を声に出して数える。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>「大きい単位＝数小さい」を思い出す。</b><br><span class="soft">g→mgで数が増えなかったら、向きを間違えてるサイン。</span></p></div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">階段の上り下りはバッチリ。<br>じゃあ、白衣の世界へ。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 薬剤師の現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ いちばん怖いミス</span>
+    <h1>μg と mg、<br><span class="hl">取り違え注意</span>。</h1>
+    <p class="lead">桁が1000ちがうと、薬の量も1000倍。<br>ここを“絵”で固めて、事故を防ぎます。</p>
+  </header>
+
+  <div class="big-point rose"><b class="kr">単位の取り違えは、現場でいちばん怖いミス</b>。<br>とくに μg と mg は <b class="kr">1000倍ちがい</b>。桁を1つ間違えるだけで、薬の量が桁違いになります。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>現場の単位たち</h2>
+    <p class="lead-line">薬によって、出てくる単位が違います。<b class="kb">どの単位で書かれているか</b>を最初に必ず見ます。</p>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">💉</span><span class="txt"><span class="per">mg・mg/mL</span>（ふつうの注射・内服）</span></div>
+      <div class="peritem"><span class="emo">🔬</span><span class="txt"><span class="per">μg</span>（強い薬・微量。桁注意！）</span></div>
+      <div class="peritem"><span class="emo">🧴</span><span class="txt"><span class="per">g</span>（軟膏・散剤の量）</span></div>
+      <div class="peritem"><span class="emo">⚖️</span><span class="txt"><span class="per">kg</span>（体重）／ <span class="per">mL・L</span>（かさ）</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B μg⇄mg -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>いちばん危険</div>
+    <h2>μg ⇄ mg（1000倍の壁）</h2>
+    <p class="lead-line">微量の薬は μg で書かれることが多いです。mgに直すには <b class="kb">÷1000</b>、μgに直すには <b class="k">×1000</b>。</p>
+    <p class="soft">例）ジゴキシン 0.25mg ＝ 250μg ／ レボチロキシン 50μg ＝ 0.05mg。<br>同じ薬でも、書き方（単位）でこんなに数字が変わります。</p>
+    <div class="panel">
+      <div class="seg2" id="mmMode"><button class="on" data-m="mgug">mg → μg（×1000）</button><button data-m="ugmg">μg → mg（÷1000）</button></div>
+      <div class="w-in" style="margin:10px 0 4px;"><span id="mmInLab">mg を入れる</span> <input type="number" id="mmIn" value="0.25" min="0" step="any"> <span class="w-unit" id="mmInUnit">mg</span></div>
+      <div class="convbox">
+        <span class="from"><span id="mmFromV">0.25</span><span class="u" id="mmFromU"> mg</span></span>
+        <span class="eqs" id="mmOp">×1000 ＝</span>
+        <span class="to"><span id="mmToV">250</span><span class="u" id="mmToU"> μg</span></span>
+      </div>
+      <div class="warn">⚠️ μg と mg は <b>1000倍</b>ちがい。桁を1つでも間違えると、量が桁違いになります。</div>
+    </div>
+    <div class="big-point">合言葉：<b class="kb">μg を見たら、いつもより一拍おく。</b><br>mg↔μg は ×1000／÷1000。「1g＝1000mg＝1,000,000μg」の階段を思い出す。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C label gallery -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>絵で読む</div>
+    <h2>「mg」と「μg」を行き来する目</h2>
+    <p class="lead-line">微量の薬は、<b class="kb">mgとμgの両方の顔</b>を覚えておくと取り違えません。mg→μgは ×1000。</p>
+    <div class="druggallery" id="mmGallery"></div>
+    <p class="soft" style="margin-top:10px;">どれも「×1000／÷1000」で行き来してるだけ。数字の大きさに惑わされないように。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D 小数点 -->
+  <section>
+    <div class="step-no"><span class="dot">D</span>小数点の罠</div>
+    <h2>点ひとつで、10倍ずれる</h2>
+    <p class="lead-line">同じ「5」でも、<b class="kr">小数点の位置で10倍ずつ</b>変わります。ゼロの数は、必ず声に出して数える。</p>
+    <div class="decrow">
+      <div class="deccard lo"><div class="v">0.05</div><div class="u">mg ＝ 50μg</div></div>
+      <div class="deccard mid"><div class="v">0.5</div><div class="u">mg ＝ 500μg</div></div>
+      <div class="deccard hi"><div class="v">5</div><div class="u">mg ＝ 5000μg</div></div>
+    </div>
+    <div class="big-point rose">隣どうしで<b class="kr">10倍</b>。点の位置を見間違えると、すぐ10倍・100倍ずれます。<br>「ゼロを数える」「単位をそろえて見比べる」を毎回。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>単位変換ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。階段を上り下りするだけです。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- F つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位を見ずに数字だけ読む。</b><br><span class="soft">「250」だけ見て μg か mg か確認しないと、1000倍ミスに直結。数字の前に単位を見る。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>μgの薬を“桁が大きい”と勘違い。</b><br><span class="soft">250μg は 0.25mg。μgだと数字は大きく見えるけど、量はごく少量。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>L と mL の取り違え。</b><br><span class="soft">500mL は 0.5L。重さと同じく、かさも1000の階段。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    μg・mg・g は <b>1000ずつの階段</b>。<br>
+    大きい単位ほど数は小さい。μgを見たら一拍。<br>
+    これだけで、ケタ違いのミスが消えます。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
 <script>
 
   function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
@@ -1492,8 +2019,103 @@ function init_hirei(){
 
 }
 
-  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり"};
-  const __INITS__ = {"percent":init_percent,"hirei":init_hirei};
+function init_units(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1e6)/1e6; return r.toLocaleString('ja-JP',{maximumFractionDigits:6}); }
+
+  /* P1-3: converter + staircase highlight */
+  (function(){
+    let unit='mg'; const factor={ug:0.001,mg:1,g:1000};
+    const val=document.getElementById('cvVal'),seg=document.getElementById('cvUnit'),
+      oUg=document.getElementById('oUg'),oMg=document.getElementById('oMg'),oG=document.getElementById('oG'),
+      stUg=document.getElementById('stUg'),stMg=document.getElementById('stMg'),stG=document.getElementById('stG');
+    function hot(u){ [stUg,stMg,stG].forEach(s=>s.style.background=''); if(u==='ug')stUg.style.background='#A9D6E8'; if(u==='mg')stMg.style.background='#A9D6E8'; if(u==='g')stG.style.background='#A9D6E8';
+      document.querySelectorAll('.utable tr').forEach(tr=>tr.classList.remove('hot')); const row=document.querySelector('.utable tr.r-'+u); if(row)row.classList.add('hot'); }
+    function r(){ const v=parseFloat(val.value)||0, mg=v*factor[unit]; oUg.textContent=fmt(mg*1000); oMg.textContent=fmt(mg); oG.textContent=fmt(mg/1000); hot(unit); }
+    val.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{unit=b.dataset.u;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    document.querySelectorAll('.qb[data-set]').forEach(b=>b.onclick=()=>{const[u,vv]=b.dataset.set.split('|');unit=u;val.value=vv;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.u===u));r();});
+    r();
+  })();
+
+  /* P1-4: stepper */
+  (function(){
+    const units=['μg','mg','g']; let idx=1, value=5;
+    const num=document.getElementById('spNum'),un=document.getElementById('spUn'),note=document.getElementById('spNote'),up=document.getElementById('spUp'),down=document.getElementById('spDown');
+    function r(msg){ num.textContent=fmt(value); un.textContent=units[idx]; note.textContent=msg||'ボタンで階段を上り下りしてみよう（量は同じ）'; up.disabled=(idx>=2); down.disabled=(idx<=0); up.style.opacity=up.disabled?'.4':'1'; down.style.opacity=down.disabled?'.4':'1'; }
+    up.onclick=()=>{ if(idx<2){ value/=1000; idx++; r(`のぼった → ÷1000 → 数が小さくなった（${units[idx]}）`);} };
+    down.onclick=()=>{ if(idx>0){ value*=1000; idx--; r(`おりた → ×1000 → 数が大きくなった（${units[idx]}）`);} };
+    r();
+  })();
+
+  /* P2-B: μg⇄mg converter */
+  (function(){
+    let mode='mgug';
+    const seg=document.getElementById('mmMode'),inEl=document.getElementById('mmIn'),inLab=document.getElementById('mmInLab'),inUnit=document.getElementById('mmInUnit'),
+      fv=document.getElementById('mmFromV'),fu=document.getElementById('mmFromU'),op=document.getElementById('mmOp'),tv=document.getElementById('mmToV'),tu=document.getElementById('mmToU');
+    function r(){
+      const v=parseFloat(inEl.value)||0;
+      if(mode==='mgug'){ inLab.textContent='mg を入れる'; inUnit.textContent='mg'; fv.textContent=fmt(v); fu.textContent=' mg'; op.textContent='×1000 ＝'; op.className='eqs'; tv.textContent=fmt(v*1000); tu.textContent=' μg'; }
+      else { inLab.textContent='μg を入れる'; inUnit.textContent='μg'; fv.textContent=fmt(v); fu.textContent=' μg'; op.textContent='÷1000 ＝'; op.className='eqs up'; tv.textContent=fmt(v/1000); tu.textContent=' mg'; }
+    }
+    inEl.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); inEl.value= mode==='mgug'?0.25:250; r();});
+    r();
+  })();
+
+  /* P2-C: gallery */
+  (function(){
+    const gal=document.getElementById('mmGallery');
+    const data=[
+      {e:'💊',nm:'ジゴキシン',pc:'0.25mg',mg:'250μg'},
+      {e:'🦋',nm:'レボチロキシン',pc:'50μg',mg:'0.05mg'},
+      {e:'💉',nm:'ある微量薬',pc:'0.5mg',mg:'500μg'},
+      {e:'🩹',nm:'貼り薬など',pc:'12μg',mg:'0.012mg'},
+    ];
+    data.forEach(d=>{const c=document.createElement('div');c.className='dcard';
+      c.innerHTML='<div class="e">'+d.e+'</div><div class="nm">'+d.nm+'</div><div class="conv"><span class="pc">'+d.pc+'</span> <span class="ar">＝</span> <span class="mg">'+d.mg+'</span></div>';
+      gal.appendChild(c);});
+  })();
+
+  /* P2-E: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=0,suf='',locked=false;
+    function shuffle(x){for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const types=[
+        ()=>{const mg=[0.05,0.1,0.25,0.5,1.5][Math.floor(Math.random()*5)];return{q:`${fmt(mg)}mg は何 μg？`,ans:mg*1000,suf:'μg',hint:'mg→μg は ×1000（おりる）'};},
+        ()=>{const ug=[50,100,250,500,750][Math.floor(Math.random()*5)];return{q:`${ug}μg は何 mg？`,ans:ug/1000,suf:'mg',hint:'μg→mg は ÷1000（のぼる）'};},
+        ()=>{const g=[0.5,1.2,2,0.05][Math.floor(Math.random()*4)];return{q:`${fmt(g)}g は何 mg？`,ans:g*1000,suf:'mg',hint:'g→mg は ×1000（おりる）'};},
+      ];
+      const t=types[Math.floor(Math.random()*types.length)]();
+      answer=Math.round(t.ans*1e6)/1e6; suf=t.suf; Q.innerHTML=t.q; hint.textContent='ヒント：'+t.hint;
+      const set=new Set([answer]); const mult=[10,100,0.1,1000,0.01]; let g=0;
+      while(set.size<4 && g<60){ g++; const m=mult[Math.floor(Math.random()*mult.length)]; const w=Math.round(answer*m*1e6)/1e6; if(w>0 && Math.abs(w-answer)>1e-9) set.add(w); }
+      const choices=shuffle([...set]); opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=fmt(ch)+suf;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(Math.abs(ch-answer)<1e-9){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+fmt(answer)+suf;fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===fmt(answer)+suf)o.classList.add('correct');});fb.textContent='❌ 正解は '+fmt(answer)+suf;fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段"};
+  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units};
   function openTheme(id){
     const tpl=document.getElementById('tpl-'+id);
     if(!tpl) return;
