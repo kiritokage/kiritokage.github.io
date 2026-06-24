@@ -1612,6 +1612,309 @@
   .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
   .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
 
+/* ---- style: gamma ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.75rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.1rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .twoin{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .threein{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2rem; color:var(--persimmon-deep); }
+  .bigout .v small{ font-size:.82rem; color:var(--ink-soft); }
+
+  /* conversion chain */
+  .chain{ display:flex; flex-direction:column; gap:7px; margin:12px 0 2px; }
+  .clink{ display:flex; align-items:center; justify-content:space-between; gap:10px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:9px 13px; box-shadow:var(--shadow); }
+  .clink .nm{ font-size:.82rem; color:var(--ink-soft); font-weight:700; }
+  .clink .vl{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.05rem; color:var(--sky-deep); }
+  .carrow{ text-align:center; font-size:.78rem; color:var(--persimmon-deep); font-weight:700; line-height:1; }
+  .clink.fin{ background:#FFF3E9; border-color:var(--persimmon); } .clink.fin .vl{ color:var(--persimmon-deep); }
+
+  .formula{ text-align:center; font-family:"Zen Maru Gothic"; font-weight:900; background:#E7F2F7; border-radius:16px; padding:15px; margin:14px 0; color:var(--sky-deep); }
+  .formula .big{ font-size:1.12rem; line-height:1.5; } .formula .sub{ font-size:.8rem; color:var(--ink-soft); font-weight:700; margin-top:6px; }
+
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
+/* ---- style: opioid ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.7rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.1rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .twoin{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:120px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.82rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.9rem; color:var(--persimmon-deep); }
+  .bigout .v small{ font-size:.8rem; color:var(--ink-soft); }
+
+  .twobase{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .basecard{ border-radius:14px; padding:12px 8px; text-align:center; }
+  .basecard.base{ background:#E7F2F7; } .basecard.resc{ background:#FFF3E9; }
+  .basecard .t{ font-size:.74rem; color:var(--ink-soft); font-weight:700; }
+  .basecard .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.35rem; }
+  .basecard.base .v{ color:var(--sky-deep); } .basecard.resc .v{ color:var(--persimmon-deep); }
+
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  .warn{ background:#FDECEA; border:1.5px solid #F0B6B0; border-radius:14px; padding:13px 15px; font-size:.86rem; color:#9E3B33; margin:14px 0; font-weight:600; }
+  .warn b{ color:#C2493E; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
+/* ---- style: nonlinear ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.75rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .slabels{ display:flex; justify-content:space-between; font-size:.76rem; color:var(--ink-soft); padding:12px 2px 4px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:34px; height:34px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.45); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2rem; color:var(--persimmon-deep); }
+  .bigout .v small{ font-size:.82rem; color:var(--ink-soft); }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:90px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+
+  .curvewrap{ background:#FBF7F0; border:1px solid var(--line); border-radius:16px; padding:8px; margin:8px 0; }
+  .curvewrap svg{ width:100%; height:auto; display:block; }
+  .axlabel{ font-size:10px; fill:var(--ink-soft); font-weight:700; }
+
+  .sink{ display:flex; align-items:center; gap:12px; justify-content:center; margin:10px 0; }
+  .sinkbox{ text-align:center; }
+  .sinkbox .ic{ font-size:2rem; } .sinkbox .cap{ font-size:.74rem; color:var(--ink-soft); font-weight:700; margin-top:2px; }
+  .sinkarrow{ font-size:1.4rem; color:var(--ink-soft); }
+
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  .cmp{ width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); margin-top:8px; }
+  .cmp th,.cmp td{ padding:10px 9px; text-align:center; border:1px solid var(--line); font-size:.85rem; vertical-align:middle; }
+  .cmp th{ background:#F3ECF5; color:var(--plum-deep); font-family:"Zen Maru Gothic"; font-weight:900; }
+  .cmp td.rh{ background:#FBF4EB; font-weight:700; color:var(--ink-soft); text-align:left; }
+  .cmp .lin{ color:var(--mint-deep); font-weight:700; } .cmp .non{ color:var(--rose-deep); font-weight:700; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
 
   /* ===== app shell ===== */
   #themeView .topnav .inner{ gap:8px; }
@@ -1667,9 +1970,11 @@
 <button class="lcard" onclick="openTheme('bsa')"><span class="ic">🧍</span><span class="tx"><span class="t">体表面積 BSA</span><span class="s">体の大きさのものさし</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('ccr')"><span class="ic">🫘</span><span class="tx"><span class="t">腎機能 Ccr・eGFR</span><span class="s">腎臓の燃費計</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openTheme('auc')"><span class="ic">📈</span><span class="tx"><span class="t">AUC・Calvert式</span><span class="s">グラフの下の面積</span></span><span class="badge done">できた</span></button>
-<div class="lcard soon"><span class="ic">🌊</span><span class="tx"><span class="t">γ（ガンマ）</span><span class="s">1kg・1分あたりの流れ</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openTheme('gamma')"><span class="ic">🌊</span><span class="tx"><span class="t">γ（ガンマ）</span><span class="s">1kg・1分あたりの流れ</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openTheme('opioid')"><span class="ic">🛏️</span><span class="tx"><span class="t">在宅オピオイド注射</span><span class="s">濃度・速度・レスキュー</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#A87BB5">上級（PK・TDM）</span></div><div class="cards">
+<button class="lcard" onclick="openTheme('nonlinear')"><span class="ic">⛰️</span><span class="tx"><span class="t">非線形PK</span><span class="s">急に上がる薬</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">⏳</span><span class="tx"><span class="t">半減期 t½</span><span class="s">半分になる時間</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🏠</span><span class="tx"><span class="t">分布容積 Vd</span><span class="s">散らばった部屋の広さ</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🧽</span><span class="tx"><span class="t">クリアランス CL</span><span class="s">掃除する水の量</span></span><span class="badge soon">準備中</span></div>
@@ -1679,7 +1984,7 @@
 <div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 13 / 20 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 16 / 22 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -4532,6 +4837,528 @@
 
 </div><!-- /page2 -->
 </template>
+<template id="tpl-gamma">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">中級④ ・ とことん版</span>
+    <h1>体重1kg・1分<br>あたり、<span class="hl">何μg</span>。</h1>
+    <p class="lead">それが γ（ガンマ）。<br>持続点滴の速度を表す、ICUの単位です。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>γってなに</div>
+    <h2>1γ ＝ 1μg/kg/min</h2>
+    <p class="lead-line"><b class="kb">γ（ガンマ）</b>は、<b class="kb">体重1kg・1分あたり、何μgの薬を流すか</b>という単位。<b class="k">1γ ＝ 1μg/kg/min</b> です。</p>
+    <p>主にICU・救急・手術室で、<b class="kb">血圧や心臓を支える薬（カテコラミン：ドパミン・ドブタミン・ノルアドレナリンなど）</b>を、ポンプで“ずっと流し続ける”ときに使います。効果を見ながら細かく増減するので、「体重あたり・分あたり」で表すと便利なんです。</p>
+    <div class="big-point blue">γ は「<b class="kb">あたり算が2つ重なった</b>もの」。1kgあたり、かつ1分あたり。だから μg <b>/kg /min</b>。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>まず投与量</div>
+    <h2>γ × 体重 ＝ 1分あたりのμg</h2>
+    <p class="lead-line">「1kgあたり」を「その人の体重ぶん」集めれば、1分あたりの量。<b class="kb">μg/min ＝ γ × 体重kg</b>。ふつうのあたり算です。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">γ（指示）</div><div class="w-in"><input type="number" id="d1G" value="3" min="0" step="0.1"><span class="w-unit">γ</span></div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="d1W" value="60" min="0"><span class="w-unit">kg</span></div></div>
+      </div>
+      <div class="bigout" style="margin-top:8px;"><div class="lab">1分あたりの投与量</div><div class="v" style="color:var(--sky-deep)"><span id="d1Res">180</span><small> μg/min</small></div></div>
+      <div class="w-steps" id="d1Steps"></div>
+    </div>
+    <div class="big-point">合言葉：<b class="kb">μg/min ＝ γ × 体重</b>。まずここで「1分に何μg」を出します。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>ポンプの速度へ</div>
+    <h2>μg/min を mL/時 に直す</h2>
+    <p class="lead-line">ポンプにセットするのは <b class="kb">mL/時</b>。だから μg/min を、順番に単位変換します。やることは3つだけ：</p>
+    <div class="formula"><div class="big">μg/min ×60（→/時） ÷1000（→mg） ÷濃度（→mL）</div><div class="sub">時間をそろえ、μgをmgにし、濃度で割って体積にする</div></div>
+    <div class="panel">
+      <div class="threein">
+        <div><div class="w-lab">γ</div><div class="w-in"><input type="number" id="d2G" value="3" min="0" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">γ</div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="d2W" value="60" min="0"></div><div class="w-unit" style="font-size:.7rem;">kg</div></div>
+        <div><div class="w-lab">濃度</div><div class="w-in"><input type="number" id="d2C" value="3" min="0.01" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mg/mL</div></div>
+      </div>
+      <div class="chain" id="d2Chain"></div>
+      <div class="w-steps" id="d2Steps"></div>
+    </div>
+    <p class="soft">※ 濃度は「注射液1mLに薬が何mg入っているか」。製剤や希釈で変わります。</p>
+  </section>
+
+  <!-- pitfalls -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>つまずき</div>
+    <h2>ここだけ気をつける</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>μg と mg、min と h をそろえる。</b><br><span class="soft">γはμg・min。ポンプはmL・h。×60、÷1000の単位合わせを忘れない。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>濃度を必ず確認。</b><br><span class="soft">同じγでも、注射液の濃度が違えばmL/時は変わる。希釈条件をチェック。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>カテコラミンは要注意薬。</b><br><span class="soft">少しの差が大きく効く。計算もポンプ設定も必ずダブルチェック。</span></p></div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">γの正体「μg/kg/min」と変換はバッチリ。<br>じゃあ、ポンプ速度を出してみよう。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ γをポンプ速度に</span>
+    <h1><span class="hl">○γ</span> を、<br>mL/時にする。</h1>
+    <p class="lead">指示のγ・体重・濃度から、<br>ポンプのmL/時を出します。</p>
+  </header>
+
+  <div class="big-point">合言葉：<b class="kb">mL/時 ＝ γ × 体重 × 60 ÷ 1000 ÷ 濃度(mg/mL)</b>。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>こんな場面で使う</h2>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🏥</span><span class="txt"><span class="per">ICU・救急・手術室</span>のカテコラミン持続投与</span></div>
+      <div class="peritem"><span class="emo">💉</span><span class="txt">医師「<span class="per">○γで</span>」 → ポンプは <span class="per">mL/時</span>で設定</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B γ→mL/h -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>γ → mL/時 計算機</div>
+    <h2>ポンプ速度を出す</h2>
+    <div class="panel">
+      <div class="threein">
+        <div><div class="w-lab">γ（指示）</div><div class="w-in"><input type="number" id="bG" value="5" min="0" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">γ</div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="bW" value="50" min="0"></div><div class="w-unit" style="font-size:.7rem;">kg</div></div>
+        <div><div class="w-lab">濃度</div><div class="w-in"><input type="number" id="bC" value="3" min="0.01" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mg/mL</div></div>
+      </div>
+      <div class="chain" id="bChain"></div>
+      <div class="bigout" style="margin-top:4px;"><div class="lab">ポンプ設定</div><div class="v"><span id="bRes">5</span><small> mL/時</small></div></div>
+      <div class="w-steps" id="bSteps"></div>
+    </div>
+    <div class="note">⚠️ 計算の練習用です。実際の投与は薬剤の濃度・希釈・プロトコル・ポンプ仕様を必ず確認し、ダブルチェックを行ってください（高アラート薬）。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C reverse -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>逆算</div>
+    <h2>ポンプ速度 → 今、何γ？</h2>
+    <p class="lead-line">今のmL/時から、いま何γ流れているかも出せます（向きを逆にするだけ）。<b class="kb">γ ＝ mL/時 × 濃度 × 1000 ÷ 体重 ÷ 60</b>。</p>
+    <div class="panel">
+      <div class="threein">
+        <div><div class="w-lab">ポンプ mL/時</div><div class="w-in"><input type="number" id="cMlh" value="5" min="0" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mL/h</div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="cW" value="50" min="0"></div><div class="w-unit" style="font-size:.7rem;">kg</div></div>
+        <div><div class="w-lab">濃度</div><div class="w-in"><input type="number" id="cC" value="3" min="0.01" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mg/mL</div></div>
+      </div>
+      <div class="bigout" style="margin-top:8px;"><div class="lab">いまの投与速度</div><div class="v" style="color:var(--sky-deep)"><span id="cRes">5</span><small> γ</small></div></div>
+      <div class="w-steps" id="cSteps"></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>γドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位合わせ（×60・÷1000）の抜け。</b><br><span class="soft">μg/min→mg/h を飛ばすと桁が狂う。順番に直す。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>濃度の取り違え。</b><br><span class="soft">原液濃度か希釈後濃度か。実際にポンプに入っている液の濃度を使う。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>体重の確認。</b><br><span class="soft">γは体重あたり。体重が違えば同じγでもmL/時が変わる。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    γ ＝ <b>μg/kg/min</b>（体重・分あたり、あたり算×2）。<br>
+    mL/時 ＝ <b>γ×体重×60÷1000÷濃度</b>。<br>
+    要注意薬なので、計算もポンプも必ずダブルチェック。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
+<template id="tpl-opioid">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">中級⑤ ・ とことん版</span>
+    <h1>ずっと流す＋<br>痛い時に<span class="hl">追加</span>。</h1>
+    <p class="lead">在宅のオピオイド持続注射。<br>「ベース」と「レスキュー」の2本立てです。</p>
+  </header>
+
+  <div class="warn">⚠️ この教材は<b>計算の考え方の練習用</b>です。オピオイドは高リスク薬。レスキューの割合・換算比・上限などは<b>必ず最新のガイドライン・添付文書・院内基準</b>で確認し、処方医・チームで判断・ダブルチェックしてください。</div>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>2本立て</div>
+    <h2>ベースとレスキュー</h2>
+    <p class="lead-line">在宅では、携帯ポンプでオピオイドを<b class="kb">持続的に</b>流します（持続皮下注・持続静注）。これが<b class="kb">ベース（土台の鎮痛）</b>。</p>
+    <p>でも、急に強い痛み（突出痛）が出ることがある。そのとき<b class="k">早送り（ボーラス）でひと押し</b>するのが<b class="k">レスキュー（追加）</b>。<b>持続のベース</b>と<b>頓用のレスキュー</b>、この2つをセットで設計します。</p>
+    <div class="big-point blue">ベース＝<b class="kb">ずっと一定で流す</b>ぶん。レスキュー＝<b class="k">痛い時だけ追加</b>するぶん。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>ベース速度</div>
+    <h2>1日量 → ポンプの mL/時</h2>
+    <p class="lead-line">ベースは「1日量（mg）」で決まります。それを時間あたり・体積あたりに直すだけ：<b class="kb">1日量 ÷24（→1時間量）÷濃度（→mL/時）</b>。点滴速度・γと同じ「濃度×速度」です。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">1日量</div><div class="w-in"><input type="number" id="b1Day" value="24" min="0"><span class="w-unit">mg/日</span></div></div>
+        <div><div class="w-lab">注射液の濃度</div><div class="w-in"><input type="number" id="b1Conc" value="1" min="0.01" step="0.1"><span class="w-unit">mg/mL</span></div></div>
+      </div>
+      <div class="twobase" style="margin-top:8px;">
+        <div class="basecard base"><div class="t">1時間量</div><div class="v"><span id="b1Mgh">1</span><small> mg/h</small></div></div>
+        <div class="basecard base"><div class="t">ベース速度</div><div class="v"><span id="b1Mlh">1</span><small> mL/h</small></div></div>
+      </div>
+      <div class="w-steps" id="b1Steps"></div>
+    </div>
+    <div class="big-point">合言葉：<b class="kb">ベース mL/時 ＝ 1日量 ÷ 24 ÷ 濃度</b>。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>レスキュー</div>
+    <h2>追加量は「ベースから」決める</h2>
+    <p class="lead-line">レスキュー1回量は、<b class="kb">1日量を基準にした割合</b>で決めます。注射（持続）では「<b class="kb">1時間量を早送り</b>」＝<b class="k">1日量 ÷ 24</b>が一つの目安。経口では「1日量の<b class="k">1/6</b>」など、基準は様々です。</p>
+    <div class="panel">
+      <div class="w-lab">1日量</div><div class="w-in"><input type="number" id="r1Day" value="24" min="0"><span class="w-unit">mg/日</span></div>
+      <div class="w-lab" style="margin-top:8px;">レスキューの決め方（目安）</div>
+      <div class="seg2" id="r1Mode"><button class="on" data-d="24">注射：1時間量（÷24）</button><button data-d="6">経口の目安：1/6</button></div>
+      <div class="bigout" style="margin-top:8px;"><div class="lab">レスキュー1回量</div><div class="v"><span id="r1Res">1</span><small> mg</small></div></div>
+      <div class="w-steps" id="r1Steps"></div>
+    </div>
+    <div class="warn"><b>割合は基準で変わります。</b>「÷24」「1/6」はあくまで目安。実際は薬剤・経路・ガイドライン・患者状態で決定し、医師・チームで確認してください。</div>
+  </section>
+
+  <!-- pitfalls -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>つまずき</div>
+    <h2>ここだけ気をつける</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>ベースは「1日量」基準。</b><br><span class="soft">まず1日量→1時間量(÷24)→mL/時(÷濃度)。途中の単位を飛ばさない。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>レスキューの割合は固定ではない。</b><br><span class="soft">注射の早送り＝1時間量、経口＝1/6 などは目安。基準で確認。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>濃度（希釈条件）を必ず確認。</b><br><span class="soft">同じmg/日でも、注射液の濃度でmL/時は変わる。</span></p></div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">ベースとレスキューの考え方はバッチリ。<br>じゃあ、まとめて計算してみよう。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ 在宅の計算</span>
+    <h1><span class="hl">在宅セット</span><br>を組み立てる。</h1>
+    <p class="lead">ベース速度とレスキュー量を、<br>1日量と濃度から一度に出します。</p>
+  </header>
+
+  <div class="big-point">合言葉：<b class="kb">ベースmL/時＝1日量÷24÷濃度</b>。<b class="k">レスキューも mg→mL は ÷濃度</b>。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>在宅緩和ケアの持続注射</h2>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🛏️</span><span class="txt"><span class="per">携帯ポンプ</span>でオピオイドを持続皮下注／持続静注</span></div>
+      <div class="peritem"><span class="emo">💢</span><span class="txt"><span class="per">突出痛</span>には早送り（レスキュー）で対応</span></div>
+      <div class="peritem"><span class="emo">🔁</span><span class="txt">薬や経路を変えるときは <span class="per">換算</span>が必要</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B set calculator -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>在宅セット計算機</div>
+    <h2>ベース速度＋レスキュー量</h2>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">1日量</div><div class="w-in"><input type="number" id="setDay" value="48" min="0"><span class="w-unit">mg/日</span></div></div>
+        <div><div class="w-lab">注射液の濃度</div><div class="w-in"><input type="number" id="setConc" value="2" min="0.01" step="0.1"><span class="w-unit">mg/mL</span></div></div>
+      </div>
+      <div class="twobase" style="margin-top:10px;">
+        <div class="basecard base"><div class="t">ベース速度</div><div class="v"><span id="setMlh">1</span><small> mL/h</small></div></div>
+        <div class="basecard resc"><div class="t">レスキュー（1時間量）</div><div class="v"><span id="setResMl">1</span><small> mL</small></div></div>
+      </div>
+      <div class="w-steps" id="setSteps"></div>
+    </div>
+    <div class="warn">⚠️ レスキューは「1時間量＝1日量÷24」を例に表示。割合・回数・間隔は<b>必ず基準と指示で確認</b>。高アラート薬につき<b>ダブルチェック必須</b>。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C rotation -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>オピオイド換算</div>
+    <h2>薬・経路を変える＝比で移す</h2>
+    <p class="lead-line">別のオピオイドや別の経路に変えるとき、<b class="kb">換算比</b>を使って量を移します。これは塩・無水換算やパーセントと同じ <b class="k">×（比）</b>。さらに安全のため<b class="kr">いったん減量して開始</b>するのが基本です（不完全交叉耐性）。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">いまの1日量</div><div class="w-in"><input type="number" id="rotDay" value="60" min="0"><span class="w-unit">mg/日</span></div></div>
+        <div><div class="w-lab">換算比（×）</div><div class="w-in"><input type="number" id="rotRatio" value="0.5" min="0" step="0.05"><span class="w-unit">倍</span></div></div>
+      </div>
+      <div class="w-lab" style="margin-top:8px;">安全のための減量</div>
+      <div class="seg2" id="rotCut"><button data-c="0">減量なし</button><button class="on" data-c="25">−25%</button><button data-c="50">−50%</button></div>
+      <div class="twobase" style="margin-top:8px;">
+        <div class="basecard base"><div class="t">単純換算</div><div class="v"><span id="rotPlain">30</span><small> mg/日</small></div></div>
+        <div class="basecard resc"><div class="t">減量後の開始量</div><div class="v"><span id="rotStart">22.5</span><small> mg/日</small></div></div>
+      </div>
+      <div class="w-steps" id="rotSteps"></div>
+    </div>
+    <div class="warn"><b>換算比は薬剤・経路ごとに決まっています。</b>ここでは比を入力して計算練習をするだけです。実際の換算比・減量幅は<b>必ず公式の換算表・ガイドライン</b>で確認し、医師・チームで判断してください。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>在宅注射ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>換算後に減量を忘れる。</b><br><span class="soft">別オピオイドへ変更時は、安全のため計算値から減らして開始するのが基本。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>レスキュー割合を固定値と思い込む。</b><br><span class="soft">÷24や1/6は目安。経路・薬・基準で異なる。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>腎機能・全身状態の影響。</b><br><span class="soft">腎機能低下で効きすぎることも（活性代謝物の蓄積）。状態をあわせて判断。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    ベース ＝ <b>1日量÷24÷濃度</b>（mL/時）。レスキューは<b>ベースから</b>。<br>
+    換算は<b>×比＋安全のため減量</b>。<br>
+    高リスク薬。割合・比・上限は<b>必ず基準で確認、ダブルチェック</b>。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
+<template id="tpl-nonlinear">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">上級① ・ とことん版</span>
+    <h1>ある量を超えると、<br><span class="hl">急に上がる</span>。</h1>
+    <p class="lead">それが非線形（飽和）。<br>「処理が頭打ち」になる薬の話です。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>まず線形</div>
+    <h2>ふつうは「量2倍 → 濃度2倍」</h2>
+    <p class="lead-line">多くの薬は<b class="kg">線形</b>。入れた量に<b class="kg">比例</b>して血中濃度が上がります。量を2倍にすれば濃度も2倍、3倍なら3倍。素直です。</p>
+    <p>これは「体が、入ってきたぶんを<b class="kg">いつも同じ割合で</b>処理できている」状態。AUCの回でやった「用量2倍→AUC2倍」と同じ世界です。</p>
+    <div class="big-point mint">線形 ＝ <b class="kg">量に比例</b>して濃度が上がる。予測しやすい“ふつう”の薬。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>処理の頭打ち</div>
+    <h2>「捌ける量」には限界がある</h2>
+    <p class="lead-line">ところが、薬を処理する酵素には<b class="kr">能力の上限</b>があります。流し込む量が増えて、処理が<b class="kr">いっぱいいっぱい（飽和）</b>になると——もう追いつけません。</p>
+    <div class="sink">
+      <div class="sinkbox"><div class="ic">🚰</div><div class="cap">入ってくる薬</div></div>
+      <div class="sinkarrow">→</div>
+      <div class="sinkbox"><div class="ic">🧽</div><div class="cap">処理（酵素）<br>能力に上限</div></div>
+      <div class="sinkarrow">→</div>
+      <div class="sinkbox"><div class="ic">🌊</div><div class="cap">あふれて<br>濃度が急上昇</div></div>
+    </div>
+    <p>排水（処理）が追いつかないシンクに水を足し続けると、ある所から<b class="kr">急にあふれる</b>。これが「ある量を超えると急に上がる」の正体です。</p>
+    <div class="big-point rose">処理が<b class="kr">飽和</b>すると、少し量を足しただけで<b class="kr">濃度が急に跳ね上がる</b>。これが非線形（飽和）。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>体感する</div>
+    <h2>線形と非線形を、並べて見る</h2>
+    <p class="lead-line">投与量を動かして、濃度の上がり方を比べてください。<b class="kg">緑＝線形（比例）</b>、<b class="kr">赤＝非線形（飽和）</b>。ある量から赤がぐいっと跳ねます。</p>
+    <div class="panel">
+      <div class="curvewrap">
+        <svg viewBox="0 0 320 200">
+          <line x1="34" y1="170" x2="306" y2="170" stroke="#CBB89B" stroke-width="1.5"/>
+          <line x1="34" y1="16" x2="34" y2="170" stroke="#CBB89B" stroke-width="1.5"/>
+          <path id="nlLinear" d="" fill="none" stroke="#3E9A63" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <path id="nlCurve" d="" fill="none" stroke="#C25962" stroke-width="3"/>
+          <circle id="nlDotL" cx="34" cy="170" r="4" fill="#3E9A63"/>
+          <circle id="nlDotN" cx="34" cy="170" r="4.5" fill="#C25962"/>
+          <text x="175" y="192" text-anchor="middle" class="axlabel">投与量 →</text>
+          <text x="16" y="20" text-anchor="middle" class="axlabel" transform="rotate(-90 16 95)">血中濃度</text>
+        </svg>
+      </div>
+      <div class="w-lab">投与量</div>
+      <div class="slabels"><span>少ない</span><span>多い</span></div>
+      <input type="range" id="nlDose" min="0" max="100" value="40">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px;">
+        <div class="bigout"><div class="lab" style="color:var(--mint-deep)">線形なら</div><div class="v" style="color:var(--mint-deep); font-size:1.5rem;"><span id="nlLinV">40</span></div></div>
+        <div class="bigout"><div class="lab" style="color:var(--rose-deep)">非線形だと</div><div class="v" style="color:var(--rose-deep); font-size:1.5rem;"><span id="nlNonV">42</span></div></div>
+      </div>
+      <div class="w-steps" id="nlSteps"></div>
+    </div>
+    <p class="soft">※ グラフは飽和のイメージを示す模式図です（実際の形は薬で異なります）。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 4 -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>なぜ怖い</div>
+    <h2>「半減期が一定でない」から読みにくい</h2>
+    <p class="lead-line">線形の薬は半減期が一定で、増量の影響も予測しやすい。でも非線形は、<b class="kr">濃度が高いほど“割合で減る”が崩れ</b>、増量で<b class="kr">予想以上に濃度が上がる</b>。中毒域に一気に入ることも。</p>
+    <div class="big-point">だから非線形の薬は <b class="kb">少しずつ増量</b>し、<b class="kb">血中濃度モニタリング（TDM）</b>で確認するのが基本です。</div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">「飽和すると急上昇」のイメージはバッチリ。<br>じゃあ、現場での向き合い方を見よう。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ 飽和とつきあう</span>
+    <h1><span class="hl">増量</span>は、<br>そっと慎重に。</h1>
+    <p class="lead">非線形の薬は「比例の予測」が効かない。<br>少量ずつ・TDMで確認が基本です。</p>
+  </header>
+
+  <div class="big-point">合言葉：非線形では<b class="kr">用量比例が成り立たない</b>。少しの増量が<b class="kr">大きな濃度上昇</b>になりうる。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>こんなときに思い出す</h2>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">📈</span><span class="txt">増量したのに <span class="per">予想以上に濃度が上がった</span></span></div>
+      <div class="peritem"><span class="emo">🩸</span><span class="txt"><span class="per">TDM</span>で測ると、用量の割に高い／不安定</span></div>
+      <div class="peritem"><span class="emo">⚠️</span><span class="txt">「飽和（非線形）」の<span class="per">注意がある薬</span></span></div>
+    </div>
+    <p class="soft">飽和性の代謝を示す薬（一部の抗てんかん薬など）が知られています。どの薬がそうかは添付文書・成書で確認を。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B linear vs nonlinear predict -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>予測のズレを見る</div>
+    <h2>「比例で予測」した量と、現実</h2>
+    <p class="lead-line">線形なら「用量2倍→濃度2倍」で予測できます。非線形だと同じ増量でも<b class="kr">予測より大きく上がる</b>。増量率を入れて、ズレを見てください。</p>
+    <div class="panel">
+      <div class="w-lab">いまの濃度（基準）</div>
+      <div class="slabels"><span>10</span><span>30</span></div>
+      <input type="range" id="pdBase" min="10" max="30" value="15" step="1">
+      <div class="w-lab" style="margin-top:6px;">増量する割合</div>
+      <div class="seg2" id="pdInc"><button data-i="25">＋25%</button><button class="on" data-i="50">＋50%</button><button data-i="100">＋100%</button></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
+        <div class="bigout"><div class="lab" style="color:var(--mint-deep)">線形の予測</div><div class="v" style="color:var(--mint-deep); font-size:1.5rem;"><span id="pdLin">22.5</span></div></div>
+        <div class="bigout"><div class="lab" style="color:var(--rose-deep)">非線形のイメージ</div><div class="v" style="color:var(--rose-deep); font-size:1.5rem;"><span id="pdNon">31</span></div></div>
+      </div>
+      <div class="w-steps" id="pdSteps"></div>
+    </div>
+    <div class="note">⚠️ 数値は飽和のイメージを示す模式計算です。実際の挙動・予測は薬剤ごとのパラメータとTDM、基準に従ってください。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C compare table -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>整理</div>
+    <h2>線形 と 非線形</h2>
+    <table class="cmp">
+      <tr><th></th><th class="lin">線形（ふつう）</th><th class="non">非線形（飽和）</th></tr>
+      <tr><td class="rh">用量と濃度</td><td class="lin">比例する</td><td class="non">途中から急上昇</td></tr>
+      <tr><td class="rh">半減期</td><td class="lin">ほぼ一定</td><td class="non">濃度で変わる</td></tr>
+      <tr><td class="rh">増量予測</td><td class="lin">読みやすい</td><td class="non">読みにくい</td></tr>
+      <tr><td class="rh">対応</td><td class="lin">通常どおり</td><td class="non">少量ずつ＋TDM</td></tr>
+    </table>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>非線形ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>非線形の薬に「比例の予測」を使う。</b><br><span class="soft">用量2倍→濃度2倍は成り立たない。増量は慎重に、TDMで確認。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>少量の増量を「誤差」と侮る。</b><br><span class="soft">飽和域では小さな増量が大きな濃度上昇に。中毒域に一気に入ることも。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>どの薬が非線形かは要確認。</b><br><span class="soft">飽和性の代謝を示す薬は限られる。添付文書・成書・TDM情報で確認。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    非線形 ＝ 処理が<b>飽和</b>して、ある量から濃度が<b>急上昇</b>。<br>
+    用量比例が効かないので、<b>少量ずつ＋TDM</b>。<br>
+    「急に上がる薬」を見たら、飽和を疑う。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
 <script>
 
   function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
@@ -5896,8 +6723,266 @@ function init_auc(){
 
 }
 
-  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段","dilution":"倍と希釈","dose":"1日量↔1回量","tablet":"錠数・規格えらび","ratio":"比の希釈(1:1000)","c1v1":"濃度調製 C₁V₁=C₂V₂","salt":"塩・無水換算","drip":"点滴の速度・滴下数","bsa":"体表面積 BSA","ccr":"腎機能 Ccr・eGFR","auc":"AUC・Calvert式"};
-  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units,"dilution":init_dilution,"dose":init_dose,"tablet":init_tablet,"ratio":init_ratio,"c1v1":init_c1v1,"salt":init_salt,"drip":init_drip,"bsa":init_bsa,"ccr":init_ccr,"auc":init_auc};
+function init_gamma(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+
+  function renderChain(el, ugmin, mgh, mlh){
+    el.innerHTML =
+      '<div class="clink"><span class="nm">1分あたり</span><span class="vl">'+fmt(ugmin)+' μg/min</span></div>'+
+      '<div class="carrow">↓ ×60 ÷1000</div>'+
+      '<div class="clink"><span class="nm">1時間あたり</span><span class="vl">'+fmt(mgh)+' mg/h</span></div>'+
+      '<div class="carrow">↓ ÷ 濃度</div>'+
+      '<div class="clink fin"><span class="nm">ポンプ速度</span><span class="vl">'+fmt(mlh)+' mL/時</span></div>';
+  }
+
+  /* P1-2: gamma x weight */
+  (function(){
+    const G=document.getElementById('d1G'),W=document.getElementById('d1W'),res=document.getElementById('d1Res'),steps=document.getElementById('d1Steps');
+    function r(){ const g=parseFloat(G.value)||0, w=parseFloat(W.value)||0; const ugmin=g*w; res.textContent=fmt(ugmin);
+      steps.innerHTML=`μg/min ＝ ${fmt(g)}γ × ${fmt(w)}kg ＝ <b>${fmt(ugmin)} μg/min</b>`; }
+    G.oninput=r; W.oninput=r; r();
+  })();
+
+  /* P1-3: full chain */
+  (function(){
+    const G=document.getElementById('d2G'),W=document.getElementById('d2W'),C=document.getElementById('d2C'),chain=document.getElementById('d2Chain'),steps=document.getElementById('d2Steps');
+    function r(){ const g=parseFloat(G.value)||0, w=parseFloat(W.value)||0; let c=parseFloat(C.value)||0.01; if(c<=0)c=0.01;
+      const ugmin=g*w, mgh=ugmin*60/1000, mlh=mgh/c;
+      renderChain(chain, ugmin, mgh, mlh);
+      steps.innerHTML=`${fmt(g)}×${fmt(w)} ＝ ${fmt(ugmin)}μg/min → ×60÷1000 ＝ ${fmt(mgh)}mg/h → ÷${fmt(c)} ＝ <b>${fmt(mlh)} mL/時</b>`; }
+    [G,W,C].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P2-B: gamma -> mL/h */
+  (function(){
+    const G=document.getElementById('bG'),W=document.getElementById('bW'),C=document.getElementById('bC'),chain=document.getElementById('bChain'),res=document.getElementById('bRes'),steps=document.getElementById('bSteps');
+    function r(){ const g=parseFloat(G.value)||0, w=parseFloat(W.value)||0; let c=parseFloat(C.value)||0.01; if(c<=0)c=0.01;
+      const ugmin=g*w, mgh=ugmin*60/1000, mlh=mgh/c;
+      renderChain(chain, ugmin, mgh, mlh); res.textContent=fmt(mlh);
+      steps.innerHTML=`mL/時 ＝ ${fmt(g)}×${fmt(w)}×60÷1000÷${fmt(c)} ＝ <b>${fmt(mlh)} mL/時</b>`; }
+    [G,W,C].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P2-C: reverse mL/h -> gamma */
+  (function(){
+    const M=document.getElementById('cMlh'),W=document.getElementById('cW'),C=document.getElementById('cC'),res=document.getElementById('cRes'),steps=document.getElementById('cSteps');
+    function r(){ const m=parseFloat(M.value)||0; let w=parseFloat(W.value)||0.01; if(w<=0)w=0.01; const c=parseFloat(C.value)||0;
+      const mgh=m*c, ugmin=mgh*1000/60, g=ugmin/w;
+      res.textContent=fmt(g);
+      steps.innerHTML=`mg/h ＝ ${fmt(m)}×${fmt(c)} ＝ ${fmt(mgh)} → μg/min ＝ ${fmt(ugmin)} → ÷${fmt(w)}kg ＝ <b>${fmt(g)}γ</b>`; }
+    [M,W,C].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P2-D: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=0,suf='',locked=false;
+    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const kind=Math.floor(Math.random()*3);
+      if(kind===0){ const g=[2,3,5][Math.floor(Math.random()*3)], w=[50,60,70][Math.floor(Math.random()*3)];
+        answer=Math.round(g*w*100)/100; suf=' μg/min'; Q.innerHTML=`${g}γ・体重${w}kg。1分あたりは？`; hint.textContent='γ×体重';
+      } else if(kind===1){ const g=[3,5][Math.floor(Math.random()*2)], w=[50,60][Math.floor(Math.random()*2)], c=[3][0];
+        answer=Math.round(g*w*60/1000/c*100)/100; suf=' mL/時'; Q.innerHTML=`${g}γ・${w}kg・濃度${c}mg/mL。mL/時は？`; hint.textContent='γ×体重×60÷1000÷濃度';
+      } else { const m=[3,6][Math.floor(Math.random()*2)], w=[50,60][Math.floor(Math.random()*2)], c=3;
+        answer=Math.round(m*c*1000/60/w*100)/100; suf=' γ'; Q.innerHTML=`ポンプ${m}mL/時・${w}kg・濃度${c}mg/mL。今何γ？`; hint.textContent='mL/h×濃度×1000÷体重÷60';
+      }
+      const set=new Set([answer]); const mult=[1.5,0.5,2,0.8,1.2]; let g=0;
+      while(set.size<4 && g<60){ g++; const mm=mult[Math.floor(Math.random()*mult.length)]; const w=Math.round(answer*mm*100)/100; if(w>0 && Math.abs(w-answer)>1e-2) set.add(w); }
+      const choices=shuffle([...set]).slice(0,4); opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=fmt(ch)+suf;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(Math.abs(ch-answer)<1e-2){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+fmt(answer)+suf;fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===fmt(answer)+suf)o.classList.add('correct');});fb.textContent='❌ 正解は '+fmt(answer)+suf;fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+function init_opioid(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+
+  /* P1-2: base rate */
+  (function(){
+    const D=document.getElementById('b1Day'),C=document.getElementById('b1Conc'),mgh=document.getElementById('b1Mgh'),mlh=document.getElementById('b1Mlh'),steps=document.getElementById('b1Steps');
+    function r(){ const d=parseFloat(D.value)||0; let c=parseFloat(C.value)||0.01; if(c<=0)c=0.01; const h=d/24, ml=h/c;
+      mgh.textContent=fmt(h); mlh.textContent=fmt(ml);
+      steps.innerHTML=`1時間量 ＝ ${fmt(d)}÷24 ＝ ${fmt(h)}mg/h<br>ベース ＝ ${fmt(h)}÷${fmt(c)} ＝ <b>${fmt(ml)} mL/時</b>`; }
+    D.oninput=r; C.oninput=r; r();
+  })();
+
+  /* P1-3: rescue */
+  (function(){
+    let div=24;
+    const D=document.getElementById('r1Day'),seg=document.getElementById('r1Mode'),res=document.getElementById('r1Res'),steps=document.getElementById('r1Steps');
+    function r(){ const d=parseFloat(D.value)||0; const v=d/div; res.textContent=fmt(v);
+      steps.innerHTML= div===24 ? `1時間量 ＝ ${fmt(d)} ÷ 24 ＝ <b>${fmt(v)} mg</b>` : `1日量の1/6 ＝ ${fmt(d)} ÷ 6 ＝ <b>${fmt(v)} mg</b>`; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{div=parseInt(b.dataset.d);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    D.oninput=r; r();
+  })();
+
+  /* P2-B: set calculator */
+  (function(){
+    const D=document.getElementById('setDay'),C=document.getElementById('setConc'),mlh=document.getElementById('setMlh'),resMl=document.getElementById('setResMl'),steps=document.getElementById('setSteps');
+    function r(){ const d=parseFloat(D.value)||0; let c=parseFloat(C.value)||0.01; if(c<=0)c=0.01;
+      const h=d/24, base=h/c, rescMg=h, rescMl=rescMg/c;
+      mlh.textContent=fmt(base); resMl.textContent=fmt(rescMl);
+      steps.innerHTML=`ベース ＝ ${fmt(d)}÷24÷${fmt(c)} ＝ <b>${fmt(base)}mL/h</b><br>レスキュー ＝ 1時間量${fmt(rescMg)}mg ÷ ${fmt(c)} ＝ <b>${fmt(rescMl)}mL</b>`; }
+    D.oninput=r; C.oninput=r; r();
+  })();
+
+  /* P2-C: rotation */
+  (function(){
+    let cut=25;
+    const D=document.getElementById('rotDay'),R=document.getElementById('rotRatio'),seg=document.getElementById('rotCut'),plain=document.getElementById('rotPlain'),start=document.getElementById('rotStart'),steps=document.getElementById('rotSteps');
+    function r(){ const d=parseFloat(D.value)||0, ra=parseFloat(R.value)||0; const p=d*ra; const s=p*(1-cut/100);
+      plain.textContent=fmt(p); start.textContent=fmt(s);
+      steps.innerHTML=`単純換算 ＝ ${fmt(d)} × ${fmt(ra)} ＝ ${fmt(p)}mg/日<br>${cut>0?('−'+cut+'% → 開始 '+fmt(s)+'mg/日'):('減量なし → '+fmt(s)+'mg/日')}`; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{cut=parseInt(b.dataset.c);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    D.oninput=r; R.oninput=r; r();
+  })();
+
+  /* P2-D: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=0,suf='',locked=false;
+    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const kind=Math.floor(Math.random()*3);
+      if(kind===0){ const d=[24,48,72][Math.floor(Math.random()*3)], c=[1,2,3][Math.floor(Math.random()*3)];
+        answer=Math.round(d/24/c*1000)/1000; suf=' mL/h'; Q.innerHTML=`1日量${d}mg・濃度${c}mg/mL。ベース速度は？`; hint.textContent='1日量÷24÷濃度';
+      } else if(kind===1){ const d=[24,48,120][Math.floor(Math.random()*3)];
+        answer=Math.round(d/24*1000)/1000; suf=' mg'; Q.innerHTML=`1日量${d}mg。注射レスキュー（1時間量）は？`; hint.textContent='1日量÷24';
+      } else { const d=[60,40,80][Math.floor(Math.random()*3)], ra=[0.5,1,2][Math.floor(Math.random()*3)];
+        answer=Math.round(d*ra*1000)/1000; suf=' mg/日'; Q.innerHTML=`1日量${d}mg を 換算比×${ra} で移すと（単純換算）？`; hint.textContent='元 × 比';
+      }
+      const set=new Set([answer]); const mult=[2,0.5,1.5,0.25,3]; let g=0;
+      while(set.size<4 && g<60){ g++; const mm=mult[Math.floor(Math.random()*mult.length)]; const w=Math.round(answer*mm*1000)/1000; if(w>0 && Math.abs(w-answer)>1e-3) set.add(w); }
+      let k=1; while(set.size<4 && k<20){ set.add(Math.round((answer+k)*1000)/1000); k++; }
+      const choices=shuffle([...set]).slice(0,4); opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=fmt(ch)+suf;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(Math.abs(ch-answer)<1e-3){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+fmt(answer)+suf;fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===fmt(answer)+suf)o.classList.add('correct');});fb.textContent='❌ 正解は '+fmt(answer)+suf;fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+function init_nonlinear(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*10)/10; return r.toLocaleString('ja-JP',{maximumFractionDigits:1}); }
+
+  /* nonlinear shape: conc = a*dose/(1 - dose/cap) style blow-up, normalized for the figure */
+  function nonlinConc(doseFrac){
+    // doseFrac 0..1 ; gentle then steep near 1
+    const knee=0.6;
+    if(doseFrac<=knee) return doseFrac; // linear-ish below knee
+    const over=(doseFrac-knee)/(1-knee); // 0..1
+    return knee + over*(1-knee) + over*over*0.9; // accelerate
+  }
+
+  /* P1-3: compare curves */
+  (function(){
+    const s=document.getElementById('nlDose'),linV=document.getElementById('nlLinV'),nonV=document.getElementById('nlNonV'),steps=document.getElementById('nlSteps'),
+      pl=document.getElementById('nlLinear'),pc=document.getElementById('nlCurve'),dotL=document.getElementById('nlDotL'),dotN=document.getElementById('nlDotN');
+    const x0=34, y0=170, W=272, H=150;
+    function px(f){ return x0 + f*W; }
+    function pyL(f){ return y0 - f*H*0.6; }      // linear scaled
+    function pyN(f){ return y0 - nonlinConc(f)*H*0.46; } // nonlinear scaled
+    // build static paths
+    let lin='M '+x0+' '+y0, non='M '+x0+' '+y0;
+    for(let i=1;i<=50;i++){ const f=i/50; lin+=' L '+px(f).toFixed(1)+' '+pyL(f).toFixed(1); non+=' L '+px(f).toFixed(1)+' '+pyN(f).toFixed(1); }
+    pl.setAttribute('d',lin); pc.setAttribute('d',non);
+    function r(){ const f=(parseFloat(s.value)||0)/100;
+      const lv=f*100, nv=nonlinConc(f)/1*100*0.78; // scale nonlinear readout
+      linV.textContent=fmt(f*60); nonV.textContent=fmt(nonlinConc(f)*60*0.78);
+      dotL.setAttribute('cx',px(f)); dotL.setAttribute('cy',pyL(f));
+      dotN.setAttribute('cx',px(f)); dotN.setAttribute('cy',pyN(f));
+      const ratio = nonlinConc(f)/Math.max(0.001,f);
+      steps.innerHTML = f>0.62 ? `飽和域：非線形は線形の約 <b>${fmt(ratio)}倍</b>に。少しの増量で急上昇。` : `この範囲では、線形とほぼ同じ動き。`;
+    }
+    s.oninput=r; r();
+  })();
+
+  /* P2-B: predict gap */
+  (function(){
+    let inc=50;
+    const base=document.getElementById('pdBase'),seg=document.getElementById('pdInc'),lin=document.getElementById('pdLin'),non=document.getElementById('pdNon'),steps=document.getElementById('pdSteps');
+    function r(){ const b=parseFloat(base.value)||0; const linPred=b*(1+inc/100);
+      // nonlinear: extra blow-up grows with both base level and increment
+      const sev=1 + (b-10)/40; // higher base -> closer to saturation
+      const nonPred=b*(1+ (inc/100)*sev*1.5 );
+      lin.textContent=fmt(linPred); non.textContent=fmt(nonPred);
+      steps.innerHTML=`線形予測 ＝ ${fmt(b)}×(1+${inc}%) ＝ <b>${fmt(linPred)}</b><br>非線形イメージ ＝ <b>${fmt(nonPred)}</b>（予測より高い）`; }
+    seg.querySelectorAll('button').forEach(x=>x.onclick=()=>{inc=parseInt(x.dataset.i);seg.querySelectorAll('button').forEach(y=>y.classList.toggle('on',y===x));r();});
+    base.oninput=r; r();
+  })();
+
+  /* P2-D: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer='',locked=false;
+    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    const QA=[
+      {q:'処理（酵素）が飽和すると、少しの増量で濃度は？', c:['急に上がる','変わらない','少し下がる','比例して上がる'], a:'急に上がる'},
+      {q:'線形の薬は、用量2倍で濃度は？', c:['2倍','変わらない','半分','急上昇'], a:'2倍'},
+      {q:'非線形の薬の増量で正しいのは？', c:['少量ずつ＋TDM','一気に倍量','比例で予測','確認不要'], a:'少量ずつ＋TDM'},
+      {q:'非線形の薬の「半減期」は？', c:['濃度で変わる','常に一定','ゼロ','無限'], a:'濃度で変わる'},
+      {q:'「ある量を超えると急に上がる」の原因は？', c:['処理の飽和','腎機能正常','線形','低用量'], a:'処理の飽和'},
+    ];
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const it=QA[Math.floor(Math.random()*QA.length)]; answer=it.a; Q.innerHTML=it.q; hint.textContent='飽和＝処理の頭打ち';
+      const choices=shuffle(it.c.slice()); opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=ch;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(ch===answer){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！';fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===answer)o.classList.add('correct');});fb.textContent='❌ 正解は「'+answer+'」';fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段","dilution":"倍と希釈","dose":"1日量↔1回量","tablet":"錠数・規格えらび","ratio":"比の希釈(1:1000)","c1v1":"濃度調製 C₁V₁=C₂V₂","salt":"塩・無水換算","drip":"点滴の速度・滴下数","bsa":"体表面積 BSA","ccr":"腎機能 Ccr・eGFR","auc":"AUC・Calvert式","gamma":"γ（ガンマ）","opioid":"在宅オピオイド注射","nonlinear":"非線形PK"};
+  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units,"dilution":init_dilution,"dose":init_dose,"tablet":init_tablet,"ratio":init_ratio,"c1v1":init_c1v1,"salt":init_salt,"drip":init_drip,"bsa":init_bsa,"ccr":init_ccr,"auc":init_auc,"gamma":init_gamma,"opioid":init_opioid,"nonlinear":init_nonlinear};
   function openTheme(id){
     const tpl=document.getElementById('tpl-'+id);
     if(!tpl) return;
