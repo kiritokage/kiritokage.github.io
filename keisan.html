@@ -1375,6 +1375,130 @@
   .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
   .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
 
+/* ---- style: ccr ---- */
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.75rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEA; border-left-color:var(--rose); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input[type=number]{ width:100%; font-size:1.1rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+  .w-unit{ font-weight:700; color:var(--ink-soft); white-space:nowrap; }
+  .twoin{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .threein{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:70px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .slabels{ display:flex; justify-content:space-between; font-size:.76rem; color:var(--ink-soft); padding:12px 2px 4px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:34px; height:34px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.45); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+  .bigout{ text-align:center; margin:10px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2rem; color:var(--persimmon-deep); }
+  .bigout .v small{ font-size:.82rem; color:var(--ink-soft); }
+
+  /* inverse relation viz */
+  .gauge{ height:28px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+  .gaugefill{ height:100%; width:60%; border-radius:999px; transition:width .15s, background .15s; background:linear-gradient(90deg,var(--mint),var(--mint-deep)); }
+  .invrow{ display:grid; grid-template-columns:1fr 1fr; gap:10px; text-align:center; margin-top:10px; }
+  .invrow .b{ border-radius:12px; padding:10px; } .invrow .b.cr{ background:#FDECEA; } .invrow .b.fn{ background:#E9F6ED; }
+  .invrow .t{ font-size:.72rem; color:var(--ink-soft); } .invrow .v{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.4rem; }
+  .invrow .b.cr .v{ color:var(--rose-deep); } .invrow .b.fn .v{ color:var(--mint-deep); }
+
+  /* formula breakdown */
+  .formula{ text-align:center; font-family:"Zen Maru Gothic"; font-weight:900; background:#E7F2F7; border-radius:16px; padding:15px; margin:14px 0; color:var(--sky-deep); }
+  .formula .big{ font-size:1.12rem; line-height:1.5; } .formula .sub{ font-size:.8rem; color:var(--ink-soft); font-weight:700; margin-top:6px; }
+  .parts{ display:grid; gap:8px; margin:12px 0; }
+  .part{ display:flex; gap:10px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); }
+  .part .sym{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); min-width:78px; font-size:.92rem; }
+  .part .ds{ font-size:.86rem; }
+
+  /* compare table */
+  .cmp{ width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); margin-top:8px; }
+  .cmp th,.cmp td{ padding:11px 9px; text-align:center; border:1px solid var(--line); font-size:.85rem; vertical-align:middle; }
+  .cmp th{ background:#F3ECF5; color:var(--plum-deep); font-family:"Zen Maru Gothic"; font-weight:900; }
+  .cmp td.rh{ background:#FBF4EB; font-weight:700; color:var(--ink-soft); text-align:left; }
+  .cmp .ccr{ color:var(--persimmon-deep); font-weight:700; } .cmp .egfr{ color:var(--sky-deep); font-weight:700; }
+
+  .stagetable{ width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); margin-top:8px; }
+  .stagetable th,.stagetable td{ padding:9px 8px; text-align:center; border:1px solid var(--line); font-size:.84rem; font-weight:700; }
+  .stagetable th{ background:#E7F2F7; color:var(--sky-deep); font-family:"Zen Maru Gothic"; }
+  .stagetable .sev{ font-family:"Zen Maru Gothic"; font-weight:900; }
+
+  .perlist{ display:grid; gap:10px; margin:16px 0; }
+  .peritem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .peritem .emo{ font-size:1.4rem; } .peritem .txt{ font-weight:700; }
+  .peritem .txt .per{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
 
   /* ===== app shell ===== */
   #themeView .topnav .inner{ gap:8px; }
@@ -1428,7 +1552,7 @@
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#6FB98A">中級〜上級</span></div><div class="cards">
 <button class="lcard" onclick="openTheme('bsa')"><span class="ic">🧍</span><span class="tx"><span class="t">体表面積 BSA</span><span class="s">体の大きさのものさし</span></span><span class="badge done">できた</span></button>
-<div class="lcard soon"><span class="ic">🫘</span><span class="tx"><span class="t">腎機能 Ccr・eGFR</span><span class="s">腎臓の燃費計</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openTheme('ccr')"><span class="ic">🫘</span><span class="tx"><span class="t">腎機能 Ccr・eGFR</span><span class="s">腎臓の燃費計</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">📈</span><span class="tx"><span class="t">AUC・Calvert式</span><span class="s">グラフの下の面積</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🌊</span><span class="tx"><span class="t">γ（ガンマ）</span><span class="s">1kg・1分あたりの流れ</span></span><span class="badge soon">準備中</span></div>
 </div></div>
@@ -1442,7 +1566,7 @@
 <div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 11 / 20 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 12 / 20 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -3861,6 +3985,220 @@
 
 </div><!-- /page2 -->
 </template>
+<template id="tpl-ccr">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">中級② ・ とことん版</span>
+    <h1>腎臓が、血を<br>どれだけ<span class="hl">掃除</span>できるか。</h1>
+    <p class="lead">それが腎機能。<br>薬がたまらないように、量を加減する“ものさし”です。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>なぜ測る</div>
+    <h2>腎臓は「薬の出口」でもある</h2>
+    <p class="lead-line">腎臓は、血の中の老廃物を尿として外に出す“掃除係”。<b class="kb">多くの薬も、腎臓から外に出ます</b>。</p>
+    <p>だから腎臓が弱ると、<b class="kr">薬が体にたまって効きすぎ・副作用</b>につながる。それを防ぐために、<b class="k">腎機能を測って薬の量を加減</b>します。これが腎機能を計算する理由です。</p>
+    <div class="big-point rose">腎臓が弱い ＝ 薬が抜けにくい ＝ <b class="kr">たまって危ない</b>。<br>だから「どれだけ掃除できるか」を数で知る必要があります。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>クレアチニン</div>
+    <h2>Cr が高い ＝ 機能が低い（逆！）</h2>
+    <p class="lead-line"><b class="kb">クレアチニン（Cr）</b>は、筋肉から<b class="k">毎日ほぼ一定に出る老廃物</b>。腎臓がせっせと外に出しています。</p>
+    <p>ここが肝心。腎臓の掃除が<b class="kr">遅い</b>と、Crが外に出きらず<b class="kr">血の中にたまる</b>→<b class="kr">血中Crが高くなる</b>。つまり——<b class="kr">Crが高い＝腎機能が低い</b>。<b>多いほど悪い</b>、という逆の関係です。</p>
+    <div class="panel">
+      <div class="w-lab">血清クレアチニン（Cr）を動かす</div>
+      <div class="slabels"><span>0.5（良い）</span><span>5.0（悪い）</span></div>
+      <input type="range" id="invCr" min="0.5" max="5" value="1" step="0.1">
+      <div class="invrow">
+        <div class="b cr"><div class="t">血中Cr（mg/dL）</div><div class="v"><span id="invCrV">1.0</span></div></div>
+        <div class="b fn"><div class="t">掃除の勢い（めやす）</div><div class="v"><span id="invFnV">100</span></div></div>
+      </div>
+      <div class="gauge" style="margin-top:10px;"><div class="gaugefill" id="invGauge" style="width:100%"></div></div>
+      <p class="soft" style="text-align:center; font-size:.82rem; margin:10px 0 0;" id="invMsg"></p>
+    </div>
+    <div class="big-point blue">合言葉：<b class="kb">Cr は分母（下）にくる</b>。Cr2倍 → 機能はおよそ半分。<b class="kr">数字が大きい＝悪い</b>、と覚える。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>クリアランス</div>
+    <h2>「1分で何mLの血をきれいにできるか」</h2>
+    <p class="lead-line">腎機能の正体は<b class="kb">クリアランス（mL/min）</b>＝<b class="k">1分間にきれいにできる血の量</b>。大きいほど元気な腎臓です。</p>
+    <p>健康な大人で、だいたい <b class="k">100mL/min前後</b>。これが下がるほど、薬は抜けにくくなります。「掃除する水の量」のイメージ（テーマ『クリアランス』にもつながります）。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 4 -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>Ccr（計算式）</div>
+    <h2>Cockcroft-Gault で Ccr を出す</h2>
+    <p class="lead-line">いちばん使う推算式が <b class="kb">Cockcroft-Gault（コッククロフト・ゴート）</b>。クレアチニンクリアランス（Ccr）を出します。</p>
+    <div class="formula">
+      <div class="big">Ccr ＝ (140 − 年齢) × 体重 ÷ (72 × Cr)</div>
+      <div class="sub">女性は × 0.85（筋肉量がやや少ないぶん補正）</div>
+    </div>
+    <div class="parts">
+      <div class="part"><div class="sym">140 − 年齢</div><div class="ds">年をとるほど腎機能は下がる → <b>年齢が上がると小さくなる</b>（機能↓）。</div></div>
+      <div class="part"><div class="sym">× 体重</div><div class="ds">体が大きい＝筋肉が多い＝処理量も多い → <b>体重で増える</b>。</div></div>
+      <div class="part"><div class="sym">÷ (72×Cr)</div><div class="ds">Crは分母。<b>Crが高いほど小さくなる</b>（機能↓）。72は単位合わせの定数。</div></div>
+    </div>
+    <div class="panel">
+      <div class="threein">
+        <div><div class="w-lab">年齢</div><div class="w-in"><input type="number" id="ccAge" value="70" min="0"></div><div class="w-unit" style="font-size:.7rem;">歳</div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="ccWt" value="60" min="0"></div><div class="w-unit" style="font-size:.7rem;">kg</div></div>
+        <div><div class="w-lab">Cr</div><div class="w-in"><input type="number" id="ccCr" value="1" min="0.1" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mg/dL</div></div>
+      </div>
+      <div class="seg2" id="ccSex" style="margin-top:8px;"><button class="on" data-s="m">男性</button><button data-s="f">女性（×0.85）</button></div>
+      <div class="bigout" style="margin-top:8px;"><div class="lab">Ccr（クレアチニンクリアランス）</div><div class="v"><span id="ccRes">68.1</span><small> mL/min</small></div></div>
+      <div class="w-steps" id="ccSteps"></div>
+    </div>
+    <div class="note">⚠️ 体重は実体重・理想体重などどれを使うか、Crの測定法、式の選択で結果が変わります。実務では必ず院内基準・添付文書・ガイドラインで確認してください。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 5 -->
+  <section>
+    <div class="step-no"><span class="dot">5</span>eGFR</div>
+    <h2>もう一つのものさし「eGFR」</h2>
+    <p class="lead-line">健診や電子カルテでよく見る <b class="kb">eGFR</b>。これも腎機能の推算値ですが、単位が違います：<b class="kb">mL/min/1.73m²</b>。</p>
+    <p>「<b class="k">/1.73m²</b>」がポイント。これは<b class="k">「標準体型（体表面積1.73m²）にそろえた値」</b>という意味。みんなを同じ体格に合わせて比べるための数字です。次のページで、Ccrとの使い分けをしっかりやります。</p>
+    <div class="big-point plum"><b class="kp">Ccr</b>＝mL/min（その人そのまま）。<br><b class="kp">eGFR</b>＝mL/min/1.73m²（標準体型にそろえた値）。<b class="kp">ここの違いが超重要</b>。</div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">「Cr高い＝悪い」「Ccrの式」はバッチリ。<br>次は“どっちを使うか”、いちばん大事な話。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 薬剤師の現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ どっちを使う？</span>
+    <h1>Ccr と eGFR、<br><span class="hl">使い分け</span>。</h1>
+    <p class="lead">投与量の調整は Ccr。病期の分類は eGFR。<br>そして 1.73m² の落とし穴に注意。</p>
+  </header>
+
+  <div class="big-point">合言葉：<b class="kb">薬の量を決める＝Ccr（mL/min）</b>。<b class="kp">CKDの分類＝eGFR（mL/min/1.73m²）</b>。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>腎排泄の薬は、減量が要る</h2>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">💊</span><span class="txt"><span class="per">腎排泄の薬</span>＝腎機能が低いと減量・間隔延長が必要</span></div>
+      <div class="peritem"><span class="emo">📋</span><span class="txt">添付文書の用量表は <span class="per">Ccr（mL/min）</span>で書かれることが多い</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B 最重要 -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>いちばん大事</div>
+    <h2>Ccr と eGFR、何が違う？</h2>
+    <p class="lead-line">名前も値も似てるけど、<b class="kr">用途が違います</b>。表で一気に整理します。</p>
+    <table class="cmp">
+      <tr><th></th><th class="ccr">Ccr（C-G）</th><th class="egfr">eGFR</th></tr>
+      <tr><td class="rh">単位</td><td class="ccr">mL/min</td><td class="egfr">mL/min/1.73m²</td></tr>
+      <tr><td class="rh">体格</td><td class="ccr">その人のまま</td><td class="egfr">標準体型にそろえた</td></tr>
+      <tr><td class="rh">主な用途</td><td class="ccr">薬の投与量調整</td><td class="egfr">CKDの病期分類</td></tr>
+      <tr><td class="rh">注意点</td><td class="ccr">体重の取り方で変わる</td><td class="egfr">小柄な人で<br>過大評価しうる</td></tr>
+    </table>
+    <div class="big-point rose"><b class="kr">落とし穴</b>：eGFRは「標準体型（1.73m²）あたり」。<b class="kr">小柄な高齢者</b>だと、実際の腎機能より<b class="kr">大きく見えて</b>、薬を<b class="kr">出しすぎる</b>危険があります。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C de-normalize -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>戻して使う</div>
+    <h2>eGFR を「その人の mL/min」に戻す</h2>
+    <p class="lead-line">eGFR（/1.73m²）を投与量設計に使うなら、<b class="kb">その人の体表面積（BSA）に戻します</b>：<br><b class="kb">個別eGFR ＝ eGFR × BSA ÷ 1.73</b>。</p>
+    <p>「標準体型1.73m²あたり」を、その人の実際の広さ（BSA）に直すだけ。テーマ『体表面積BSA』の応用です。下で、eGFRと“戻した値”の差を見てください。</p>
+    <div class="panel">
+      <div class="threein">
+        <div><div class="w-lab">eGFR</div><div class="w-in"><input type="number" id="dnEgfr" value="60" min="0"></div><div class="w-unit" style="font-size:.66rem;">mL/min/1.73</div></div>
+        <div><div class="w-lab">身長</div><div class="w-in"><input type="number" id="dnH" value="150" min="0"></div><div class="w-unit" style="font-size:.7rem;">cm</div></div>
+        <div><div class="w-lab">体重</div><div class="w-in"><input type="number" id="dnW" value="42" min="0"></div><div class="w-unit" style="font-size:.7rem;">kg</div></div>
+      </div>
+      <div class="twoin" style="margin-top:8px;">
+        <div class="bigout"><div class="lab">BSA</div><div class="v" style="color:var(--sky-deep)"><span id="dnBsa">1.31</span><small> m²</small></div></div>
+        <div class="bigout"><div class="lab">個別eGFR（実際）</div><div class="v"><span id="dnReal">45.4</span><small> mL/min</small></div></div>
+      </div>
+      <div class="w-steps" id="dnSteps"></div>
+    </div>
+    <div class="big-point rose" id="dnWarn">この例だと、見かけのeGFR 60 が、実際は約45mL/min。<b class="kr">15も低い</b>＝薬はもっと慎重に。</div>
+    <div class="note">⚠️ 個別化の要否・方法は薬剤や状況で異なります。必ずガイドライン・添付文書・院内基準に従ってください。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D ステージ -->
+  <section>
+    <div class="step-no"><span class="dot">D</span>段階を知る</div>
+    <h2>CKD ステージ（eGFRのめやす）</h2>
+    <p class="lead-line">eGFR（mL/min/1.73m²）で、腎機能の段階をざっくり分けます（病期分類はeGFRの仕事）。</p>
+    <table class="stagetable">
+      <tr><th>区分</th><th>eGFR</th><th>めやす</th></tr>
+      <tr><td class="sev" style="color:var(--mint-deep)">G1</td><td>90以上</td><td>正常〜高値</td></tr>
+      <tr><td class="sev" style="color:var(--mint-deep)">G2</td><td>60〜89</td><td>正常〜軽度低下</td></tr>
+      <tr><td class="sev" style="color:var(--gold)">G3a</td><td>45〜59</td><td>軽〜中等度低下</td></tr>
+      <tr><td class="sev" style="color:var(--persimmon-deep)">G3b</td><td>30〜44</td><td>中〜高度低下</td></tr>
+      <tr><td class="sev" style="color:var(--rose-deep)">G4</td><td>15〜29</td><td>高度低下</td></tr>
+      <tr><td class="sev" style="color:var(--rose-deep)">G5</td><td>15未満</td><td>末期腎不全</td></tr>
+    </table>
+    <p class="soft" style="margin-top:8px;">数字が小さいほど腎機能は低下。薬の減量・禁忌の判断はステージだけでなく個々の基準で。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>腎機能ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- F つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>eGFR（/1.73m²）をそのまま投与量に使う。</b><br><span class="soft">小柄な人では過大評価。投与量設計はCcr、またはBSAで戻した個別eGFRで。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>Crが高い＝機能が高い、と勘違い。</b><br><span class="soft">逆。Crは分母。高いほど機能は低い。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>体重・式の選び方。</b><br><span class="soft">実体重か理想体重か、どの推算式か。施設の基準・添付文書に従う。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    腎機能 ＝ 血を掃除する力（mL/min）。<b>Crが高い＝悪い</b>。<br>
+    <b>投与量は Ccr</b>、<b>病期は eGFR</b>。<br>
+    小柄な人は、eGFRを<b>BSAで戻して</b>から考える。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
 <script>
 
   function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
@@ -5022,8 +5360,105 @@ function init_bsa(){
 
 }
 
-  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段","dilution":"倍と希釈","dose":"1日量↔1回量","tablet":"錠数・規格えらび","ratio":"比の希釈(1:1000)","c1v1":"濃度調製 C₁V₁=C₂V₂","salt":"塩・無水換算","drip":"点滴の速度・滴下数","bsa":"体表面積 BSA"};
-  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units,"dilution":init_dilution,"dose":init_dose,"tablet":init_tablet,"ratio":init_ratio,"c1v1":init_c1v1,"salt":init_salt,"drip":init_drip,"bsa":init_bsa};
+function init_ccr(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*100)/100; return r.toLocaleString('ja-JP',{maximumFractionDigits:2}); }
+  function bsaOf(h,w){ return Math.sqrt(h*w/3600); }
+
+  /* P1-2: inverse Cr vs function */
+  (function(){
+    const s=document.getElementById('invCr'),crV=document.getElementById('invCrV'),fnV=document.getElementById('invFnV'),gauge=document.getElementById('invGauge'),msg=document.getElementById('invMsg');
+    function r(){ const cr=parseFloat(s.value)||1; const rel=100/cr; crV.textContent=fmt(cr); fnV.textContent=fmt(rel);
+      const w=Math.max(4,Math.min(100,rel)); gauge.style.width=w+'%';
+      gauge.style.background = rel>=80 ? 'linear-gradient(90deg,var(--mint),var(--mint-deep))' : rel>=40 ? 'linear-gradient(90deg,var(--gold),#C8901E)' : 'linear-gradient(90deg,var(--rose),var(--rose-deep))';
+      msg.innerHTML = `Cr ${fmt(cr)} のとき、勢いは基準の <b>${fmt(rel)}</b>%（イメージ）。Crが2倍なら勢いは約半分。`; }
+    s.oninput=r; r();
+  })();
+
+  /* P1-4: Cockcroft-Gault */
+  (function(){
+    let sex='m';
+    const age=document.getElementById('ccAge'),wt=document.getElementById('ccWt'),cr=document.getElementById('ccCr'),sexSeg=document.getElementById('ccSex'),res=document.getElementById('ccRes'),steps=document.getElementById('ccSteps');
+    function r(){ const a=parseFloat(age.value)||0, w=parseFloat(wt.value)||0; let c=parseFloat(cr.value)||0.1; if(c<=0)c=0.1;
+      let ccr=(140-a)*w/(72*c); if(ccr<0)ccr=0; const f= sex==='f'?0.85:1; const out=ccr*f;
+      res.textContent=fmt(out);
+      steps.innerHTML=`(140−${fmt(a)})×${fmt(w)} ÷ (72×${fmt(c)}) ${sex==='f'?'×0.85':''} ＝ <b>${fmt(out)} mL/min</b>`; }
+    sexSeg.querySelectorAll('button').forEach(b=>b.onclick=()=>{sex=b.dataset.s;sexSeg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    [age,wt,cr].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P2-C: de-normalize eGFR */
+  (function(){
+    const E=document.getElementById('dnEgfr'),H=document.getElementById('dnH'),W=document.getElementById('dnW'),
+      bsaEl=document.getElementById('dnBsa'),realEl=document.getElementById('dnReal'),steps=document.getElementById('dnSteps'),warn=document.getElementById('dnWarn');
+    function r(){ const e=parseFloat(E.value)||0, h=parseFloat(H.value)||0, w=parseFloat(W.value)||0;
+      const bsa=bsaOf(h,w), real=e*bsa/1.73; bsaEl.textContent=fmt(bsa); realEl.textContent=fmt(real);
+      steps.innerHTML=`BSA ＝ √(${fmt(h)}×${fmt(w)}÷3600) ＝ <b>${fmt(bsa)}m²</b><br>個別eGFR ＝ ${fmt(e)} × ${fmt(bsa)} ÷ 1.73 ＝ <b>${fmt(real)} mL/min</b>`;
+      const diff=e-real;
+      if(diff>3) warn.innerHTML=`見かけのeGFR ${fmt(e)} が、実際は約 ${fmt(real)}mL/min。<b class="kr">${fmt(diff)}も低い</b>＝薬はもっと慎重に。`;
+      else if(diff<-3) warn.innerHTML=`大柄なため、実際は約 ${fmt(real)}mL/min（見かけより高い）。体格で変わるのがポイント。`;
+      else warn.innerHTML=`この体格だと、見かけのeGFRと実際(${fmt(real)}mL/min)はほぼ同じ。標準体型に近い人です。`;
+    }
+    [E,H,W].forEach(el=>el.oninput=r); r();
+  })();
+
+  /* P2-E: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=null,suf='',isText=false,locked=false;
+    function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none'; isText=false;
+      const kind=Math.floor(Math.random()*4);
+      if(kind===0){ // Cockcroft-Gault male
+        const a=[60,70,80][Math.floor(Math.random()*3)], w=[50,60,70][Math.floor(Math.random()*3)], c=[1,1.5,2][Math.floor(Math.random()*3)];
+        answer=Math.round((140-a)*w/(72*c)*100)/100; suf=' mL/min';
+        Q.innerHTML=`${a}歳・男性・体重${w}kg・Cr ${c}。Ccrは？`; hint.textContent='(140−年齢)×体重÷(72×Cr)';
+      } else if(kind===1){ // denormalize
+        const e=[45,60,90][Math.floor(Math.random()*3)]; const pairs=[[150,42],[145,40],[160,55]]; const p=pairs[Math.floor(Math.random()*pairs.length)];
+        const bsa=bsaOf(p[0],p[1]); answer=Math.round(e*bsa/1.73*100)/100; suf=' mL/min';
+        Q.innerHTML=`eGFR ${e}・身長${p[0]}cm・体重${p[1]}kg。個別eGFR(実際)は？`; hint.textContent='eGFR × BSA ÷ 1.73';
+      } else if(kind===2){ // which to use (text)
+        isText=true; answer='Ccr'; 
+        Q.innerHTML=`薬の<b>投与量調整</b>に主に使うのは？`; hint.textContent='体格そのままの mL/min はどっち？';
+      } else { // Cr direction (text)
+        isText=true; answer='低い';
+        Q.innerHTML=`血清Crが<b>高い</b>とき、腎機能は？`; hint.textContent='Crは分母。たまる＝…';
+      }
+      let choices;
+      if(isText){
+        if(answer==='Ccr') choices=['Ccr','eGFR','どちらでも同じ','身長'];
+        else choices=['低い','高い','変わらない','2倍'];
+        choices=shuffle(choices.slice());
+      } else {
+        const set=new Set([answer]); const mult=[1.2,0.8,1.5,0.5,1.1]; let g=0;
+        while(set.size<4 && g<60){ g++; const m=mult[Math.floor(Math.random()*mult.length)]; const w=Math.round(answer*m*100)/100; if(w>0 && Math.abs(w-answer)>1e-2) set.add(w); }
+        choices=shuffle([...set]).slice(0,4);
+      }
+      opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent= isText? ch : (fmt(ch)+suf);
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          const ok = isText ? (ch===answer) : (Math.abs(ch-answer)<1e-2);
+          if(ok){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+(isText?answer:(fmt(answer)+suf));fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===(isText?answer:(fmt(answer)+suf)))o.classList.add('correct');});fb.textContent='❌ 正解は '+(isText?answer:(fmt(answer)+suf));fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり","units":"単位の階段","dilution":"倍と希釈","dose":"1日量↔1回量","tablet":"錠数・規格えらび","ratio":"比の希釈(1:1000)","c1v1":"濃度調製 C₁V₁=C₂V₂","salt":"塩・無水換算","drip":"点滴の速度・滴下数","bsa":"体表面積 BSA","ccr":"腎機能 Ccr・eGFR"};
+  const __INITS__ = {"percent":init_percent,"hirei":init_hirei,"units":init_units,"dilution":init_dilution,"dose":init_dose,"tablet":init_tablet,"ratio":init_ratio,"c1v1":init_c1v1,"salt":init_salt,"drip":init_drip,"bsa":init_bsa,"ccr":init_ccr};
   function openTheme(id){
     const tpl=document.getElementById('tpl-'+id);
     if(!tpl) return;
