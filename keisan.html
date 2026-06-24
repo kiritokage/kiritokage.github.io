@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>やさしい薬剤計算アプリ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:"Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.92; letter-spacing:.01em; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+
+  /* hero */
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.78rem; letter-spacing:.14em;
+    color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(2rem,8vw,2.8rem); line-height:1.18; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.04rem; margin:0 auto; max-width:30ch; }
+
+  /* section scaffolding */
+  section{ margin:52px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:"Zen Maru Gothic"; font-weight:900;
+    color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.45rem,6vw,1.9rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:1.06rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0;
+    padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.06rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+
+  /* card / panel */
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* symbol morph */
+  .morph{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin:18px 0; }
+  .mchip{ font-family:"Zen Maru Gothic"; font-weight:900; border-radius:16px; padding:14px 16px; text-align:center; }
+  .mchip .big{ font-size:2.4rem; line-height:1; display:block; }
+  .mchip .sub{ font-size:.78rem; font-weight:700; color:var(--ink-soft); margin-top:4px; }
+  .mchip.a{ background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .mchip.b{ background:#E7F2F7; color:var(--sky-deep); }
+  .mchip.c{ background:#E9F6ED; color:var(--mint-deep); }
+  .marrow{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.4rem; color:var(--ink-soft); }
+
+  /* 100 grids */
+  .grid100{ display:grid; grid-template-columns:repeat(10,1fr); gap:3px; max-width:300px; margin:0 auto; aspect-ratio:1/1; }
+  .gcell{ border-radius:4px; background:var(--grid-empty); transition:background .1s, transform .08s; }
+  .gcell.on{ background:var(--persimmon); }
+  .gcell.tap{ cursor:pointer; } .gcell.tap:active{ transform:scale(.85); }
+  .grid-cap{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:10px; }
+
+  .bignum{ text-align:center; font-family:"Zen Maru Gothic"; font-weight:900; line-height:1; }
+  .bignum .v{ font-size:clamp(3rem,15vw,4.2rem); color:var(--persimmon-deep); }
+  .bignum .u{ font-size:1.4rem; color:var(--persimmon); }
+  .cap{ text-align:center; min-height:1.7em; font-weight:700; margin:6px 0 8px; font-size:1.05rem; }
+
+  /* slider */
+  .slabels{ display:flex; justify-content:space-between; font-size:.76rem; color:var(--ink-soft); padding:12px 2px 4px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:14px; border-radius:999px; outline:none;
+    background:linear-gradient(90deg,#FCDFC7,#F7CDAC); }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:34px; height:34px; border-radius:50%;
+    background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.45); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  input[type=range]:focus-visible{ box-shadow:0 0 0 4px rgba(79,163,199,.4); }
+  .qbs{ display:flex; gap:7px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .qb{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff;
+    color:var(--ink); padding:6px 12px; border-radius:999px; cursor:pointer; }
+  .qb:active,.qb.on{ background:var(--persimmon-soft); border-color:var(--persimmon); color:var(--persimmon-deep); }
+  .qb:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .ctrlbtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; border:1.5px solid var(--line); background:#fff;
+    color:var(--ink-soft); padding:8px 16px; border-radius:999px; cursor:pointer; }
+
+  /* multi-rep */
+  .reps{ display:grid; gap:16px; }
+  .rep-title{ font-size:.78rem; font-weight:700; color:var(--ink-soft); text-align:center; margin-bottom:6px; }
+  .pie{ width:130px; height:130px; border-radius:50%; margin:0 auto; border:3px solid #fff; box-shadow:var(--shadow);
+    background:conic-gradient(var(--persimmon) 0deg, var(--grid-empty) 0deg); display:grid; place-items:center; }
+  .pie .pin{ width:60px; height:60px; border-radius:50%; background:var(--card); display:grid; place-items:center;
+    font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:1rem; }
+  .track{ height:30px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+  .fill{ height:100%; width:0%; border-radius:999px; transition:width .12s; background:linear-gradient(90deg,var(--persimmon),var(--persimmon-deep)); }
+  .numline{ position:relative; height:54px; margin:6px 4px 0; }
+  .nl-track{ position:absolute; top:24px; left:0; right:0; height:8px; background:var(--grid-empty); border-radius:999px; }
+  .nl-fill{ position:absolute; top:24px; left:0; height:8px; background:var(--persimmon); border-radius:999px; transition:width .12s; }
+  .nl-dot{ position:absolute; top:18px; width:20px; height:20px; border-radius:50%; background:var(--persimmon-deep); border:3px solid #fff; box-shadow:0 2px 5px rgba(0,0,0,.2); transition:left .12s; transform:translateX(-50%); }
+  .nl-ticks{ position:absolute; top:36px; left:0; right:0; display:flex; justify-content:space-between; font-size:.7rem; color:var(--ink-soft); }
+
+  /* landmark gallery */
+  .gallery{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .lm{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px; text-align:center; box-shadow:var(--shadow); }
+  .lm .mini{ display:grid; grid-template-columns:repeat(10,1fr); gap:1.5px; width:84px; height:84px; margin:0 auto 8px; }
+  .lm .mini div{ background:var(--grid-empty); border-radius:1.5px; } .lm .mini div.on{ background:var(--persimmon); }
+  .lm .pct{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--persimmon-deep); font-size:1.2rem; }
+  .lm .emo{ font-size:1.1rem; } .lm .anchor{ font-size:.8rem; color:var(--ink-soft); font-weight:700; }
+  .lm.wide{ grid-column:1 / -1; }
+  .lm .twomini{ display:flex; gap:8px; justify-content:center; }
+
+  /* of-what cards */
+  .whats{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:6px; }
+  .wcard{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px; box-shadow:var(--shadow); }
+  .wcard .top{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:.9rem; }
+  .wcard .top .e{ font-size:1.3rem; }
+  .wcard .res{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.4rem; color:var(--persimmon-deep); margin:6px 0 4px; }
+  .wcard .wtrack{ height:14px; background:var(--grid-empty); border-radius:999px; overflow:hidden; }
+  .wcard .wfill{ height:100%; background:var(--persimmon); width:0%; transition:width .12s; border-radius:999px; }
+
+  /* per-square worth */
+  .worth-grid{ display:grid; grid-template-columns:repeat(10,1fr); gap:2px; max-width:280px; margin:0 auto; aspect-ratio:1/1; }
+  .wg{ background:var(--grid-empty); border-radius:3px; transition:background .08s; } .wg.on{ background:var(--persimmon); }
+  .worth-readout{ text-align:center; margin:12px 0 4px; }
+  .worth-readout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .worth-readout .tot{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.2rem; color:var(--persimmon-deep); }
+  .perpill{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-family:"Zen Maru Gothic"; font-weight:900;
+    border-radius:999px; padding:6px 14px; font-size:.95rem; margin:6px 0; }
+  .w-in{ display:flex; align-items:center; gap:8px; justify-content:center; }
+  .w-in input[type=number]{ width:120px; font-size:1.15rem; font-family:"Zen Maru Gothic"; font-weight:700; padding:9px 11px;
+    border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); text-align:center; -moz-appearance:textfield; }
+  .w-in input:focus-visible{ outline:none; border-color:var(--sky); box-shadow:0 0 0 3px rgba(79,163,199,.25); }
+
+  /* battery */
+  .battery{ margin:12px auto; max-width:260px; height:34px; border:3px solid var(--ink); border-radius:8px; position:relative; background:#fff; overflow:hidden; }
+  .battery::after{ content:""; position:absolute; right:-10px; top:50%; transform:translateY(-50%); width:7px; height:16px; background:var(--ink); border-radius:0 3px 3px 0; }
+  .battfill{ height:100%; width:70%; background:var(--mint); transition:width .12s, background .12s; }
+  .realrow{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:14px; }
+  .rcard{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; box-shadow:var(--shadow); }
+  .rcard h4{ margin:0 0 6px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.92rem; }
+  .rcard .e{ margin-right:5px; }
+  .minibar{ height:12px; background:var(--grid-empty); border-radius:999px; overflow:hidden; margin-top:6px; }
+  .minibar div{ height:100%; background:var(--sky); border-radius:999px; }
+
+  /* quiz */
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:10px; }
+  .quiz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.2rem; padding:14px; border-radius:14px;
+    border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:"Zen Maru Gothic"; font-weight:700; background:var(--persimmon);
+    color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+
+  /* ---- page nav / switching ---- */
+  .topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 14px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:6px; flex:1; }
+  .tab{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.83rem; border:1.5px solid var(--line); background:#fff;
+    color:var(--ink-soft); padding:8px 6px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line);
+    background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none;
+    border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.88rem; color:var(--sky-deep);
+    background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+
+  /* ---- page 2 specific ---- */
+  .druggallery{ display:grid; grid-template-columns:1fr 1fr; gap:11px; }
+  .dcard{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px 10px; box-shadow:var(--shadow); text-align:center; }
+  .dcard .e{ font-size:1.5rem; } .dcard .nm{ font-weight:700; font-size:.84rem; margin:2px 0 7px; line-height:1.3; }
+  .dcard .conv{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:1.05rem; }
+  .dcard .pc{ color:var(--ink); } .dcard .ar{ color:var(--sky-deep); font-size:.8rem; } .dcard .mg{ color:var(--persimmon-deep); }
+  .gramblocks{ display:flex; flex-wrap:wrap; gap:3px; justify-content:center; margin:12px 0 6px; min-height:28px; }
+  .gblock{ width:26px; height:26px; border-radius:5px; background:linear-gradient(180deg,var(--persimmon),var(--persimmon-deep));
+    display:grid; place-items:center; color:#fff; font-size:.56rem; font-weight:700; line-height:1; }
+  .gmore{ align-self:center; color:var(--ink-soft); font-weight:700; font-size:.8rem; }
+  .bag{ width:130px; margin:8px auto 4px; }
+  .bag-hook{ width:34px; height:20px; border:3px solid var(--sky-deep); border-bottom:none; border-radius:16px 16px 0 0; margin:0 auto; }
+  .bag-body{ height:150px; border:3px solid var(--sky-deep); border-radius:10px 10px 18px 18px; position:relative; overflow:hidden; background:#F4FAFC; }
+  .bag-liquid{ position:absolute; left:0; right:0; bottom:0; background:linear-gradient(180deg,#B6DCEC,#7FC2DE); transition:height .15s;
+    display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px; font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); font-size:.9rem; }
+  .convbox{ text-align:center; margin:6px 0; }
+  .convbox .from{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.2rem; color:var(--ink); }
+  .convbox .from .u{ font-size:1rem; color:var(--ink-soft); }
+  .convbox .eqs{ font-family:"Zen Maru Gothic"; font-weight:900; color:var(--sky-deep); font-size:1.2rem; margin:0 4px; }
+  .convbox .to{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:2.2rem; color:var(--persimmon-deep); }
+  .convbox .to .u{ font-size:.95rem; color:var(--persimmon); }
+  .convbox .sub{ font-size:.84rem; color:var(--ink-soft); margin-top:4px; }
+  .why{ text-align:center; background:#E7F2F7; border-radius:12px; padding:10px 12px; font-size:.88rem; color:var(--sky-deep); font-weight:700; margin:10px 0; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; }
+  .seg2 button{ flex:1; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.85rem; padding:8px; border-radius:10px;
+    border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+
+
+  /* ===== app shell ===== */
+  #themeView .topnav .inner{ gap:8px; }
+  .homebtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.82rem; border:1.5px solid var(--line);
+    background:#fff; color:var(--ink); padding:8px 13px 8px 9px; border-radius:999px; cursor:pointer; white-space:nowrap; }
+  .theme-title-bar{ max-width:680px; margin:0 auto; padding:0 14px 8px; }
+  .theme-title-bar span{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:.92rem; color:var(--ink-soft); }
+  #home .home-hero{ text-align:center; padding:22px 6px 10px; }
+  #home .home-hero .leaf{ font-size:1.8rem; }
+  #home .home-hero h1{ font-family:"Zen Maru Gothic"; font-weight:900; font-size:clamp(1.7rem,7vw,2.3rem); margin:.1em 0 .25em; line-height:1.2; }
+  #home .home-hero p{ color:var(--ink-soft); margin:0 auto; max-width:32ch; font-size:.97rem; }
+  .levelblock{ margin:30px 0 8px; }
+  .levelhead{ display:flex; align-items:center; gap:10px; margin:0 0 12px; }
+  .levelpill{ font-family:"Zen Maru Gothic"; font-weight:900; color:#fff; font-size:.82rem; padding:4px 13px; border-radius:999px; }
+  .cards{ display:grid; gap:11px; grid-template-columns:1fr 1fr; }
+  @media(max-width:520px){ .cards{ grid-template-columns:1fr; } }
+  .lcard{ display:flex; gap:12px; align-items:center; background:var(--card); border:1px solid var(--line);
+    border-radius:16px; padding:13px 14px; box-shadow:var(--shadow); cursor:pointer; transition:transform .12s, box-shadow .12s; text-align:left; width:100%; }
+  .lcard:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(120,80,40,.14); }
+  .lcard:focus-visible{ outline:3px solid rgba(79,163,199,.5); outline-offset:2px; }
+  .lcard .ic{ font-size:1.5rem; line-height:1.2; }
+  .lcard .tx{ flex:1; } .lcard .tx .t{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.98rem; line-height:1.3; }
+  .lcard .tx .s{ font-size:.78rem; color:var(--ink-soft); margin-top:2px; }
+  .lcard .badge{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.68rem; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .lcard .badge.done{ background:#E9F6ED; color:var(--mint-deep); }
+  .lcard .badge.soon{ background:#F1ECE3; color:var(--ink-soft); }
+  .lcard.soon{ cursor:default; opacity:.62; }
+  .lcard.soon:hover{ transform:none; box-shadow:var(--shadow); }
+  .home-foot{ text-align:center; color:var(--ink-soft); font-size:.8rem; margin:36px 0 0; }
+
+</style>
+</head>
+<body>
+<div id="home"><div class="wrap">
+<header class="home-hero"><div class="leaf">🦎</div>
+<h1>やさしい薬剤計算</h1>
+<p>むずかしい計算も、ぜんぶ「お話と絵」で。<br>考え方 → 現場、の2ステップで身につけよう。</p></header>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#4FA3C7">超基礎（土台）</span></div><div class="cards">
+<button class="lcard" onclick="openTheme('percent')"><span class="ic">🟧</span><span class="tx"><span class="t">パーセント</span><span class="s">%↔mg/g・成分⇄製剤</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openTheme('hirei')"><span class="ic">🧮</span><span class="tx"><span class="t">比例・あたり</span><span class="s">1つあたりで考える</span></span><span class="badge done">できた</span></button>
+<div class="lcard soon"><span class="ic">🪜</span><span class="tx"><span class="t">単位の階段</span><span class="s">μg・mg・g の1000</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🍰</span><span class="tx"><span class="t">分数・小数・%</span><span class="s">同じ量の3つの顔</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">倍と希釈</span><span class="s">薄めると濃度が下がる</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#F08A4B">基礎〜中級（毎日）</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📅</span><span class="tx"><span class="t">1日量↔1回量</span><span class="s">分けて・まとめて</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💊</span><span class="tx"><span class="t">錠数・規格えらび</span><span class="s">何個でつくる？</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">➗</span><span class="tx"><span class="t">比の希釈(1:1000)</span><span class="s">表記がちがう%</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">⚗️</span><span class="tx"><span class="t">濃度調製 C₁V₁=C₂V₂</span><span class="s">薬の量は一定</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🧂</span><span class="tx"><span class="t">塩・無水換算</span><span class="s">服込みか中身だけか</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💉</span><span class="tx"><span class="t">点滴の速度・滴下数</span><span class="s">1分・1滴に刻む</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#6FB98A">中級〜上級</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🧍</span><span class="tx"><span class="t">体表面積 BSA</span><span class="s">体の大きさのものさし</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🫘</span><span class="tx"><span class="t">腎機能 Ccr・eGFR</span><span class="s">腎臓の燃費計</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">📈</span><span class="tx"><span class="t">AUC・Calvert式</span><span class="s">グラフの下の面積</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🌊</span><span class="tx"><span class="t">γ（ガンマ）</span><span class="s">1kg・1分あたりの流れ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#A87BB5">上級（PK・TDM）</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">⏳</span><span class="tx"><span class="t">半減期 t½</span><span class="s">半分になる時間</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🏠</span><span class="tx"><span class="t">分布容積 Vd</span><span class="s">散らばった部屋の広さ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🧽</span><span class="tx"><span class="t">クリアランス CL</span><span class="s">掃除する水の量</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🛁</span><span class="tx"><span class="t">定常状態・負荷量</span><span class="s">お風呂の水位</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#E2787F">統計・お金</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">NNT・リスク</span><span class="s">何人で1人助かる？</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">薬価・在庫</span><span class="s">お金と数の管理</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／教材アプリ ・ できた 2 / 21 テーマ<br>テーマを開くと「① 考え方」「② 現場で使う」に分かれています</div>
+</div></div>
+
+<div id="themeView" hidden>
+  <header class="topnav">
+    <div class="inner">
+      <button class="homebtn" onclick="goHome()">‹ ホーム</button>
+      <div class="tabs">
+        <button class="tab on" data-p="1" onclick="goPage(1)">① 考え方</button>
+        <button class="tab" data-p="2" onclick="goPage(2)">② 現場で使う</button>
+      </div>
+    </div>
+    <div class="theme-title-bar"><span id="themeTitle"></span></div>
+  </header>
+  <div class="wrap"><div id="themeBody"></div></div>
+</div>
+
+<template id="tpl-percent">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">とことん版 ・ 新しい標準</span>
+    <h1><span class="hl">パーセント</span>を、<br>“絵”にする。</h1>
+    <p class="lead">覚えるんじゃない。読み終わったら、<br>パーセントが頭に絵で浮かぶようにする。</p>
+  </header>
+
+  <!-- ===== 1. 記号の正体 ===== -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>まず、記号の正体</div>
+    <h2>「％」は、かくれた「÷100」</h2>
+    <p class="lead-line">いきなり結論。<b class="k">「％」というマークは、「100で割る」「100コのうち」を表す、ただのしるし</b>です。</p>
+    <p>「パーセント（per cent）」の <b>cent（セント）</b> は「100」という意味。100円玉、100年（century）、100m走…ぜんぶ仲間。<br>そして「per」は「〜につき」。つまり <b class="k">パーセント＝「100につき、いくつ」</b>。</p>
+
+    <div class="panel">
+      <div class="morph">
+        <div class="mchip a"><span class="big">％</span><span class="sub">このマーク</span></div>
+        <div class="marrow">＝</div>
+        <div class="mchip b"><span class="big">／100</span><span class="sub">「100で割る」</span></div>
+        <div class="marrow">＝</div>
+        <div class="mchip c"><span class="big">100コ中</span><span class="sub">「100コのうち、いくつ」</span></div>
+      </div>
+      <p class="soft" style="text-align:center; margin:6px 0 0; font-size:.88rem;">よく見ると「％」の中の小さな ○○ は「00」、ななめの線は「わける（/）」。<br>記号そのものが「/100」のかたちをしているんです。</p>
+    </div>
+
+    <div class="big-point blue">これから先、<b class="kb">「○％」を見たら、心の中で「100コのうち、○コ」</b>と読みかえる。<br>たったこれだけで、パーセントは怖くなくなります。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 2. 100コの世界（タップ） ===== -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>ホームベース</div>
+    <h2>「ぜんぶ」を、100コに切る</h2>
+    <p class="lead-line">パーセントの世界では、<b class="k">どんな「ぜんぶ」も、いったん100コのマスに切りそろえます。</b></p>
+    <p>下の100マスが、その「ぜんぶ」。<b>1マス＝1％</b>です。<br>
+    マスを<b class="k">タップして自分でぬってみてください。</b>ぬったマスの数が、そのまま「％」になります。指で“作る”と、体にしみこみます。</p>
+
+    <div class="panel">
+      <div class="bignum"><span class="v" id="s2v">0</span><span class="u">%</span></div>
+      <div class="cap" id="s2cap">マスをタップしてぬってみよう</div>
+      <div class="grid100" id="s2grid"></div>
+      <div class="grid-cap">🟧 ぬったマス　／　⬜ まだのマス　（ぜんぶで100マス・1マス＝1%）</div>
+      <div class="qbs" style="margin-top:14px;">
+        <button class="ctrlbtn" id="s2clear">ぜんぶ消す</button>
+        <button class="ctrlbtn" id="s2fill">ぜんぶぬる</button>
+      </div>
+    </div>
+    <p class="soft">10マスで1列。だから <b class="k">1列＝10％</b>。半分の5列で50％。この“列の感覚”も、あとでめちゃくちゃ効きます。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 3. 同じ量、いろんな顔 ===== -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>5つの顔</div>
+    <h2>同じパーセントを、いろんな形で</h2>
+    <p class="lead-line">マス・円・棒・数直線——<b class="k">見た目がちがうだけで、ぜんぶ同じ量</b>です。</p>
+    <p>スライダーを動かすと、4つの絵がぜんぶ一緒に動きます。「あ、これ全部おなじことなんだ」が体で分かると、パーセントが立体的に見えてきます。</p>
+
+    <div class="panel">
+      <div class="bignum" style="margin-bottom:6px;"><span class="v" id="s3v">40</span><span class="u">%</span></div>
+      <div class="cap" id="s3cap"></div>
+
+      <div class="reps">
+        <div><div class="rep-title">① 100マス</div><div class="grid100" id="s3grid" style="max-width:240px;"></div></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center;">
+          <div><div class="rep-title">② 円（まる）</div><div class="pie" id="s3pie"><div class="pin" id="s3pin">40%</div></div></div>
+          <div><div class="rep-title">③ 棒（ぼう）</div><div class="track"><div class="fill" id="s3bar"></div></div></div>
+        </div>
+        <div><div class="rep-title">④ 数直線（めもり）</div>
+          <div class="numline"><div class="nl-track"></div><div class="nl-fill" id="s3nlf"></div><div class="nl-dot" id="s3nld"></div>
+            <div class="nl-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div></div>
+        </div>
+      </div>
+
+      <div class="slabels"><span>0%</span><span>100%</span></div>
+      <input type="range" id="s3s" min="0" max="100" value="40">
+      <div class="qbs">
+        <button class="qb" data-v="10">10%</button><button class="qb" data-v="25">25%</button>
+        <button class="qb" data-v="50">50%</button><button class="qb" data-v="75">75%</button><button class="qb" data-v="100">100%</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 4. ランドマーク ===== -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>絵で覚える目印</div>
+    <h2>“よく出る％”を、絵のまま記憶</h2>
+    <p class="lead-line">いちいち計算しなくても、<b class="k">パッと絵が浮かぶ目印</b>をいくつか持っておくと、一生ラクです。</p>
+    <p>下のカードを「数字」じゃなく「<b>絵と例え</b>」で見てください。ピザ・ケーキ・電池…身近なモノとセットにすると、忘れません。</p>
+
+    <div class="gallery" id="s4gallery"></div>
+    <div class="big-point">大事：<b class="k">100％は「たくさん」じゃなくて「ぜんぶ・まるごと」</b>。<br>そして <b class="k">200％は「2つ分」</b>。パーセントは100を超えることもあります（下の最後のカード）。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 5. 何の100か ===== -->
+  <section>
+    <div class="step-no"><span class="dot">5</span>いちばん大事なところ</div>
+    <h2>「何の」100か？で、中身が変わる</h2>
+    <p class="lead-line">ここがパーセントの<b class="k">いちばんの山場</b>。でも絵で見れば一発です。</p>
+    <p>パーセントは「<b>切り取る割合のレシピ</b>」。同じ「50％」でも、<b class="k">“何の”50％かで、出てくる量はぜんぜん違います。</b><br>
+    下のスライダーで同じ％を、4つの「ぜんぶ」に同時にかけてみてください。全部「同じ割合」なのに、量がバラバラなのが見えます。</p>
+
+    <div class="panel">
+      <div class="bignum" style="margin-bottom:4px;"><span class="v" id="s5v">50</span><span class="u">%</span></div>
+      <div class="cap soft" style="font-weight:700; font-size:.95rem;">↓ この割合を、それぞれの「ぜんぶ」にかけると…</div>
+      <div class="whats" id="s5cards"></div>
+      <div class="slabels"><span>0%</span><span>100%</span></div>
+      <input type="range" id="s5s" min="0" max="100" value="50">
+      <div class="qbs">
+        <button class="qb" data-v="10">10%</button><button class="qb" data-v="25">25%</button>
+        <button class="qb" data-v="50">50%</button><button class="qb" data-v="100">100%</button>
+      </div>
+    </div>
+    <div class="big-point mint">だから、パーセントは<b class="kg">いつも「何の％か」とセット</b>。<br>「50％」だけでは量は決まらない。「<b>何の</b>50％か」で決まります。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 6. 1マスの値打ち（計算の正体） ===== -->
+  <section>
+    <div class="step-no"><span class="dot">6</span>計算の正体も、絵</div>
+    <h2>「○○の△％」を、絵で出す</h2>
+    <p class="lead-line">公式を覚えなくていい。<b class="k">「1マスにいくらの値打ちがあるか」</b>さえ見えれば、計算は“数えるだけ”になります。</p>
+    <p>「ぜんぶ」を100マスに切ると、<b class="k">1マスの値打ち＝ぜんぶ÷100</b>。<br>あとは、ほしい％のぶんだけマスを点灯させて、足していくだけ。下で「ぜんぶの数」を変えて、スライダーを動かしてみてください。</p>
+
+    <div class="panel">
+      <div class="w-in" style="margin-bottom:6px;">「ぜんぶ」＝ <input type="number" id="s6n" value="200" min="0"> 個</div>
+      <div style="text-align:center;"><span class="perpill">1マスの値打ち ＝ 200 ÷ 100 ＝ <span id="s6per">2</span></span></div>
+      <div class="worth-grid" id="s6grid" style="margin-top:10px;"></div>
+      <div class="worth-readout">
+        <div class="lab"><span id="s6pct">30</span>% ＝ <span id="s6cnt">30</span>マス点灯　→　1マス<span id="s6per2">2</span> が <span id="s6cnt2">30</span>個</div>
+        <div class="tot"><span id="s6tot">60</span></div>
+      </div>
+      <div class="slabels"><span>0%</span><span>100%</span></div>
+      <input type="range" id="s6s" min="0" max="100" value="30">
+    </div>
+    <div class="big-point">「200の30％」＝「1マス2が30個」＝ <b class="k">60</b>。<br>これが「<b>○○ × △ ÷ 100</b>」の正体。式じゃなくて、<b class="k">マスの足し算</b>として見えていればOKです。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 7. 身のまわり ===== -->
+  <section>
+    <div class="step-no"><span class="dot">7</span>もう使ってる</div>
+    <h2>身のまわりは、％だらけ</h2>
+    <p class="lead-line">気づいてないだけで、毎日パーセントを見ています。ぜんぶ「100のうち、いくつ」です。</p>
+
+    <div class="panel">
+      <h3 style="margin-top:0;">🔋 スマホの電池</h3>
+      <p class="soft" style="margin:0 0 4px;">「電池70％」＝ 満タンを100としたとき、いま70の分だけ残ってる。スライダーで動かしてみよう。</p>
+      <div class="battery"><div class="battfill" id="s7batt"></div></div>
+      <div style="text-align:center; font-weight:700;"><span id="s7num">70</span>% 残り</div>
+      <input type="range" id="s7s" min="0" max="100" value="70" style="margin-top:10px;">
+
+      <div class="realrow">
+        <div class="rcard"><h4><span class="e">⬇️</span>ダウンロード</h4><div class="soft" style="font-size:.82rem;">「60%完了」＝ あと40%で終わり</div><div class="minibar"><div style="width:60%"></div></div></div>
+        <div class="rcard"><h4><span class="e">🏷️</span>セール</h4><div class="soft" style="font-size:.82rem;">「20%引き」＝ 100のうち20だけ安く</div><div class="minibar"><div style="width:20%; background:var(--persimmon);"></div></div></div>
+        <div class="rcard"><h4><span class="e">💯</span>テスト</h4><div class="soft" style="font-size:.82rem;">「80点」＝ 100点満点の80%</div><div class="minibar"><div style="width:80%; background:var(--mint);"></div></div></div>
+        <div class="rcard"><h4><span class="e">☔️</span>降水確率</h4><div class="soft" style="font-size:.82rem;">「30%」＝ 100回のうち30回くらい降る</div><div class="minibar"><div style="width:30%; background:var(--plum);"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 8. クイズ ===== -->
+  <section>
+    <div class="step-no"><span class="dot">8</span>遊んで染み込ませる</div>
+    <h2>パッと見て、何％？</h2>
+    <p class="lead-line">最後は“当てっこ”。絵を見て、何％か当ててみてください。<b class="k">見た目で％が分かる</b>ようになれば、もう体に入っています。</p>
+
+    <div class="quiz">
+      <div class="q">この円、何％にぬられてる？</div>
+      <div class="pie" id="qpie" style="margin:10px auto;"><div class="pin" id="qpin">?</div></div>
+      <div class="opts" id="qopts"></div>
+      <div class="fb" id="qfb"></div>
+      <div class="score" id="qscore">正解 0 / 0</div>
+      <button class="next" id="qnext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- ===== 9. つまずき・まとめ ===== -->
+  <section>
+    <div class="step-no"><span class="dot">9</span>仕上げ</div>
+    <h2>つまずきポイント</h2>
+    <div class="pit"><span class="tag">勘違い①</span><p style="margin:0"><b>100%＝「たくさん」ではない。</b><br><span class="soft">100%は「ぜんぶ・まるごと1つ分」。それ以上の200%（2つ分）もあります。</span></p></div>
+    <div class="pit"><span class="tag">勘違い②</span><p style="margin:0"><b>「何の％か」が決まらないと、量は決まらない。</b><br><span class="soft">1000円の10%は100円、500円の10%は50円。“もとの100”が何かを必ず確認。</span></p></div>
+    <div class="pit"><span class="tag">勘違い③</span><p style="margin:0"><b>「20%」と「20%引き」は別もの。</b><br><span class="soft">「20%引き」は安くなる分が20%で、払うのは残りの80%。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🍁</span><br>
+    パーセントは、覚える記号じゃなくて、<br>
+    <b>「100マスのうち、いくつ」という“絵”</b>。<br>
+    数字を見て、この100マスが浮かべばゴールです。
+  </p>
+
+  <div class="jumpwrap">
+    <div class="jumphint">パーセントの“絵”はもうバッチリ。<br>じゃあ、これを白衣の世界へ持っていきましょう。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 薬剤師の現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ 白衣のパーセント</span>
+    <h1>その電卓、<br><span class="hl">何をしてる</span>の？</h1>
+    <p class="lead">さっきの100マスを、そのまま薬の世界へ。<br>現場でやってる計算の“正体”を、ぜんぶ絵にします。</p>
+  </header>
+
+  <div class="big-point">合言葉のおさらい：<b class="k">％＝100のうち、いくつ</b>。<br>薬では、その「100」が <b class="k">製剤100g</b>（軟膏・散剤）か <b class="k">100mL</b>（液剤）に変わるだけです。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>100マスが「製剤100g」になる</h2>
+    <p class="lead-line">ページ①の100マスは「ぜんぶ」でした。薬では、その「ぜんぶ」＝<b class="k">クリーム100g</b>。ぬったマスが<b class="k">薬（有効成分）</b>です。</p>
+    <p>つまり「<b class="k">1%軟膏</b>」＝ クリーム100gのうち、薬は1マス分＝1g。残りの99マス（99g）は土台（基剤）。<br>下のスライダーで、100gの中の“薬の分”を見てください。</p>
+
+    <div class="panel">
+      <div class="bignum"><span class="v" id="p2av">1</span><span class="u">%</span><span style="font-size:1rem;color:var(--ink-soft)"> の軟膏</span></div>
+      <div class="cap" id="p2acap"></div>
+      <div class="grid100" id="p2agrid"></div>
+      <div class="grid-cap">🟧 ＝ 薬（有効成分）　／　⬜ ＝ 土台（基剤）　…ぜんぶで製剤100g</div>
+      <div class="slabels" style="margin-top:6px;"><span>0%</span><span>10%</span></div>
+      <input type="range" id="p2as" min="0" max="10" value="1" step="1">
+      <div class="qbs">
+        <button class="qb" data-v="1">1%</button><button class="qb" data-v="2">2%</button>
+        <button class="qb" data-v="5">5%</button><button class="qb" data-v="10">10%</button>
+      </div>
+    </div>
+    <p class="soft">見てのとおり、ほとんどが土台で薬はちょっぴり。「1%って意外と少ない」が体に入ればOKです。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>ズームイン</div>
+    <h2>でも現場は「1g」で見る</h2>
+    <p class="lead-line">チューブを手に持つと、知りたいのは「<b class="k">1gの中に薬は何mg？</b>」。100gから1gへ、ぐっとズームします。</p>
+    <p>ここで犯人が登場：<b class="k">1g＝1000mg</b>。これが「%の100」とケンカして混乱の元になります。でも順番にいけば平気。</p>
+    <p>1%＝100g中1g →（1gあたりにする）→ 1g中0.01g →（mgに直す）→ <b class="k">1g中10mg</b>。<br>だから現場の合言葉は <b class="k">1% ＝ 1g中10mg ＝ 10mg/g</b>。</p>
+
+    <div class="panel">
+      <div style="text-align:center; font-weight:700;">製剤 1g（＝1000mg）の中の薬 ＝ <span style="font-family:'Zen Maru Gothic'; color:var(--persimmon-deep); font-size:1.3rem;"><span id="p2bmg">10</span>mg</span></div>
+      <div class="barlab" style="display:flex; justify-content:space-between; font-size:.8rem; font-weight:700; margin:10px 0 3px;"><span>薬 <span id="p2bd">10mg</span></span><span class="soft">土台 <span id="p2bbase">990mg</span></span></div>
+      <div class="track"><div class="fill" id="p2bbar" style="width:1%"></div></div>
+      <div class="slabels"><span>0%</span><span>10%</span></div>
+      <input type="range" id="p2bs" min="0" max="10" value="1" step="0.05">
+      <div class="qbs">
+        <button class="qb" data-v="0.1">0.1%</button><button class="qb" data-v="0.5">0.5%</button>
+        <button class="qb" data-v="1">1%</button><button class="qb" data-v="2">2%</button>
+        <button class="qb" data-v="5">5%</button><button class="qb" data-v="10">10%</button>
+      </div>
+    </div>
+    <div class="big-point blue">これが現場の合言葉：<b class="kb">1% ＝ 1g中10mg</b>。<br>液体なら「1mL中10mg（＝10mg/mL）」。中身は同じで、入れ物が <b>g</b> か <b>mL</b> かの違いだけです。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 濃度の定義 -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--sky)">語</span>ことばの確認</div>
+    <h2>「濃度」って、こういうこと</h2>
+    <p class="lead-line">このあと何度も出てくる「<b class="kb">濃度</b>」。むずかしく考えなくて大丈夫。<br>濃度＝<b class="kb">「1g（1mL）あたりに、薬が何mg入ってるか」＝ mg/g（mg/mL）</b>。それだけです。</p>
+    <p>「濃度」の「濃」は<b>“濃い・薄い”</b>の濃。カルピスと同じで、<b class="kb">薬がぎゅっと詰まってれば「濃い」、スカスカなら「薄い」</b>。下のスライダーで、その“濃さ”を色で見てください。</p>
+
+    <div class="panel">
+      <div style="text-align:center;">
+        <div id="concSwatch" style="width:120px;height:120px;border-radius:18px;margin:6px auto 10px;border:2px solid var(--line);"></div>
+        <div class="bignum" style="font-size:1rem;"><span class="v" id="concPctV" style="font-size:2.2rem;">1</span><span class="u">%</span></div>
+        <div style="font-weight:700;margin-top:2px;"><span id="concMggV">10</span> mg/g　＝　1g中に薬 <span id="concMgV">10</span>mg</div>
+      </div>
+      <div class="slabels"><span>うすい 0%</span><span>こい 10%</span></div>
+      <input type="range" id="concS" min="0" max="10" value="1" step="0.05">
+      <div class="qbs">
+        <button class="qb" data-v="0.1">0.1%</button><button class="qb" data-v="0.5">0.5%</button>
+        <button class="qb" data-v="1">1%</button><button class="qb" data-v="5">5%</button><button class="qb" data-v="10">10%</button>
+      </div>
+    </div>
+
+    <h3>濃度の見本帳</h3>
+    <p class="soft">同じ「クリーム1g」でも、濃度がちがうと中の薬の量がこれだけ変わります。<b class="k">色の濃さ＝薬の多さ</b>です。</p>
+    <div class="druggallery" id="concSamples"></div>
+
+    <div class="big-point blue">これから「<b class="kb">濃度</b>」と出てきたら、ぜんぶ<b class="kb">「mg/g（＝1gあたりの薬の量）」</b>のこと。<br>「%×10」で出たアレが、濃度の正体です。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>電卓の正体 ①</div>
+    <h2>「○%の薬を△g使うと何mg？」</h2>
+    <p class="lead-line">現場でいちばん電卓を叩くこれ。正体は<b class="k">「1gあたりの薬の量を、使う量だけ集めるだけ」</b>です。</p>
+    <p>ページ①の「1マスの値打ち」と同じこと。今度は <b class="k">「1gの値打ち＝%×10 mg」</b>。それを、使うg数のぶんだけ並べて足すだけ。</p>
+
+    <div class="panel">
+      <div class="seg2" id="p2cseg"><button class="on" data-u="g">g（軟膏・散剤）</button><button data-u="mL">mL（液剤）</button></div>
+      <div class="w-in" style="margin:8px 0;">濃度 <input type="number" id="p2cc" value="5" min="0" step="0.05"> %</div>
+      <div style="text-align:center;"><span class="perpill">1<span id="p2cu1">g</span>あたり ＝ <span id="p2cconc">5</span> ×10 ＝ <span id="p2cper">50</span> mg</span></div>
+      <div class="slabels"><span>使う量 0</span><span>使う量 20<span id="p2cu2">g</span></span></div>
+      <input type="range" id="p2cs" min="0" max="20" value="20" step="1">
+      <div style="text-align:center; font-weight:700; margin-top:6px;">使う量 <span id="p2camt">20</span><span id="p2cu3">g</span></div>
+      <div class="gramblocks" id="p2cblocks"></div>
+      <div style="text-align:center;"><div class="soft" style="font-size:.82rem;">薬の合計</div><div style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:2rem; color:var(--persimmon-deep);"><span id="p2ctot">1000</span> mg</div></div>
+      <div class="w-steps" id="p2csteps"></div>
+    </div>
+    <div class="big-point">「5%軟膏を20g」＝ 1gに50mg が 20個 ＝ <b class="k">1000mg（＝1g）</b>。<br>電卓は「<b>%×10×使う量</b>」を計算してるだけ。絵では“gブロックを並べて足す”だけです。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D -->
+  <section>
+    <div class="step-no"><span class="dot">D</span>絵で読む</div>
+    <h2>ラベルの「%」を、mgの絵で読む</h2>
+    <p class="lead-line">「%」を見たら、反射的に「mg/g（mg/mL）」が浮かぶようにします。コツはひとつ、<b class="k">×10</b>。</p>
+    <p>下の実例を「数字」じゃなく「<b>×10すると何mgか</b>」の目で眺めてください。これを繰り返すと、ラベルがmgの絵に見えてきます。</p>
+    <div class="druggallery" id="p2dgal"></div>
+    <p class="soft" style="margin-top:10px;">確認：生食0.9% → ×10 → 9mg/mL。ちゃんと合いますね。表記が違っても、ぜんぶ同じ「×10」です。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E -->
+  <section>
+    <div class="step-no"><span class="dot">E</span>電卓の正体 ②</div>
+    <h2>なんで「×10」でmg/mLになるの？</h2>
+    <p class="lead-line">現場の魔法「%×10＝mg/mL」。その中身は<b class="k">「×1000して、÷100」</b>です。</p>
+    <p>g→mgは <b>×1000</b>（薬を細かいmgで数えるから）。でも%は「100のうち」だから <b>÷100</b>。<br>1000 ÷ 100 ＝ <b class="k">10</b>。差し引き、ちょうど×10になるんです。</p>
+
+    <div class="panel">
+      <div class="convbox">
+        <span class="from"><span id="p2efrom">1</span><span class="u"> %</span></span>
+        <span class="eqs">×10 ＝</span>
+        <span class="to"><span id="p2eto">10</span><span class="u"> mg/mL（mg/g）</span></span>
+        <div class="sub" id="p2esub"></div>
+      </div>
+      <div class="why">×1000（g→mg）して ÷100（%の100）→ 差し引き ×10</div>
+      <div class="slabels"><span>0%</span><span>10%</span></div>
+      <input type="range" id="p2es" min="0" max="10" value="1" step="0.05">
+      <div class="qbs">
+        <button class="qb" data-v="0.1">0.1%</button><button class="qb" data-v="0.9">0.9%</button>
+        <button class="qb" data-v="1">1%</button><button class="qb" data-v="5">5%</button><button class="qb" data-v="10">10%</button>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- F -->
+  <section>
+    <div class="step-no"><span class="dot">F</span>大きな「ぜんぶ」</div>
+    <h2>点滴バッグで考える</h2>
+    <p class="lead-line">バッグやボトルみたいな大きい「ぜんぶ」も、やることは同じ。<b class="k">全体の量に、%をかけるだけ</b>です。</p>
+    <p>下はバッグ。濃さを選んで、量（mL）を動かすと、中に溶けてる薬の量が出ます。<b class="k">同じ濃さなら、量が増えるほど薬も増える</b>のが見えます。</p>
+
+    <div class="panel">
+      <div class="seg2" id="p2fseg"><button class="on" data-c="0.9">生食 0.9%</button><button data-c="5">ブドウ糖 5%</button><button data-c="10">ブドウ糖 10%</button></div>
+      <div class="bag">
+        <div class="bag-hook"></div>
+        <div class="bag-body"><div class="bag-liquid" id="p2fliq" style="height:50%"><span id="p2fvoltxt">500mL</span></div></div>
+      </div>
+      <div class="slabels"><span>0mL</span><span>1000mL</span></div>
+      <input type="range" id="p2fs" min="0" max="1000" value="500" step="50">
+      <div style="text-align:center; margin-top:8px;"><div class="soft" style="font-size:.82rem;">バッグの中の薬</div><div style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:2rem; color:var(--persimmon-deep);"><span id="p2fg">4.5</span> g</div></div>
+      <div class="w-steps" id="p2fsteps"></div>
+    </div>
+    <div class="realrow">
+      <div class="rcard"><h4><span class="e">🧴</span>0.1%軟膏 5g</h4><div class="soft" style="font-size:.82rem;">1g=1mg → 5g で 薬5mg</div></div>
+      <div class="rcard"><h4><span class="e">💉</span>1%リドカイン 5mL</h4><div class="soft" style="font-size:.82rem;">1mL=10mg → 5mL で 薬50mg</div></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- G: mg/g two meanings -->
+  <section>
+    <div class="step-no"><span class="dot">G</span>処方箋の前に</div>
+    <h2>「mg」と「g」には、2つの話がある</h2>
+    <p class="lead-line">処方箋のmgとgで混乱するのは、実は<b class="k">「mg⇄g」に2種類の意味がある</b>から。ここを分けるだけでスッキリします。</p>
+    <div class="whats" style="grid-template-columns:1fr;">
+      <div class="wcard">
+        <div class="top"><span class="e">①</span>同じ薬の“重さの言いかえ”</div>
+        <p class="soft" style="margin:5px 0 7px; font-size:.9rem;">ただ単位を変えただけ。中身はまったく同じ。<b class="kb">1g ＝ 1000mg</b>。「1000円」を「千円札1枚」と呼ぶのと同じこと。</p>
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--sky-deep);text-align:center;font-size:1.1rem;">1g ⇄ 1000mg　（×1000 / ÷1000）</div>
+      </div>
+      <div class="wcard">
+        <div class="top"><span class="e">②</span>“成分の重さ” と “製剤の重さ”</div>
+        <p class="soft" style="margin:5px 0 7px; font-size:.9rem;">これは<b class="k">別もの</b>。薬そのものの重さと、粉やクリーム“ぜんぶ”の重さは違う。2つをつなぐのは <b class="k">濃度（%）</b>。</p>
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--persimmon-deep);text-align:center;font-size:1.02rem;">例）薬30mg は、10%散だと 0.3g（＝300mg）の粉の中</div>
+      </div>
+    </div>
+    <div class="big-point">処方箋でやる変換は、たいてい<b class="k">②（成分⇄製剤）</b>のほう。<br>だから「÷1000すればいい」じゃなく、<b class="k">濃度を使う</b>のが正解です。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- H: two-way prescription conversion -->
+  <section>
+    <div class="step-no"><span class="dot">H</span>電卓の正体 ③</div>
+    <h2>処方は「2つの向き」で来る</h2>
+    <p class="lead-line">処方箋の量は、来かたが2通り。<b class="k">どっちが来たかで、×か÷かが決まる</b>だけです。</p>
+
+    <div class="panel" style="text-align:center;">
+      <div style="background:linear-gradient(180deg,#FFE3CE,#FFD3B3);color:var(--persimmon-deep);font-family:'Zen Maru Gothic';font-weight:900;border-radius:14px;padding:13px;font-size:1.2rem;">製剤（g）・大きい<div style="font-size:.76rem;font-weight:700;color:var(--ink-soft);">処方に「軟膏 ○g」で来る</div></div>
+      <div style="padding:9px 0;color:var(--persimmon-deep);font-weight:700;font-size:.92rem;">↓ gで来たら　<b>×濃度</b>　→ 成分mg</div>
+      <div style="background:linear-gradient(180deg,#DCEFF6,#C8E6F1);color:var(--sky-deep);font-family:'Zen Maru Gothic';font-weight:900;border-radius:14px;padding:13px;width:64%;margin:0 auto;font-size:1.08rem;">成分（mg）・小さい<div style="font-size:.76rem;font-weight:700;color:var(--ink-soft);">処方に「原薬 ○mg」で来る</div></div>
+      <div style="padding:9px 0 0;color:var(--sky-deep);font-weight:700;font-size:.92rem;">↑ mgで来たら　<b>÷濃度</b>　→ 製剤g</div>
+    </div>
+
+    <div class="big-point blue"><b class="kb">gで来たら ×濃度</b>（中の成分mgを出す）。<br><b class="kb">mgで来たら ÷濃度</b>（出すべき製剤gを出す）。</div>
+
+    <div class="big-point" style="background:#F3ECF5;border-left-color:var(--plum);">
+      💱 <b class="kp">濃度は「g と mg の両替レート」</b><br>
+      <span style="font-weight:400">「1g＝○mg」というレート（＝濃度 mg/g）。お金の両替とまったく同じで——<br>
+      g → mg は <b class="kp">レートを かける（×）</b>、mg → g は <b class="kp">レートで わる（÷）</b>。<br>
+      「円→ドルは×、ドル→円は÷」と同じ向きの話だと思えば、もう迷いません。</span>
+    </div>
+
+    <p>下の計算機で、両方の向きを切りかえて試してください。下の「例」ボタンで処方シーンも入ります。</p>
+
+    <div class="panel">
+      <div class="seg2" id="p2hmode">
+        <button class="on" data-m="gtomg">処方が g → 成分mg（×）</button>
+        <button data-m="mgtog">処方が mg → 製剤g（÷）</button>
+      </div>
+      <div class="w-in" style="margin:10px 0 4px;">濃度 <input type="number" id="p2hc" value="0.3" min="0" step="0.05"> %</div>
+      <div style="text-align:center;"><span class="perpill" style="background:#E7F2F7;color:var(--sky-deep);">1gあたり ＝ <span id="p2hden">3</span> mg/g</span></div>
+      <div class="w-in" style="margin:12px 0 4px;"><span id="p2hinlab">処方の製剤量</span> <input type="number" id="p2hin" value="50" min="0" step="0.1"> <span id="p2hinunit">g</span></div>
+      <div style="text-align:center; font-family:'Zen Maru Gothic'; font-weight:900; font-size:1.3rem; color:var(--ink-soft); margin:8px 0;"><span id="p2hop">×</span> 濃度</div>
+      <div style="text-align:center;"><div class="soft" style="font-size:.82rem;" id="p2houtlab">中の成分</div><div style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:2rem; color:var(--persimmon-deep);"><span id="p2hout">150</span> <span id="p2houtunit">mg</span></div></div>
+      <div class="w-steps" id="p2hsteps"></div>
+      <div class="qbs">
+        <button class="qb" data-ex="gtomg|0.3|50">例：0.3%軟膏 50g</button>
+        <button class="qb" data-ex="mgtog|10|30">例：原薬30mg を 10%散</button>
+      </div>
+    </div>
+
+    <div class="realrow">
+      <div class="rcard"><h4><span class="e">🧴</span>g → mg（×）</h4><div class="soft" style="font-size:.82rem;">「0.3%軟膏 50g」<br>50g × 3mg/g ＝ <b style="color:var(--persimmon-deep)">150mg</b></div></div>
+      <div class="rcard"><h4><span class="e">🥄</span>mg → g（÷）</h4><div class="soft" style="font-size:.82rem;">「原薬30mg を 10%散」<br>30mg ÷ 100mg/g ＝ <b style="color:var(--sky-deep)">0.3g</b></div></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 整: foolproof procedure -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--plum)">整</span>計算をスッキリ</div>
+    <h2>もう「×？÷？ ×10？÷10？」で迷わない</h2>
+    <p class="lead-line">混乱の正体はシンプル。<b class="kp">頭の中で“やり方”が2つ3つ混ざってる</b>から。「%÷100して×？」「×10？」「割る？」が同時に浮かぶ。<br><b class="kp">やり方を1本に決めれば、迷いは消えます。</b></p>
+
+    <h3>覚えるのはこの2ステップだけ（順番は固定）</h3>
+    <div class="panel">
+      <div style="background:linear-gradient(180deg,#E7F2F7,#D6EAF2);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--sky-deep);font-size:1.12rem;">STEP 1　％を ×10 → mg/g をつくる</div>
+        <div style="font-size:.84rem;color:var(--ink-soft);font-weight:700;margin-top:2px;">（これが濃度。ここは “いつも ×10”。例外なし）</div>
+      </div>
+      <div style="text-align:center;color:var(--ink-soft);font-size:1.5rem;padding:6px 0;">↓</div>
+      <div style="background:linear-gradient(180deg,#FFEFE2,#FFE3CE);border-radius:14px;padding:14px;text-align:center;">
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--persimmon-deep);font-size:1.12rem;margin-bottom:8px;">STEP 2　持ってる単位で決める</div>
+        <div style="font-weight:700;line-height:2.2;"><span style="background:#fff;border-radius:8px;padding:5px 11px;">g を持ってる → <b class="k">×</b></span>　<span style="background:#fff;border-radius:8px;padding:5px 11px;">mg を持ってる → <b class="k">÷</b></span></div>
+      </div>
+    </div>
+
+    <h3>迷い①「×10？ ÷10？」を消す</h3>
+    <p>この計算は、いつも「<b class="k">％ → mg/g</b>」をつくるところからスタート。だから<b class="k">必ず ×10</b>。<br>÷10になるのは「mg/g → ％ に戻すとき」だけ（＝今やってる作業とは別もの）。<b class="k">処方の計算に ÷10 は出てきません。</b></p>
+
+    <h3>迷い②「×？ ÷？」を消す（単位で決まる）</h3>
+    <p>濃度の単位は「<b>mg/g</b>」。これを使って、<b class="k">単位どうしがぶつかって消えるように置く</b>だけ。残った単位が答えの単位です。</p>
+    <div class="panel" style="text-align:center;font-family:'Zen Maru Gothic';font-weight:700;">
+      <div style="margin:6px 0;">g を持ってる：　<span style="color:var(--persimmon-deep)">g</span> × (mg/<s style="color:var(--persimmon-deep)">g</s>) ＝ <b style="color:var(--persimmon-deep)">mg</b>　<span style="font-weight:400;color:var(--ink-soft);font-size:.82rem;">（gが消えて mg が残る）</span></div>
+      <div style="height:1px;background:var(--line);margin:8px 0;"></div>
+      <div style="margin:6px 0;">mg を持ってる：　<span style="color:var(--sky-deep)">mg</span> ÷ (<s style="color:var(--sky-deep)">mg</s>/g) ＝ <b style="color:var(--sky-deep)">g</b>　<span style="font-weight:400;color:var(--ink-soft);font-size:.82rem;">（mgが消えて g が残る）</span></div>
+    </div>
+
+    <h3>結局これ（フローチャート）</h3>
+    <div class="panel">
+      <div style="text-align:center;font-weight:700;color:var(--ink-soft);margin-bottom:10px;">処方で持ってるのは…</div>
+      <div style="background:#FFEFE2;border-radius:12px;padding:13px;margin-bottom:10px;">
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--persimmon-deep);">🧴 g（軟膏 ○g）</div>
+        <div style="font-weight:700;margin-top:4px;font-size:.94rem;">① ％×10でmg/g → ② <b class="k">×</b> → <b class="k">成分mg</b></div>
+      </div>
+      <div style="background:#E7F2F7;border-radius:12px;padding:13px;">
+        <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--sky-deep);">🥄 mg（原薬 ○mg）</div>
+        <div style="font-weight:700;margin-top:4px;font-size:.94rem;">① ％×10でmg/g → ② <b class="kb">÷</b> → <b class="kb">製剤g</b></div>
+      </div>
+    </div>
+
+    <div class="big-point mint">最後の保険：<b class="kg">成分(mg)は、製剤の重さ(mg)よりずっと小さいはず</b>（薬は“一部”だから）。<br>計算後、製剤gを×1000してmgに直して比べて、成分のほうが大きかったら×÷が逆です。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 練: drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>×か÷か、即答ドリル</h2>
+    <p class="lead-line">あとは反復で“手”に入れます。処方を見て、<b class="kg">STEP2が × か ÷ か</b>を即答してください。間違えても、毎回ちゃんと2ステップで解き直すので大丈夫。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:8px 0;font-size:.9rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts">
+        <button class="opt" data-op="mul">× かける</button>
+        <button class="opt" data-op="div">÷ わる</button>
+      </div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+    <p class="soft">コツ：まず単位を見る。<b>g</b>を持ってたら<b class="k">×</b>、<b>mg</b>を持ってたら<b class="kb">÷</b>。10回も解けば手が勝手に動きます。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- I -->
+  <section>
+    <div class="step-no"><span class="dot">I</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「1g中」と「100g中」を混同しない。</b><br><span class="soft">1%は「1g中10mg」だけど「100g中1g」。“何gの中の話か”を必ず確認。うっかり100倍しがち。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>mg/g と mg/mL は数字は同じ、分母が違う。</b><br><span class="soft">軟膏・散剤は mg/g、液体は mg/mL。どっちの入れ物か（固体か液体か）を見る。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>μg が混ざる薬は、桁にいつもの一拍。</b><br><span class="soft">%・mg・μg が同居すると桁ミスが起きやすい。1g=1000mg、1mg=1000μg を思い出す。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    電卓を叩く前に、この <b>「製剤100g（＝100マス）」</b> が浮かべば、<br>
+    答えの“大きさ”が一瞬で分かる。<br>
+    ケタ違いのミスが、すっと消えます。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
+<template id="tpl-hirei">
+<div id="page1" class="page active">
+
+  <header class="hero">
+    <span class="eyebrow">土台② ・ とことん版</span>
+    <h1>ぜんぶ、<span class="hl">“1つぶん”</span><br>にすれば見える。</h1>
+    <p class="lead">むずかしい比例も、<br>1つあたりにして、ほしい数だけ増やすだけ。</p>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <div class="step-no"><span class="dot">1</span>合言葉</div>
+    <h2>「あたり」＝ たった1つ分</h2>
+    <p class="lead-line">「1個あたり」「1人あたり」「1mLあたり」——ぜんぶ <b class="k">“たった1つにしたら、いくつ？”</b> という意味です。</p>
+    <p>バラバラの量も、いったん「1つ分」にそろえると、急に見やすくなります。これが計算の王様。</p>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🍬</span><span class="txt"><span class="per">1個あたり</span> 80円</span></div>
+      <div class="peritem"><span class="emo">💊</span><span class="txt"><span class="per">1錠あたり</span> 5mg</span></div>
+      <div class="peritem"><span class="emo">🥤</span><span class="txt"><span class="per">1mLあたり</span> 2mg</span></div>
+      <div class="peritem"><span class="emo">⚖️</span><span class="txt"><span class="per">体重1kgあたり</span> 10mg</span></div>
+    </div>
+    <p class="soft">どれも「÷して、1つ分に直しただけ」。この感覚がこの先ずっと効きます。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 2 -->
+  <section>
+    <div class="step-no"><span class="dot">2</span>魔法の2ステップ</div>
+    <h2>① 1つあたりにする → ② 増やす</h2>
+    <p class="lead-line">どんな比例の問題も、結局この2手で終わります。</p>
+    <div class="flow">
+      <div class="fstep one"><span class="n">1</span><div class="h">1つあたりにする</div><div class="d">わり算（÷）で、まず1つ分に直す</div></div>
+      <div class="fmid">↓</div>
+      <div class="fstep two"><span class="n">2</span><div class="h">ほしい数だけ増やす</div><div class="d">かけ算（×）で、必要な個数ぶんにする</div></div>
+      <div class="fex">例）5個で400円。<br>① <span class="a">400 ÷ 5 ＝ 80円（1個あたり）</span><br>② <span class="b">80 × 7 ＝ 560円（7個分）</span></div>
+    </div>
+
+    <h3>自分で動かしてみる</h3>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">何個で</div><div class="w-in"><input type="number" id="u1n" value="5" min="1"><span class="w-unit">個</span></div></div>
+        <div><div class="w-lab">いくら？</div><div class="w-in"><input type="number" id="u1p" value="400" min="0"><span class="w-unit">円</span></div></div>
+      </div>
+      <div style="text-align:center;"><span class="perpill">① 1個あたり ＝ <span id="u1per">80</span> 円</span></div>
+      <div class="slabels"><span>ほしい 0個</span><span>ほしい 20個</span></div>
+      <input type="range" id="u1s" min="0" max="20" value="7" step="1">
+      <div class="blocks" id="u1blocks"></div>
+      <div class="bigout"><div class="lab">② ほしい <span id="u1c">7</span>個 だと</div><div class="v"><span id="u1res">560</span> 円</div></div>
+      <div class="w-steps" id="u1steps"></div>
+    </div>
+    <div class="big-point">迷ったら、まず <b class="kb">「1つあたり」</b> を作る。そこからほしい数を <b class="k">かける</b> だけ。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- 3 -->
+  <section>
+    <div class="step-no"><span class="dot">3</span>比例の正体</div>
+    <h2>2つが、手をつないで動く</h2>
+    <p class="lead-line">比例＝<b class="k">片方が2倍なら、もう片方も2倍</b>。2本のバーが、いつも同じだけ伸び縮みします。</p>
+    <p>下は「ガム1個80円」。個数を動かすと、値段も“同じ歩幅”で動くのが見えます。これが「比例」の体感です。</p>
+    <div class="panel">
+      <div class="slabels"><span>0個</span><span>10個</span></div>
+      <input type="range" id="bis" min="0" max="10" value="3" step="1">
+      <div class="barlab"><span>個数</span><span style="color:var(--sky-deep)"><span id="bicount">3</span> 個</span></div>
+      <div class="track"><div class="fill sky" id="bibar1" style="width:30%"></div></div>
+      <div class="barlab"><span>値段</span><span style="color:var(--persimmon-deep)"><span id="biyen">240</span> 円</span></div>
+      <div class="track"><div class="fill" id="bibar2" style="width:30%"></div></div>
+      <p class="soft" style="text-align:center; margin:12px 0 0; font-size:.85rem;">2本のバーの伸びが、いつも同じ長さ＝比例。片方を見ればもう片方が分かります。</p>
+    </div>
+
+    <h3>「対応表」で見るともっとラク</h3>
+    <p class="soft">左右がペアで動くだけ。間に「1あたり」をはさむと、どんな数でも飛べます。</p>
+    <table class="tbl">
+      <tr><th>個数</th><td>1</td><td>3</td><td class="arw">→ 7</td></tr>
+      <tr><th>値段(円)</th><td>80</td><td>240</td><td class="arw">→ 560</td></tr>
+    </table>
+    <p class="soft" style="margin-top:8px;">「1個＝80円」さえ作れば、×7でも×100でも自由自在です。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- pitfalls -->
+  <section>
+    <div class="step-no"><span class="dot">4</span>つまずき</div>
+    <h2>ここだけ気をつける</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位をそろえてから割る。</b><br><span class="soft">「全体mg」と「飲むmL」みたいに混ざったままだと「あたり」がズレます。同じ仲間どうしで対応させる。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>「÷で1つあたり」→「×で増やす」の順番。</b><br><span class="soft">先に1つあたりを作ってから掛ける。いきなり掛けると意味がぐちゃっとなります。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>答えの“大きさ感”を確認。</b><br><span class="soft">「8個が5個より安い」みたいな変な答えが出たら、どこかで×÷が逆。</span></p></div>
+  </section>
+
+  <div class="jumpwrap">
+    <div class="jumphint">「1つあたり」の感覚はバッチリ。<br>じゃあ、これを白衣の世界へ。</div>
+    <button class="jumpbtn" onclick="goPage(2)">② 薬剤師の現場で使ってみよう ›</button>
+  </div>
+
+</div><!-- /page1 -->
+<div id="page2" class="page">
+
+  <header class="hero">
+    <span class="eyebrow">現場へ ・ 白衣の“あたり”</span>
+    <h1>現場は、<span class="hl">“あたり”</span><br>だらけ。</h1>
+    <p class="lead">錠数も、シロップも、小児用量も。<br>ぜんぶ「1つあたり → 増やす」で終わります。</p>
+  </header>
+
+  <div class="big-point">合言葉のおさらい：<b class="k">まず1つあたりにして、ほしい数だけ増やす</b>。<br>現場では「1錠あたり○mg」「1mLあたり○mg」「体重1kgあたり○mg」が、その“1つあたり”です。</div>
+
+  <!-- A -->
+  <section>
+    <div class="step-no"><span class="dot">A</span>持ちこむ</div>
+    <h2>現場の「あたり」たち</h2>
+    <p class="lead-line">考え方ページの「1個あたり」が、薬では<b class="k">「1錠あたり」「1mLあたり」「1kgあたり」</b>に変わるだけ。中身は同じです。</p>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">💊</span><span class="txt"><span class="per">1錠あたり</span> ○mg（規格）</span></div>
+      <div class="peritem"><span class="emo">🥤</span><span class="txt"><span class="per">1mLあたり</span> ○mg（シロップの濃さ）</span></div>
+      <div class="peritem"><span class="emo">⚖️</span><span class="txt"><span class="per">体重1kgあたり</span> ○mg（小児用量）</span></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- B 錠数 -->
+  <section>
+    <div class="step-no"><span class="dot">B</span>あたり算 ①</div>
+    <h2>錠数を出す（1日量 ÷ 1錠）</h2>
+    <p class="lead-line">「1日○mg ほしい。1錠は△mg。じゃあ何錠？」<br>1錠を<b class="k">「1ブロック」</b>と考えて、ほしい量をつくるのに何ブロック要るか、です。</p>
+    <p class="soft">使う式：<b>錠数 ＝ ほしい量 ÷ 1錠の量</b>（＝「1錠あたり」で割る＝あたり算）</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">1日にほしい量</div><div class="w-in"><input type="number" id="tbDay" value="6" min="0"><span class="w-unit">mg</span></div></div>
+        <div><div class="w-lab">1錠の量（規格）</div><div class="w-in"><input type="number" id="tbTab" value="2" min="0.1" step="0.1"><span class="w-unit">mg</span></div></div>
+      </div>
+      <div class="blocks" id="tbBlocks"></div>
+      <div class="bigout"><div class="lab">必要な錠数</div><div class="v"><span id="tbRes">3</span> 錠</div></div>
+      <div class="w-steps" id="tbSteps"></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- C シロップ -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>あたり算 ②</div>
+    <h2>シロップ（1mLあたり → 飲む量）</h2>
+    <p class="lead-line">「全体の量」と「中の薬」が分かれば、飲む量での薬量が出せます。まず<b class="k">1mLあたり</b>を作るだけ。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">全体の量</div><div class="w-in"><input type="number" id="syV" value="100" min="1"><span class="w-unit">mL</span></div></div>
+        <div><div class="w-lab">中の薬</div><div class="w-in"><input type="number" id="syM" value="500" min="0"><span class="w-unit">mg</span></div></div>
+      </div>
+      <div style="text-align:center;"><span class="perpill">① 1mLあたり ＝ <span id="syPer">5</span> mg/mL</span></div>
+      <div class="slabels"><span>飲む量 0mL</span><span id="syMax">100mL</span></div>
+      <input type="range" id="syS" min="0" max="100" value="30">
+      <div class="bigout"><div class="lab">② <span id="syVd">30</span>mL の中の薬</div><div class="v"><span id="syRes">150</span> mg</div></div>
+      <div class="w-steps" id="sySteps"></div>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- D 体重 -->
+  <section>
+    <div class="step-no"><span class="dot">D</span>あたり算 ③（キリの本業）</div>
+    <h2>体重あたり（mg/kg）</h2>
+    <p class="lead-line">小児用量の中心。<b class="kg">「体重1kgあたり○mg」×「体重」</b>で1日量。あとは回数で割れば1回量です。これも“あたり算”そのもの。</p>
+    <div class="panel">
+      <div class="twoin">
+        <div><div class="w-lab">1日の目安</div><div class="w-in"><input type="number" id="wMg" value="10" min="0" step="0.5"><span class="w-unit">mg/kg</span></div></div>
+        <div><div class="w-lab">1日の回数</div><div class="seg2" id="wTimes"><button data-t="1">1回</button><button data-t="2">2回</button><button class="on" data-t="3">3回</button></div></div>
+      </div>
+      <div class="slabels"><span>体重 2kg</span><span>体重 40kg</span></div>
+      <input type="range" id="wKgS" min="2" max="40" value="15" step="0.5">
+      <div style="text-align:center; font-weight:700; margin-top:6px;">体重 <span id="wKg" style="font-family:'Zen Maru Gothic'; color:var(--mint-deep); font-size:1.2rem;">15</span> kg</div>
+      <div class="bigout"><div class="lab">1日量（mg/kg × 体重）</div><div class="v" style="color:var(--mint-deep)"><span id="wDaily">150</span> mg / 日</div></div>
+      <div class="doses">
+        <div class="dosechip"><div class="t">1回量</div><div class="v"><span id="wDose">50</span> mg</div></div>
+        <div class="dosechip"><div class="t">回数</div><div class="v"><span id="wTimesLbl">3</span> 回</div></div>
+      </div>
+      <div class="w-steps" id="wSteps"></div>
+    </div>
+    <p class="soft" style="margin-top:10px;">※ 計算の“形”の練習です。実際の用量・上限はお薬ごとの基準で確認を。</p>
+  </section>
+
+  <hr class="hr">
+
+  <!-- E 総量 -->
+  <section>
+    <div class="step-no"><span class="dot">E</span>あたり算 ④</div>
+    <h2>日数ぶんの総量（1日量 × 日数）</h2>
+    <p class="lead-line">「1日あたり」をつくって、日数だけ増やすだけ。調剤量・在庫もこれ。</p>
+    <div class="big-point mint">総量 ＝ <b class="kg">1日量 × 日数</b>。<br>例）1日3錠 × 14日 ＝ <b class="kg">42錠</b>。「1日あたり3錠」を日数ぶんかけるだけ。</div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- F drill -->
+  <section>
+    <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
+    <h2>あたり算ドリル</h2>
+    <p class="lead-line">あとは反復。問題を見て、答えを選んでください。毎回<b class="kg">「1つあたり → 増やす」</b>で解き直します。</p>
+    <div class="quiz">
+      <div class="q" id="drillQ"></div>
+      <div style="text-align:center;margin:6px 0;font-size:.88rem;color:var(--ink-soft);" id="drillHint"></div>
+      <div class="opts" id="drillOpts"></div>
+      <div class="fb" id="drillFb"></div>
+      <div class="score" id="drillScore">正解 0 / 0</div>
+      <button class="next" id="drillNext" style="display:none;">つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <hr class="hr">
+
+  <!-- G つまずき -->
+  <section>
+    <div class="step-no"><span class="dot">G</span>現場のつまずき</div>
+    <h2>ここで間違えがち</h2>
+    <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位をそろえてから「あたり」を作る。</b><br><span class="soft">mgとmg、mLとmL。混ざったまま割らない。</span></p></div>
+    <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>「1日量」と「1回量」を取り違えない。</b><br><span class="soft">体重あたりで出るのは“1日量”。回数で割って“1回量”に。どっちを聞かれてるか先に決める。</span></p></div>
+    <div class="pit"><span class="tag">注意③</span><p style="margin:0"><b>割り切れない錠数に注意。</b><br><span class="soft">5mgを2mg錠で→2.5錠。割線で半分にできるか、別規格はないかを確認。</span></p></div>
+  </section>
+
+  <p class="closing">
+    <span class="leaf">🦎</span><br>
+    どんな場面でも、まず <b>「1つあたり」</b> を作る。<br>
+    そこから <b>ほしい数だけ増やす</b>。<br>
+    これだけで、現場の計算はだいぶ味方になります。
+  </p>
+  <div style="text-align:center;"><button class="backtop" onclick="goPage(1)">‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+</template>
+<script>
+
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+  function goPage(n){
+    document.querySelectorAll('#themeBody .page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('#themeView .tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function goHome(){
+    document.getElementById('themeView').hidden=true;
+    document.getElementById('home').hidden=false;
+    document.getElementById('themeBody').innerHTML='';
+    window.scrollTo(0,0);
+  }
+
+
+/* ===== theme inits ===== */
+function init_percent(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+  function captionFor(v){
+    const m={0:'なんにもなし。ゼロ。',1:'たった1マス（＝1%）。',10:'1列ぶん（10%）。',20:'2列ぶん（20%）。',25:'4分の1だね。',
+      33:'だいたい3分の1。',40:'もうすぐ半分。',50:'ちょうど半分！（5列）',60:'半分より少し多い。',67:'だいたい3分の2。',
+      75:'4分の3。あと少し。',80:'のこり2列で全部。',90:'あと1列で全部！',100:'まるごと全部！'};
+    return m[v]||`100マスのうち ${v}マス。`;
+  }
+
+  /* ===== 2: tap grid ===== */
+  (function(){
+    const grid=document.getElementById('s2grid'), v=document.getElementById('s2v'), cap=document.getElementById('s2cap'), cells=[];
+    for(let i=0;i<100;i++){ const d=document.createElement('div'); d.className='gcell tap'; grid.appendChild(d); cells.push(d); }
+    function count(){ const n=cells.filter(c=>c.classList.contains('on')).length; v.textContent=n; cap.textContent= n===0?'マスをタップしてぬってみよう':captionFor(n); }
+    let painting=false, paintOn=true;
+    cells.forEach(c=>{
+      c.addEventListener('pointerdown',e=>{ painting=true; paintOn=!c.classList.contains('on'); c.classList.toggle('on',paintOn); count(); });
+      c.addEventListener('pointerenter',()=>{ if(painting){ c.classList.toggle('on',paintOn); count(); } });
+    });
+    window.addEventListener('pointerup',()=>painting=false);
+    document.getElementById('s2clear').onclick=()=>{cells.forEach(c=>c.classList.remove('on'));count();};
+    document.getElementById('s2fill').onclick=()=>{cells.forEach(c=>c.classList.add('on'));count();};
+    count();
+  })();
+
+  /* ===== 3: multi-rep ===== */
+  (function(){
+    const grid=document.getElementById('s3grid'), cells=[];
+    for(let i=0;i<100;i++){ const d=document.createElement('div'); d.className='gcell'; grid.appendChild(d); cells.push(d); }
+    const v=document.getElementById('s3v'),cap=document.getElementById('s3cap'),pie=document.getElementById('s3pie'),pin=document.getElementById('s3pin'),
+      bar=document.getElementById('s3bar'),nlf=document.getElementById('s3nlf'),nld=document.getElementById('s3nld'),s=document.getElementById('s3s');
+    function r(val){ val=+val; cells.forEach((c,i)=>c.classList.toggle('on',i<val)); v.textContent=val; cap.textContent=captionFor(val);
+      const deg=val*3.6; pie.style.background=`conic-gradient(var(--persimmon) ${deg}deg, var(--grid-empty) ${deg}deg)`; pin.textContent=val+'%';
+      bar.style.width=val+'%'; nlf.style.width=val+'%'; nld.style.left=val+'%'; }
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#s3s ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(40);
+  })();
+
+  /* ===== 4: landmark gallery ===== */
+  (function(){
+    const data=[
+      {p:0,emo:'🌑',a:'なんにもなし'},{p:1,emo:'🔹',a:'ほんの少し（1マス）'},
+      {p:10,emo:'🍫',a:'板チョコ1かけ'},{p:25,emo:'🍕',a:'ピザ4切れの1切れ'},
+      {p:50,emo:'🌓',a:'ぴったり半分'},{p:75,emo:'🌖',a:'4分の3'},
+      {p:100,emo:'🌕',a:'まるごと全部'},
+    ];
+    const g=document.getElementById('s4gallery');
+    data.forEach(d=>{
+      const div=document.createElement('div'); div.className='lm';
+      let mini='<div class="mini">'; for(let i=0;i<100;i++) mini+=`<div class="${i<d.p?'on':''}"></div>`; mini+='</div>';
+      div.innerHTML=`${mini}<div class="pct">${d.p}%</div><div><span class="emo">${d.emo}</span> <span class="anchor">${d.a}</span></div>`;
+      g.appendChild(div);
+    });
+    // 200% wide card with two grids
+    const wide=document.createElement('div'); wide.className='lm wide';
+    let two='<div class="twomini">'; for(let k=0;k<2;k++){ two+='<div class="mini">'; for(let i=0;i<100;i++) two+='<div class="on"></div>'; two+='</div>'; } two+='</div>';
+    wide.innerHTML=`${two}<div class="pct">200%</div><div><span class="emo">🍕🍕</span> <span class="anchor">まるごと2つ分（100%を超えてもOK）</span></div>`;
+    g.appendChild(wide);
+  })();
+
+  /* ===== 5: of-what ===== */
+  (function(){
+    const wholes=[
+      {e:'🍕',name:'ピザ8切れ',total:8,unit:'切れ',dec:true},
+      {e:'👥',name:'200人',total:200,unit:'人'},
+      {e:'💴',name:'1000円',total:1000,unit:'円'},
+      {e:'💊',name:'薬30mg',total:30,unit:'mg'},
+    ];
+    const box=document.getElementById('s5cards'), s=document.getElementById('s5s'), v=document.getElementById('s5v');
+    wholes.forEach((w,i)=>{ const c=document.createElement('div'); c.className='wcard'; c.id='s5c'+i;
+      c.innerHTML=`<div class="top"><span class="e">${w.e}</span>${w.name}</div><div class="res" id="s5r${i}">0</div><div class="wtrack"><div class="wfill" id="s5f${i}"></div></div>`;
+      box.appendChild(c); });
+    function r(p){ p=+p; v.textContent=p;
+      wholes.forEach((w,i)=>{ let val=w.total*p/100; val= w.dec? Math.round(val*10)/10 : Math.round(val*100)/100;
+        document.getElementById('s5r'+i).textContent=fmt(val)+w.unit; document.getElementById('s5f'+i).style.width=p+'%'; }); }
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#s5s ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(50);
+  })();
+
+  /* ===== 6: per-square worth ===== */
+  (function(){
+    const grid=document.getElementById('s6grid'), cells=[];
+    for(let i=0;i<100;i++){ const d=document.createElement('div'); d.className='wg'; grid.appendChild(d); cells.push(d); }
+    const nIn=document.getElementById('s6n'), s=document.getElementById('s6s'),
+      per=document.getElementById('s6per'),per2=document.getElementById('s6per2'),pct=document.getElementById('s6pct'),
+      cnt=document.getElementById('s6cnt'),cnt2=document.getElementById('s6cnt2'),tot=document.getElementById('s6tot');
+    function r(){ const N=parseFloat(nIn.value)||0; const p=+s.value; const pv=N/100; const total=pv*p;
+      cells.forEach((c,i)=>c.classList.toggle('on',i<p));
+      per.textContent=fmt(pv); per2.textContent=fmt(pv); pct.textContent=p; cnt.textContent=p; cnt2.textContent=p; tot.textContent=fmt(total); }
+    nIn.oninput=r; s.oninput=r; r();
+  })();
+
+  /* ===== 7: battery ===== */
+  (function(){
+    const batt=document.getElementById('s7batt'), num=document.getElementById('s7num'), s=document.getElementById('s7s');
+    function r(v){ v=+v; batt.style.width=v+'%'; num.textContent=v; batt.style.background= v<=15?'#E2787F': v<=35?'#E0A93B':'var(--mint)'; }
+    s.oninput=e=>r(e.target.value); r(70);
+  })();
+
+  /* ===== 8: quiz ===== */
+  (function(){
+    const pie=document.getElementById('qpie'), pin=document.getElementById('qpin'), opts=document.getElementById('qopts'),
+      fb=document.getElementById('qfb'), score=document.getElementById('qscore'), next=document.getElementById('qnext');
+    const pool=[10,20,25,30,40,50,60,70,75,80,90];
+    let correct=0, total=0, answer=0, locked=false;
+    function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      answer=pool[Math.floor(Math.random()*pool.length)];
+      const deg=answer*3.6; pie.style.background=`conic-gradient(var(--persimmon) ${deg}deg, var(--grid-empty) ${deg}deg)`; pin.textContent='?';
+      const wrongs=shuffle(pool.filter(x=>x!==answer)).slice(0,3);
+      const choices=shuffle([answer,...wrongs]);
+      opts.innerHTML='';
+      choices.forEach(ch=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=ch+'%';
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(ch===answer){ b.classList.add('correct'); correct++; fb.textContent='⭕️ せいかい！'; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); fb.textContent=`❌ おしい！正解は ${answer}%`; fb.style.color='#C2493E';
+            [...opts.children].forEach(o=>{ if(o.textContent===answer+'%') o.classList.add('correct'); }); }
+          pin.textContent=answer+'%'; score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+  /* ===================== PAGE 2 WIDGETS ===================== */
+
+  /* A: 100マス＝製剤100g */
+  (function(){
+    const grid=document.getElementById('p2agrid'),v=document.getElementById('p2av'),cap=document.getElementById('p2acap'),s=document.getElementById('p2as'),cells=[];
+    for(let i=0;i<100;i++){const d=document.createElement('div');d.className='gcell';grid.appendChild(d);cells.push(d);}
+    function r(val){val=+val;cells.forEach((c,i)=>c.classList.toggle('on',i<val));v.textContent=val;cap.textContent=`製剤100gのうち、薬は ${val}g（残り ${100-val}g は土台）`;}
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#p2as ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(1);
+  })();
+
+  /* B: 1g breakdown */
+  (function(){
+    const mg=document.getElementById('p2bmg'),d=document.getElementById('p2bd'),base=document.getElementById('p2bbase'),bar=document.getElementById('p2bbar'),s=document.getElementById('p2bs');
+    function r(p){p=+p;const m=p*10,b=1000-m;mg.textContent=fmt(m);d.textContent=fmt(m)+'mg';base.textContent=fmt(b)+'mg';bar.style.width=Math.min(100,(m/1000)*100)+'%';}
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#p2bs ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(1);
+  })();
+
+  /* C: per-gram calculator */
+  (function(){
+    let unit='g';
+    const seg=document.getElementById('p2cseg'),cc=document.getElementById('p2cc'),per=document.getElementById('p2cper'),s=document.getElementById('p2cs'),
+      amt=document.getElementById('p2camt'),tot=document.getElementById('p2ctot'),blocks=document.getElementById('p2cblocks'),steps=document.getElementById('p2csteps'),
+      u1=document.getElementById('p2cu1'),u2=document.getElementById('p2cu2'),u3=document.getElementById('p2cu3'),concSpan=document.getElementById('p2cconc');
+    function r(){
+      const c=parseFloat(cc.value)||0,p=c*10,a=parseFloat(s.value)||0,total=p*a;
+      u1.textContent=unit;u2.textContent=unit;u3.textContent=unit;
+      concSpan.textContent=fmt(c);per.textContent=fmt(p);amt.textContent=fmt(a);tot.textContent=fmt(total);
+      blocks.innerHTML=''; const cap=30,n=Math.min(Math.round(a),cap);
+      for(let i=0;i<n;i++){const b=document.createElement('div');b.className='gblock';b.innerHTML=`${fmt(p)}<br>mg`;blocks.appendChild(b);}
+      if(a>cap){const m=document.createElement('div');m.className='gmore';m.textContent=`…合計 ${fmt(a)}${unit}ぶん`;blocks.appendChild(m);}
+      steps.innerHTML=`① 1${unit}あたり：${fmt(c)}% × 10 ＝ <b>${fmt(p)}mg</b><br>② 使う量ぶん：${fmt(p)}mg × ${fmt(a)}${unit} ＝ <b>${fmt(total)}mg</b>`;
+    }
+    cc.oninput=r; s.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{unit=b.dataset.u;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* D: drug gallery */
+  (function(){
+    const gal=document.getElementById('p2dgal');
+    const data=[
+      {e:'💉',nm:'1%リドカイン',pc:'1%',mg:'10mg/mL'},
+      {e:'🧴',nm:'0.1%ステロイド軟膏',pc:'0.1%',mg:'1mg/g'},
+      {e:'💧',nm:'生理食塩水',pc:'0.9%',mg:'9mg/mL'},
+      {e:'🍬',nm:'5%ブドウ糖',pc:'5%',mg:'50mg/mL'},
+      {e:'🧴',nm:'0.05%の外用薬',pc:'0.05%',mg:'0.5mg/g'},
+      {e:'💉',nm:'2%リドカイン',pc:'2%',mg:'20mg/mL'},
+    ];
+    data.forEach(d=>{const c=document.createElement('div');c.className='dcard';
+      c.innerHTML=`<div class="e">${d.e}</div><div class="nm">${d.nm}</div><div class="conv"><span class="pc">${d.pc}</span> <span class="ar">×10→</span> <span class="mg">${d.mg}</span></div>`;
+      gal.appendChild(c);});
+  })();
+
+  /* E: %→mg/mL converter */
+  (function(){
+    const from=document.getElementById('p2efrom'),to=document.getElementById('p2eto'),sub=document.getElementById('p2esub'),s=document.getElementById('p2es');
+    function r(p){p=+p;const mg=p*10;from.textContent=fmt(p);to.textContent=fmt(mg);sub.textContent=`＝ 1mL(1g)の中に ${fmt(mg)}mg ／ 100mL(100g)の中に ${fmt(p*1000)}mg`;}
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#p2es ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(1);
+  })();
+
+  /* F: IV bag */
+  (function(){
+    let conc=0.9;
+    const seg=document.getElementById('p2fseg'),s=document.getElementById('p2fs'),liq=document.getElementById('p2fliq'),voltxt=document.getElementById('p2fvoltxt'),g=document.getElementById('p2fg'),steps=document.getElementById('p2fsteps');
+    function r(){
+      const vol=parseFloat(s.value)||0, grams=vol*conc/100;
+      liq.style.height=(vol/1000*100)+'%'; voltxt.textContent=fmt(vol)+'mL'; g.textContent=fmt(grams);
+      steps.innerHTML=`濃度 ${fmt(conc)}% ＝ 100mL中 ${fmt(conc)}g<br>${fmt(vol)}mL × ${fmt(conc)} ÷ 100 ＝ <b>${fmt(grams)}g</b>（＝${fmt(grams*1000)}mg）`;
+    }
+    s.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{conc=parseFloat(b.dataset.c);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* H: prescription two-way conversion */
+  (function(){
+    let mode='gtomg';
+    const seg=document.getElementById('p2hmode'),cc=document.getElementById('p2hc'),den=document.getElementById('p2hden'),
+      inEl=document.getElementById('p2hin'),inLab=document.getElementById('p2hinlab'),inUnit=document.getElementById('p2hinunit'),
+      op=document.getElementById('p2hop'),outEl=document.getElementById('p2hout'),outUnit=document.getElementById('p2houtunit'),outLab=document.getElementById('p2houtlab'),
+      steps=document.getElementById('p2hsteps');
+    function r(){
+      const c=parseFloat(cc.value)||0,d=c*10,v=parseFloat(inEl.value)||0; den.textContent=fmt(d);
+      if(mode==='gtomg'){
+        inLab.textContent='処方の製剤量'; inUnit.textContent='g'; op.textContent='×'; outLab.textContent='中の成分'; outUnit.textContent='mg';
+        const out=v*d; outEl.textContent=fmt(out);
+        steps.innerHTML=`① 1gあたり：${fmt(c)}% ×10 ＝ <b>${fmt(d)}mg/g</b><br>② 製剤 × 濃度：${fmt(v)}g × ${fmt(d)} ＝ <b>${fmt(out)}mg</b>`;
+      }else{
+        inLab.textContent='処方の成分量'; inUnit.textContent='mg'; op.textContent='÷'; outLab.textContent='出す製剤量'; outUnit.textContent='g';
+        const out=d>0?v/d:0; outEl.textContent=fmt(out);
+        steps.innerHTML=`① 1gあたり：${fmt(c)}% ×10 ＝ <b>${fmt(d)}mg/g</b><br>② 成分 ÷ 濃度：${fmt(v)}mg ÷ ${fmt(d)} ＝ <b>${fmt(out)}g</b>`;
+      }
+    }
+    cc.oninput=r; inEl.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)); inEl.value= mode==='gtomg'?50:30; r();});
+    document.querySelectorAll('.qb[data-ex]').forEach(b=>b.onclick=()=>{ const[m,cv,av]=b.dataset.ex.split('|'); mode=m; cc.value=cv; inEl.value=av; seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.m===m)); r();});
+    r();
+  })();
+
+  /* 濃度 color swatch + samples */
+  (function(){
+    function alphaFor(p){ return Math.min(1, 0.08 + Math.sqrt(Math.max(0,p)/10)*0.92); }
+    const sw=document.getElementById('concSwatch'),pv=document.getElementById('concPctV'),mgg=document.getElementById('concMggV'),mg=document.getElementById('concMgV'),s=document.getElementById('concS');
+    function r(p){ p=+p; pv.textContent=fmt(p); mgg.textContent=fmt(p*10); mg.textContent=fmt(p*10);
+      sw.style.background='rgba(222,110,47,'+alphaFor(p).toFixed(3)+')'; }
+    s.oninput=e=>r(e.target.value);
+    document.querySelectorAll('#concS ~ .qbs .qb').forEach(b=>b.onclick=()=>{s.value=b.dataset.v;r(b.dataset.v);});
+    r(1);
+    const gal=document.getElementById('concSamples');
+    [0.1,0.5,1,5,10].forEach(p=>{ const c=document.createElement('div'); c.className='dcard';
+      c.innerHTML='<div style="width:54px;height:54px;border-radius:12px;margin:0 auto 8px;border:2px solid var(--line);background:rgba(222,110,47,'+alphaFor(p).toFixed(3)+')"></div>'
+        +'<div class="conv"><span class="pc">'+p+'%</span></div>'
+        +'<div class="soft" style="font-size:.8rem;margin-top:2px;">1g中 '+fmt(p*10)+'mg<br>('+fmt(p*10)+'mg/g)</div>';
+      gal.appendChild(c); });
+  })();
+
+  /* 練: × or ÷ drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),
+      fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const pcts=[0.1,0.5,1,2,3,5,10], gAmts=[5,10,20,25,50], mgAmts=[10,20,30,50,100,150];
+    let correct=0,total=0,dir,pct,amt,rate,locked=false;
+    function pick(a){return a[Math.floor(Math.random()*a.length)];}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      opts.querySelectorAll('.opt').forEach(o=>o.classList.remove('correct','wrong'));
+      dir=Math.random()<0.5?'gtomg':'mgtog'; pct=pick(pcts); rate=pct*10;
+      if(dir==='gtomg'){ amt=pick(gAmts); Q.innerHTML=`処方：<b>${fmt(pct)}%軟膏 ${amt}g</b><br>→ 中の成分は何mg？`; }
+      else { amt=pick(mgAmts); Q.innerHTML=`処方：<b>原薬 ${amt}mg を ${fmt(pct)}%で</b><br>→ 製剤は何g？`; }
+      hint.innerHTML=`STEP1：濃度 ＝ ${fmt(pct)}×10 ＝ <b>${fmt(rate)}mg/g</b>。　STEP2は…？`;
+    }
+    opts.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(locked)return; locked=true; total++;
+      const right = dir==='gtomg'?'mul':'div';
+      const ok = b.dataset.op===right;
+      b.classList.add(ok?'correct':'wrong');
+      if(!ok){ const rb=opts.querySelector('[data-op="'+right+'"]'); if(rb) rb.classList.add('correct'); }
+      if(dir==='gtomg'){ const ans=amt*rate;
+        fb.innerHTML=(ok?'⭕ ':'❌ ')+`${amt}g × ${fmt(rate)} ＝ <b>${fmt(ans)}mg</b>　…gを持ってるから <b>×</b>`;
+      } else { const ans=amt/rate;
+        fb.innerHTML=(ok?'⭕ ':'❌ ')+`${amt}mg ÷ ${fmt(rate)} ＝ <b>${fmt(ans)}g</b>　…mgを持ってるから <b>÷</b>`;
+      }
+      fb.style.color = ok?'var(--mint-deep)':'#C2493E';
+      if(ok)correct++; score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+    });
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+function init_hirei(){
+
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+
+  /* P1-W1: per-unit calc */
+  (function(){
+    const nIn=document.getElementById('u1n'),pIn=document.getElementById('u1p'),s=document.getElementById('u1s'),
+      per=document.getElementById('u1per'),cEl=document.getElementById('u1c'),res=document.getElementById('u1res'),
+      blocks=document.getElementById('u1blocks'),steps=document.getElementById('u1steps');
+    function r(){
+      let a=parseFloat(nIn.value)||1; if(a<=0)a=1; const b=parseFloat(pIn.value)||0; const c=parseFloat(s.value)||0;
+      const unit=b/a, total=unit*c;
+      per.textContent=fmt(unit); cEl.textContent=fmt(c); res.textContent=fmt(total);
+      blocks.innerHTML=''; const cap=20,n=Math.min(Math.round(c),cap);
+      for(let i=0;i<n;i++){const d=document.createElement('div');d.className='blk coin';d.innerHTML=fmt(unit);blocks.appendChild(d);}
+      if(c>cap){const m=document.createElement('div');m.className='gmore';m.textContent='…×'+fmt(c);blocks.appendChild(m);}
+      steps.innerHTML=`① 1個あたり：${fmt(b)}円 ÷ ${fmt(a)}個 ＝ <b>${fmt(unit)}円</b><br>② ほしい数ぶん：${fmt(unit)}円 × ${fmt(c)}個 ＝ <b>${fmt(total)}円</b>`;
+    }
+    [nIn,pIn,s].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P1-W2: dual bars (gum 80yen) */
+  (function(){
+    const s=document.getElementById('bis'),cnt=document.getElementById('bicount'),yen=document.getElementById('biyen'),b1=document.getElementById('bibar1'),b2=document.getElementById('bibar2');
+    function r(v){ v=+v; const y=v*80; cnt.textContent=v; yen.textContent=fmt(y); const f=(v/10)*100; b1.style.width=f+'%'; b2.style.width=f+'%'; }
+    s.oninput=e=>r(e.target.value); r(3);
+  })();
+
+  /* P2-B: 錠数 */
+  (function(){
+    const day=document.getElementById('tbDay'),tab=document.getElementById('tbTab'),res=document.getElementById('tbRes'),blocks=document.getElementById('tbBlocks'),steps=document.getElementById('tbSteps');
+    function r(){
+      const d=parseFloat(day.value)||0; let t=parseFloat(tab.value)||0.1; if(t<=0)t=0.1;
+      const n=d/t; res.textContent=fmt(n);
+      blocks.innerHTML=''; const cap=24,whole=Math.min(Math.floor(n),cap);
+      for(let i=0;i<whole;i++){const b=document.createElement('div');b.className='blk pill';b.innerHTML=fmt(t);blocks.appendChild(b);}
+      if(n-Math.floor(n)>0.001 && whole<cap){const b=document.createElement('div');b.className='blk pill';b.style.opacity='.5';b.innerHTML='半';blocks.appendChild(b);}
+      if(n>cap){const m=document.createElement('div');m.className='gmore';m.textContent='…計'+fmt(n)+'錠';blocks.appendChild(m);}
+      steps.innerHTML=`1錠あたり ${fmt(t)}mg。<br>${fmt(d)}mg ÷ ${fmt(t)}mg ＝ <b>${fmt(n)}錠</b>`;
+    }
+    day.oninput=r; tab.oninput=r; r();
+  })();
+
+  /* P2-C: syrup */
+  (function(){
+    const V=document.getElementById('syV'),M=document.getElementById('syM'),s=document.getElementById('syS'),per=document.getElementById('syPer'),vd=document.getElementById('syVd'),res=document.getElementById('syRes'),max=document.getElementById('syMax'),steps=document.getElementById('sySteps');
+    function r(){ let v0=parseFloat(V.value)||1; if(v0<=0)v0=1; const m0=parseFloat(M.value)||0; s.max=v0; max.textContent=fmt(v0)+'mL'; let vdv=parseFloat(s.value)||0; if(vdv>v0){vdv=v0;s.value=v0;} const p=m0/v0,rr=p*vdv; per.textContent=fmt(p); vd.textContent=fmt(vdv); res.textContent=fmt(rr); steps.innerHTML=`① ${fmt(m0)}mg ÷ ${fmt(v0)}mL ＝ <b>${fmt(p)}mg/mL</b><br>② ${fmt(p)} × ${fmt(vdv)}mL ＝ <b>${fmt(rr)}mg</b>`; }
+    [V,M,s].forEach(e=>e.oninput=r); r();
+  })();
+
+  /* P2-D: weight mg/kg */
+  (function(){
+    let times=3;
+    const mg=document.getElementById('wMg'),s=document.getElementById('wKgS'),kg=document.getElementById('wKg'),daily=document.getElementById('wDaily'),dose=document.getElementById('wDose'),tl=document.getElementById('wTimesLbl'),steps=document.getElementById('wSteps'),seg=document.getElementById('wTimes');
+    function r(){ const mk=parseFloat(mg.value)||0,k=parseFloat(s.value)||0,dl=mk*k,ds=times>0?dl/times:0; kg.textContent=fmt(k); daily.textContent=fmt(dl); dose.textContent=fmt(ds); tl.textContent=times; steps.innerHTML=`① 1日量：${fmt(mk)}mg/kg × ${fmt(k)}kg ＝ <b>${fmt(dl)}mg</b><br>② 1回量：${fmt(dl)}mg ÷ ${times}回 ＝ <b>${fmt(ds)}mg</b>`; }
+    mg.oninput=r; s.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{times=parseInt(b.dataset.t);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P2-F: drill (per-unit multiple choice) */
+  (function(){
+    const Q=document.getElementById('drillQ'),hint=document.getElementById('drillHint'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    let correct=0,total=0,answer=0,unit=0,locked=false;
+    const scenarios=[
+      {n:'錠数',mk:()=>{const tab=[2,2.5,5,10][Math.floor(Math.random()*4)];const need=tab*[2,3,4,5][Math.floor(Math.random()*4)];return{q:`1日 ${fmt(need)}mg ほしい。1錠 ${fmt(tab)}mg。何錠？`,u:`1錠あたり${fmt(tab)}mg`,unit:tab,ans:need/tab,suf:'錠',calc:`${fmt(need)} ÷ ${fmt(tab)}`};}},
+      {n:'シロップ',mk:()=>{const per=[2,4,5,10][Math.floor(Math.random()*4)];const ml=[3,5,10][Math.floor(Math.random()*3)];return{q:`1mLあたり ${per}mg のシロップ。${ml}mL 飲むと何mg？`,u:`1mLあたり${per}mg`,unit:per,ans:per*ml,suf:'mg',calc:`${per} × ${ml}`};}},
+      {n:'単価',mk:()=>{const a=[4,5,8][Math.floor(Math.random()*3)];const u=[60,80,90,120][Math.floor(Math.random()*4)];const c=[3,6,7][Math.floor(Math.random()*3)];return{q:`${a}個で ${fmt(a*u)}円。${c}個ではいくら？`,u:`1個あたり${u}円`,unit:u,ans:u*c,suf:'円',calc:`${u} × ${c}`};}},
+    ];
+    function shuffle(x){for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+    function newQ(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const sc=scenarios[Math.floor(Math.random()*scenarios.length)].mk();
+      answer=Math.round(sc.ans*1000)/1000; unit=sc.unit;
+      Q.innerHTML=sc.q; hint.innerHTML=`ヒント：まず「${sc.u}」を使って ${sc.calc}`;
+      const set=new Set([answer]); let guard=0;
+      while(set.size<4 && guard<40){ guard++; const f=[0.5,2,1.5,answer>1?(answer-1):answer+1][Math.floor(Math.random()*4)]; let w=(typeof f==='number'&&f<3)?Math.round(answer*f*1000)/1000:f; if(w>0&&Math.abs(w-answer)>0.0001) set.add(w); }
+      const choices=shuffle([...set]);
+      opts.innerHTML='';
+      choices.forEach(ch=>{const b=document.createElement('button');b.className='opt';b.textContent=fmt(ch)+sc.suf;
+        b.onclick=()=>{ if(locked)return; locked=true; total++;
+          if(Math.abs(ch-answer)<0.0001){b.classList.add('correct');correct++;fb.textContent='⭕ せいかい！ '+sc.calc+' ＝ '+fmt(answer)+sc.suf;fb.style.color='var(--mint-deep)';}
+          else{b.classList.add('wrong');[...opts.children].forEach(o=>{if(o.textContent===fmt(answer)+sc.suf)o.classList.add('correct');});fb.textContent='❌ 正解は '+fmt(answer)+sc.suf+'（'+sc.calc+'）';fb.style.color='#C2493E';}
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=newQ; newQ();
+  })();
+
+}
+
+  const __TITLES__ = {"percent":"パーセント","hirei":"比例・あたり"};
+  const __INITS__ = {"percent":init_percent,"hirei":init_hirei};
+  function openTheme(id){
+    const tpl=document.getElementById('tpl-'+id);
+    if(!tpl) return;
+    const body=document.getElementById('themeBody');
+    body.innerHTML=''; body.appendChild(tpl.content.cloneNode(true));
+    const tt=document.getElementById('themeTitle'); if(tt) tt.textContent=__TITLES__[id]||'';
+    document.getElementById('home').hidden=true;
+    document.getElementById('themeView').hidden=false;
+    goPage(1);
+    if(__INITS__[id]) __INITS__[id]();
+    window.scrollTo(0,0);
+  }
+
+</script>
+</body>
+</html>
