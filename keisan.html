@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>やさしい薬剤計算アプリ</title>
+<title>Kiriのやさしい教科書</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F08A4B">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Kiriのやさしい教科書">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -2655,7 +2663,7 @@
 <body>
 <div id="home"><div class="wrap">
 <header class="home-hero"><div class="leaf">🦎</div>
-<h1>やさしい薬剤計算</h1>
+<h1>Kiriのやさしい教科書</h1>
 <p>むずかしい計算も、ぜんぶ「お話と絵」で。<br>考え方 → 現場、の2ステップで身につけよう。</p></header>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:#4FA3C7">超基礎（土台）</span></div><div class="cards">
 <button class="lcard" onclick="openTheme('percent')"><span class="ic">🟧</span><span class="tx"><span class="t">パーセント</span><span class="s">%↔mg/g・成分⇄製剤</span></span><span class="badge done">できた</span></button>
@@ -9395,6 +9403,13 @@ function init_price(){
     window.scrollTo(0,0);
   }
 
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/service-worker.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
