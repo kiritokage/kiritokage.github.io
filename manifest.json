@@ -1,0 +1,39 @@
+{
+  "name": "Kiriのやさしい教科書",
+  "short_name": "Kiriのやさしい教科書",
+  "description": "薬剤師の計算を、お話と絵でやさしく学ぶ教材",
+  "start_url": "/keisan.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FCF5EA",
+  "theme_color": "#F08A4B",
+  "lang": "ja",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
