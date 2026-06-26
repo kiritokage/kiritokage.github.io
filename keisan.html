@@ -3139,14 +3139,17 @@
     <p>下はバッグ。濃さを選んで、量（mL）を動かすと、中に溶けてる薬の量が出ます。<b class="k">同じ濃さなら、量が増えるほど薬も増える</b>のが見えます。</p>
 
     <div class="panel">
+      <div class="w-lab" style="text-align:center;">① 濃さをえらぶ</div>
       <div class="seg2" id="p2fseg"><button class="on" data-c="0.9">生食 0.9%</button><button data-c="5">ブドウ糖 5%</button><button data-c="10">ブドウ糖 10%</button></div>
       <div class="bag">
         <div class="bag-hook"></div>
-        <div class="bag-body"><div class="bag-liquid" id="p2fliq" style="height:50%"><span id="p2fvoltxt">500mL</span></div></div>
+        <div class="bag-body"><div class="bag-liquid" id="p2fliq" style="height:50%"><span id="p2fvoltxt">500 mL</span></div></div>
       </div>
-      <div class="slabels"><span>0mL</span><span>1000mL</span></div>
+      <div class="w-lab" style="text-align:center;">② 量（mL）を動かす</div>
+      <div class="slabels"><span>0 mL</span><span>1000 mL</span></div>
       <input type="range" id="p2fs" min="0" max="1000" value="500" step="50">
-      <div style="text-align:center; margin-top:8px;"><div class="soft" style="font-size:.82rem;">バッグの中の薬</div><div style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:2rem; color:var(--persimmon-deep);"><span id="p2fg">4.5</span> g</div></div>
+      <div style="text-align:center; margin-top:6px;"><span style="font-size:.82rem; color:var(--ink-soft); font-weight:700;">いまの量</span> <span style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:1.5rem; color:var(--mint-deep);"><span id="p2fvolnow">500</span> mL</span></div>
+      <div style="text-align:center; margin-top:12px;"><div class="soft" style="font-size:.82rem;">③ バッグの中の薬</div><div style="font-family:'Zen Maru Gothic'; font-weight:900; font-size:2rem; color:var(--persimmon-deep);"><span id="p2fg">4.5</span> g</div></div>
       <div class="w-steps" id="p2fsteps"></div>
     </div>
     <div class="realrow">
@@ -3531,7 +3534,7 @@
 
   <!-- G つまずき -->
   <section>
-    <div class="step-no"><span class="dot">G</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位をそろえてから「あたり」を作る。</b><br><span class="soft">mgとmg、mLとmL。混ざったまま割らない。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>「1日量」と「1回量」を取り違えない。</b><br><span class="soft">体重あたりで出るのは“1日量”。回数で割って“1回量”に。どっちを聞かれてるか先に決める。</span></p></div>
@@ -3757,7 +3760,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位を見ずに数字だけ読む。</b><br><span class="soft">「250」だけ見て μg か mg か確認しないと、1000倍ミスに直結。数字の前に単位を見る。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>μgの薬を“桁が大きい”と勘違い。</b><br><span class="soft">250μg は 0.25mg。μgだと数字は大きく見えるけど、量はごく少量。</span></p></div>
@@ -3964,7 +3967,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「原液＝全体÷倍率」、水はその残り。</b><br><span class="soft">10倍希釈100mLなら原液10mL＋水90mL。水を100mL足さない。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>倍散の数字が大きいほど“薄い”。</b><br><span class="soft">100倍散は10倍散より薄い（中の薬が1/100）。数字が大きい＝薄い。</span></p></div>
@@ -4144,7 +4147,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「分3」は1日量を3で割る。</b><br><span class="soft">「分3」は1回量ではなく“1日量を3回に分ける”指示。1回量は÷3した後。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>1回量×回数×日数＝総量。</b><br><span class="soft">1回量しか分かってないときは、まず×回数で1日量にしてから×日数。</span></p></div>
@@ -4283,7 +4286,7 @@
 
   <!-- D つまずき -->
   <section>
-    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">C</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>半端な錠数のまま渡す。</b><br><span class="soft">0.6錠などは作れない。割り切れる規格・組み合わせ・半錠で。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>割ってはいけない薬を半錠にする。</b><br><span class="soft">徐放・腸溶・コーティングは割れないことが多い。剤形を確認。</span></p></div>
@@ -4450,7 +4453,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>比のまま量を出そうとしない。</b><br><span class="soft">まず mg/mL に直す（1000÷X）。そこから「÷mg/mL」で必要mL。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>1:1000 と 1:10000 の取り違え。</b><br><span class="soft">10倍ちがう（1mg/mL と 0.1mg/mL）。0の数を必ず確認。</span></p></div>
@@ -4621,7 +4624,7 @@
 
   <!-- D つまずき -->
   <section>
-    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">C</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>水の量を直接出そうとしない。</b><br><span class="soft">まず原液V₁＝C₂V₂÷C₁。水はそのあと V₂−V₁。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>単位そろえ。</b><br><span class="soft">C₁とC₂は同じ単位。%とmg/mLが混ざってたら先に変換（%×10＝mg/mL）。</span></p></div>
@@ -4780,7 +4783,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「として」を形の量と思い込む。</b><br><span class="soft">「として250mg」は中身。量る形は÷力価で250mgより多い。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>×と÷を逆にする。</b><br><span class="soft">中身がほしい→×力価、形を量りたい→÷力価。パーセントと同じ。</span></p></div>
@@ -4940,7 +4943,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>時間を分に直し忘れ。</b><br><span class="soft">滴/分は1分あたり。時間hは×60で分にしてから割る。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>セット20/60の取り違え。</b><br><span class="soft">小児60を成人20と思うと、滴/分が3倍ずれる。</span></p></div>
@@ -5099,7 +5102,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>√を忘れて÷3600で止める。</b><br><span class="soft">それはBSAではない。必ず最後にルートを取る。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>mg/kg と mg/m² を混同。</b><br><span class="soft">ものさしが体重(kg)か体表面積(m²)か。指示の単位を必ず確認。</span></p></div>
@@ -5313,7 +5316,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>eGFR（/1.73m²）をそのまま投与量に使う。</b><br><span class="soft">小柄な人では過大評価。投与量設計はCcr、またはBSAで戻した個別eGFRで。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>Crが高い＝機能が高い、と勘違い。</b><br><span class="soft">逆。Crは分母。高いほど機能は低い。</span></p></div>
@@ -5533,7 +5536,7 @@
 
   <!-- G つまずき -->
   <section>
-    <div class="step-no"><span class="dot">G</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>「AUCが2倍」を軽く見る。</b><br><span class="soft">露出が2倍＝量を倍飲んだのと同じ。減量・中止の検討対象。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>Calvertの単位とGFRの扱い。</b><br><span class="soft">AUCはmg·min/mL、GFRはmL/min。GFRに上限を置くレジメンもある。基準を確認。</span></p></div>
@@ -5699,7 +5702,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>単位合わせ（×60・÷1000）の抜け。</b><br><span class="soft">μg/min→mg/h を飛ばすと桁が狂う。順番に直す。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>濃度の取り違え。</b><br><span class="soft">原液濃度か希釈後濃度か。実際にポンプに入っている液の濃度を使う。</span></p></div>
@@ -5880,7 +5883,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>換算後に減量を忘れる。</b><br><span class="soft">別オピオイドへ変更時は、安全のため計算値から減らして開始するのが基本。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>レスキュー割合を固定値と思い込む。</b><br><span class="soft">÷24や1/6は目安。経路・薬・基準で異なる。</span></p></div>
@@ -6061,7 +6064,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>非線形の薬に「比例の予測」を使う。</b><br><span class="soft">用量2倍→濃度2倍は成り立たない。増量は慎重に、TDMで確認。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>少量の増量を「誤差」と侮る。</b><br><span class="soft">飽和域では小さな増量が大きな濃度上昇に。中毒域に一気に入ることも。</span></p></div>
@@ -6262,7 +6265,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>定常状態を「1半減期」で来ると思う。</b><br><span class="soft">安定は4〜5半減期。1回ではまだ半分しか進んでいない。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>休薬期間を短く見積もる。</b><br><span class="soft">ほぼ消えるのは4〜5半減期。t½が長い薬は washout も長い。</span></p></div>
@@ -6455,7 +6458,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>負荷量の経口補正を忘れる。</b><br><span class="soft">負荷量＝Vd×目標濃度はIV基準。経口は吸収率(F)で割る。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>L/kg と L を混同。</b><br><span class="soft">L/kg表記なら体重を掛けてからLとして使う。</span></p></div>
@@ -6658,7 +6661,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>負荷量と維持量を取り違える。</b><br><span class="soft">最初の一発＝Vd×濃度（負荷）、保つ量＝CL×濃度（維持）。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>CL低下時に減量しない。</b><br><span class="soft">Css＝速度÷CL。CLが落ちれば同じ速度でも濃度は上がる＝蓄積。</span></p></div>
@@ -6883,7 +6886,7 @@
 
   <!-- G つまずき -->
   <section>
-    <div class="step-no"><span class="dot">G</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>負荷量と維持量の式を取り違える。</b><br><span class="soft">負荷＝Vd×濃度（満たす）、維持＝CL×濃度（保つ）。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>定常前に採血・効果判定する。</b><br><span class="soft">原則4〜5半減期後。早いと過小評価。</span></p></div>
@@ -7065,7 +7068,7 @@
 
   <!-- F つまずき -->
   <section>
-    <div class="step-no"><span class="dot">F</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>RRR（相対）に飛びつく。</b><br><span class="soft">「○%減」がRRRなら、元リスクとARR・NNTを確認。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>NNTは前提つきの数字。</b><br><span class="soft">対象集団・観察期間・ベースラインで変わる。比較は同条件で。</span></p></div>
@@ -7228,7 +7231,7 @@
 
   <!-- E つまずき -->
   <section>
-    <div class="step-no"><span class="dot">E</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>発注量＝必要日数ぶん − 在庫。</b><br><span class="soft">必要量から今ある在庫を引く。マイナスなら発注不要。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>包装単位を無視しない。</b><br><span class="soft">100錠包装なら、端数は切り上げて箱単位に。</span></p></div>
@@ -7472,11 +7475,11 @@ function init_percent(){
   /* F: IV bag */
   (function(){
     let conc=0.9;
-    const seg=document.getElementById('p2fseg'),s=document.getElementById('p2fs'),liq=document.getElementById('p2fliq'),voltxt=document.getElementById('p2fvoltxt'),g=document.getElementById('p2fg'),steps=document.getElementById('p2fsteps');
+    const seg=document.getElementById('p2fseg'),s=document.getElementById('p2fs'),liq=document.getElementById('p2fliq'),voltxt=document.getElementById('p2fvoltxt'),volnow=document.getElementById('p2fvolnow'),g=document.getElementById('p2fg'),steps=document.getElementById('p2fsteps');
     function r(){
       const vol=parseFloat(s.value)||0, grams=vol*conc/100;
-      liq.style.height=(vol/1000*100)+'%'; voltxt.textContent=fmt(vol)+'mL'; g.textContent=fmt(grams);
-      steps.innerHTML=`濃度 ${fmt(conc)}% ＝ 100mL中 ${fmt(conc)}g<br>${fmt(vol)}mL × ${fmt(conc)} ÷ 100 ＝ <b>${fmt(grams)}g</b>（＝${fmt(grams*1000)}mg）`;
+      liq.style.height=(vol/1000*100)+'%'; voltxt.textContent=fmt(vol)+' mL'; volnow.textContent=fmt(vol); g.textContent=fmt(grams);
+      steps.innerHTML=`<span style="color:var(--sky-deep)">濃さ ${fmt(conc)}%</span> × <span style="color:var(--mint-deep)">量 ${fmt(vol)} mL</span> ÷ 100 ＝ <b style="color:var(--persimmon-deep)">薬 ${fmt(grams)} g</b>（＝ ${fmt(grams*1000)} mg）`;
     }
     s.oninput=r;
     seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{conc=parseFloat(b.dataset.c);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
