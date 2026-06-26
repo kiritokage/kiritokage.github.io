@@ -2712,8 +2712,8 @@
 <button class="scard" onclick="openSubjectHome('blood')"><span class="spine" style="background:var(--persimmon)"></span><span class="ic">🩸</span><span class="tx"><span class="t">血液検査値</span><span class="s">検査値の意味と読み方（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--gold)">💰 お金・投資</span><span class="ent-line" style="background:var(--gold)"></span></div><div class="ent-cards">
-<div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--gold)"></span><span class="ic">📈</span><span class="tx"><span class="t">株のあれこれ</span><span class="s">株価・利回り・指標の計算</span></span><span class="badge soon">準備中</span></div>
-<div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--gold)"></span><span class="ic">📊</span><span class="tx"><span class="t">簿記・決算書の読解</span><span class="s">決算説明書を読むための項目だけ</span></span><span class="badge soon">準備中</span></div>
+<button class="scard" onclick="openSubjectHome('stock')"><span class="spine" style="background:var(--gold)"></span><span class="ic">📈</span><span class="tx"><span class="t">株のあれこれ</span><span class="s">株価・利回り・指標（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
+<button class="scard" onclick="openSubjectHome('boki')"><span class="spine" style="background:var(--gold)"></span><span class="ic">📊</span><span class="tx"><span class="t">簿記・決算書の読解</span><span class="s">決算書を読む項目だけ（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--sky)">🔌 くらしの数字</span><span class="ent-line" style="background:var(--sky)"></span></div><div class="ent-cards">
 <div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--sky)"></span><span class="ic">⚡</span><span class="tx"><span class="t">家庭の電気</span><span class="s">アンペア・ワット・電気代</span></span><span class="badge soon">準備中</span></div>
@@ -2791,6 +2791,65 @@
 <div class="lcard soon"><span class="ic">🔥</span><span class="tx"><span class="t">炎症 CRP</span><span class="s">体の火事報知器</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="home-foot">🦎 霧人影／血液検査値（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-stock" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">📈</div>
+<h1>株のあれこれ</h1>
+<p>株価のしくみと、会社の見方を、やさしく。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">❓</span><span class="tx"><span class="t">株って何？</span><span class="s">発行の目的・なぜ会社は株価を気にするのか</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🧮</span><span class="tx"><span class="t">株価 × 株数 ＝ 評価額</span><span class="s">「1株いくら × 何株」のあたり算</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">値動きとリターン</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📊</span><span class="tx"><span class="t">騰落率（何％上がった／下がった）</span><span class="s">パーセントの応用</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🪤</span><span class="tx"><span class="t">「○％上げ下げ」の罠</span><span class="s">元に戻らない。RRRの罠と同じ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💰</span><span class="tx"><span class="t">配当・利回り</span><span class="s">お金が何％で働くか</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">割安・割高をはかる指標</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📅</span><span class="tx"><span class="t">PER（利益の何年分か）</span><span class="s">元を取るのに何年？</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🏦</span><span class="tx"><span class="t">PBR（資産の何倍か）</span><span class="s">解散価値との比べ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🏢</span><span class="tx"><span class="t">時価総額</span><span class="s">会社まるごとの値段</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--gold)">会社の見方</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🏭</span><span class="tx"><span class="t">業種の見方（銀行など特殊な業種は軽く）</span><span class="s">商売が違えば読み方も違う</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--rose)">増やす仕組み</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🌱</span><span class="tx"><span class="t">複利（雪だるま式）</span><span class="s">時間を動かして体感</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--plum)">ちょっと上級</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">⚠️</span><span class="tx"><span class="t">信用取引（買い／売りから入る・貸株・追証）</span><span class="s">レバレッジと、その怖さ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／株のあれこれ（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-boki" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">📊</div>
+<h1>簿記・決算書の読解</h1>
+<p>決算説明書を読むのに使う項目だけ、やさしく。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">3つの決算書の役割</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📋</span><span class="tx"><span class="t">PL・BS・CFって何？</span><span class="s">会社の健康診断書のたとえ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--rose)">PL（もうけ）を読む</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📕</span><span class="tx"><span class="t">利益の階段</span><span class="s">売上→営業→経常→純利益の段々</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">BS（財産）を読む</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📘</span><span class="tx"><span class="t">資産 ＝ 負債 ＋ 純資産</span><span class="s">持ち物＝借りたぶん＋自前ぶん</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">CF（現金の流れ）を読む</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📗</span><span class="tx"><span class="t">営業・投資・財務CF</span><span class="s">＋−の組み合わせで状態を読む</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--gold)">実例で読む</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📄</span><span class="tx"><span class="t">決算書の具体例</span><span class="s">実際の数字を見ながら</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--plum)">株指標との橋渡し</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🔗</span><span class="tx"><span class="t">ROE・PER・PBRは決算書のどこから？</span><span class="s">株テーマと繋ぐ総まとめ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／簿記・決算書の読解（準備中）<br>項目はこれから増減します</div>
 </div></div>
 
 <div id="themeView" hidden>
