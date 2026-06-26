@@ -2716,8 +2716,8 @@
 <button class="scard" onclick="openSubjectHome('boki')"><span class="spine" style="background:var(--gold)"></span><span class="ic">📊</span><span class="tx"><span class="t">簿記・決算書の読解</span><span class="s">決算書を読む項目だけ（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--sky)">🔌 くらしの数字</span><span class="ent-line" style="background:var(--sky)"></span></div><div class="ent-cards">
-<div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--sky)"></span><span class="ic">⚡</span><span class="tx"><span class="t">家庭の電気</span><span class="s">アンペア・ワット・電気代</span></span><span class="badge soon">準備中</span></div>
-<div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--sky)"></span><span class="ic">💻</span><span class="tx"><span class="t">PC・機械のスペック</span><span class="s">GB・GHz・解像度などの単位</span></span><span class="badge soon">準備中</span></div>
+<button class="scard" onclick="openSubjectHome('denki')"><span class="spine" style="background:var(--sky)"></span><span class="ic">⚡</span><span class="tx"><span class="t">家庭の電気</span><span class="s">電化製品ラベルの読み方（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
+<button class="scard" onclick="openSubjectHome('spec')"><span class="spine" style="background:var(--sky)"></span><span class="ic">💻</span><span class="tx"><span class="t">PC・機械のスペック</span><span class="s">カタログを読めるように（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--plum)">🦠 からだ・薬の科学</span><span class="ent-line" style="background:var(--plum)"></span></div><div class="ent-cards">
 <div class="scard soon" aria-disabled="true"><span class="spine" style="background:var(--plum)"></span><span class="ic">🦠</span><span class="tx"><span class="t">抗生剤のしくみ</span><span class="s">作用機序・時間/濃度依存・耐性</span></span><span class="badge soon">準備中</span></div>
@@ -2850,6 +2850,58 @@
 <div class="lcard soon"><span class="ic">🔗</span><span class="tx"><span class="t">ROE・PER・PBRは決算書のどこから？</span><span class="s">株テーマと繋ぐ総まとめ</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="home-foot">🦎 霧人影／簿記・決算書の読解（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-denki" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">⚡</div>
+<h1>家庭の電気</h1>
+<p>電化製品のラベルが、ぜんぶ読めるように。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">電気って何？ V・A・W の関係</span><span class="s">水の流れのたとえ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">電化製品のラベルを完全に読む</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🔄</span><span class="tx"><span class="t">「IN（入力）」と「OUT（出力）」の違い</span><span class="s">来る→受け止め調節→先で使う流れ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🏷️</span><span class="tx"><span class="t">定格の見方（電圧・電流・消費電力）</span><span class="s">この条件で使ってね、の約束</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🔢</span><span class="tx"><span class="t">V・A・W・Hz の各表記</span><span class="s">100V/15A/1500W/50-60Hz を1つずつ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🌏</span><span class="tx"><span class="t">「100-240V」表記と海外</span><span class="s">国・地域で電圧が違う</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🔌</span><span class="tx"><span class="t">合計で考える（タコ足・延長コード）</span><span class="s">「1500Wまで」の意味・発熱の危険</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">暮らしの中の電気</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">⚡</span><span class="tx"><span class="t">アンペアとブレーカー</span><span class="s">なぜ落ちる？合計Aで体感</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">📊</span><span class="tx"><span class="t">契約アンペアの選び方</span><span class="s">同時使用から考える</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--gold)">電気代</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">電気代 ＝ 消費電力 × 時間 × 単価</span><span class="s">kWhって何？あたり算</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🧊</span><span class="tx"><span class="t">家電の電気代くらべ</span><span class="s">どれが食う？</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／家庭の電気（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-spec" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">💻</div>
+<h1>PC・機械のスペック</h1>
+<p>カタログを見て、自分で選べるように。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🪜</span><span class="tx"><span class="t">B・KB・MB・GB・TB の階段</span><span class="s">1000ずつ上がる（単位の階段と同じ）</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">CPU を完全に理解する</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🧠</span><span class="tx"><span class="t">CPUって何？ GHz・コア・スレッド</span><span class="s">働く人の速さ×人数×並行作業</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🏭</span><span class="tx"><span class="t">IntelとAMDの製品ランク</span><span class="s">Core i3/i5/i7/i9・Ryzen 3/5/7/9</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🔢</span><span class="tx"><span class="t">型番の読み方（世代がわかる）</span><span class="s">4〜5桁の数字で世代・グレード</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">⚖️</span><span class="tx"><span class="t">Intel ⇄ AMD 対応のめやす</span><span class="s">相当の見方・ベンチマークの読み方</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">🎯</span><span class="tx"><span class="t">どのCPUなら何ができる？</span><span class="s">事務／動画編集／ゲームの目安</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">記憶とその他のスペック</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🗄️</span><span class="tx"><span class="t">メモリ vs ストレージの違い</span><span class="s">机の広さ vs 引き出しの大きさ</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">💾</span><span class="tx"><span class="t">メモリは何GB必要？／SSDとHDD</span><span class="s">用途別の目安</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">📺</span><span class="tx"><span class="t">解像度（画素数）</span><span class="s">4K・フルHDって何？点の数</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">📶</span><span class="tx"><span class="t">通信速度（bps・Mbps）と「ギガ」</span><span class="s">「ギガが足りない」の正体</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／PC・機械のスペック（準備中）<br>項目はこれから増減します</div>
 </div></div>
 
 <div id="themeView" hidden>
