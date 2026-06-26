@@ -4843,6 +4843,7 @@
       <div class="w-lab" style="margin-top:8px;">mL / 分</div>
       <div class="slabels"><span>0</span><span>5 mL/分</span></div>
       <input type="range" id="dpMlm" min="0" max="5" value="2" step="0.1">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの速さ：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.1rem;" id="dpMlmNow">2</span> mL/分</div>
       <div class="dropviz" id="dpViz">💧</div>
       <div class="bigout"><div class="lab">滴 / 分</div><div class="v" style="color:var(--sky-deep)"><span id="dpRes">40</span></div></div>
       <div class="w-steps" id="dpSteps"></div>
@@ -5375,9 +5376,11 @@
       <div class="w-lab">投与量</div>
       <div class="slabels"><span>0mg</span><span>600mg</span></div>
       <input type="range" id="acDose" min="0" max="600" value="300" step="10">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの投与量：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); font-size:1.1rem;" id="acDoseNow">300</span> mg</div>
       <div class="w-lab" style="margin-top:6px;">クリアランス（出す力）</div>
       <div class="slabels"><span>1 L/h（弱い）</span><span>20 L/h（強い）</span></div>
       <input type="range" id="acCL" min="1" max="20" value="6" step="0.5">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまのCL：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.1rem;" id="acCLNow">6</span> L/h</div>
       <div class="curvewrap">
         <svg viewBox="0 0 320 175">
           <line x1="28" y1="148" x2="308" y2="148" stroke="#CBB89B" stroke-width="1.5"/>
@@ -5959,6 +5962,7 @@
       <div class="w-lab">投与量</div>
       <div class="slabels"><span>少ない</span><span>多い</span></div>
       <input type="range" id="nlDose" min="0" max="100" value="40">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの投与量：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); font-size:1.1rem;" id="nlDoseNow">40</span> <span style="font-size:.78rem;">（0〜100 のめやす）</span></div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px;">
         <div class="bigout"><div class="lab" style="color:var(--mint-deep)">線形なら</div><div class="v" style="color:var(--mint-deep); font-size:1.5rem;"><span id="nlLinV">40</span></div></div>
         <div class="bigout"><div class="lab" style="color:var(--rose-deep)">非線形だと</div><div class="v" style="color:var(--rose-deep); font-size:1.5rem;"><span id="nlNonV">42</span></div></div>
@@ -6017,6 +6021,7 @@
       <div class="w-lab">いまの濃度（基準）</div>
       <div class="slabels"><span>10</span><span>30</span></div>
       <input type="range" id="pdBase" min="10" max="30" value="15" step="1">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの濃度：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.1rem;" id="pdBaseNow">15</span> mg/L</div>
       <div class="w-lab" style="margin-top:6px;">増量する割合</div>
       <div class="seg2" id="pdInc"><button data-i="25">＋25%</button><button class="on" data-i="50">＋50%</button><button data-i="100">＋100%</button></div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
@@ -6125,6 +6130,7 @@
       <div class="w-lab">半減期が過ぎた回数</div>
       <div class="slabels"><span>0回</span><span>6回</span></div>
       <input type="range" id="hnN" min="0" max="6" value="3" step="0.25">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いま：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); font-size:1.1rem;" id="hnNnow">3</span> 回ぶん</div>
       <div class="bigout" style="margin-top:6px;"><div class="lab">残っている割合</div><div class="v"><span id="hnPct">12.5</span><small> %</small></div></div>
       <div class="remainbar"><div class="remainfill" id="hnFill" style="width:12.5%"></div></div>
       <div class="w-steps" id="hnSteps"></div>
@@ -6313,6 +6319,7 @@
       <div class="w-lab" style="margin-top:8px;">測った血中濃度</div>
       <div class="slabels"><span>0.2（薄い＝散らばった）</span><span>20 mg/L（濃い）</span></div>
       <input type="range" id="vdConc" min="0.2" max="20" value="2" step="0.1">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの濃度：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.1rem;" id="vdConcNow">2</span> mg/L</div>
       <div class="roomwrap">
         <div class="roomtrack"><div class="room" id="vdRoom" style="width:30%"><span class="dots" id="vdDots">💊💊💊</span></div></div>
         <div class="roomcap">器の広さ ＝ 見かけのVd（薬の量は同じ、濃さで広さが決まる）</div>
@@ -6618,6 +6625,7 @@
       <div class="w-lab" style="margin-top:8px;">CL（掃除する力）</div>
       <div class="slabels"><span>1（弱い＝溜まる）</span><span>10 L/h（強い）</span></div>
       <input type="range" id="csCL" min="1" max="10" value="5" step="0.5">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまのCL：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--sky-deep); font-size:1.1rem;" id="csCLnow">5</span> L/h</div>
       <div class="bigout" style="margin-top:6px;"><div class="lab">予想される定常濃度 Css</div><div class="v"><span id="csRes">4</span><small> mg/L</small></div></div>
       <div class="w-steps" id="csSteps"></div>
     </div>
@@ -6736,6 +6744,7 @@
       <div class="w-lab">経過した半減期の数</div>
       <div class="slabels"><span>0</span><span>6回</span></div>
       <input type="range" id="ssN" min="0" max="6" value="3" step="0.25">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いま：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--persimmon-deep); font-size:1.1rem;" id="ssNnow">3</span> 回ぶん（半減期）</div>
       <div class="threein" style="margin-top:6px;">
         <div class="bigout"><div class="lab">Css（定常）</div><div class="v" style="color:var(--sky-deep); font-size:1.3rem;"><span id="ssCss">4</span><small> mg/L</small></div></div>
         <div class="bigout"><div class="lab">t½</div><div class="v" style="font-size:1.3rem;"><span id="ssT">5.82</span><small> h</small></div></div>
@@ -7026,6 +7035,7 @@
       <div class="w-lab">元のリスク（対照群）</div>
       <div class="slabels"><span>1%（低リスク）</span><span>40%（高リスク）</span></div>
       <input type="range" id="tpCer" min="1" max="40" value="2" step="1">
+      <div style="text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft);">いまの元リスク：<span style="font-family:'Zen Maru Gothic'; font-weight:900; color:var(--rose-deep); font-size:1.1rem;" id="tpCerNow">2</span> %</div>
       <div class="threeout">
         <div class="ocard rrr"><div class="t">RRR（固定）</div><div class="v">50<small>%</small></div></div>
         <div class="ocard arr"><div class="t">ARR</div><div class="v"><span id="tpArr">1</span><small>pt</small></div></div>
@@ -8301,7 +8311,8 @@ function init_drip(){
   (function(){
     let g=20;
     const seg=document.getElementById('dpSet'),s=document.getElementById('dpMlm'),viz=document.getElementById('dpViz'),res=document.getElementById('dpRes'),steps=document.getElementById('dpSteps');
-    function r(){ const mlm=parseFloat(s.value)||0; const dpm=mlm*g; res.textContent=fmt(Math.round(dpm));
+    const mlmNow=document.getElementById('dpMlmNow');
+    function r(){ const mlm=parseFloat(s.value)||0; const dpm=mlm*g; res.textContent=fmt(Math.round(dpm)); if(mlmNow) mlmNow.textContent=fmt(mlm);
       const dropsShown=Math.max(0,Math.min(10,Math.round(dpm/12))); viz.textContent= dropsShown>0? '💧'.repeat(dropsShown) : '・';
       steps.innerHTML=`滴/分 ＝ ${fmt(mlm)}mL/分 × ${g}滴 ＝ <b>${fmt(Math.round(dpm))}滴/分</b>`; }
     seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{g=parseInt(b.dataset.g);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
@@ -8542,8 +8553,9 @@ function init_auc(){
   (function(){
     const dose=document.getElementById('acDose'),cl=document.getElementById('acCL'),res=document.getElementById('acRes'),steps=document.getElementById('acSteps'),
       area=document.getElementById('acArea'),line=document.getElementById('acLine');
+    const dNow=document.getElementById('acDoseNow'), cNow=document.getElementById('acCLNow');
     function r(){ const d=parseFloat(dose.value)||0; let c=parseFloat(cl.value)||1; if(c<=0)c=1; const auc=d/c;
-      res.textContent=fmt(auc);
+      res.textContent=fmt(auc); if(dNow) dNow.textContent=fmt(d); if(cNow) cNow.textContent=fmt(c);
       const peakFrac=Math.max(0.05,Math.min(0.95, (d/600)*0.9 ));
       const k=Math.max(0.3,Math.min(3.2, c/6 ));
       const p=curvePaths(peakFrac,k); area.setAttribute('d',p.area); line.setAttribute('d',p.line);
@@ -8821,6 +8833,7 @@ function init_nonlinear(){
     for(let i=1;i<=50;i++){ const f=i/50; lin+=' L '+px(f).toFixed(1)+' '+pyL(f).toFixed(1); non+=' L '+px(f).toFixed(1)+' '+pyN(f).toFixed(1); }
     pl.setAttribute('d',lin); pc.setAttribute('d',non);
     function r(){ const f=(parseFloat(s.value)||0)/100;
+      const dn=document.getElementById('nlDoseNow'); if(dn) dn.textContent=fmt(parseFloat(s.value)||0);
       const lv=f*100, nv=nonlinConc(f)/1*100*0.78; // scale nonlinear readout
       linV.textContent=fmt(f*60); nonV.textContent=fmt(nonlinConc(f)*60*0.78);
       dotL.setAttribute('cx',px(f)); dotL.setAttribute('cy',pyL(f));
@@ -8836,6 +8849,7 @@ function init_nonlinear(){
     let inc=50;
     const base=document.getElementById('pdBase'),seg=document.getElementById('pdInc'),lin=document.getElementById('pdLin'),non=document.getElementById('pdNon'),steps=document.getElementById('pdSteps');
     function r(){ const b=parseFloat(base.value)||0; const linPred=b*(1+inc/100);
+      const bn=document.getElementById('pdBaseNow'); if(bn) bn.textContent=fmt(b);
       // nonlinear: extra blow-up grows with both base level and increment
       const sev=1 + (b-10)/40; // higher base -> closer to saturation
       const nonPred=b*(1+ (inc/100)*sev*1.5 );
@@ -8899,7 +8913,9 @@ function init_halflife(){
   /* P1-3: n half-lives -> remaining */
   (function(){
     const s=document.getElementById('hnN'),pct=document.getElementById('hnPct'),fill=document.getElementById('hnFill'),steps=document.getElementById('hnSteps');
+    const nNow=document.getElementById('hnNnow');
     function r(){ const n=parseFloat(s.value)||0; const p=Math.pow(0.5,n)*100; pct.textContent=fmt(p); fill.style.width=Math.max(0.5,p)+'%';
+      if(nNow) nNow.textContent=fmt(n);
       let msg = n>=4 ? `${fmt(n)}回ぶんで残り<b>${fmt(p)}%</b>。もう“ほぼ消えた”レベル。` : `半分を ${fmt(n)}回 ＝ 0.5<sup>${fmt(n)}</sup> ＝ <b>${fmt(p)}%</b> 残る。`;
       steps.innerHTML=msg; }
     s.oninput=r; r();
@@ -8978,7 +8994,9 @@ function init_vd(){
   /* P1-2: Vd = amount / conc, spreading room */
   (function(){
     const A=document.getElementById('vdAmt'),C=document.getElementById('vdConc'),room=document.getElementById('vdRoom'),dots=document.getElementById('vdDots'),res=document.getElementById('vdRes'),steps=document.getElementById('vdSteps');
+    const cNow=document.getElementById('vdConcNow');
     function r(){ const a=parseFloat(A.value)||0; let c=parseFloat(C.value)||0.2; if(c<=0)c=0.2; const vd=a/c;
+      if(cNow) cNow.textContent=fmt(c);
       res.textContent=fmt(vd);
       // width: map Vd (0..500L) to 30..100%
       const w=Math.max(28,Math.min(100, 28 + (vd/500)*72 ));
@@ -9080,8 +9098,9 @@ function init_cl(){
   /* P2-C: Css predict */
   (function(){
     const R=document.getElementById('csRate'),CL=document.getElementById('csCL'),res=document.getElementById('csRes'),steps=document.getElementById('csSteps');
+    const clNow=document.getElementById('csCLnow');
     function r(){ const rate=parseFloat(R.value)||0; let cl=parseFloat(CL.value)||0.1; if(cl<=0)cl=0.1; const css=rate/cl;
-      res.textContent=fmt(css);
+      res.textContent=fmt(css); clNow.textContent=fmt(cl);
       let warn = cl<=2.5 ? '　← CLが低い＝濃度が高く溜まりやすい' : '';
       steps.innerHTML=`Css ＝ ${fmt(rate)}mg/h ÷ ${fmt(cl)}L/h ＝ <b>${fmt(css)} mg/L</b>${warn}`; }
     R.oninput=r; CL.oninput=r; r();
@@ -9147,13 +9166,14 @@ function init_steady(){
     const R=document.getElementById('ssRate'),CL=document.getElementById('ssCL'),Vd=document.getElementById('ssVd'),
       N=document.getElementById('ssN'),css=document.getElementById('ssCss'),tEl=document.getElementById('ssT'),now=document.getElementById('ssNow'),
       curve=document.getElementById('ssCurve'),dot=document.getElementById('ssDot'),steps=document.getElementById('ssSteps');
+    const nNow=document.getElementById('ssNnow');
     const x0=34,y0=158,plotW=272,topY=34;
     // static curve area (close to baseline for fill)
     function build(){ const line=fillCurve(x0,y0,plotW,topY); curve.setAttribute('d', line+' L '+(x0+plotW)+' '+y0+' Z'); }
     build();
     function r(){ const rate=parseFloat(R.value)||0; let cl=parseFloat(CL.value)||0.1; if(cl<=0)cl=0.1; let vd=parseFloat(Vd.value)||0.1; if(vd<=0)vd=0.1;
       const cssV=rate/cl, t=0.693*vd/cl, n=parseFloat(N.value)||0; const frac=1-Math.pow(0.5,n); const nowV=cssV*frac;
-      css.textContent=fmt(cssV); tEl.textContent=fmt(t); now.textContent=fmt(nowV);
+      css.textContent=fmt(cssV); tEl.textContent=fmt(t); now.textContent=fmt(nowV); if(nNow) nNow.textContent=fmt(n);
       const x=x0+(n/6)*plotW, y=y0-frac*(y0-topY); dot.setAttribute('cx',x.toFixed(1)); dot.setAttribute('cy',y.toFixed(1));
       steps.innerHTML=`Css ＝ ${fmt(rate)}÷${fmt(cl)} ＝ <b>${fmt(cssV)}mg/L</b>　｜　${fmt(n)}半減期で Css の <b>${fmt(frac*100)}%</b> ＝ ${fmt(nowV)}mg/L`; }
     [R,CL,Vd,N].forEach(e=>e.oninput=r); r();
@@ -9265,9 +9285,10 @@ function init_nnt(){
   /* P2-C: RRR trap */
   (function(){
     const s=document.getElementById('tpCer'),arr=document.getElementById('tpArr'),nnt=document.getElementById('tpNnt'),steps=document.getElementById('tpSteps');
+    const cerNow=document.getElementById('tpCerNow');
     const RRR=0.5;
     function r(){ const cer=parseFloat(s.value)||1; const arrV=cer*RRR; const nntV=Math.ceil(100/arrV);
-      arr.textContent=fmt(arrV); nnt.textContent=nntV;
+      arr.textContent=fmt(arrV); nnt.textContent=nntV; if(cerNow) cerNow.textContent=fmt(cer);
       steps.innerHTML=`元リスク ${fmt(cer)}% → 治療 ${fmt(cer*0.5)}%。ARR ＝ ${fmt(cer)}×50% ＝ <b>${fmt(arrV)}pt</b> → NNT ＝ <b>${nntV}</b>`; }
     s.oninput=r; r();
   })();
