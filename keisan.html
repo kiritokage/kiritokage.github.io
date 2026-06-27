@@ -2692,6 +2692,10 @@
   .scard.soon .ic{ filter:grayscale(.45); opacity:.85; } .scard.soon .t{ color:var(--ink-soft); }
   .ent-note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:14px; padding:12px 15px; font-size:.84rem; color:var(--ink-soft); margin-top:24px; text-align:center; }
   .ent-foot{ text-align:center; color:var(--ink-soft); font-size:.86rem; margin-top:36px; line-height:1.7; }
+  .updrow{ text-align:center; margin-top:22px; }
+  .updbtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.9rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--sky); border-radius:999px; padding:10px 20px; cursor:pointer; box-shadow:var(--shadow); }
+  .updbtn:active{ transform:translateY(1px); }
+  .updhint{ font-size:.76rem; color:var(--ink-soft); margin-top:7px; line-height:1.6; }
   /* back to entrance bar on the drug home */
   .toent{ max-width:680px; margin:0 auto; padding:14px 14px 0; }
   .toentbtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff; color:var(--sky-deep); padding:8px 14px 8px 10px; border-radius:999px; cursor:pointer; }
@@ -2710,6 +2714,7 @@
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--persimmon)">💊 くすりと臨床</span><span class="ent-line" style="background:var(--persimmon)"></span></div><div class="ent-cards">
 <button class="scard" onclick="openSubject('drug')"><span class="spine" style="background:var(--persimmon)"></span><span class="ic">💊</span><span class="tx"><span class="t">薬剤の計算</span><span class="s">パーセント〜PK・TDMまで全22テーマ</span></span><span class="badge done">できた</span><span class="chev">›</span></button>
 <button class="scard" onclick="openSubjectHome('blood')"><span class="spine" style="background:var(--persimmon)"></span><span class="ic">🩸</span><span class="tx"><span class="t">血液検査値</span><span class="s">検査値の意味と読み方（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
+<button class="scard" onclick="openSubjectHome('aspirin')"><span class="spine" style="background:var(--persimmon)"></span><span class="ic">💊</span><span class="tx"><span class="t">バファリン・アスピリンの話</span><span class="s">市販と医療用の違い・ピリン系との別物</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--gold)">💰 お金・投資</span><span class="ent-line" style="background:var(--gold)"></span></div><div class="ent-cards">
 <button class="scard" onclick="openSubjectHome('stock')"><span class="spine" style="background:var(--gold)"></span><span class="ic">📈</span><span class="tx"><span class="t">株のあれこれ</span><span class="s">株価・利回り・指標（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
@@ -2721,8 +2726,11 @@
 </div></section>
 <section class="ent-shelf"><div class="ent-shelfhead"><span class="ent-pill" style="background:var(--plum)">🦠 からだ・薬の科学</span><span class="ent-line" style="background:var(--plum)"></span></div><div class="ent-cards">
 <button class="scard" onclick="openSubjectHome('abx')"><span class="spine" style="background:var(--plum)"></span><span class="ic">🦠</span><span class="tx"><span class="t">抗生剤のしくみ</span><span class="s">作用機序・耐性（目次あり）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
+<button class="scard" onclick="openSubjectHome('preg')"><span class="spine" style="background:var(--plum)"></span><span class="ic">🤰</span><span class="tx"><span class="t">妊婦のあれこれ</span><span class="s">リスクをお酒・タバコと比べて（目次）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
+<button class="scard" onclick="openSubjectHome('child')"><span class="spine" style="background:var(--plum)"></span><span class="ic">🧒</span><span class="tx"><span class="t">小児のあれこれ</span><span class="s">子どもと薬を大きな括りで（目次）</span></span><span class="badge soon">準備中</span><span class="chev">›</span></button>
 </div></section>
 <div class="ent-note">準備中は、これから中身を作っていく箱です。<br>分野はこれから増えていきます。</div>
+<div class="updrow"><button class="updbtn" onclick="updateApp()">🔄 ページを更新する</button><div class="updhint">新しい内容が出ないときは、ここを押すと最新になります<br>（ブラウザでもアプリでも、これでOK）</div></div>
 <p class="ent-foot">🦎 霧人影／やさしい教科書シリーズ<br>数字も仕組みも、こわくない。</p>
 </div></div>
 <div id="home" hidden>
@@ -2926,6 +2934,46 @@
 <div class="lcard soon"><span class="ic">🎯</span><span class="tx"><span class="t">スペクトル（広い・狭い）</span><span class="s">広く浅く／狭く狙い撃ち</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="home-foot">🦎 霧人影／抗生剤のしくみ（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-aspirin" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">💊</div>
+<h1>バファリン・アスピリンの話</h1>
+<p>紛らわしい薬の名前を、はっきりさせる。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">バファリンのナゾ</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🏪</span><span class="tx"><span class="t">市販と医療用のバファリンは中身が違う</span><span class="s">同じ名前でも成分が別もの</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">アスピリンって何？</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">💊</span><span class="tx"><span class="t">アスピリンとは</span><span class="s">そもそも何の薬？</span></span><span class="badge soon">準備中</span></div>
+<div class="lcard soon"><span class="ic">⚠️</span><span class="tx"><span class="t">ピリン系とアスピリンは別物</span><span class="s">名前は似てるが無関係</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／バファリン・アスピリンの話（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-preg" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">🤰</div>
+<h1>妊婦のあれこれ</h1>
+<p>薬のリスクを、お酒・タバコと比べて相場観を。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">リスクを比べてつかむ</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">⚖️</span><span class="tx"><span class="t">薬・お酒・タバコのリスク比較</span><span class="s">ビジュアル／％で相場感をつかむ</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／妊婦のあれこれ（準備中）<br>項目はこれから増減します</div>
+</div></div>
+<div id="subj-child" hidden>
+<div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
+<div class="wrap">
+<header class="home-hero"><div class="leaf">🧒</div>
+<h1>小児のあれこれ</h1>
+<p>子どもと薬を、大きな括りでざっくりと。</p></header>
+<div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">大きな括りで知る</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🧒</span><span class="tx"><span class="t">子どもと薬のざっくりした話</span><span class="s">個別の薬より、全体の考え方</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="home-foot">🦎 霧人影／小児のあれこれ（準備中）<br>項目はこれから増減します</div>
 </div></div>
 
 <div id="themeView" hidden>
@@ -7527,6 +7575,25 @@
     document.querySelectorAll('[id^="subj-"]').forEach(function(d){ d.hidden=true; });
     var t=document.getElementById('subj-'+id); if(t) t.hidden=false;
     window.scrollTo(0,0);
+  }
+  function updateApp(){
+    var btn=document.querySelector('.updbtn'); if(btn){ btn.textContent='🔄 更新中…'; btn.disabled=true; }
+    var done=function(){ location.reload(); };
+    var tasks=[];
+    try{
+      if('serviceWorker' in navigator){
+        tasks.push(navigator.serviceWorker.getRegistrations().then(function(rs){
+          return Promise.all(rs.map(function(r){ return r.update().catch(function(){}); }));
+        }).catch(function(){}));
+      }
+      if(window.caches && caches.keys){
+        tasks.push(caches.keys().then(function(keys){
+          return Promise.all(keys.map(function(k){ return caches.delete(k); }));
+        }).catch(function(){}));
+      }
+    }catch(e){}
+    Promise.all(tasks).then(done).catch(done);
+    setTimeout(done, 4000); // 念のため、何かあっても必ずリロード
   }
 
 
