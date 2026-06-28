@@ -2971,7 +2971,7 @@
 <button class="lcard" onclick="openThemeFrame('ninpu')"><span class="ic">⚖️</span><span class="tx"><span class="t">薬・お酒・タバコのリスク比較</span><span class="s">ビジュアル／％で相場感をつかむ</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--rose)">薬の危険度をもっと詳しく</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">📊</span><span class="tx"><span class="t">薬の危険度ランク（カテゴリー分類）</span><span class="s">豪基準・旧FDA・添付文書＋具体例</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('ninpurank')"><span class="ic">📊</span><span class="tx"><span class="t">薬の危険度ランク（カテゴリー分類）</span><span class="s">豪基準・旧FDA・添付文書＋具体例</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">とったほうがいいもの</span></div><div class="cards">
 <button class="lcard" onclick="openThemeFrame('ninpueiyou')"><span class="ic">🥦</span><span class="tx"><span class="t">妊娠中にとりたい栄養・サプリ</span><span class="s">葉酸など、摂るべき栄養素の話</span></span><span class="badge done">できた</span></button>
@@ -4871,6 +4871,583 @@
       {q:'カルシウムの吸収を助ける相棒は？', o:['ビタミンD','ビタミンA','鉄'], a:0, e:'骨はカルシウム＋ビタミンDのペア。Dが吸収を助ける。'},
       {q:'ヨウ素（ヨード）、日本人で注意すべきは？', o:['不足しやすい','むしろ摂りすぎ（昆布など）','まったく不要'], a:1, e:'甲状腺ホルモンの材料。日本人は海藻で摂りすぎがちで、過剰も胎児に影響しうる。'},
       {q:'妊娠中のカフェイン、望ましい目安は？', o:['完全にゼロにする','1日200mg程度（コーヒー約2杯）まで','制限はいらない'], a:1, e:'WHO300・英国200mgなど。日本の産科でも200mg目安。適量ならOKで、ゼロ必須ではない。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-ninpurank" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('preg')">‹ 妊婦のあれこれ に戻る</button></div><iframe class="theme-frame" title="薬の危険度ランク（カテゴリー分類）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>薬の危険度ランク（カテゴリー分類） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.65rem,6.4vw,2.2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.35rem,5.4vw,1.7rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* category cards: official text + human/animal interpretation */
+  .catcard{ background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); margin:14px 0; overflow:hidden; }
+  .catcard .cc-head{ display:flex; align-items:center; gap:11px; padding:10px 14px; color:#fff; }
+  .catcard .cc-badge{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.15rem; background:rgba(255,255,255,.22); min-width:46px; height:38px; padding:0 8px; border-radius:11px; display:grid; place-items:center; flex:none; }
+  .catcard .cc-name{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; line-height:1.25; }
+  .catcard .cc-body{ padding:13px 14px; }
+  .cc-official{ background:#F2ECE0; border:1px solid #E6DAC6; border-radius:11px; padding:11px 13px; font-size:.9rem; line-height:1.9; }
+  .cc-official .ol{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.68rem; color:#8A7A60; letter-spacing:.1em; display:block; margin-bottom:5px; }
+  .cc-interp{ margin-top:12px; }
+  .cc-interp .il{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.68rem; color:var(--persimmon-deep); letter-spacing:.1em; display:block; margin-bottom:7px; }
+  .ci-row{ display:flex; gap:8px; align-items:flex-start; margin:7px 0; font-size:.9rem; line-height:1.7; }
+  .ci-row .ci-k{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.72rem; padding:3px 8px; border-radius:7px; flex:none; margin-top:2px; color:#fff; white-space:nowrap; }
+  .ci-k.human{ background:var(--sky-deep); } .ci-k.animal{ background:var(--mint-deep); } .ci-k.concl{ background:var(--persimmon-deep); }
+  .ci-row .ci-v b{ color:var(--ink); }
+
+  /* package insert box */
+  .insert{ background:#2B2733; color:#F4ECE0; border-radius:14px; padding:15px 16px; box-shadow:var(--shadow); font-size:.92rem; line-height:1.85; }
+  .insert .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#2B2733; background:#E0A93B; padding:3px 9px; border-radius:7px; display:inline-block; margin-bottom:8px; }
+  .insert b{ color:#FFD98A; }
+
+  /* drug example list */
+  .dgrid{ display:grid; gap:9px; margin:14px 0; }
+  .ditem{ display:flex; gap:11px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:13px; padding:11px 13px; box-shadow:var(--shadow); }
+  .ditem .dc{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.96rem; line-height:1.25; }
+  .ditem .dn{ font-size:.82rem; color:var(--ink-soft); margin-top:2px; }
+  .ditem .pill{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.68rem; color:#fff; padding:4px 9px; border-radius:999px; flex:none; margin-top:2px; }
+  .pill.ng{ background:var(--rose-deep); } .pill.ok{ background:var(--mint-deep); }
+  .ditem.ng{ background:#FDECEE; } .ditem.ok{ background:#EAF6EE; }
+
+  .tl{ display:grid; gap:9px; margin:16px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:86px; text-align:center; }
+  .tlcard .tc{ font-size:.9rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+  .resource{ background:linear-gradient(180deg,#E9F2F7,#D7E9F1); border:1px solid #BCD7E5; border-radius:16px; padding:15px 16px; margin:16px 0; }
+  .resource .rt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--sky-deep); margin-bottom:4px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 分類の枠</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 日本の添付文書</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 具体的な薬</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>妊婦のあれこれ ・ とことん版</span>
+    <h1>薬の<span class=&quot;hl&quot;>危険度ランク</span><br>（カテゴリー分類）</h1>
+    <p class=&quot;lead&quot;>A・B・C・D・X って何？<br>分類の枠組みから、解きほぐします。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリに向けた、分類体系の解説です。薬名は代表例で、<b>実際の可否は個々の状況・最新情報で判断</b>します。<b>一般の方、そして実際の服薬は、必ず主治医・薬剤師に相談してください。</b>このページは「分類の考え方を理解する」のが目的で、自己判断で薬を始める/やめる根拠にはなりません。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>薬の「妊娠中の危険度」を表す“ものさし”</h2>
+    <p class=&quot;lead-line&quot;>前のページで「薬は物によってピンキリ」と見ました。そのピンキリを、<b class=&quot;kb&quot;>A・B・C・D・X のような段階で表す“ものさし（分類）”</b>があります。このページは、その<b class=&quot;kb&quot;>分類の枠組みと読み方</b>を、根っこから解く回です。</p>
+    <p>有名なのは<b class=&quot;k&quot;>アメリカ（旧FDA）</b>と<b class=&quot;k&quot;>オーストラリア（ADEC）</b>の分類。そして日本は、ちょっと事情が違います。順に見ましょう。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>旧FDA分類</div>
+    <h2>FDA：A・B・C・D・X（全文）</h2>
+    <p class=&quot;lead-line&quot;>アメリカFDAの5段階。各区分の<b class=&quot;kb&quot;>正式な定義文</b>を載せ、その下に<b class=&quot;kb&quot;>🧑ヒト／🐭動物／🎯位置づけ</b>に切り分けた解釈を併記します（定義は人と動物のデータが混ざって書かれているため）。</p>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#3E9A63&quot;><span class=&quot;cc-badge&quot;>A</span><span class=&quot;cc-name&quot;>ほぼ安全</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>ヒトの妊娠初期3か月間の対照試験で胎児への危険性は証明されず、またその後の妊娠期間でも危険であるという証拠もないもの。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;>ヒトできちんと対照試験を行い、初期も後期も<b>危険が確認されなかった</b>。「ヒトで調べた上で安全寄り」。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;>定義は動物に言及していない＝<b>ヒトのデータが根拠</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>5段階で唯一「ヒトで検証済みの安全寄り」。該当する薬はごくわずか。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#6BAE7A&quot;><span class=&quot;cc-badge&quot;>B</span><span class=&quot;cc-name&quot;>比較的安全</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物生殖試験では胎仔への危険性は否定されているが、ヒト妊婦での対照試験は実施されていないもの。あるいは、動物生殖試験で有害な作用（または出生数の低下）が証明されているが、ヒトでの妊娠期3か月間の対照試験ではこの有害作用は実証されておらず、またその後の妊娠期間でも危険であるという証拠がないもの。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>ヒト妊婦での対照試験は行われていない</b>（＝ヒトの確かなデータはない）。ただし、ヒト初期試験で有害作用が再現されなかった場合を含む。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;>2パターン。①<b>動物で危険性が否定された</b>、または②<b>動物で有害作用が出た</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>動物の結果は分かれ、<b>ヒトの裏付けは弱い</b>。動物データ頼みの区分。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#C99A2E&quot;><span class=&quot;cc-badge&quot;>C</span><span class=&quot;cc-name&quot;>注意（最も多い）</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物生殖試験では胎仔に催奇形性、胎仔毒性、その他の有害作用があることが証明されているが、ヒト妊婦での対照試験は実施されていないもの。もしくは、ヒト、動物ともに試験は実施されていないもの。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>ヒトの対照試験はなし</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;><b>動物で催奇形性・胎仔毒性・有害作用が出ている</b>（または動物データもなし）。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>「動物で悪い結果あり/不明＋ヒト不明」。<b>最も多い区分</b>＝グレーの主力。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#DD7A3A&quot;><span class=&quot;cc-badge&quot;>D</span><span class=&quot;cc-name&quot;>危険の証拠あり</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>ヒトの胎児に明らかに危険であるという証拠があるが、危険であっても、妊婦への使用による利益が容認されることもあるもの。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>ヒト胎児への危険の証拠がある</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;>定義は主にヒトの証拠を根拠にしている。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>危険は明確。それでも<b>利益が上回れば、注意して使うことがある</b>（絶対禁忌ではない）。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#C25962&quot;><span class=&quot;cc-badge&quot;>X</span><span class=&quot;cc-name&quot;>禁忌</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物またはヒトでの試験で胎児異常が証明されているもの。もしくは、ヒトでの使用経験から胎児への危険が証明されており、妊婦への使用による利益よりも危険が上回るもの。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>ヒトで胎児への危険が証明</b>されている。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;><b>動物でも胎児異常が証明</b>されうる。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;><b>危険が利益を上回る＝妊婦に使ってはいけない</b>（禁忌）。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>重要</span><p style=&quot;margin:0&quot;><b>このFDA分類は2015年に廃止されました。</b><br><span class=&quot;soft&quot;>「A〜Xのラベルだけでは具体的なリスクが伝わらない」という反省から、<b>記述式（PLLR）</b>＝文章で個別に説明する方式へ移行（2015年6月30日以降の処方薬が対象、市販薬OTCは対象外）。ただA〜Xの枠は直感的なので、今も“考え方”として広く使われています。</span></p></div>
+    <div class=&quot;big-point&quot;>FDAは<b class=&quot;k&quot;>A(安全)→B→C→D→X(禁忌)</b>の5段階。各区分は<b class=&quot;kb&quot;>人のデータと動物のデータが混ざって</b>書かれている。<b class=&quot;kr&quot;>2015年廃止→記述式へ</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>オーストラリア基準（ADEC）</div>
+    <h2>ADEC：A・B1・B2・B3・C・D・X（全文）</h2>
+    <p class=&quot;lead-line&quot;>豪ADECは<b class=&quot;k&quot;>7区分</b>（Bが3つに細分）。FDAより<b class=&quot;kb&quot;>ヒトの使用実績を重視</b>するのが特徴。こちらも正式な定義文＋人/動物の解釈を併記します。</p>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#3E9A63&quot;><span class=&quot;cc-badge&quot;>A</span><span class=&quot;cc-name&quot;>使用実績から安全</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>多数の妊婦および妊娠可能年齢の女性に使用されてきたが、奇形の頻度増加や、胎児への直接的・間接的な有害作用は観察されていない薬。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>多くの妊婦が実際に使ってきた“実績”</b>があり、悪い影響が観察されていない。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;>動物ではなく<b>ヒトの使用実績が主役</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>ADECの「<b>実績重視</b>」がよく表れた、最も安心度の高い区分。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#6BAE7A&quot;><span class=&quot;cc-badge&quot;>B</span><span class=&quot;cc-name&quot;>経験が限られる（→B1/B2/B3）</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義（B総論）</span>使用経験が限られているが、奇形やヒト胎児への直接的・間接的な有害作用の発生頻度の増加は観察されていない薬。動物データにより B1・B2・B3 に細分される。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>使った人がまだ少ない</b>（が、悪い兆候は観察されていない）。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;>動物データの内容で <b>B1・B2・B3</b> に分かれる（下記）。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>「ヒトの経験が浅い」グループ。動物データで3段階に枝分かれする。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#7FB58C&quot;><span class=&quot;cc-badge&quot;>B1</span><span class=&quot;cc-name&quot;>動物でも問題なし</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物を用いた研究では、胎仔への障害が増加したという証拠は示されていない。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;><b>動物でも障害増加の証拠なし</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;>使用経験は限られる。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>Bの中で<b>最も安心寄り</b>（ヒト経験は浅いが動物は問題なし）。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#9CB87E&quot;><span class=&quot;cc-badge&quot;>B2</span><span class=&quot;cc-name&quot;>動物データが乏しい</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物を用いた研究は不十分もしくは欠如しているが、入手できるデータからは胎仔への障害が増加するという証拠は示されていない。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;><b>動物データ自体が不十分／ない</b>。ただし手元のデータに悪い証拠はない。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;>使用経験は限られる。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>「<b>情報不足</b>」型。悪い証拠はないが、確かめきれていない。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#B0A24A&quot;><span class=&quot;cc-badge&quot;>B3</span><span class=&quot;cc-name&quot;>動物で証拠あり・ヒトは不明</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>動物を用いた研究では胎仔への障害が増えるという証拠はあるが、この結果がヒトに対してどういった意味をもつものかは不明である。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🐭動物</span><span class=&quot;ci-v&quot;><b>動物では“赤信号”</b>（障害増加の証拠あり）。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;>それが<b>ヒトで何を意味するかは不明</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>Bの中で<b>最も注意</b>。動物の悪い結果をどう受け取るかがカギ。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#C99A2E&quot;><span class=&quot;cc-badge&quot;>C</span><span class=&quot;cc-name&quot;>薬の作用が胎児の“機能”に害（奇形ではない）</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>薬理作用によって、胎児や新生児に有害作用を引き起こす、もしくは引き起こす疑いのある薬。ただし催奇形性はない。これらの有害作用は可逆的なことがある。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（ここが分かりにくいポイント）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑誤解注意</span><span class=&quot;ci-v&quot;>これは<b>「母体に出る一般的な副作用」のことではありません</b>。母体の胃が荒れる等の話ではなく、<b>薬が胎盤を通って“赤ちゃん側”に届き、薬の効きめ（薬理作用）がそのまま赤ちゃんに作用して害になる</b>、という意味です。だから立派に妊娠特有のリスクで、分類に入ります。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k animal&quot;>🧬中身</span><span class=&quot;ci-v&quot;>害の<b>種類が「奇形」とは別</b>。体の作り（形）は正常なまま、<b>薬の作用で赤ちゃんの“機能”が乱れる</b>タイプ。例：血圧・血流・心臓の動き・呼吸・血糖などへの影響。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯なぜ可逆的</span><span class=&quot;ci-v&quot;>形が変わる奇形と違い、<b>薬が抜ければ戻ることがある</b>（機能的な影響だから）。定義に「可逆的なことがある」とあるのはこのため。</span></div>
+        </div>
+        <div class=&quot;note&quot; style=&quot;margin-top:12px;&quot;><b>こういうタイプ（薬理作用が赤ちゃんの機能に作用する例）：</b><br>・<b>NSAIDs（妊娠後期）</b>：プロスタグランジンを抑える作用で、胎児の<b>動脈管が早く閉じる</b>・羊水が減る（胎児の尿が減る）。<br>・<b>β遮断薬</b>：胎児・新生児の<b>徐脈・低血糖</b>など。<br>・<b>分娩前のオピオイド／ベンゾジアゼピン</b>：新生児の<b>呼吸抑制・傾眠・離脱症状</b>。<br>※どれも「薬が本来の仕事を、赤ちゃんに対してしてしまう」イメージ。形の異常（奇形）ではなく機能の問題。<br><span style=&quot;color:#9A8C77;&quot;>（個々の薬の正式なカテゴリー文字は基準・版で異なるため、ここは“Cが指すタイプ”の例として）</span></div>
+      </div>
+    </div>
+
+    <div class=&quot;panel&quot; style=&quot;background:#F3ECF5;border-color:#DEC9E6;&quot;>
+      <h3 style=&quot;margin-top:0;color:var(--plum-deep);&quot;>🔑 「奇形」と「薬理作用による胎児毒性」は“別の軸”</h3>
+      <p style=&quot;margin:.4em 0;&quot;>キリの違和感の正体はここです。妊娠中の薬の害には、<b>性質の違う2種類</b>があります。ADECはこれを分けて分類しているので、Cが「副作用?」と引っかかるのです。</p>
+      <div class=&quot;dgrid&quot; style=&quot;margin-top:10px;&quot;>
+        <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>奇形</span><div><div class=&quot;dc&quot;>催奇形性（形の異常）</div><div class=&quot;dn&quot;>体の作りそのものが異常になる。主に<b>器官形成期</b>に作用し、<b>永続的</b>。例：サリドマイド、ワルファリン。→ ADECでは主に<b>D・X</b>。</div></div></div>
+        <div class=&quot;ditem&quot; style=&quot;background:#FBF1DA;&quot;><span class=&quot;pill&quot; style=&quot;background:#B6841F&quot;>機能</span><div><div class=&quot;dc&quot;>薬理作用による胎児毒性（機能の異常）</div><div class=&quot;dn&quot;>形は正常でも、<b>薬の効きめが赤ちゃんの機能を乱す</b>。主に<b>中期〜分娩前後</b>、<b>可逆的なことも</b>。→ ADECの<b>C</b>。</div></div></div>
+      </div>
+      <p style=&quot;margin:.6em 0 0;font-size:.9rem;&quot;>つまりCは「危険度の途中段階」ではなく、<b class=&quot;kp&quot;>D・Xとは“別の種類の害”を表す枠</b>。だからADECは単純な序列で並ばない（前述）わけです。</p>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#DD7A3A&quot;><span class=&quot;cc-badge&quot;>D</span><span class=&quot;cc-name&quot;>ヒトで奇形・不可逆障害</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>ヒト胎児の奇形や不可逆的な障害の頻度増加を引き起こした、引き起こすと疑われる、または引き起こすと予測される薬。薬理作用による有害作用を伴うこともある。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>ヒト胎児に奇形・不可逆的障害</b>を起こす（疑い・予測を含む）。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>明確に害の側。ただし<b>絶対禁忌ではなく</b>、必要時に注意して使うことがある。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;catcard&quot;>
+      <div class=&quot;cc-head&quot; style=&quot;background:#C25962&quot;><span class=&quot;cc-badge&quot;>X</span><span class=&quot;cc-name&quot;>禁忌</span></div>
+      <div class=&quot;cc-body&quot;>
+        <div class=&quot;cc-official&quot;><span class=&quot;ol&quot;>正式な定義</span>胎児に永続的な障害を引き起こすリスクが非常に高く、妊娠中または妊娠の可能性がある場合には使用すべきでない薬。</div>
+        <div class=&quot;cc-interp&quot;><span class=&quot;il&quot;>解釈（人／動物で分けると）</span>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k human&quot;>🧑ヒト</span><span class=&quot;ci-v&quot;><b>永続的な障害のリスクが非常に高い</b>。</span></div>
+          <div class=&quot;ci-row&quot;><span class=&quot;ci-k concl&quot;>🎯位置づけ</span><span class=&quot;ci-v&quot;>妊娠（可能性を含む）では<b>使わない＝禁忌</b>。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>読み解きのコツ</span><p style=&quot;margin:0&quot;><b>同じ「C」でも、FDAとADECで意味が違う。</b><br><span class=&quot;soft&quot;>FDAのC＝動物で催奇形性などの証拠／ADECのC＝薬理作用による有害（催奇形性はない）。文字が同じでも中身が別物なので、どちらの基準の話か必ず確認。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>読み解きのコツ</span><p style=&quot;margin:0&quot;><b>ADECは厳密な“危険度の序列”ではない。</b><br><span class=&quot;soft&quot;>番号や文字が進む＝必ずより危険、とは限らない（特にB3とCは単純な上下関係ではない）。あくまで「どんな種類の根拠があるか」の分類、と捉えるのが安全。</span></p></div>
+    <div class=&quot;big-point blue&quot;>ADECは<b class=&quot;kb&quot;>7区分（Bを3細分）</b>で<b>ヒトの実績重視</b>。FDAのCとADECのCは別物、序列でもない。<b>同じ薬でも国で違う</b>（例：アセトアミノフェン 米B／豪A）。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>注意</div>
+    <h2>「カテゴリーだけ」では判断できない</h2>
+    <p class=&quot;lead-line&quot;>いちばん大事な落とし穴。<b class=&quot;kr&quot;>「B」「C」というラベルだけでは、実際に使うべきか判断できません。</b>同じCでも、リスクの“中身”は薬ごとに全然違うからです。</p>
+    <p>だから分類は<b class=&quot;kb&quot;>「入口の目安」</b>。実際は、個別の疫学データ・専門書・後で出てくる相談窓口などで、<b class=&quot;k&quot;>一つ一つ確かめる</b>のが原則。分類を覚えることがゴールではなく、<b class=&quot;kb&quot;>「物による」を整理する地図</b>として使うイメージです。</p>
+    <div class=&quot;big-point rose&quot;>分類は<b class=&quot;kr&quot;>入口の目安</b>。ラベルだけで決めず、<b class=&quot;kb&quot;>中身は個別に確認</b>。覚えるより「地図」として使う。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>海外の分類はOK。<br>では「日本」はどうなっている？</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 日本の添付文書 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>日本の事情 ・ 添付文書を読む</span>
+    <h1>日本には、<br>明確な<span class=&quot;hl&quot;>分類がない</span>。</h1>
+    <p class=&quot;lead&quot;>代わりに使う「添付文書」と<br>あの“定型文”を読み解きます。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>日本は<b class=&quot;k&quot;>A〜Xのような分類を採用していない</b>。代わりに<b class=&quot;kb&quot;>添付文書の「妊婦・産婦・授乳婦等への投与」欄</b>を読む。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>日本のやり方</div>
+    <h2>「添付文書の妊婦欄」を読む</h2>
+    <p class=&quot;lead-line&quot;>日本の薬には、A〜Xのような番号はついていません。代わりに、添付文書（とインタビューフォーム）の<b class=&quot;kb&quot;>「妊婦・産婦・授乳婦等への投与」</b>という欄に、文章で書かれています。</p>
+    <p>そして、その多くが——<b class=&quot;k&quot;>ほぼ同じ“定型文”</b>になっているのが特徴です。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>定型文</div>
+    <h2>あの「有益性が危険性を上回る場合のみ」</h2>
+    <p class=&quot;lead-line&quot;>薬剤師なら何百回と見るこの一文。意味を分解します。</p>
+    <div class=&quot;insert&quot;>
+      <span class=&quot;lbl&quot;>妊婦・産婦・授乳婦等への投与</span><br>
+      「妊娠中の投与に関する安全性は確立していないので、妊婦又は妊娠している可能性のある婦人には、<b>治療上の有益性が危険性を上回ると判断される場合にのみ投与すること</b>。」
+    </div>
+    <h3>これは何を言っている？</h3>
+    <p>かみ砕くと——<b class=&quot;kb&quot;>「ちゃんと調べきれていない（安全とも危険とも言い切れない）。だから、使う利益が上回るときだけ使ってね」</b>。これを<b class=&quot;k&quot;>「有益性投与」</b>と呼びます。<b class=&quot;kr&quot;>「危険だから禁止」とは違う</b>のがポイント。多くの薬がこの“グレー”の表現で、<b class=&quot;kb&quot;>使うリスクと使わないリスクを天秤にかけて個別判断</b>、という前ページの話にそのまま繋がります。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>区別</span><p style=&quot;margin:0&quot;><b>「有益性投与」と「禁忌」は別もの。</b><br><span class=&quot;soft&quot;>「禁忌」＝原則使ってはいけない（明確に危険な薬）。「有益性投与」＝グレーで、利益が上回れば使える。同じ妊婦欄でも、この2つは意味がまったく違う。</span></p></div>
+    <div class=&quot;big-point&quot;>定型文＝<b class=&quot;kb&quot;>「有益性投与」</b>（グレー・天秤で判断）。<b class=&quot;kr&quot;>「禁忌」（原則ダメ）とは別もの</b>。混同しない。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>限界</div>
+    <h2>添付文書だけでは足りない</h2>
+    <p class=&quot;lead-line&quot;>この定型文、<b class=&quot;kr&quot;>具体的なリスクの中身までは分からない</b>のが弱点。多くの薬が同じ表現なので、「この薬は実際どうなの?」には答えてくれません。</p>
+    <p>だから現場では、<b class=&quot;kb&quot;>海外分類（ADECなど）・専門書・最新の疫学データ</b>、そして次に紹介する<b class=&quot;kb&quot;>相談窓口</b>を組み合わせて判断します。添付文書は出発点、という位置づけです。</p>
+    <div class=&quot;resource&quot;>
+      <div class=&quot;rt&quot;>🏥 妊娠と薬情報センター（国立成育医療研究センター）</div>
+      <div style=&quot;font-size:.88rem;&quot;>厚労省の事業として設置された相談窓口。妊娠中・授乳中の薬について、最新の情報をもとに相談できる。全国の拠点病院に「妊娠とくすり外来」があり、医療者・患者どちらも頼れる。<b>「迷ったらここ」</b>と覚えておくと心強い🦎</div>
+    </div>
+    <div class=&quot;big-point blue&quot;>添付文書は<b class=&quot;kb&quot;>出発点</b>。中身はADEC・専門書・<b>妊娠と薬情報センター</b>で確かめる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>パニック防止</div>
+    <h2>「催奇形性あり」でも100%ではない</h2>
+    <p class=&quot;lead-line&quot;>分類や“催奇形性”という言葉は怖く見えますが、薬剤師として知っておきたい事実。<b class=&quot;kb&quot;>明確な催奇形性薬でも、サリドマイドを除けば、奇形が出る率は高くても約25%</b>。曝露＝必ず異常、ではありません。</p>
+    <p>さらに、もともと先天異常はベースラインで数%ある（前ページ）。だから「飲んでしまった→必ずダメ」ではなく、<b class=&quot;k&quot;>落ち着いて、正確な情報で評価する</b>のが大事。過剰な不安や中絶の判断に短絡しないための、重要な前提です。</p>
+    <div class=&quot;big-point gold&quot;>催奇形性薬でも<b class=&quot;kgo&quot;>（サリドマイド以外は）奇形率は高くて約25%</b>＝100%ではない。曝露を過度に恐れず、正確に評価。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>枠組みと読み方はバッチリ。<br>では、具体的な薬名を見ていこう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 具体的な薬 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>具体例 ・ 危険／比較的安全</span>
+    <h1>実際の<span class=&quot;hl&quot;>薬の名前</span>で。</h1>
+    <p class=&quot;lead&quot;>明確に危険なもの、<br>比較的安全に使うもの。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 以下は<b>代表例</b>です。同じ薬でも時期・量・状況で判断が変わり、最新情報で更新されます。<b>個別の可否は必ず主治医・薬剤師・専門窓口で確認を。</b>「禁忌薬を飲んでいた」場合も、自己判断せず落ち着いて相談してください。
+  </div>
+
+  <!-- A 危険 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>明確に危険</div>
+    <h2>避けるべき・代表的な催奇形性薬</h2>
+    <p class=&quot;lead-line&quot;>「禁忌」や明確な催奇形性で知られる薬たち。<b class=&quot;kr&quot;>特徴的な奇形像</b>が教科書的に知られています。</p>
+    <div class=&quot;dgrid&quot;>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>最高リスク</span><div><div class=&quot;dc&quot;>サリドマイド</div><div class=&quot;dn&quot;>四肢の奇形（アザラシ肢症）・耳や内臓の異常。薬害の原点。曝露時期により高率。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>禁忌</span><div><div class=&quot;dc&quot;>レチノイド（イソトレチノイン／エトレチナート＝ビタミンA誘導体）</div><div class=&quot;dn&quot;>重症ニキビ・乾癬の薬。小耳症・心奇形など。中止後も一定期間の避妊が必要なものも。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>禁忌</span><div><div class=&quot;dc&quot;>ワルファリン（ワーファリン）</div><div class=&quot;dn&quot;>鼻の低形成・骨の異常（ワルファリン胎芽症）。→妊娠が分かったら速やかにヘパリンへ変更。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>注意/禁忌</span><div><div class=&quot;dc&quot;>バルプロ酸（デパケン）</div><div class=&quot;dn&quot;>神経管閉鎖障害など。てんかん薬→妊娠ではレベチラセタム・ラモトリギン等へ。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>禁忌</span><div><div class=&quot;dc&quot;>メトトレキサート</div><div class=&quot;dn&quot;>リウマチ・抗がん。流産率上昇・催奇形性。妊娠では中止・代替へ。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>禁忌</span><div><div class=&quot;dc&quot;>ACE阻害薬／ARB</div><div class=&quot;dn&quot;>降圧薬。胎児・新生児の腎障害・死亡と関連（特に中後期）。→妊娠可の降圧薬へ変更。</div></div></div>
+      <div class=&quot;ditem ng&quot;><span class=&quot;pill ng&quot;>注意</span><div><div class=&quot;dc&quot;>リチウム（リーマス）</div><div class=&quot;dn&quot;>躁うつの薬。心奇形（Ebstein奇形）との関連。慎重な判断が要る。</div></div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>サリドマイド・レチノイド・ワルファリン・バルプロ酸・メトトレキサート・ACE/ARB など＝<b class=&quot;kr&quot;>明確に危険</b>。多くは<b class=&quot;kb&quot;>代替薬に替える</b>のが原則。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 比較的安全 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>比較的安全</div>
+    <h2>必要なら使える・代表的な薬</h2>
+    <p class=&quot;lead-line&quot;>逆に、<b class=&quot;kg&quot;>妊娠中でも比較的安全に使える</b>とされる代表例。だから「薬＝一律ダメ」ではないのです。</p>
+    <div class=&quot;dgrid&quot;>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>鎮痛・解熱</span><div><div class=&quot;dc&quot;>アセトアミノフェン（カロナール）</div><div class=&quot;dn&quot;>妊娠中の痛み・熱の第一選択とされることが多い。NSAIDsは時期により注意。</div></div></div>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>抗菌薬</span><div><div class=&quot;dc&quot;>ペニシリン系・セフェム系・マクロライド系・クリンダマイシン</div><div class=&quot;dn&quot;>妊娠中に比較的安全とされる抗菌薬。感染はむしろ治療が大事。</div></div></div>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>降圧</span><div><div class=&quot;dc&quot;>メチルドパ（アルドメット）・ラベタロール・ヒドララジン</div><div class=&quot;dn&quot;>妊娠中の高血圧で安全性が示され、使われる。ACE/ARBの代わりに。</div></div></div>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>てんかん</span><div><div class=&quot;dc&quot;>レベチラセタム（イーケプラ）・ラモトリギン（ラミクタール）</div><div class=&quot;dn&quot;>胎児への影響が小さく、妊娠可能年齢で選ばれることが多い。</div></div></div>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>喘息</span><div><div class=&quot;dc&quot;>吸入ステロイド（ブデソニド等）</div><div class=&quot;dn&quot;>妊娠中も継続が原則。発作（低酸素）のほうが危険。</div></div></div>
+      <div class=&quot;ditem ok&quot;><span class=&quot;pill ok&quot;>ステロイド</span><div><div class=&quot;dc&quot;>プレドニゾロン</div><div class=&quot;dn&quot;>胎盤を通過しにくく、全身ステロイドの中では妊娠中に使いやすい。</div></div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>アセトアミノフェン・ペニシリン系・メチルドパ・レベチラセタム・吸入ステロイドなど＝<b class=&quot;kg&quot;>必要なら使える</b>。「薬だから一律ダメ」ではない。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 中断と例外 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>やめ方の例外</div>
+    <h2>「禁忌薬＝即やめる」でもない</h2>
+    <p class=&quot;lead-line&quot;>前ページの「自己中断は危険」と同じく、<b class=&quot;kb&quot;>禁忌薬でも“替え方”が大事</b>。やめ方にも合理的な手順があります。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#C25962&quot;>ワルファリン</span><div class=&quot;tc&quot;>禁忌だが、妊娠前にいきなり中止するのではなく、<b>妊娠が成立したら速やかにヘパリンへ変更</b>するのが合理的。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#E08A4B&quot;>ACE/ARB</span><div class=&quot;tc&quot;>腎保護目的などでは、<b>妊娠が成立するまでは使うこともある</b>。妊娠したら妊娠可の降圧薬へ。</div></div>
+    </div>
+    <p>つまり「禁忌だから今すぐゼロ」ではなく、<b class=&quot;k&quot;>いつ・何に替えるか</b>がセット。ここも自己判断ではなく、主治医・薬剤師と組み立てる部分です🦎</p>
+    <div class=&quot;big-point&quot;>禁忌薬も<b class=&quot;kb&quot;>“替え方・替える時期”がセット</b>。例：ワルファリン→ヘパリン、ACE/ARB→妊娠可の降圧薬。自己判断しない。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>危険度ランク ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- D まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>危険度分類は<b class=&quot;k&quot;>A〜X（旧FDA／豪ADEC）</b>が有名だが、<b class=&quot;kr&quot;>FDAは2015年廃止→記述式へ</b>。日本は明確な分類がなく、<b class=&quot;kb&quot;>添付文書の「有益性投与」</b>を読む（＝禁忌とは別のグレー）。<b class=&quot;kr&quot;>ラベルだけでは判断できず</b>、ADEC・専門書・<b class=&quot;kb&quot;>妊娠と薬情報センター</b>で中身を確認。明確に危険な薬（サリドマイド・レチノイド・ワルファリン・バルプロ酸・MTX・ACE/ARB等）がある一方、<b class=&quot;kg&quot;>必要なら使える薬</b>も多い。禁忌薬も<b class=&quot;kb&quot;>替え方がセット</b>。</p>
+    <div class=&quot;big-point&quot;>分類は「地図」。<b class=&quot;kb&quot;>ラベルで決めず、中身を個別に・相談して</b>。危険な薬も安全な薬もある、が結論🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>これは薬剤師のキリ向けの解説で、薬名は代表例です。分類や評価は最新情報で更新され、個々の判断は時期・量・状況で変わります。<b>一般の方、そして実際の服薬・中止は、必ず主治医・薬剤師・専門窓口に相談してください。</b>
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    分類は<b>A〜X（FDA廃止→記述式）／豪ADEC</b>、日本は<b>添付文書「有益性投与」</b>。<br>
+    ラベルで決めず中身を確認。危険な薬も安全な薬もある。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 分類の枠にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'旧FDA分類で「最も安全」なのは？', o:['A','C','X'], a:0, e:'Aがほぼ安全、Xが禁忌。A→B→C→D→Xの順に危険度が上がる。'},
+      {q:'旧FDAのカテゴリー分類は今どうなった？', o:['今も現役','2015年に廃止→記述式(PLLR)へ','日本だけで使用'], a:1, e:'ラベルだけでは伝わらないため廃止。文章で個別説明する方式に移行した。'},
+      {q:'日本の添付文書「有益性が危険性を上回る場合のみ投与」は？', o:['＝禁忌（使うな）','＝グレー（利益が上回れば使える）','＝完全に安全'], a:1, e:'「有益性投与」。禁忌とは別もの。天秤にかけて個別判断、という意味。'},
+      {q:'「カテゴリーC」と書いてあれば、それだけで使う可否を判断できる？', o:['できる','できない（中身は薬ごとに違う）'], a:1, e:'ラベルは入口の目安。実際のリスクは個別データで確認が必要。'},
+      {q:'次のうち「明確に危険（催奇形性）」で知られるのは？', o:['アセトアミノフェン','ワルファリン','ペニシリン'], a:1, e:'ワルファリンは鼻の低形成など。妊娠成立後はヘパリンへ変更する。'},
+      {q:'妊娠中の痛み・熱に、比較的安全で第一選択とされるのは？', o:['アセトアミノフェン','メトトレキサート','イソトレチノイン'], a:0, e:'アセトアミノフェン（カロナール）。後ろ2つは禁忌側の薬。'},
+      {q:'催奇形性が明らかな薬でも（サリドマイド以外）、奇形が出る率は？', o:['必ず100%','高くても約25%','0%'], a:1, e:'曝露＝必ず異常ではない。過度に恐れず正確に評価する前提として重要。'},
+      {q:'迷ったときに頼れる、国の相談窓口は？', o:['妊娠と薬情報センター','消費者センター','110番'], a:0, e:'国立成育医療研究センターの「妊娠と薬情報センター」。最新情報で相談できる。'}
     ];
     let i=0, correct=0, total=0, locked=false;
     function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
