@@ -2968,7 +2968,13 @@
 <p>薬のリスクを、お酒・タバコと比べて相場観を。</p></header>
 <div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">リスクを比べてつかむ</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">⚖️</span><span class="tx"><span class="t">薬・お酒・タバコのリスク比較</span><span class="s">ビジュアル／％で相場感をつかむ</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('ninpu')"><span class="ic">⚖️</span><span class="tx"><span class="t">薬・お酒・タバコのリスク比較</span><span class="s">ビジュアル／％で相場感をつかむ</span></span><span class="badge done">できた</span></button>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--rose)">薬の危険度をもっと詳しく</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">📊</span><span class="tx"><span class="t">薬の危険度ランク（カテゴリー分類）</span><span class="s">豪基準・旧FDA・添付文書＋具体例</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">とったほうがいいもの</span></div><div class="cards">
+<div class="lcard soon"><span class="ic">🥦</span><span class="tx"><span class="t">妊娠中にとりたい栄養・サプリ</span><span class="s">葉酸など、摂るべき栄養素の話</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="home-foot">🦎 霧人影／妊婦のあれこれ<br>項目はこれから増減します</div>
 </div></div>
@@ -3984,6 +3990,395 @@
     }
     next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
     show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-ninpu" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('preg')">‹ 妊婦のあれこれ に戻る</button></div><iframe class="theme-frame" title="妊娠とリスク（タバコ・お酒・薬）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>妊娠とリスク 〜タバコ・お酒・薬を比べる〜 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.7rem,6.6vw,2.3rem); line-height:1.22; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.35rem,5.4vw,1.7rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* disclaimer */
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* risk meter */
+  .rmeter{ display:grid; gap:12px; margin:18px 0; }
+  .rrow{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px 15px; box-shadow:var(--shadow); }
+  .rrow .rhead{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .rrow .remo{ font-size:1.6rem; } .rrow .rname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; }
+  .rrow .rtag{ margin-left:auto; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:4px 11px; border-radius:999px; }
+  .rbar{ height:18px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); }
+  .rfill{ height:100%; border-radius:999px; }
+  .rrow .rdesc{ font-size:.86rem; color:var(--ink-soft); margin-top:8px; }
+  .rrow .rdesc b{ color:var(--ink); }
+
+  /* baseline visual */
+  .dots100{ display:flex; flex-wrap:wrap; gap:3px; max-width:280px; margin:10px auto; }
+  .dots100 i{ width:14px; height:14px; border-radius:50%; background:var(--grid-empty); display:block; }
+  .dots100 i.on{ background:var(--persimmon); }
+  .dotcap{ text-align:center; font-size:.82rem; color:var(--ink-soft); }
+
+  /* timeline */
+  .tl{ display:grid; gap:9px; margin:16px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:74px; text-align:center; }
+  .tlcard .tc{ font-size:.9rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .ccard{ border-radius:16px; padding:15px 14px; border:1px solid var(--line); background:var(--card); box-shadow:var(--shadow); }
+  .ccard .ct{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; margin-bottom:4px; }
+  .ccard .cs{ font-size:.85rem; color:var(--ink-soft); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+  .nextbox{ text-align:center; background:linear-gradient(180deg,#F3ECF5,#EAD9F0); border:1px solid #DEC9E6; border-radius:18px; padding:18px 16px; margin:20px 0; }
+  .nextbox .nt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--plum-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① リスクの考え方</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 3つを比べる</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 時期と注意</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>妊婦のあれこれ ・ とことん版</span>
+    <h1>タバコ・お酒・薬、<br><span class=&quot;hl&quot;>リスク</span>はどう違う？</h1>
+    <p class=&quot;lead&quot;>「ぜんぶ危険」でも「ぜんぶ平気」でもない。<br>まず“リスクの見方”から、ていねいに。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリに向けた、詳しめの解説です。一般的な目安をやさしく解きほぐすことを目的にしています。<b>実際の妊娠中の判断は、必ず主治医・薬剤師に個別に相談してください。</b>数値や程度は文献・条件で幅があり、ここでは「相場観をつかむための参考」として扱います。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「妊娠中、これは大丈夫？」を冷静に見る回</h2>
+    <p class=&quot;lead-line&quot;>妊娠中、「タバコは? お酒は? この薬は?」と不安になります。でも本当は、<b class=&quot;kb&quot;>それぞれ“リスクの種類も大きさも”まったく違います</b>。このページは、その違いを<b class=&quot;kb&quot;>同じ土俵で比べて、冷静に見られるようにする</b>回です。</p>
+    <p>結論を先に言うと——<b class=&quot;kr&quot;>タバコとお酒は「確実に害がある」</b>。一方で<b class=&quot;k&quot;>薬は「物による（多くは限定的だが、一部は明確に危険）」</b>。この差を、理屈ごと解きほぐします。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>大前提</div>
+    <h2>「ゼロか100か」では見ない</h2>
+    <p class=&quot;lead-line&quot;>いちばん大事な考え方。リスクは<b class=&quot;kb&quot;>「ある／ない」の2択ではなく、“確率と程度”</b>で見ます。「これを使ったら必ず異常が出る」わけでも「使えば絶対安全」でもない。<b class=&quot;k&quot;>どれくらいの確率で、どれくらいのことが起きうるか</b>——この目で見ます。</p>
+    <div class=&quot;big-point blue&quot;>リスク ＝ <b class=&quot;kb&quot;>確率 × 程度</b>。「危険／安全」の白黒ではなく、<b>どのくらい</b>で見る。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>もう一つの大前提</div>
+    <h2>「もともとのリスク」がある（ベースライン）</h2>
+    <p class=&quot;lead-line&quot;>これは特に大事。<b class=&quot;kb&quot;>何もしなくても、赤ちゃんに先天的な異常が起きる確率は、もともと数％あります</b>（およそ3〜5％と言われます）。タバコもお酒も薬も関係なく、です。</p>
+    <div class=&quot;dots100&quot; id=&quot;baseDots&quot;></div>
+    <div class=&quot;dotcap&quot;>●＝もともと一定数いる、という大前提（100人のうちのイメージ）</div>
+    <p>これを知らないと、「薬を飲んだ → 何か起きた → 薬のせいだ」と短絡しがち。でも<b class=&quot;k&quot;>もともとの数％</b>がある以上、<b class=&quot;kb&quot;>「上乗せでどれだけ増えるか」</b>で見ないと、リスクを正しく測れません。タバコ・お酒・薬の“害”とは、この<b class=&quot;kb&quot;>ベースラインへの上乗せ</b>のことです。</p>
+    <div class=&quot;big-point&quot;>先天異常はもともと数％ある（ベースライン）。害は<b class=&quot;kb&quot;>「上乗せでどれだけ増えるか」</b>で見る。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>なぜ薬だけ「物による」？</div>
+    <h2>届き方・量・タイミングで変わる</h2>
+    <p class=&quot;lead-line&quot;>タバコ・お酒が「確実に害」なのに、薬が「物による」のはなぜか。ざっくり言うと、<b class=&quot;kb&quot;>成分が胎盤を通って赤ちゃんに届くか、どれだけ届くか、いつ届くか</b>が、物によって大きく違うからです。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard&quot; style=&quot;background:#FDECEE;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--rose-deep)&quot;>タバコ・お酒</div><div class=&quot;cs&quot;>成分（や影響）が<b>ほぼ確実に胎児側へ及ぶ</b>。安全な量がはっきりせず、害の向きが一定。</div></div>
+      <div class=&quot;ccard&quot; style=&quot;background:#E9F6ED;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--mint-deep)&quot;>薬</div><div class=&quot;cs&quot;>胎盤を<b>通りやすい物・通りにくい物</b>がある。多くは影響が限定的、でも<b>一部は明確に危険</b>。だから「物による」。</div></div>
+    </div>
+    <p>だから「薬」とひとくくりにできず、<b class=&quot;kb&quot;>一つ一つで危険度がまったく違う</b>。その危険度をランク分けする仕組み（カテゴリー分類）もありますが、それは<b class=&quot;kp&quot;>別ページ</b>でじっくりやります。このページでは「<b class=&quot;k&quot;>薬は物によってピンキリ</b>」とだけ押さえればOKです。</p>
+    <div class=&quot;big-point mint&quot;><b class=&quot;kg&quot;>薬は胎盤の通りやすさ・量・時期で変わる</b>から「物による」。お酒・タバコは<b class=&quot;kr&quot;>ほぼ確実に及ぶ</b>から「確実に害」。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>「確率と程度」「ベースライン」「物による」。<br>この目で、3つを並べて比べよう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 3つを比べる ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>タバコ・お酒・薬 ・ 並べて比べる</span>
+    <h1>3つを、<span class=&quot;hl&quot;>同じ土俵</span>で。</h1>
+    <p class=&quot;lead&quot;>確実に害なのはどれ？<br>はっきりさせます。</p>
+  </header>
+
+  <div class=&quot;big-point rose&quot;>先に結論：<b class=&quot;kr&quot;>タバコ＝確実に害／お酒＝確実に害（安全量なし）</b>、<b class=&quot;kg&quot;>薬＝物による</b>。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>ひと目で</div>
+    <h2>リスクの“確からしさ”くらべ</h2>
+    <p class=&quot;soft&quot; style=&quot;margin-top:-4px;&quot;>バーは「害がどれだけ確実か」のイメージ（程度ではなく“確実さ”の目安）。</p>
+    <div class=&quot;rmeter&quot;>
+      <div class=&quot;rrow&quot;>
+        <div class=&quot;rhead&quot;><span class=&quot;remo&quot;>🚬</span><span class=&quot;rname&quot;>タバコ</span><span class=&quot;rtag&quot; style=&quot;background:var(--rose-deep)&quot;>確実に害</span></div>
+        <div class=&quot;rbar&quot;><div class=&quot;rfill&quot; style=&quot;width:92%; background:linear-gradient(90deg,#E2787F,#C25962)&quot;></div></div>
+        <div class=&quot;rdesc&quot;>血流が悪くなり<b>酸素・栄養が届きにくく</b>なる。<b>低出生体重・早産・流産</b>などのリスクが明確に上がる。受動喫煙（周りの煙）でも影響。</div>
+      </div>
+      <div class=&quot;rrow&quot;>
+        <div class=&quot;rhead&quot;><span class=&quot;remo&quot;>🍶</span><span class=&quot;rname&quot;>お酒</span><span class=&quot;rtag&quot; style=&quot;background:var(--rose-deep)&quot;>確実に害</span></div>
+        <div class=&quot;rbar&quot;><div class=&quot;rfill&quot; style=&quot;width:96%; background:linear-gradient(90deg,#E2787F,#C25962)&quot;></div></div>
+        <div class=&quot;rdesc&quot;>アルコールが胎児に直接およぶ。<b>胎児性アルコール症候群（FAS）</b>＝発達や顔つき・脳への影響。<b>「ここまでなら安全」という量が分かっていない</b>のが怖いところ。</div>
+      </div>
+      <div class=&quot;rrow&quot;>
+        <div class=&quot;rhead&quot;><span class=&quot;remo&quot;>💊</span><span class=&quot;rname&quot;>薬</span><span class=&quot;rtag&quot; style=&quot;background:var(--mint-deep)&quot;>物による</span></div>
+        <div class=&quot;rbar&quot;><div class=&quot;rfill&quot; style=&quot;width:40%; background:linear-gradient(90deg,#6FB98A,#3E9A63)&quot;></div></div>
+        <div class=&quot;rdesc&quot;><b>大半は影響が限定的</b>で、必要なら使える薬も多い。ただし<b>一部は明確に催奇形性</b>があり危険。だから「薬」とまとめず<b>一つ一つで判断</b>。バーが中くらいなのは“ピンキリ”という意味。</div>
+      </div>
+    </div>
+    <div class=&quot;note&quot;>※ バーは厳密な数値ではなく、「害の確実さ」をつかむためのイメージです。実際の程度は物・量・時期で大きく変わります。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>タバコ</div>
+    <h2>タバコ：血流をしぼる</h2>
+    <p class=&quot;lead-line&quot;>タバコの害の中心は、<b class=&quot;kr&quot;>血管が縮んで血流が悪くなる</b>こと。すると胎盤を通る<b class=&quot;kb&quot;>酸素や栄養が届きにくく</b>なります。一酸化炭素も酸素の運びを邪魔します。</p>
+    <p>結果として、<b class=&quot;kr&quot;>低出生体重・早産・流産・常位胎盤早期剝離</b>などのリスクが上がります。<b class=&quot;k&quot;>受動喫煙</b>（本人が吸わなくても周りの煙）でも影響が出るのがポイント。パートナーの禁煙も大事、という話につながります。</p>
+    <div class=&quot;big-point rose&quot;>タバコ＝<b class=&quot;kr&quot;>血流をしぼって酸素・栄養を減らす</b>。低出生体重・早産など。受動喫煙でも害。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>お酒</div>
+    <h2>お酒：安全な量が分からない</h2>
+    <p class=&quot;lead-line&quot;>アルコールは小さな分子で、<b class=&quot;kr&quot;>胎盤を通って赤ちゃんに直接およびます</b>。赤ちゃんはアルコールを分解する力が未熟なので、影響を受けやすい。</p>
+    <p>代表的なのが<b class=&quot;kr&quot;>胎児性アルコール症候群（FAS）</b>。発達の遅れ、特徴的な顔つき、脳・神経への影響などが知られています。そして最大の問題は、<b class=&quot;kr&quot;>「これ以下なら絶対安全」という閾値（しきい値）が確立していない</b>こと。だから一般には<b class=&quot;k&quot;>「妊娠中はゼロが基本」</b>と案内されます。</p>
+    <div class=&quot;big-point rose&quot;>お酒＝<b class=&quot;kr&quot;>胎児に直接およぶ・安全量が不明</b>。FASなど。だから“控えめ”ではなく“ゼロ”が基本と言われる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>薬</div>
+    <h2>薬：ひとくくりにできない</h2>
+    <p class=&quot;lead-line&quot;>薬がお酒・タバコと決定的に違うのは、<b class=&quot;kg&quot;>「薬」という一つのものではない</b>こと。何千種類もあって、<b class=&quot;kb&quot;>胎盤の通りやすさ・必要な量・使う時期</b>がそれぞれ違います。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard&quot; style=&quot;background:#E9F6ED;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--mint-deep)&quot;>多くの薬</div><div class=&quot;cs&quot;>影響は限定的で、<b>必要なら妊娠中でも使える</b>ものが多い。むしろ<b>使わずに持病を悪化させるほうが危険</b>な場合も。</div></div>
+      <div class=&quot;ccard&quot; style=&quot;background:#FDECEE;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--rose-deep)&quot;>一部の薬</div><div class=&quot;cs&quot;><b>明確に催奇形性</b>があり、妊娠中は避けるべきものがある。これは“確実に危険”の側。</div></div>
+    </div>
+    <p>だから薬は、<b class=&quot;kr&quot;>「危ないから一律ダメ」</b>でも<b class=&quot;kg&quot;>「薬だから平気」</b>でもなく、<b class=&quot;kb&quot;>一つ一つ、危険度を見て判断</b>します。その危険度を分類する仕組み（オーストラリア基準・旧FDAカテゴリー・添付文書の妊婦欄など）と、具体的な薬の例は——<b class=&quot;kp&quot;>次の「薬の危険度ランク」ページ</b>でとことんやります。</p>
+    <div class=&quot;big-point mint&quot;>薬は<b class=&quot;kg&quot;>物によってピンキリ</b>。「一律ダメ」も「薬だから平気」も誤り。<b class=&quot;kb&quot;>一つ一つ危険度で判断</b>。</div>
+    <div class=&quot;nextbox&quot;>
+      <div class=&quot;nt&quot;>📊 薬の「危険度ランク（カテゴリー分類）」＆具体的な薬の例は、専用ページで徹底解説します（準備中）。</div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>いちばん伝えたいこと</div>
+    <h2>心配の“向き”が、逆になりがち</h2>
+    <p class=&quot;lead-line&quot;>現場でとても多いのが——<b class=&quot;k&quot;>薬の副作用にはものすごく敏感なのに、お酒やタバコにはわりと無頓着</b>、という方。「この薬、飲んで大丈夫?」と何度も確認するのに、「お酒はちょっとくらい」「タバコは減らしてるから」と軽く考えてしまう。</p>
+    <p>でも、ここまで見てきたとおり、<b class=&quot;kr&quot;>確実さで言えば、リスクが高いのはお酒・タバコのほう</b>。薬の多くは影響が限定的で必要なら使えるのに対し、<b class=&quot;kr&quot;>お酒は安全な量が分かっておらず、タバコは血流をしぼって確実に酸素・栄養を減らす</b>。心配する順番が、実は逆になっていることが多いのです。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard&quot; style=&quot;background:#E9F6ED;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--mint-deep)&quot;>薬</div><div class=&quot;cs&quot;>気にする人は<b>とても多い</b>。実際は<b>多くが限定的</b>で、必要なら使える。もちろん確認は大事。</div></div>
+      <div class=&quot;ccard&quot; style=&quot;background:#FDECEE;&quot;><div class=&quot;ct&quot; style=&quot;color:var(--rose-deep)&quot;>お酒・タバコ</div><div class=&quot;cs&quot;>つい<b>軽く見られがち</b>。でも<b>確実に害がある</b>側。本当はこちらをこそ避けたい。</div></div>
+    </div>
+    <p><b class=&quot;kb&quot;>誤解しないでほしいのは</b>——「薬は気にしなくていい」という意味ではありません。<b class=&quot;k&quot;>薬も十分に注意するに越したことはない</b>。そのうえで、<b class=&quot;kr&quot;>お酒・タバコは“それ以上に”はっきりリスクが高い</b>、という相場観を持ってほしい、ということです。両方大事、でも<b class=&quot;kr&quot;>優先して断つべきはお酒・タバコ</b>。</p>
+    <div class=&quot;big-point rose&quot;>薬を気にするのは大事。でも<b class=&quot;kr&quot;>お酒・タバコのほうが確実にリスクが高い</b>。心配の“向き”を、正しい順番に。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>3つの違いはバッチリ。<br>最後に「時期」と、見落としがちな注意。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 時期と注意 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>時期 ・ 見落としがちな注意</span>
+    <h1>「<span class=&quot;hl&quot;>いつ</span>」で、<br>影響は変わる。</h1>
+    <p class=&quot;lead&quot;>同じものでも、妊娠の時期で<br>意味が大きく変わります。</p>
+  </header>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>時期</div>
+    <h2>妊娠の時期で「効きどころ」が違う</h2>
+    <p class=&quot;lead-line&quot;>特に薬で大事なのが<b class=&quot;kb&quot;>時期</b>。赤ちゃんの体ができていく途中なので、<b class=&quot;kb&quot;>どの時期に何が影響するか</b>が変わります。</p>
+
+    <h3>まず、妊娠ぜんたいの長さ</h3>
+    <p>妊娠は、<b class=&quot;kb&quot;>最終月経の開始日から数えて、だいたい全部で40週（約10か月・280日）</b>。出産予定日は40週0日です。この40週を、大きく3つに分けます（三半期＝トリメスター）。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8E7AA0&quot;>初期<br>〜15週</span><div class=&quot;tc&quot;><b>妊娠初期（第1三半期）。</b>赤ちゃんの体の基礎ができる時期。この中に、後で出てくる<b>器官形成期</b>が含まれる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#5C9BBC&quot;>中期<br>16〜27週</span><div class=&quot;tc&quot;><b>妊娠中期（第2三半期）。</b>器官はできあがり、体が育っていく時期。比較的安定。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#DE7E3A&quot;>後期<br>28〜40週</span><div class=&quot;tc&quot;><b>妊娠後期（第3三半期）。</b>仕上げと成長の時期。出産（40週前後）へ。</div></div>
+    </div>
+    <p class=&quot;soft&quot; style=&quot;font-size:.86rem;&quot;>※ 「○週」は最終月経開始日が起点。実際の受精は2週ごろ、という数え方です。</p>
+
+    <h3>その40週の中で、薬の「効きどころ」を見る</h3>
+    <p>この全体像をふまえて、薬の影響という観点では、さらに細かく<b class=&quot;kb&quot;>下の3区分</b>で見ると分かりやすいです。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8E7AA0&quot;>〜妊娠3週末<br>(超初期)</span><div class=&quot;tc&quot;><b>「ある／なし（all or none）」の時期。</b>影響があれば流産に至り、影響がなければそのまま育つ、と言われる時期。妊娠に気づく前のことが多い。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#C25962&quot;>妊娠4〜15週<br>(器官形成期)</span><div class=&quot;tc&quot;><b>いちばん敏感な時期。</b>心臓・手足など主要な器官が作られる。<b>催奇形性がいちばん問題になる</b>のがここ。特に4〜7週頃が要注意。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#DE7E3A&quot;>妊娠16週〜<br>(中期・後期)</span><div class=&quot;tc&quot;><b>器官はできあがり、その後は成長・機能の時期。</b>催奇形性の心配は減るが、薬によっては<b>胎児の機能や分娩前後に影響</b>するものもある（油断はしない）。</div></div>
+    </div>
+    <p>だから「妊娠中の薬」と一括りにできず、<b class=&quot;kb&quot;>いつ・何を</b>がセットで効いてきます。お酒・タバコは<b class=&quot;kr&quot;>どの時期でも避けるべき</b>ですが、薬は時期によって判断が変わることがある、という点が違います。</p>
+    <div class=&quot;big-point&quot;>特に<b class=&quot;kr&quot;>妊娠4〜15週（器官形成期）</b>は薬の催奇形性が問題になりやすい。<b class=&quot;kb&quot;>「いつ・何を」</b>で見る。</div>
+    <div class=&quot;note&quot;>※ 週数の区切りや表現は文献により幅があります。考え方の枠としてつかんでください。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>見落とし①</div>
+    <h2>「自己判断でやめる」のもリスク</h2>
+    <p class=&quot;lead-line&quot;>ここ、薬剤師として大事な視点🦎 「妊娠が分かったから、飲んでいた薬を自分でやめた」——これが<b class=&quot;kr&quot;>かえって危険</b>なことが、よくあります。持病の薬を急にやめると、<b class=&quot;kr&quot;>発作や症状の悪化で、母体も胎児も危険</b>にさらされるからです。</p>
+    <p>大事なのは、<b class=&quot;kb&quot;>多くの場合「薬をやめる」のではなく「妊娠に適した薬に調整して、治療は続ける」</b>のが正解だということ。代表的な持病で、「やめるとなぜ危険か」を見てみましょう。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#7E5A8C&quot;>てんかん</span><div class=&quot;tc&quot;><b>急にやめると強い発作（けいれん）が起きやすい。</b>発作そのものが切迫流産・早産の原因になりうる。近年は妊娠可能年齢では、胎児への影響が小さい薬（レベチラセタム＝イーケプラ、ラモトリギン＝ラミクタール等）が選ばれることが多い。<b>やめずに、より安全な薬で続ける</b>のが原則。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#C25962&quot;>精神疾患<br>(うつ等)</span><div class=&quot;tc&quot;><b>中断すると再発しやすい。</b>抗うつ薬を中止した群は68％が再発、続けた群は26％という報告も。母体のセルフケア低下や自傷、胎児の発育にも影響しうる。SSRIなど多くは深刻な奇形を起こさないとされ、<b>続けたほうがよい場合が多い</b>（日本の添付文書は慎重でも、海外では妊娠中に使える薬が多い）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#367C9C&quot;>喘息</span><div class=&quot;tc&quot;><b>発作で母体が低酸素になると、胎児にも酸素が届かない。</b>発育不全・早産・低出生体重、最悪は流産・脳への影響も。「<b>薬の影響より、低酸素のほうがよほど危険</b>」と言われ、吸入ステロイドは妊娠中も継続が原則。国際ガイドラインも「治療の利益が薬のリスクを上回る」と明記。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#3E9A63&quot;>甲状腺</span><div class=&quot;tc&quot;><b>甲状腺ホルモンは胎児の脳・体の発育に必須。</b>機能低下を放置すると流産・早産のリスクが上がる。レボチロキシン（チラーヂンS）で補い、妊娠中はむしろ必要量が増えることも。バセドウ（亢進症）も抗甲状腺薬で量を細かく調整。<b>放置・中断ではなく、検査しながら治療</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#DE7E3A&quot;>高血圧</span><div class=&quot;tc&quot;><b>コントロール不良だと妊娠高血圧腎症など、母体・胎児に重大なリスク。</b>ただし一部の降圧薬（ACE阻害薬・ARB）は妊娠中は避け、妊娠中でも使える薬に<b>変更</b>する。つまり「やめる」のではなく<b>「適した薬に替えて続ける」</b>のが典型。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>持病の薬は<b class=&quot;kr&quot;>自己判断で中断するのが危険</b>。多くは「やめる」ではなく<b class=&quot;kb&quot;>「妊娠に適した薬に替えて続ける」</b>。勝手にやめず、必ず相談。</div>
+    <div class=&quot;note&quot;>※ 薬の名前は代表例で、選択は個々の状態によります。共通するのは「使うリスク」と「やめる（治療しない）リスク」を比べて決める、という考え方です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>見落とし②</div>
+    <h2>「不安のあまり」の落とし穴</h2>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意</span><p style=&quot;margin:0&quot;><b>過剰な自責・不安も避けたい。</b><br><span class=&quot;soft&quot;>「気づかず薬を飲んでいた」「一杯だけ飲んでしまった」——ベースラインのリスクがある以上、過度に自分を責める必要はない。まず相談して、正確な情報で判断する。不安そのものも母体によくない。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意</span><p style=&quot;margin:0&quot;><b>市販薬・サプリ・健康茶・ハーブも「薬」と同じ目で。</b><br><span class=&quot;soft&quot;>「市販だから安全」とは限らない。成分によっては避けたいものもある。栄養補助や漢方なども含め、自己判断せず確認を。</span></p></div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>相場観として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kr&quot;>タバコ・お酒は、確実に害（特にお酒は安全量が不明＝ゼロが基本）。</b>一方<b class=&quot;kg&quot;>薬は物によってピンキリで、必要なら使えるものも多く、自己中断のほうが危険なこともある</b>。そして<b class=&quot;kb&quot;>時期（特に器官形成期）</b>で薬の意味は変わる。だから——<b class=&quot;k&quot;>タバコ・お酒は避ける、薬は自己判断せず相談</b>。これが軸です。</p>
+    <div class=&quot;big-point&quot;>タバコ・お酒は<b class=&quot;kr&quot;>避ける</b>。薬は<b class=&quot;kb&quot;>一律で怖がらず・甘く見ず、相談して個別に</b>。時期も見る。</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>これは薬剤師のキリ向けの解説です。<b>一般の方、そして実際の妊娠中の判断は、必ず主治医・薬剤師に個別に相談してください。</b>ここでの数値・程度・時期は参考であり、文献や状況で変わります。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    <b>タバコ・お酒＝確実に害</b>、<b>薬＝物による</b>。<br>
+    リスクは「確率と程度」で、ベースラインへの上乗せで、時期も込みで見る。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① リスクの考え方にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* baseline dots: light up ~4 of 100 */
+  (function(){
+    const wrap=document.getElementById('baseDots'); if(!wrap) return;
+    for(let i=0;i<100;i++){ const d=document.createElement('i'); if(i<4) d.className='on'; wrap.appendChild(d); }
   })();
 </script>
 </body>
