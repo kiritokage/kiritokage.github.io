@@ -2900,7 +2900,7 @@
 <p>カタログを見て、自分で選べるように。</p></header>
 <div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🪜</span><span class="tx"><span class="t">B・KB・MB・GB・TB の階段</span><span class="s">1000ずつ上がる（単位の階段と同じ）</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('databyte')"><span class="ic">🪜</span><span class="tx"><span class="t">B・KB・MB・GB・TB の階段</span><span class="s">「ギガ」って何？容量と単位</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">ストレージ（SSD）の速さ</span></div><div class="cards">
 <button class="lcard" onclick="openThemeFrame('ssd')"><span class="ic">⚡</span><span class="tx"><span class="t">SSDの速さと規格（PCIe Gen）</span><span class="s">読込・書込・Gen3/4/5を読む</span></span><span class="badge done">できた</span></button>
@@ -3501,6 +3501,468 @@
       {q:'Gen5のSSDを、Gen4までのパソコンに付けると？', o:['壊れる','Gen4の速さで動く','Gen5のまま動く'], a:1, e:'下位互換。壊れず、パソコン側の上限（Gen4）の速さで動く。'},
       {q:'ふつうにネットや事務で使う。体感がいちばん変わる乗り換えは？', o:['HDD → SSD','Gen3 → Gen4','Gen4 → Gen5'], a:0, e:'普段使いではGen間の体感差は小さい。激変するのはHDD→SSD。'},
       {q:'「NVMe」と書いてあったら、ざっくり？', o:['速いタイプのSSD','遅いタイプ','容量が大きい印'], a:0, e:'NVMe＝速い通り道。まず速いSSDだと思ってOK。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-databyte" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('spec')">‹ PC・機械のスペック に戻る</button></div><iframe class="theme-frame" title="データの大きさ（B・KB・MB・GB・TB）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>データの大きさ（B・KB・MB・GB・TB） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.8rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 5px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.75rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* ladder (階段) */
+  .ladder{ display:grid; gap:8px; margin:18px 0; }
+  .rung{ display:grid; grid-template-columns:62px 1fr; gap:11px; align-items:center; }
+  .rung .u{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; text-align:center; padding:9px 4px; border-radius:12px; color:#fff; }
+  .rung .d{ background:var(--card); border:1px solid var(--line); border-radius:13px; padding:9px 13px; box-shadow:var(--shadow); font-size:.88rem; }
+  .rung .d b{ color:var(--ink); }
+  .rung .d .ex{ color:var(--ink-soft); font-size:.8rem; }
+  .u.b{ background:linear-gradient(135deg,#B0A0BC,#8E7AA0); }
+  .u.kb{ background:linear-gradient(135deg,#7FB9D6,#5C9BBC); }
+  .u.mb{ background:linear-gradient(135deg,#6FB98A,#4E9E6E); }
+  .u.gb{ background:linear-gradient(135deg,#F0A85C,#DE7E3A); }
+  .u.tb{ background:linear-gradient(135deg,#E2787F,#C25962); }
+  .x1000{ text-align:center; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.78rem; margin:-2px 0 -2px; }
+
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .slabels{ display:flex; justify-content:space-between; font-size:.74rem; color:var(--ink-soft); font-weight:700; margin-top:8px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:12px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); margin-top:2px; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.4); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:26px; height:26px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:54px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.85rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .nowline{ text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft); }
+  .nowline b{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.15rem; }
+  .bigout{ text-align:center; margin:12px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.7rem; color:var(--persimmon-deep); line-height:1.3; }
+  .bigout .v small{ font-size:.8rem; color:var(--ink-soft); }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+
+  /* capacity fill bar */
+  .capwrap{ margin-top:10px; }
+  .capbar{ height:30px; background:var(--grid-empty); border-radius:10px; overflow:hidden; border:1px solid var(--line); display:flex; }
+  .capseg{ height:100%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:.72rem; white-space:nowrap; overflow:hidden; }
+
+  /* example chips */
+  .exlist{ display:grid; gap:9px; margin:16px 0; }
+  .exitem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:11px 14px; box-shadow:var(--shadow); }
+  .exitem .emo{ font-size:1.4rem; flex:none; } .exitem .et{ flex:1; }
+  .exitem .et .eh{ font-weight:700; } .exitem .et .es{ font-size:.8rem; color:var(--ink-soft); }
+  .exitem .sz{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.84rem; color:#fff; padding:4px 11px; border-radius:999px; flex:none; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 考え方</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 実生活で読む</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>PC・機械のスペック ・ とことん版</span>
+    <h1>「ギガ」って、<br>つまり<span class=&quot;hl&quot;>何</span>なの？</h1>
+    <p class=&quot;lead&quot;>バイト・キロ・メガ・ギガ・テラ。<br>データの大きさを、ゼロからやさしく。</p>
+  </header>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>このページは「データの大きさ」の話</h2>
+    <p class=&quot;lead-line&quot;>写真1枚、動画1本、アプリ1個。それぞれに<b class=&quot;kb&quot;>大きさ（重さ）</b>があります。その大きさをはかる単位が <b class=&quot;k&quot;>バイト</b>。このページは、<b class=&quot;kb&quot;>バイト・KB・MB・GB・TB（ギガとか）が何なのか</b>を、ゼロから読み解く回です。</p>
+
+    <h3>「バイト」ってどう読む？ 何の単位？</h3>
+    <p><b class=&quot;k&quot;>B</b> は「<b class=&quot;k&quot;>バイト</b>」と読みます。データの大きさをはかる、いちばん基本の単位です。長さなら「メートル」、重さなら「グラム」、それの<b class=&quot;kb&quot;>データ版</b>がバイト、と思ってください。</p>
+    <p>そして、よく聞く「<b class=&quot;k&quot;>ギガ</b>」は、この<b>バイトの仲間（大きいバイト）</b>のこと。「ギガが足りない」は、ざっくり「<b class=&quot;kb&quot;>データの大きさが容量をオーバーしそう</b>」という意味なんです。</p>
+    <div class=&quot;big-point blue&quot;><b class=&quot;kb&quot;>バイト（B）</b>＝ データの大きさをはかる単位。長さのメートル、重さのグラムの「データ版」。</div>
+
+    <p class=&quot;soft&quot; style=&quot;margin-top:18px;&quot;>この単位、たくさんあって混乱しますよね。でも実は、<b>1000倍ずつ上がっていく「階段」</b>になっているだけなんです。次で見てみましょう。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>階段</div>
+    <h2>1000倍ずつ上がる「階段」</h2>
+    <p class=&quot;lead-line&quot;>単位は、下から <b class=&quot;k&quot;>B → KB → MB → GB → TB</b>。<b class=&quot;k&quot;>1段上がるごとに、ざっくり1000倍</b>。これだけです。</p>
+    <div class=&quot;ladder&quot;>
+      <div class=&quot;rung&quot;><div class=&quot;u tb&quot;>TB</div><div class=&quot;d&quot;><b>テラバイト</b>　<span class=&quot;ex&quot;>＝ 約1000GB。大きなパソコンの倉庫ぜんぶ</span></div></div>
+      <div class=&quot;x1000&quot;>▲ ×1000</div>
+      <div class=&quot;rung&quot;><div class=&quot;u gb&quot;>GB</div><div class=&quot;d&quot;><b>ギガバイト</b>　<span class=&quot;ex&quot;>＝ 約1000MB。「ギガ」はこれ。動画・アプリ</span></div></div>
+      <div class=&quot;x1000&quot;>▲ ×1000</div>
+      <div class=&quot;rung&quot;><div class=&quot;u mb&quot;>MB</div><div class=&quot;d&quot;><b>メガバイト</b>　<span class=&quot;ex&quot;>＝ 約1000KB。写真1枚くらい</span></div></div>
+      <div class=&quot;x1000&quot;>▲ ×1000</div>
+      <div class=&quot;rung&quot;><div class=&quot;u kb&quot;>KB</div><div class=&quot;d&quot;><b>キロバイト</b>　<span class=&quot;ex&quot;>＝ 約1000B。短い文章くらい</span></div></div>
+      <div class=&quot;x1000&quot;>▲ ×1000</div>
+      <div class=&quot;rung&quot;><div class=&quot;u b&quot;>B</div><div class=&quot;d&quot;><b>バイト</b>　<span class=&quot;ex&quot;>＝ いちばん下。文字1個ぶんくらい</span></div></div>
+    </div>
+    <p>薬の単位「μg → mg → g」が1000倍ずつ上がるのと、<b class=&quot;k&quot;>まったく同じ仕組み</b>。名前が違うだけで、やってることは「階段をのぼると1000倍」です。</p>
+    <div class=&quot;big-point&quot;><b class=&quot;k&quot;>B → KB → MB → GB → TB</b>。1段で<b class=&quot;kb&quot;>約1000倍</b>。これが全部の土台。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>変換</div>
+    <h2>階段を、のぼり・おりしてみる</h2>
+    <p class=&quot;lead-line&quot;>数字を入れて、ひとつ上やひとつ下が<b class=&quot;k&quot;>いくつになるか</b>を見てみましょう。上にのぼると数字は小さく、下におりると大きくなります（同じ大きさの言いかえ）。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;w-lab&quot;>数字</div>
+      <div class=&quot;slabels&quot;><span>1</span><span>1000</span></div>
+      <input type=&quot;range&quot; id=&quot;cvNum&quot; min=&quot;1&quot; max=&quot;1000&quot; value=&quot;500&quot; step=&quot;1&quot;>
+      <div class=&quot;nowline&quot;>いまの数 <b style=&quot;color:var(--persimmon-deep)&quot; id=&quot;cvNumNow&quot;>500</b></div>
+      <div class=&quot;w-lab&quot; style=&quot;margin-top:14px;&quot;>単位をえらぶ</div>
+      <div class=&quot;seg2&quot; id=&quot;cvUnit&quot;>
+        <button data-i=&quot;0&quot;>B</button>
+        <button data-i=&quot;1&quot;>KB</button>
+        <button class=&quot;on&quot; data-i=&quot;2&quot;>MB</button>
+        <button data-i=&quot;3&quot;>GB</button>
+        <button data-i=&quot;4&quot;>TB</button>
+      </div>
+      <div class=&quot;bigout&quot;><div class=&quot;v&quot; id=&quot;cvOut&quot;>500 MB</div></div>
+      <div class=&quot;w-steps&quot; id=&quot;cvSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 正確には1段＝1024倍（コンピュータは2進数のため）ですが、ふだんは「約1000倍」で考えればじゅうぶんです。次のページでこの話にも軽く触れます。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>大きさの感覚</div>
+    <h2>身近なものは、どのくらい？</h2>
+    <p class=&quot;lead-line&quot;>数字だけだとピンと来ないので、身近なデータの「だいたいの大きさ」を並べます（目安です）。</p>
+    <div class=&quot;exlist&quot;>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📝</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>短いメール・文章</div><div class=&quot;es&quot;>文字がならんだだけのデータ</div></div><span class=&quot;sz&quot; style=&quot;background:#8E7AA0&quot;>数KB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📷</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>写真 1枚</div><div class=&quot;es&quot;>スマホで撮った普通の写真</div></div><span class=&quot;sz&quot; style=&quot;background:#5C9BBC&quot;>数MB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🎵</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>曲 1曲</div><div class=&quot;es&quot;>音楽ファイル</div></div><span class=&quot;sz&quot; style=&quot;background:#5C9BBC&quot;>数MB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🎬</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>動画・映画 1本</div><div class=&quot;es&quot;>長さ・画質で大きく変わる</div></div><span class=&quot;sz&quot; style=&quot;background:#DE7E3A&quot;>数百MB〜数GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🎮</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>大きなゲーム・アプリ</div><div class=&quot;es&quot;>最近のものは特に大きい</div></div><span class=&quot;sz&quot; style=&quot;background:#DE7E3A&quot;>数GB〜数十GB</span></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>ざっくり：<b class=&quot;kg&quot;>文章＝KB、写真・曲＝MB、動画・ゲーム＝GB</b>。大きいものほど上の段。</div>
+  </section>
+
+  <!-- pitfalls -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>4</span>つまずき</div>
+    <h2>ここだけ先に</h2>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意①</span><p style=&quot;margin:0&quot;><b>「ビット(b)」と「バイト(B)」は別もの。</b><br><span class=&quot;soft&quot;>大文字Bがバイト（データの大きさ）、小文字bがビット（主に通信速度で使う）。1バイト＝8ビット。次のページで軽く触れます。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意②</span><p style=&quot;margin:0&quot;><b>「ギガ」は単位の“あだ名”。</b><br><span class=&quot;soft&quot;>正しくはGB（ギガバイト）や、通信のGbps。会話の「ギガ」はだいたいデータ量のこと、くらいでOK。</span></p></div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>階段と大きさの感覚はOK。<br>次は、スマホやPCの「128GB」を読もう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 実生活で読む ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>実生活で読む ・ 容量えらび</span>
+    <h1>「128GB」で、<br>何が<span class=&quot;hl&quot;>どれだけ</span>入る？</h1>
+    <p class=&quot;lead&quot;>スマホ・PCの容量を、<br>「足りる/足りない」で読めるように。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kb&quot;>容量（GB・TB）</b>は「倉庫の大きさ」。<b class=&quot;k&quot;>入れるデータの合計</b>がそれを超えなければOK。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>持ちこむ</div>
+    <h2>「128GB」「1TB」って、よく見ますよね</h2>
+    <p class=&quot;lead-line&quot;>スマホやパソコンを買うとき、<b class=&quot;k&quot;>64GB / 128GB / 256GB / 512GB / 1TB</b> みたいな数字が並びます。これは<b class=&quot;kb&quot;>「どれだけ入る倉庫か」＝容量</b>のこと。前のページの「速さ」とは別の話です。</p>
+    <p>大きいほどたくさん入りますが、値段も上がります。だから「<b class=&quot;k&quot;>自分は何を入れるか</b>」で、ちょうどいい大きさを選ぶのがコツ。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>体感する</div>
+    <h2>容量に、何枚・何本入る？</h2>
+    <p class=&quot;lead-line&quot;>容量をえらぶと、<b class=&quot;kb&quot;>写真・曲・動画がだいたい何個入るか</b>の目安が出ます。倉庫の大きさを実感してみてください。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;w-lab&quot; style=&quot;text-align:center;&quot;>倉庫の大きさ（容量）をえらぶ</div>
+      <div class=&quot;seg2&quot; id=&quot;capSeg&quot;>
+        <button data-g=&quot;64&quot;>64GB</button>
+        <button class=&quot;on&quot; data-g=&quot;128&quot;>128GB</button>
+        <button data-g=&quot;256&quot;>256GB</button>
+        <button data-g=&quot;512&quot;>512GB</button>
+        <button data-g=&quot;1024&quot;>1TB</button>
+      </div>
+      <div class=&quot;nowline&quot;>いまの容量 <b style=&quot;color:var(--sky-deep)&quot; id=&quot;capNow&quot;>128</b> GB</div>
+      <div class=&quot;bigout&quot; style=&quot;margin-top:10px;&quot;><div class=&quot;v&quot; id=&quot;capOut&quot;></div></div>
+      <div class=&quot;w-steps&quot; id=&quot;capSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 1枚・1本の大きさは目安（写真4MB／曲8MB／動画1.5GBで計算）。実際は画質や長さで変わります。容量の一部はシステムが使うので、丸ごとは使えない点にも注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>えらび方（スマホ）</div>
+    <h2>スマホの用途別「これくらい」の目安</h2>
+    <div class=&quot;exlist&quot;>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📱</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>電話・LINE・ネット中心</div><div class=&quot;es&quot;>写真もほどほど</div></div><span class=&quot;sz&quot; style=&quot;background:var(--mint)&quot;>128GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📸</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>写真・動画をたくさん撮る</div><div class=&quot;es&quot;>思い出をたくさん残したい</div></div><span class=&quot;sz&quot; style=&quot;background:var(--sky)&quot;>256GB〜</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🎮</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>ゲーム・動画編集・仕事で大きいファイル</div><div class=&quot;es&quot;>大きいデータを置く</div></div><span class=&quot;sz&quot; style=&quot;background:var(--persimmon)&quot;>512GB〜1TB</span></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>迷ったら、写真好きなら<b class=&quot;kgo&quot;>256GB</b>、普通使いなら<b class=&quot;kg&quot;>128GB</b>。足りなければクラウドや外付けで増やす手も。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D: PC -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>えらび方（パソコン）</div>
+    <h2>パソコンを買うときの目安</h2>
+    <p class=&quot;lead-line&quot;>パソコンはスマホよりアプリやファイルが大きくなりがち。今どきは<b class=&quot;k&quot;>最低でも256GB</b>を目安に、用途で足していくのがおすすめです（最近は512GBが標準的になってきています）。</p>
+    <div class=&quot;exlist&quot;>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>💻</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>ネット・事務・動画を見る中心</div><div class=&quot;es&quot;>軽い使い方。写真もそこそこ</div></div><span class=&quot;sz&quot; style=&quot;background:var(--mint)&quot;>256GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🗂️</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>写真・書類・そこそこのアプリを長く使う</div><div class=&quot;es&quot;>いちばん無難なライン</div></div><span class=&quot;sz&quot; style=&quot;background:var(--sky)&quot;>512GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🎬</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>動画編集・ゲーム・大きいファイルを毎日</div><div class=&quot;es&quot;>大容量を本体に置く</div></div><span class=&quot;sz&quot; style=&quot;background:var(--persimmon)&quot;>1TB〜</span></div>
+    </div>
+    <div class=&quot;big-point&quot;>パソコンは<b class=&quot;kg&quot;>最低256GB</b>・<b class=&quot;kb&quot;>無難なら512GB</b>・<b class=&quot;k&quot;>重い作業は1TB〜</b>。スマホより一段大きめが安心。</div>
+    <div class=&quot;note&quot;>※ パソコンはシステム（Windowsなど）だけで数十GB使い、アップデートでも空きが要ります。ギリギリより少し余裕を持たせると、動作が重くなりにくいです。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E: cloud -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>クラウド中心なら</div>
+    <h2>クラウドを使うと、本体は少なめでもいい</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kb&quot;>クラウド</b>とは、<b>ネットの向こうにある倉庫</b>のこと（Googleドライブ・iCloud・OneDriveなど）。写真やファイルを<b class=&quot;kb&quot;>パソコン本体ではなく、ネット上に置く</b>使い方です。本体の倉庫を使わずに済むので、<b class=&quot;k&quot;>本体の容量は少なめでも回ります</b>。</p>
+
+    <h3>クラウド中心のときの容量ライン</h3>
+    <div class=&quot;exlist&quot;>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>⚠️</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>最低ライン</div><div class=&quot;es&quot;>ほぼ全部クラウド。本体は最小限</div></div><span class=&quot;sz&quot; style=&quot;background:var(--rose)&quot;>256GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>👍</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>普通ライン（おすすめ）</div><div class=&quot;es&quot;>クラウド＋手元にもある程度置く</div></div><span class=&quot;sz&quot; style=&quot;background:var(--sky)&quot;>512GB</span></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🛟</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>安全ライン</div><div class=&quot;es&quot;>クラウドが使えない時も困らない余裕</div></div><span class=&quot;sz&quot; style=&quot;background:var(--mint)&quot;>512GB〜1TB</span></div>
+    </div>
+    <p>「クラウドにするなら128GBでいいのでは?」と思いがちですが、<b class=&quot;k&quot;>おすすめは256GB以上、できれば512GB</b>。理由は次のとおりです。</p>
+
+    <h3>クラウド中心でも、容量に余裕がいる理由</h3>
+    <div class=&quot;exlist&quot;>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📶</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>オフラインだと使えない</div><div class=&quot;es&quot;>ネットが無い場所では、クラウドのファイルは開けない。よく使う物は本体にも要る</div></div></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>🔄</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>同期で本体にもコピーが溜まる</div><div class=&quot;es&quot;>クラウドと同期すると、手元にも控えが置かれ、思ったより本体を使う</div></div></div>
+      <div class=&quot;exitem&quot;><span class=&quot;emo&quot;>📦</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>アプリ本体は結局ローカル</div><div class=&quot;es&quot;>アプリやシステムは本体に入る。クラウドに逃がせるのは主にデータ</div></div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>クラウド中心でも<b class=&quot;kg&quot;>最低256GB・おすすめ512GB</b>。本体ゼロにはできない（オフライン・同期・アプリのぶんが要る）。</div>
+    <div class=&quot;note&quot;>※ クラウドは「容量が増える」一方、月額がかかる・ネットが必須・サービス側の状況に左右される、という面もあります。本体とクラウドの“合わせ技”が現実的です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- F -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>F</span>軽く深掘り</div>
+    <h2>「1024」と「ビット」のこと</h2>
+    <p><b class=&quot;kb&quot;>ほんとは1段＝1024倍。</b>コンピュータは0と1（2進数）で動くので、キリのいい1000ではなく、2をかけ続けた1024が区切りになります。だから「1TBのはずなのに、実際の表示は少し少ない」ことがあるんです（数え方の違い）。ふだんは「約1000倍」で大丈夫です。</p>
+    <p><b class=&quot;kp&quot;>ビット(b)とバイト(B)。</b>データの大きさは<b>バイト(B、大文字)</b>。通信の速さは<b>ビット(b、小文字)</b>で言うことが多い（例：100Mbps）。<b class=&quot;k&quot;>1バイト＝8ビット</b>。同じ「メガ」でも、MB（大きさ）とMbps（速さ）は別物、と覚えておくと混乱しません。</p>
+    <div class=&quot;big-point plum&quot;>こまかくは<b class=&quot;kp&quot;>1段＝1024倍</b>、<b class=&quot;kb&quot;>B（大きさ）とb（速さ）は別</b>。でも普段は気にしすぎなくてOK。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>感覚を試す</div>
+    <h2>データの大きさドリル</h2>
+    <p class=&quot;lead-line&quot;>買い物のつもりで、選んでみてください。</p>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- F closing -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>G</span>まとめ</div>
+    <h2>もう「ギガ」で迷わない</h2>
+    <p class=&quot;lead-line&quot;>データの大きさは <b class=&quot;k&quot;>B → KB → MB → GB → TB</b> の階段（1段で約1000倍）。文章はKB、写真・曲はMB、動画・ゲームはGB。スマホ・PCの容量（GB・TB）は倉庫の大きさで、入れるデータの合計が超えなければOK。普通使いは128GB、写真好きは256GB〜が目安。</p>
+    <div class=&quot;big-point&quot;>大きさの単位が読めれば、容量えらびはもう迷わない🦎</div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    <b>B→KB→MB→GB→TB</b>、1段で約1000倍。<br>
+    文章＝KB、写真＝MB、動画＝GB。容量は「倉庫の大きさ」。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page2 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*1000)/1000; return r.toLocaleString('ja-JP',{maximumFractionDigits:3}); }
+
+  /* P1-2: unit convert */
+  (function(){
+    const UNITS=['B','KB','MB','GB','TB'];
+    let ui=2;
+    const N=document.getElementById('cvNum'),now=document.getElementById('cvNumNow'),seg=document.getElementById('cvUnit'),out=document.getElementById('cvOut'),steps=document.getElementById('cvSteps');
+    function r(){
+      const num=parseFloat(N.value)||0; now.textContent=fmt(num);
+      out.textContent=fmt(num)+' '+UNITS[ui];
+      let lines=[];
+      if(ui<UNITS.length-1) lines.push(`ひとつ上 ＝ ${fmt(num)} ÷ 1000 ＝ <b>${fmt(num/1000)} ${UNITS[ui+1]}</b>`);
+      if(ui>0) lines.push(`ひとつ下 ＝ ${fmt(num)} × 1000 ＝ <b>${fmt(num*1000)} ${UNITS[ui-1]}</b>`);
+      steps.innerHTML = lines.join('<br>') || '（これ以上の段はありません）';
+    }
+    N.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{ui=parseInt(b.dataset.i);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P2-B: capacity */
+  (function(){
+    let gb=128;
+    const PHOTO=4, SONG=8, VIDEO=1500; // MB each (目安)
+    const seg=document.getElementById('capSeg'),now=document.getElementById('capNow'),out=document.getElementById('capOut'),steps=document.getElementById('capSteps');
+    function r(){
+      now.textContent=(gb>=1024? '1024（=1TB）' : fmt(gb));
+      const mb=gb*1000;
+      const photos=Math.round(mb/PHOTO), songs=Math.round(mb/SONG), videos=Math.round(mb/VIDEO);
+      out.innerHTML=`写真 約${photos.toLocaleString('ja-JP')}枚<br>または 曲 約${songs.toLocaleString('ja-JP')}曲<br>または 動画 約${videos.toLocaleString('ja-JP')}本`;
+      steps.innerHTML=`${fmt(gb)}GB ＝ ${mb.toLocaleString('ja-JP')}MB　→　写真1枚=${PHOTO}MB なら ÷4 で <b>約${photos.toLocaleString('ja-JP')}枚</b>`;
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{gb=parseFloat(b.dataset.g);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P2-E: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'大きいのはどっち？', o:['1GB','1MB'], a:0, e:'GBはMBの約1000倍。GBのほうが大きい。'},
+      {q:'「写真1枚」は、だいたいどの単位？', o:['数KB','数MB','数GB'], a:1, e:'写真はMBくらい。文章がKB、動画・ゲームがGB。'},
+      {q:'「1段のぼると、約何倍」？', o:['約10倍','約100倍','約1000倍'], a:2, e:'B→KB→MB→GB→TB、1段で約1000倍。'},
+      {q:'会話の「ギガが足りない」、ざっくり何の話？', o:['速さが遅い','データの量が上限に近い','電池が少ない'], a:1, e:'ギガ＝データ量のあだ名。量が上限に近い、の意味。'},
+      {q:'スマホの「128GB」が表すのは？', o:['速さ','入る量（倉庫の大きさ）','画面の大きさ'], a:1, e:'容量＝どれだけ入るか。速さとは別のスペック。'},
+      {q:'大きいのはどっち？', o:['1TB','1GB'], a:0, e:'TBはGBの約1000倍。TBのほうが大きい。'},
+      {q:'バイトを表す記号は？', o:['大文字 B','小文字 b'], a:0, e:'大文字Bがバイト（大きさ）、小文字bがビット（速さ）。'}
     ];
     let i=0, correct=0, total=0, locked=false;
     function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
