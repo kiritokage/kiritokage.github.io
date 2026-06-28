@@ -2974,7 +2974,7 @@
 <div class="lcard soon"><span class="ic">📊</span><span class="tx"><span class="t">薬の危険度ランク（カテゴリー分類）</span><span class="s">豪基準・旧FDA・添付文書＋具体例</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">とったほうがいいもの</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🥦</span><span class="tx"><span class="t">妊娠中にとりたい栄養・サプリ</span><span class="s">葉酸など、摂るべき栄養素の話</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('ninpueiyou')"><span class="ic">🥦</span><span class="tx"><span class="t">妊娠中にとりたい栄養・サプリ</span><span class="s">葉酸など、摂るべき栄養素の話</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="home-foot">🦎 霧人影／妊婦のあれこれ<br>項目はこれから増減します</div>
 </div></div>
@@ -4379,6 +4379,519 @@
   (function(){
     const wrap=document.getElementById('baseDots'); if(!wrap) return;
     for(let i=0;i<100;i++){ const d=document.createElement('i'); if(i<4) d.className='on'; wrap.appendChild(d); }
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-ninpueiyou" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('preg')">‹ 妊婦のあれこれ に戻る</button></div><iframe class="theme-frame" title="妊娠中にとりたい栄養・サプリ" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>妊娠中にとりたい栄養・サプリ ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.7rem,6.6vw,2.3rem); line-height:1.22; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.35rem,5.4vw,1.7rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* reasons */
+  .reasons{ display:grid; gap:11px; margin:16px 0; }
+  .rs{ display:flex; gap:13px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:15px; padding:14px 15px; box-shadow:var(--shadow); }
+  .rs .n{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:#fff; background:var(--persimmon); width:30px; height:30px; border-radius:50%; display:grid; place-items:center; flex:none; }
+  .rs .rt{ flex:1; } .rs .rt b{ color:var(--ink); }
+
+  /* nutrient cards */
+  .nut{ background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:0; margin:16px 0; overflow:hidden; }
+  .nut .nh{ display:flex; align-items:center; gap:11px; padding:13px 15px; color:#fff; }
+  .nut .nemo{ font-size:1.7rem; } .nut .nname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.12rem; line-height:1.2; }
+  .nut .nsub{ font-size:.74rem; opacity:.95; }
+  .nut .nbody{ padding:13px 15px; }
+  .nut .row{ display:flex; gap:9px; margin:7px 0; font-size:.9rem; align-items:flex-start; }
+  .nut .row .lab{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.72rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; margin-top:2px; }
+  .nut .row .v b{ color:var(--ink); }
+  .lab.why{ background:var(--persimmon); } .lab.work{ background:var(--sky); } .lab.food{ background:var(--mint); } .lab.tip{ background:var(--gold); color:#3a2d12; } .lab.amt{ background:var(--plum); }
+  .nh.folate{ background:linear-gradient(135deg,#6FB98A,#3E9A63); }
+  .nh.iron{ background:linear-gradient(135deg,#E2787F,#C25962); }
+  .nh.cal{ background:linear-gradient(135deg,#4FA3C7,#367C9C); }
+  .nh.dha{ background:linear-gradient(135deg,#5C6BC0,#3F4DA0); }
+  .nh.prot{ background:linear-gradient(135deg,#E0A93B,#C08A1E); }
+
+  /* folate timeline widget */
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:84px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.8rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--mint); background:#E9F6ED; color:var(--mint-deep); }
+  .bigout{ text-align:center; margin:12px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.5rem; color:var(--mint-deep); line-height:1.35; }
+  .w-steps{ font-size:.85rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+
+  /* situations */
+  .sit{ display:grid; gap:9px; margin:16px 0; }
+  .sititem{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .sititem .emo{ font-size:1.4rem; flex:none; } .sititem .st{ flex:1; font-size:.9rem; } .sititem .st b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① なぜ要る？</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 主役の栄養素</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 不足・とりすぎ</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>妊婦のあれこれ ・ とことん版</span>
+    <h1>妊娠中に<span class=&quot;hl&quot;>とりたい</span><br>栄養・サプリ</h1>
+    <p class=&quot;lead&quot;>「葉酸って言われるけど、なぜ？」<br>理由から、ぜんぶ解きほぐします。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリに向けた、詳しめの解説です。栄養素の量は<b>厚生労働省「日本人の食事摂取基準」「妊産婦のための食生活指針」などを参考にした目安</b>で、文献・改定で変わります。<b>実際の摂取やサプリの利用は、必ず主治医・薬剤師・管理栄養士に相談してください。</b>
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「なぜ、わざわざ足すのか」の回</h2>
+    <p class=&quot;lead-line&quot;>妊娠すると「葉酸を飲んで」「鉄が足りない」とよく言われます。でも<b class=&quot;kb&quot;>なぜ普段はいらないのに、妊娠中はわざわざ足すのか？</b> このページは、栄養素ごとに<b class=&quot;kb&quot;>なぜ要るのか・いつ・どう影響するのか・どんな時に足りなくなるのか</b>を、根っこから読み解く回です。</p>
+    <p>結論の入口だけ先に：妊娠中に栄養が要るのは、<b class=&quot;k&quot;>①赤ちゃんの体をゼロから作る材料がいる ②母体も大きく変化して消費が増える ③もともと日本人女性は不足しがち</b>——この3つが重なるからです。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>なぜ増える</div>
+    <h2>普段と何が違う？ 3つの理由</h2>
+    <p class=&quot;lead-line&quot;>同じ食事でも、妊娠中は「足りない」が起きやすい。理由はこの3つです。</p>
+    <div class=&quot;reasons&quot;>
+      <div class=&quot;rs&quot;><span class=&quot;n&quot;>1</span><div class=&quot;rt&quot;><b>赤ちゃんを“ゼロから一人”作る材料。</b>細胞分裂・器官づくり・骨や血液——全部に材料（栄養）がいる。今までは自分の分だけでよかったのが、作る分が上乗せされる。</div></div>
+      <div class=&quot;rs&quot;><span class=&quot;n&quot;>2</span><div class=&quot;rt&quot;><b>母体自身が大きく変わる。</b>血液の量が増える（だから鉄が要る）、骨やホルモンの動きも変化。<b>母体の“工事”でも消費が増える</b>。</div></div>
+      <div class=&quot;rs&quot;><span class=&quot;n&quot;>3</span><div class=&quot;rt&quot;><b>そもそも、もともと不足しがち。</b>日本人の若い女性は、鉄・カルシウム・葉酸などが普段から推奨量に届いていない人が多い。<b>そこに妊娠で需要が増える</b>ので、ますます足りなくなる。</div></div>
+    </div>
+    <div class=&quot;big-point&quot;>妊娠中に栄養が要るのは <b class=&quot;k&quot;>①作る材料 ②母体の変化で消費増 ③もともと不足</b> の三重。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>大前提</div>
+    <h2>基本は「食事」。サプリは“補助”</h2>
+    <p class=&quot;lead-line&quot;>先に、いちばん大事な土台を。<b class=&quot;kb&quot;>栄養はできるだけ食事から摂るのが基本</b>。サプリ（栄養補助食品）は、あくまで足りない分を補う“助っ人”です。</p>
+    <p>理由は、<b class=&quot;k&quot;>サプリは医薬品ではなく、品質管理が医薬品ほど厳密でない</b>こと、<b class=&quot;k&quot;>いくつもの成分が高濃度で入っていて、過剰摂取や相互作用が起きうる</b>こと。なので「たくさん盛られたサプリを何種類も」より、<b class=&quot;kb&quot;>基本は食事、不足分を単一成分で、医療者に相談しながら</b>が安全です。</p>
+    <p>そのうえで——<b class=&quot;kg&quot;>食事だけでは確実に届きにくく、サプリでの補充が国からも勧められている例外</b>が、次に出てくる<b class=&quot;kg&quot;>葉酸</b>です。</p>
+    <div class=&quot;big-point blue&quot;>基本は<b class=&quot;kb&quot;>食事</b>、サプリは<b class=&quot;kb&quot;>補助</b>。盛りだくさんより、<b>不足分を単一成分で・相談しながら</b>。ただし葉酸は別格。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>「なぜ要るか」「食事が基本」はOK。<br>では栄養素を、一つずつ見ていこう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 主役の栄養素 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>主役の栄養素 ・ ひとつずつ</span>
+    <h1>この<span class=&quot;hl&quot;>5つ</span>を、<br>おさえる。</h1>
+    <p class=&quot;lead&quot;>なぜ・働き・食べ物・ポイント。<br>順番に解きほぐします。</p>
+  </header>
+
+  <div class=&quot;big-point mint&quot;>特に重要：<b class=&quot;kg&quot;>葉酸</b>（最初が肝心）・<b class=&quot;kr&quot;>鉄</b>（血を作る）・<b class=&quot;kb&quot;>カルシウム＆ビタミンD</b>（骨）・<b class=&quot;kp&quot;>DHA</b>（脳神経）＋<b class=&quot;kgo&quot;>たんぱく質</b>（土台）。さらに見落としがちな<b class=&quot;kg&quot;>亜鉛・ヨウ素</b>も。</div>
+
+  <!-- A 葉酸 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>最重要</div>
+    <h2>葉酸：いちばん最初が肝心</h2>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh folate&quot;><span class=&quot;nemo&quot;>🥦</span><div><div class=&quot;nname&quot;>葉酸（ようさん）</div><div class=&quot;nsub&quot;>ビタミンB群のひとつ</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>赤ちゃんの神経管（脳・脊髄のもと）を作るのに必要。</b>不足すると「神経管閉鎖障害（無脳症・二分脊椎など）」のリスクが上がる。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab work&quot;>ポイント</span><span class=&quot;v&quot;><b>神経管は受胎後およそ28日にできる</b>＝多くの人が妊娠に気づく前。だから「妊娠が分かってから」では遅れがち。<b>妊活〜妊娠初期がいちばん大事</b>。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>ほうれん草・ブロッコリーなど緑黄色野菜、枝豆・納豆、いちご、レバー（ただしレバーはビタミンA過剰に注意）。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab amt&quot;>目安</span><span class=&quot;v&quot;>妊活〜初期は<b>食事に加えてサプリ等から+400μg</b>が望ましい（厚労省）。サプリ型は吸収がよく、水に溶け熱に弱い葉酸を確実に補える。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>薬剤師目線</span><span class=&quot;v&quot;><b>てんかん・片頭痛・リウマチの薬の一部は葉酸を消耗させる</b>ことがあり、必要量が増える。該当者は主治医の指示で多めに、が要る場合がある🦎</span></div>
+      </div>
+    </div>
+    <p>「いつ・どれくらい」が時期で変わるので、下で見てみましょう。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;seg2&quot; id=&quot;folSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>妊活〜初期</button>
+        <button data-i=&quot;1&quot;>中期・後期</button>
+        <button data-i=&quot;2&quot;>授乳期</button>
+      </div>
+      <div class=&quot;bigout&quot;><div class=&quot;lab&quot; id=&quot;folWhen&quot;>妊活〜妊娠初期（〜約3か月）</div><div class=&quot;v&quot; id=&quot;folV&quot;></div></div>
+      <div class=&quot;w-steps&quot; id=&quot;folSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 数値は食事摂取基準などの目安。サプリの「狭義の葉酸」は上限（成人で1日900〜1000μg程度）を超えないこと。摂りすぎも健康障害の報告があります。神経管閉鎖障害は葉酸だけが原因ではなく、葉酸を摂れば必ず防げるわけではありません。</div>
+    <div class=&quot;big-point mint&quot;>葉酸は<b class=&quot;kg&quot;>妊活〜初期にサプリで+400μg</b>が肝心（神経管は気づく前にできる）。<b>国がサプリ補充を勧める数少ない例外</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 鉄 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>不足しがち</div>
+    <h2>鉄：血を作る材料</h2>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh iron&quot;><span class=&quot;nemo&quot;>🩸</span><div><div class=&quot;nname&quot;>鉄（てつ）</div><div class=&quot;nsub&quot;>ミネラル</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>血（赤血球）を作る材料。</b>妊娠中は赤ちゃんの分＋母体の血液量が増える分で、需要が大きく増える。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab work&quot;>不足すると</span><span class=&quot;v&quot;><b>鉄欠乏性貧血</b>。だるさ・動悸・息切れ。妊娠中は特に不足しやすい代表格。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>赤身の肉・魚、レバー、あさり、大豆、ほうれん草、小松菜など。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>コツ</span><span class=&quot;v&quot;><b>鉄は吸収されにくい</b>。<b>ビタミンCやたんぱく質と一緒</b>に摂ると吸収が上がる。お茶のタンニンは吸収を邪魔することがある。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point rose&quot;>鉄は<b class=&quot;kr&quot;>妊娠中いちばん不足しやすい</b>。需要は中期・後期で特に増える。<b class=&quot;kb&quot;>ビタミンC・たんぱく質と一緒に</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C カルシウム＆ビタミンD -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>骨はセット</div>
+    <h2>カルシウム＆ビタミンD：骨はペアで</h2>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh cal&quot;><span class=&quot;nemo&quot;>🦴</span><div><div class=&quot;nname&quot;>カルシウム ＆ ビタミンD</div><div class=&quot;nsub&quot;>ミネラル ＆ 脂溶性ビタミン</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>赤ちゃんの骨や歯を作る。</b>カルシウムは骨の材料、<b>ビタミンDはその吸収を助ける相棒</b>。セットで効く。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab work&quot;>ポイント</span><span class=&quot;v&quot;>妊娠中はカルシウムの吸収率が上がるため付加量は基本不要。<b>でも日本人女性はもともと不足しがち</b>（推奨に届いていない）なので、普段から意識を。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>カルシウム＝乳製品・小魚・豆腐・緑黄色野菜。ビタミンD＝鮭・さんま・きのこ類＋<b>日光</b>（皮膚で作られる）。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>いま注意</span><span class=&quot;v&quot;><b>近年はビタミンD不足が増加</b>（日焼け対策・日光不足・菜食など）。ビタミンD不足は妊娠高血圧腎症・切迫早産・妊娠糖尿病との関連も報告。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point blue&quot;>骨は<b class=&quot;kb&quot;>カルシウム＋ビタミンD</b>のペア。日本人女性はもともと不足ぎみ、<b>ビタミンDは日光不足で特に足りなくなりやすい</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D DHA -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>脳と神経</div>
+    <h2>DHA：脳・神経の材料</h2>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh dha&quot;><span class=&quot;nemo&quot;>🐟</span><div><div class=&quot;nname&quot;>DHA（n-3系脂肪酸）</div><div class=&quot;nsub&quot;>オメガ3・必須脂肪酸</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>赤ちゃんの神経・脳の構成成分。</b>これらの組織を作るのに使われる。体内で十分作れないので食べて補う必要がある。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>青魚（いわし・さば・さんま・鮭など）に豊富。EPAも仲間。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>注意</span><span class=&quot;v&quot;>多くの女性は食事で必要量を摂れている。<b>n-3系を3g/日超で大量に摂ると、血が固まりにくくなり出血リスク</b>。サプリでの“盛りすぎ”に注意。魚は水銀の少ない種類を選ぶ（後述）。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point plum&quot;>DHAは<b class=&quot;kp&quot;>脳・神経の材料</b>。青魚から。サプリで大量に摂りすぎると出血リスクなので、基本は魚で。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E たんぱく質 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>土台</div>
+    <h2>たんぱく質・エネルギー：体づくりの土台</h2>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh prot&quot;><span class=&quot;nemo&quot;>🍳</span><div><div class=&quot;nname&quot;>たんぱく質・エネルギー</div><div class=&quot;nsub&quot;>体の材料と燃料</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>赤ちゃんの体も母体も、たんぱく質でできている。</b>エネルギー（カロリー）も赤ちゃんの発育の分が増える。土台が足りないと他の栄養も活きない。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>肉・魚・卵・大豆製品・乳製品。いろいろ組み合わせて。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>注意</span><span class=&quot;v&quot;>エネルギーは増やすが、<b>体重の増えすぎ・塩分の摂りすぎ</b>には注意。「赤ちゃんの分まで2人前」ではなく、適切な増加量を。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point gold&quot;>たんぱく質・エネルギーは<b class=&quot;kgo&quot;>体づくりの土台</b>。増やしつつ、体重と塩分は摂りすぎ注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- F 亜鉛・ヨウ素 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>F</span>見落としがち</div>
+    <h2>亜鉛・ヨウ素：地味だけど大事</h2>
+    <p class=&quot;lead-line&quot;>あまり話題になりませんが、妊娠中に大切なミネラルがもう2つ。特に<b class=&quot;kb&quot;>ヨウ素は「不足も過剰も注意」</b>という、ちょっと変わった栄養素です。</p>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh&quot; style=&quot;background:linear-gradient(135deg,#7F9B5C,#5E7A40)&quot;><span class=&quot;nemo&quot;>🦪</span><div><div class=&quot;nname&quot;>亜鉛（あえん）</div><div class=&quot;nsub&quot;>ミネラル</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>細胞分裂・成長・たんぱく合成に必須。</b>赤ちゃんがどんどん細胞を増やす妊娠中は需要が増え、付加量が設定されている。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab work&quot;>不足すると</span><span class=&quot;v&quot;>胎児の発育や、皮膚・味覚などに影響しうる。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>牡蠣・赤身肉・レバー・大豆・ナッツ・チーズなど。</span></div>
+      </div>
+    </div>
+    <div class=&quot;nut&quot;>
+      <div class=&quot;nh&quot; style=&quot;background:linear-gradient(135deg,#C98A3C,#A66B22)&quot;><span class=&quot;nemo&quot;>🧂</span><div><div class=&quot;nname&quot;>ヨウ素（ヨード）</div><div class=&quot;nsub&quot;>ミネラル ・ 不足も過剰も注意</div></div></div>
+      <div class=&quot;nbody&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab why&quot;>なぜ</span><span class=&quot;v&quot;><b>甲状腺ホルモンの材料。</b>甲状腺ホルモンは赤ちゃんの脳・体の発育に不可欠なので、ヨウ素も必要。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab work&quot;>不足すると</span><span class=&quot;v&quot;>甲状腺ホルモンが作れず、胎児の発達に影響しうる。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab tip&quot;>逆に過剰も</span><span class=&quot;v&quot;><b>ここが特殊。日本人は海藻（昆布・わかめ）で“摂りすぎ”がち</b>。平均で推奨量の何倍も摂っているとも言われ、<b>過剰でも胎児の甲状腺機能に影響</b>しうる。昆布だしの多用などに注意。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab food&quot;>食べ物</span><span class=&quot;v&quot;>海藻（昆布・わかめ・のり）、魚介、乳製品。日本では不足より<b>過剰に注意</b>の場面が多い。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point mint&quot;>亜鉛＝<b class=&quot;kg&quot;>細胞づくりに必須</b>。ヨウ素＝<b class=&quot;kgo&quot;>甲状腺ホルモンの材料で、日本人はむしろ摂りすぎ注意</b>（昆布の摂りすぎに気をつける）。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>主役はおさえた。<br>最後に「足りなくなる場面」と「とりすぎ注意」。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 不足・とりすぎ ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>実生活 ・ 足りない／摂りすぎ</span>
+    <h1>こんな時、<br><span class=&quot;hl&quot;>足りなくなる</span>。</h1>
+    <p class=&quot;lead&quot;>不足しやすい場面と、<br>逆に“とりすぎ注意”を、はっきり。</p>
+  </header>
+
+  <!-- A 不足する場面 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>不足しやすい場面</div>
+    <h2>日常の、思わぬ落とし穴</h2>
+    <p class=&quot;lead-line&quot;>「ちゃんと食べてるつもり」でも、こんな場面で足りなくなりがちです。</p>
+    <div class=&quot;sit&quot;>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🤢</span><div class=&quot;st&quot;><b>つわりで食べられない。</b>妊娠初期、食欲が落ちて思うように食べられず、葉酸はじめ全般が不足しやすい。まさに葉酸がいちばん要る時期と重なるのが悩ましい。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🍽️</span><div class=&quot;st&quot;><b>中期以降、子宮が胃を圧迫。</b>お腹が大きくなると胃が押されて、1回に食べられる量が減る。一見元気でも量が足りないことが。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>☀️</span><div class=&quot;st&quot;><b>日光をあまり浴びない。</b>日焼け対策・室内中心の生活だと、皮膚で作るビタミンDが不足しやすい。近年とても増えている。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🥗</span><div class=&quot;st&quot;><b>菜食・偏った食事。</b>肉や魚を控えると、鉄・ビタミンD・たんぱく質・DHAが不足しやすい。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🔥</span><div class=&quot;st&quot;><b>調理で失われる。</b>葉酸は水に溶けやすく熱に弱い。茹でこぼすと減る。生・蒸すなどの工夫が要る。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>💊</span><div class=&quot;st&quot;><b>薬で消耗する。</b>てんかん・片頭痛・リウマチの薬の一部は葉酸を消耗。該当者は必要量が増えることがある（要相談）🦎</div></div>
+    </div>
+    <div class=&quot;big-point&quot;>つわり・胃の圧迫・日光不足・偏食・調理損失・薬の消耗——<b class=&quot;k&quot;>「食べてるのに足りない」</b>が起きやすい。だから意識して補う。</div>
+
+    <h3>つわりのとき、どうする？</h3>
+    <p>つわりの時期は、栄養バランスを完璧にしようと頑張りすぎないことが大事。考え方のヒントを置いておきます。</p>
+    <div class=&quot;sit&quot;>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🍙</span><div class=&quot;st&quot;><b>食べられる時に、食べられるものを。</b>この時期は「バランス」より、まず<b>食べられること・水分が摂れること</b>を優先。多少かたよっても、長い妊娠期間のごく一部なので気にしすぎない。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>⏱️</span><div class=&quot;st&quot;><b>少しずつ・こまめに。</b>空腹で悪化しやすいので、一度にたくさんより、少量を何回かに分けて。冷たいもの・においの少ないものが楽なことも。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>💊</span><div class=&quot;st&quot;><b>葉酸が摂りにくい時期と重なる。</b>食事が難しいなら、葉酸サプリで補うのも一手（量は守る）。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🏥</span><div class=&quot;st&quot;><b>水分も摂れない・体重が大きく減るときは受診。</b>重いつわり（妊娠悪阻）は、点滴などの治療が必要なことも。我慢しすぎない。</div></div>
+    </div>
+    <div class=&quot;note&quot;>※ 受け入れ方として——つわりは個人差が大きく、多くは中期に落ち着きます。「今は最低限でいい」と気楽に構えるのも、立派な対処です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B とりすぎ注意 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>逆に、とりすぎ注意</div>
+    <h2>「多いほどいい」ではない</h2>
+    <p class=&quot;lead-line&quot;>栄養は不足も困るが、<b class=&quot;kr&quot;>摂りすぎが害になるもの</b>もある。特にこの3つは要注意。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>最重要</span><p style=&quot;margin:0&quot;><b>ビタミンA（レチノール）の摂りすぎ。</b><br><span class=&quot;soft&quot;>脂溶性で体に溜まりやすく、<b>妊娠初期の過剰摂取で胎児の形態異常（奇形）が増える</b>と報告。レバーやウナギの大量摂取、ビタミンA入りサプリに注意。※植物由来のβ-カロテンは必要な分だけ変換されるので、過剰の害は報告されていない。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意</span><p style=&quot;margin:0&quot;><b>脂溶性ビタミン（A・D）・ミネラルの蓄積。</b><br><span class=&quot;soft&quot;>ビタミンDも摂りすぎると血中カルシウムが上がりすぎたり腎臓に負担。カルシウムも上限あり。<b>水に流れない＝溜まる</b>ものは特に上限に注意。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意</span><p style=&quot;margin:0&quot;><b>大きな魚の水銀。</b><br><span class=&quot;soft&quot;>一部の大型魚（まぐろの一部など）は水銀が比較的多く、胎児に影響しうる。魚はDHA源として大切だが、<b>種類と量に気をつける</b>（厚労省が目安を出している）。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>カフェイン</span><p style=&quot;margin:0&quot;><b>コーヒー・お茶などのカフェイン。</b><br><span class=&quot;soft&quot;>妊娠中は<b>カフェインの分解が遅くなり、影響を受けやすい</b>。摂りすぎは低出生体重・流産リスクの上昇が報告され、<b>鉄の吸収も妨げる</b>。日本に明確な上限はないが、WHOは300mg/日、英国などは<b>200mg/日まで</b>を推奨。<b>200mgの目安はコーヒー約2杯</b>（コーヒー60mg・紅茶30mg・緑茶/ウーロン茶20mg・コーラ10mg／各100ml目安）。コーヒー以外（紅茶・緑茶・エナジードリンク・市販の風邪薬や頭痛薬・チョコ）にも入っている点に注意。完全ゼロにする必要はなく、<b>カフェインレスや麦茶</b>も活用しつつ“ほどほど”に。</span></p></div>
+    <div class=&quot;note&quot;>※ お酒は「ゼロが基本」でしたが、<b>カフェインは適量ならOK</b>という違いがあります（→詳しくは「薬・お酒・タバコのリスク比較」ページ）。</div>
+    <div class=&quot;big-point rose&quot;>不足の逆で<b class=&quot;kr&quot;>摂りすぎが害</b>になるものも。特に<b class=&quot;kr&quot;>ビタミンA</b>。脂溶性・ミネラルは溜まる、大型魚は水銀に注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 体重増加 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>体重</div>
+    <h2>体重増加の「ちょうどいい」目安</h2>
+    <p class=&quot;lead-line&quot;>栄養の話とセットで大事なのが体重。<b class=&quot;kb&quot;>増えなさすぎも、増えすぎも、両方リスク</b>です。増えなさすぎは低出生体重児、増えすぎは妊娠高血圧症候群・巨大児・難産などにつながりやすい。</p>
+    <p>どれくらい増えるとよいかは、<b class=&quot;kb&quot;>妊娠前のBMI（体格）で決まります</b>。下が目安です（基準・施設で幅があります）。</p>
+    <div class=&quot;sit&quot;>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🟦</span><div class=&quot;st&quot;><b>やせ（BMI 18.5未満）</b>　→ およそ <b>+12〜15kg</b></div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🟩</span><div class=&quot;st&quot;><b>ふつう（BMI 18.5〜25未満）</b>　→ およそ <b>+10〜13kg</b></div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🟨</span><div class=&quot;st&quot;><b>肥満1度（BMI 25〜30未満）</b>　→ およそ <b>+7〜10kg</b></div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🟧</span><div class=&quot;st&quot;><b>肥満2度以上（BMI 30以上）</b>　→ <b>個別対応</b>（上限5kgを目安に医師と相談）</div></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>体重は<b class=&quot;kgo&quot;>妊娠前のBMIで目安が変わる</b>。やせ型は多め、肥満型は控えめ。<b class=&quot;kr&quot;>増えなさすぎも増えすぎも避ける</b>。</div>
+    <div class=&quot;note&quot;>※ BMI＝体重(kg)÷身長(m)÷身長(m)。数値は目安で、基準改定や施設の方針、経過によって変わります。必ず主治医の指示を優先してください。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D サプリとの付き合い方 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>付き合い方</div>
+    <h2>サプリの、かしこい使い方</h2>
+    <div class=&quot;sit&quot;>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🥗</span><div class=&quot;st&quot;><b>基本は食事から。</b>サプリは足りない分の“補助”。これが大原則。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🎯</span><div class=&quot;st&quot;><b>盛りだくさんより単一成分。</b>何種類も高濃度に入ったものより、必要なものを必要なだけ。過剰・相互作用を避ける。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>📏</span><div class=&quot;st&quot;><b>目安量・上限を守る。</b>「高い・多い＝良い」ではない。表示の量を守る。葉酸も摂りすぎは害。</div></div>
+      <div class=&quot;sititem&quot;><span class=&quot;emo&quot;>🩺</span><div class=&quot;st&quot;><b>医療者に相談。</b>持病・薬がある人は特に。薬剤師・医師・管理栄養士に。</div></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>サプリは<b class=&quot;kgo&quot;>食事の補助・単一成分・上限を守る・相談して</b>。葉酸の妊活〜初期だけは積極補充が別格。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>栄養・サプリ ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- D まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>まとめ</div>
+    <h2>相場観として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>妊娠中に栄養が要るのは<b class=&quot;k&quot;>作る材料・母体の変化・もともと不足</b>の三重。主役は<b class=&quot;kg&quot;>葉酸（妊活〜初期にサプリで＋400μg）</b>・<b class=&quot;kr&quot;>鉄</b>・<b class=&quot;kb&quot;>カルシウム＆ビタミンD</b>・<b class=&quot;kp&quot;>DHA</b>＋<b class=&quot;kgo&quot;>たんぱく質</b>。つわり・日光不足・偏食・薬で足りなくなりやすい。一方で<b class=&quot;kr&quot;>ビタミンAなど“摂りすぎ”が害</b>になるものもある。<b class=&quot;kb&quot;>基本は食事、サプリは補助、相談しながら</b>。</p>
+    <div class=&quot;big-point&quot;>足りないものは補い、<b class=&quot;kr&quot;>溜まるもの（ビタミンA等）は摂りすぎない</b>。葉酸だけは最初が肝心🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>これは薬剤師のキリ向けの解説です。数値は厚労省の基準などを参考にした目安で、改定や個人差があります。<b>一般の方、そして実際の摂取・サプリ利用は、必ず主治医・薬剤師・管理栄養士に相談してください。</b>
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    主役は<b>葉酸・鉄・カルシウム＆D・DHA＋たんぱく質</b>。<br>
+    基本は食事、サプリは補助。葉酸は最初が肝心、ビタミンAは摂りすぎ注意。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① なぜ要る？にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2-A folate timeline */
+  (function(){
+    const data=[
+      {when:'妊活〜妊娠初期（〜約3か月）', v:'食事に加えて<br>サプリ等から +400μg', step:'神経管ができる超重要期。<b>サプリでの+400μgが国からも勧められる</b>のはこの時期。確実に届けたい。'},
+      {when:'妊娠中期・後期', v:'食事から 合計 約480μg<br>（通常+240）', step:'器官はできあがり、成長の時期。<b>食事からの推奨が増える</b>。サプリ指定はないが、足りなければ活用。'},
+      {when:'授乳期', v:'食事から 合計 約340μg<br>（通常+100）', step:'母乳と回復のために、引き続き葉酸の多い食事を。'}
+    ];
+    let i=0;
+    const seg=document.getElementById('folSeg'),when=document.getElementById('folWhen'),v=document.getElementById('folV'),steps=document.getElementById('folSteps');
+    function r(){ when.textContent=data[i].when; v.innerHTML=data[i].v; steps.innerHTML=data[i].step; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{i=parseInt(b.dataset.i);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'葉酸がいちばん大事な時期は？', o:['妊活〜妊娠初期','妊娠後期','授乳期だけ'], a:0, e:'神経管は受胎後約28日（気づく前）にできる。妊活〜初期が肝心。'},
+      {q:'国がサプリでの積極補充を勧めている栄養素は？', o:['ビタミンA','葉酸','カルシウム'], a:1, e:'食事だけでは届きにくく、葉酸は妊活〜初期にサプリ+400μgが望ましいとされる。'},
+      {q:'妊娠中に「摂りすぎ」が特に問題になるのは？', o:['鉄','葉酸','ビタミンA（レチノール）'], a:2, e:'脂溶性で溜まり、初期の過剰で胎児の形態異常リスク。レバー大量やサプリに注意。'},
+      {q:'鉄の吸収を上げる組み合わせは？', o:['ビタミンC・たんぱく質と一緒','お茶と一緒','単独で大量に'], a:0, e:'鉄は吸収されにくい。ビタミンC・たんぱく質と一緒が◎。お茶のタンニンは邪魔することも。'},
+      {q:'近年とくに不足が増えている栄養素は？', o:['ビタミンD','ナトリウム','糖質'], a:0, e:'日焼け対策・日光不足・菜食などで、皮膚で作るビタミンDが不足しやすい。'},
+      {q:'サプリとの基本の付き合い方は？', o:['食事の補助として、単一成分・上限を守る','食事代わりに何種類も大量に','高いものほど効くので優先'], a:0, e:'基本は食事、サプリは補助。盛りだくさんより必要なものを必要なだけ、相談しながら。'},
+      {q:'カルシウムの吸収を助ける相棒は？', o:['ビタミンD','ビタミンA','鉄'], a:0, e:'骨はカルシウム＋ビタミンDのペア。Dが吸収を助ける。'},
+      {q:'ヨウ素（ヨード）、日本人で注意すべきは？', o:['不足しやすい','むしろ摂りすぎ（昆布など）','まったく不要'], a:1, e:'甲状腺ホルモンの材料。日本人は海藻で摂りすぎがちで、過剰も胎児に影響しうる。'},
+      {q:'妊娠中のカフェイン、望ましい目安は？', o:['完全にゼロにする','1日200mg程度（コーヒー約2杯）まで','制限はいらない'], a:1, e:'WHO300・英国200mgなど。日本の産科でも200mg目安。適量ならOKで、ゼロ必須ではない。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
   })();
 </script>
 </body>
