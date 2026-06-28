@@ -2699,6 +2699,11 @@
   /* back to entrance bar on the drug home */
   .toent{ max-width:680px; margin:0 auto; padding:14px 14px 0; }
   .toentbtn{ font-family:"Zen Maru Gothic"; font-weight:700; font-size:.84rem; border:1.5px solid var(--line); background:#fff; color:var(--sky-deep); padding:8px 14px 8px 10px; border-radius:999px; cursor:pointer; }
+  /* full-screen embedded theme (iframe) */
+  .theme-frame-wrap{ position:fixed; inset:0; z-index:50; background:var(--paper); display:flex; flex-direction:column; }
+  .theme-frame-wrap[hidden]{ display:none; }
+  .frame-bar{ padding:8px 14px; background:rgba(252,245,234,.96); border-bottom:1px solid var(--line); flex:none; }
+  .theme-frame{ flex:1; width:100%; border:0; display:block; }
 
 </style>
 </head>
@@ -2799,7 +2804,7 @@
 <div class="lcard soon"><span class="ic">🧈</span><span class="tx"><span class="t">脂質（LDL・HDL・中性脂肪）</span><span class="s">善玉・悪玉のたとえ</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🔥</span><span class="tx"><span class="t">炎症 CRP</span><span class="s">体の火事報知器</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／血液検査値（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／血液検査値<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-stock" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2831,7 +2836,7 @@
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--plum)">ちょっと上級</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">⚠️</span><span class="tx"><span class="t">信用取引（買い／売りから入る・貸株・追証）</span><span class="s">レバレッジと、その怖さ</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／株のあれこれ（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／株のあれこれ<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-boki" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2858,7 +2863,7 @@
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--plum)">株指標との橋渡し</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">🔗</span><span class="tx"><span class="t">ROE・PER・PBRは決算書のどこから？</span><span class="s">株テーマと繋ぐ総まとめ</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／簿記・決算書の読解（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／簿記・決算書の読解<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-denki" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2885,7 +2890,7 @@
 <div class="lcard soon"><span class="ic">💴</span><span class="tx"><span class="t">電気代 ＝ 消費電力 × 時間 × 単価</span><span class="s">kWhって何？あたり算</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🧊</span><span class="tx"><span class="t">家電の電気代くらべ</span><span class="s">どれが食う？</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／家庭の電気（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／家庭の電気<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-spec" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2896,6 +2901,9 @@
 <div class="ent-note" style="margin-top:0;">この分野はまだ<b>準備中</b>です。下は、これから作っていく項目の予定（目次）です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">🪜</span><span class="tx"><span class="t">B・KB・MB・GB・TB の階段</span><span class="s">1000ずつ上がる（単位の階段と同じ）</span></span><span class="badge soon">準備中</span></div>
+</div></div>
+<div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">ストレージ（SSD）の速さ</span></div><div class="cards">
+<button class="lcard" onclick="openThemeFrame('ssd')"><span class="ic">⚡</span><span class="tx"><span class="t">SSDの速さと規格（PCIe Gen）</span><span class="s">読込・書込・Gen3/4/5を読む</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">CPU を完全に理解する</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">🧠</span><span class="tx"><span class="t">CPUって何？ GHz・コア・スレッド</span><span class="s">働く人の速さ×人数×並行作業</span></span><span class="badge soon">準備中</span></div>
@@ -2910,7 +2918,7 @@
 <div class="lcard soon"><span class="ic">📺</span><span class="tx"><span class="t">解像度（画素数）</span><span class="s">4K・フルHDって何？点の数</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">📶</span><span class="tx"><span class="t">通信速度（bps・Mbps）と「ギガ」</span><span class="s">「ギガが足りない」の正体</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／PC・機械のスペック（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／PC・機械のスペック<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-abx" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2934,7 +2942,7 @@
 <div class="lcard soon"><span class="ic">🛡️</span><span class="tx"><span class="t">耐性菌のしくみ</span><span class="s">なぜ効かなくなる？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🎯</span><span class="tx"><span class="t">スペクトル（広い・狭い）</span><span class="s">広く浅く／狭く狙い撃ち</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／抗生剤のしくみ（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／抗生剤のしくみ<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-aspirin" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2950,7 +2958,7 @@
 <div class="lcard soon"><span class="ic">💊</span><span class="tx"><span class="t">アスピリンとは</span><span class="s">そもそも何の薬？</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">⚠️</span><span class="tx"><span class="t">ピリン系とアスピリンは別物</span><span class="s">名前は似てるが無関係</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／バファリン・アスピリンの話（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／バファリン・アスピリンの話<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-preg" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2962,7 +2970,7 @@
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">リスクを比べてつかむ</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">⚖️</span><span class="tx"><span class="t">薬・お酒・タバコのリスク比較</span><span class="s">ビジュアル／％で相場感をつかむ</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／妊婦のあれこれ（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／妊婦のあれこれ<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-child" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2974,7 +2982,7 @@
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">大きな括りで知る</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">🧒</span><span class="tx"><span class="t">子どもと薬のざっくりした話</span><span class="s">個別の薬より、全体の考え方</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／小児のあれこれ（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／小児のあれこれ<br>項目はこれから増減します</div>
 </div></div>
 <div id="subj-skin" hidden>
 <div class="toent"><button class="toentbtn" onclick="showEntrance()">‹ 教科書のトップ</button></div>
@@ -2996,8 +3004,529 @@
 <div class="lcard soon"><span class="ic">☀️</span><span class="tx"><span class="t">日焼け止め（SPF・PAって何？）</span><span class="s">数字の意味と選び方</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">💄</span><span class="tx"><span class="t">一般的な化粧品・メイク</span><span class="s">種類と塗る順番をざっくり</span></span><span class="badge soon">準備中</span></div>
 </div></div>
-<div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ（準備中）<br>項目はこれから増減します</div>
+<div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ<br>項目はこれから増減します</div>
 </div></div>
+<div id="theme-ssd" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('spec')">‹ PC・機械のスペック に戻る</button></div><iframe class="theme-frame" title="SSDの速さと規格" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>SSDの速さと規格 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.75rem,7vw,2.4rem); line-height:1.2; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.4rem,5.8vw,1.8rem); line-height:1.32; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  /* analogy: warehouse / shelf */
+  .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0; }
+  .ccard{ border-radius:16px; padding:16px 14px; text-align:center; border:1px solid var(--line); background:var(--card); box-shadow:var(--shadow); }
+  .ccard .emo{ font-size:2.2rem; } .ccard .ct{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; margin-top:4px; }
+  .ccard .cs{ font-size:.82rem; color:var(--ink-soft); margin-top:3px; }
+  .ccard.hdd{ background:#F3ECF5; } .ccard.ssd{ background:#E9F6ED; }
+
+  /* sliders + widgets */
+  .w-lab{ font-weight:700; font-size:.88rem; margin:8px 0 5px; }
+  .slabels{ display:flex; justify-content:space-between; font-size:.74rem; color:var(--ink-soft); font-weight:700; margin-top:8px; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:12px; border-radius:999px; outline:none; background:linear-gradient(90deg,#FCDFC7,#F7CDAC); margin-top:2px; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:30px; height:30px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; box-shadow:0 3px 8px rgba(222,110,47,.4); cursor:pointer; }
+  input[type=range]::-moz-range-thumb{ width:26px; height:26px; border-radius:50%; background:var(--persimmon); border:4px solid #fff; cursor:pointer; }
+  .seg2{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .seg2 button{ flex:1; min-width:64px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.82rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg2 button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .nowline{ text-align:center; margin-top:6px; font-weight:700; font-size:.86rem; color:var(--ink-soft); }
+  .nowline b{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.15rem; }
+  .bigout{ text-align:center; margin:12px 0 2px; }
+  .bigout .lab{ font-size:.82rem; color:var(--ink-soft); }
+  .bigout .v{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:2rem; color:var(--persimmon-deep); }
+  .bigout .v small{ font-size:.82rem; color:var(--ink-soft); }
+  .speedbar{ height:22px; background:var(--grid-empty); border-radius:999px; overflow:hidden; border:1px solid var(--line); margin-top:8px; }
+  .speedfill{ height:100%; border-radius:999px; background:linear-gradient(90deg,var(--sky),var(--sky-deep)); transition:width .25s; }
+  .w-steps{ font-size:.84rem; color:var(--ink-soft); margin-top:12px; line-height:1.7; background:#FBF4EB; border-radius:12px; padding:11px 13px; }
+  .w-steps b{ color:var(--ink); }
+
+  /* label decoder */
+  .label-demo{ background:#2B2733; color:#fff; border-radius:14px; padding:14px 14px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; text-align:center; font-size:1.02rem; line-height:1.9; box-shadow:var(--shadow); }
+  .label-demo .pc{ padding:2px 7px; border-radius:7px; margin:2px; display:inline-block; }
+  .pc.m2{ background:#5C6BC0; } .pc.nvme{ background:#26A69A; } .pc.gen{ background:#EF6C50; } .pc.lane{ background:#AB7BC4; } .pc.spd{ background:#E0A93B; color:#3a2d12; }
+  .declist{ display:grid; gap:9px; margin:14px 0; }
+  .decitem{ display:flex; gap:11px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:13px; padding:11px 13px; box-shadow:var(--shadow); }
+  .decitem .chip{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; color:#fff; padding:4px 9px; border-radius:8px; white-space:nowrap; flex:none; margin-top:2px; }
+  .decitem .d{ font-size:.9rem; } .decitem .d b{ color:var(--ink); }
+
+  /* timeline */
+  .tl{ display:grid; gap:10px; margin:16px 0; }
+  .tlrow{ display:grid; grid-template-columns:96px 1fr; gap:10px; align-items:center; }
+  .tlname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.82rem; text-align:right; line-height:1.25; }
+  .tlname small{ display:block; color:var(--ink-soft); font-weight:500; font-size:.7rem; }
+  .tlbarwrap{ background:var(--grid-empty); border-radius:999px; height:26px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  .tlbar{ height:100%; border-radius:999px; display:flex; align-items:center; justify-content:flex-end; padding-right:9px; color:#fff; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; white-space:nowrap; }
+
+  /* use-case cards */
+  .uselist{ display:grid; gap:10px; margin:16px 0; }
+  .useitem{ display:flex; align-items:center; gap:12px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px 14px; box-shadow:var(--shadow); }
+  .useitem .emo{ font-size:1.5rem; flex:none; } .useitem .ut{ flex:1; }
+  .useitem .ut .uh{ font-weight:700; } .useitem .ut .us{ font-size:.82rem; color:var(--ink-soft); }
+  .useitem .pick{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; color:#fff; padding:5px 11px; border-radius:999px; flex:none; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.08rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 28px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 考え方</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 規格を読む</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 歴史と買い方</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>PC・機械のスペック ・ とことん版</span>
+    <h1>SSDの<span class=&quot;hl&quot;>速さ</span>って、<br>何が違うの？</h1>
+    <p class=&quot;lead&quot;>「読み込み7000MB/s」とか「Gen4」とか。<br>まず、ぜんぶゼロからやさしく。</p>
+  </header>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>このページは「データをしまう部品」の話</h2>
+    <p class=&quot;lead-line&quot;>パソコンの中には、写真や動画やアプリを<b class=&quot;kb&quot;>しまっておく部品</b>が入っています。その部品のことを <b class=&quot;k&quot;>SSD</b> と言います。このページは、その<b class=&quot;kb&quot;>SSDって何？ 速さって何？</b>を、ゼロから読み解く回です。</p>
+
+    <h3>SSD ってどう読む？ 何の略？</h3>
+    <p><b class=&quot;k&quot;>SSD</b> は「<b class=&quot;k&quot;>エス・エス・ディー</b>」と読みます。英語の <b>Solid State Drive（ソリッド・ステート・ドライブ）</b> の略。むずかしい言葉ですが、ざっくり言うと<b class=&quot;kb&quot;>「動く部品のない、データをしまう装置」</b>という意味です。日本語ではそのまま「SSD」と呼ぶことがほとんどで、かたく言えば「半導体メモリの記憶装置」などと言ったりします。</p>
+    <div class=&quot;big-point blue&quot;><b class=&quot;kb&quot;>SSD（エスエスディー）</b>＝ Solid State Drive。<b>パソコンのデータをしまっておく部品</b>のこと。</div>
+
+    <h3>昔は「HDD（ハードディスク）」だった</h3>
+    <p>SSDが広まる前、この「データをしまう部品」の主役は <b class=&quot;kp&quot;>HDD</b>（エイチ・ディー・ディー、<b>Hard Disk Drive＝ハードディスク</b>）でした。今でも使われています。<b class=&quot;kp&quot;>HDD</b> と <b class=&quot;k&quot;>SSD</b> は<b>どちらも「データをしまう部品」</b>で、役割は同じ。ただし<b class=&quot;kb&quot;>中の仕組みと速さが違う</b>——この違いが、このページの主役です。</p>
+    <div class=&quot;big-point plum&quot;><b class=&quot;kp&quot;>HDD（ハードディスク）</b>も<b class=&quot;k&quot;>SSD</b>も、役割は同じ「データをしまう部品」。違いは<b class=&quot;kb&quot;>仕組みと速さ</b>。</div>
+
+    <p class=&quot;soft&quot; style=&quot;margin-top:18px;&quot;>では、その「データをしまう部品」を、もっとイメージしやすいように<b>倉庫</b>にたとえて見ていきましょう。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>そもそも</div>
+    <h2>ストレージ＝「荷物をしまう倉庫」</h2>
+    <p class=&quot;lead-line&quot;>写真も、アプリも、動画も、電源を切っても消えずに残ってる場所。それが<b class=&quot;kb&quot;>ストレージ（倉庫）</b>です。SSDやハードディスクは、この倉庫のことです。</p>
+    <p>パソコンは、この倉庫から荷物（データ）を<b class=&quot;k&quot;>出したり・しまったり</b>しながら動いています。だから「倉庫からの出し入れが速いか遅いか」で、パソコンの<b class=&quot;k&quot;>きびきび感</b>が大きく変わります。</p>
+    <div class=&quot;big-point blue&quot;>ストレージ ＝ <b class=&quot;kb&quot;>電源を切っても消えない倉庫</b>。SSD も ハードディスク も、この倉庫の仲間。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>速さって何</div>
+    <h2>「読み込み」と「書き込み」</h2>
+    <p class=&quot;lead-line&quot;>倉庫の速さには2種類あります。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard&quot;><div class=&quot;emo&quot;>📤</div><div class=&quot;ct&quot;>読み込み（読む）</div><div class=&quot;cs&quot;>倉庫から荷物を<b>出す</b>速さ<br>例：アプリを開く・写真を見る</div></div>
+      <div class=&quot;ccard&quot;><div class=&quot;emo&quot;>📥</div><div class=&quot;ct&quot;>書き込み（書く）</div><div class=&quot;cs&quot;>倉庫に荷物を<b>しまう</b>速さ<br>例：写真を保存・コピー</div></div>
+    </div>
+    <p>スペック表に「<b class=&quot;kb&quot;>読込</b> 7000MB/s」「<b class=&quot;kg&quot;>書込</b> 5000MB/s」みたいに2つ書いてあるのは、この「出す速さ」と「しまう速さ」のことなんです。</p>
+    <div class=&quot;big-point&quot;>速さ＝<b class=&quot;kb&quot;>読み込み（出す）</b>と<b class=&quot;kg&quot;>書き込み（しまう）</b>の2つ。表に2つ数字があるのはこのため。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>単位</div>
+    <h2>「MB/s」＝ 1秒で運べる量</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;k&quot;>MB/s</b>（メガバイト毎秒）は、「<b>1秒間に何MBの荷物を運べるか</b>」。数字が大きいほど、たくさん運べる＝速い。荷物の量を時間で運ぶ、ただのあたり算です。</p>
+    <p>ちなみに <b class=&quot;kb&quot;>1000MB/s ＝ 1GB/s</b>。だから「7000MB/s」は「<b class=&quot;kb&quot;>7GB/s</b>」と同じ意味。表記が違うだけです。</p>
+    <p>下で、荷物（ファイル）の大きさと倉庫の速さを変えて、<b class=&quot;k&quot;>コピーにかかる時間</b>を見てみましょう。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;w-lab&quot;>運ぶ荷物の大きさ（ファイル）</div>
+      <div class=&quot;slabels&quot;><span>1 GB</span><span>100 GB</span></div>
+      <input type=&quot;range&quot; id=&quot;cpSize&quot; min=&quot;1&quot; max=&quot;100&quot; value=&quot;10&quot; step=&quot;1&quot;>
+      <div class=&quot;nowline&quot;>いまのサイズ <b style=&quot;color:var(--persimmon-deep)&quot; id=&quot;cpSizeNow&quot;>10</b> GB</div>
+      <div class=&quot;w-lab&quot; style=&quot;margin-top:14px;&quot;>倉庫の種類（速さ）</div>
+      <div class=&quot;seg2&quot; id=&quot;cpDev&quot;>
+        <button data-s=&quot;150&quot;>ハードディスク</button>
+        <button data-s=&quot;550&quot;>古いSSD</button>
+        <button class=&quot;on&quot; data-s=&quot;7000&quot;>新しいSSD</button>
+      </div>
+      <div class=&quot;bigout&quot;><div class=&quot;lab&quot;>コピーにかかる時間（目安）</div><div class=&quot;v&quot;><span id=&quot;cpTime&quot;>1.4</span><small> 秒</small></div></div>
+      <div class=&quot;w-steps&quot; id=&quot;cpSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 速さは代表的な目安です。実際は製品・条件で変わり、表示される最高速度どおりには出ないこともあります。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 4 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>4</span>HDDとSSD</div>
+    <h2>「回る円盤」か「電子で一瞬」か</h2>
+    <p class=&quot;lead-line&quot;>同じ倉庫でも、中身の仕組みが全然ちがいます。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard hdd&quot;><div class=&quot;emo&quot;>💿</div><div class=&quot;ct&quot;>ハードディスク<br>(HDD)</div><div class=&quot;cs&quot;>中で<b>円盤が回って</b>、針が読む。レコードみたいな仕組み。安くて大容量だけど遅い。</div></div>
+      <div class=&quot;ccard ssd&quot;><div class=&quot;emo&quot;>⚡</div><div class=&quot;ct&quot;>SSD</div><div class=&quot;cs&quot;>回る部品なし。<b>電子でパッと</b>読み書き。本棚から一瞬で取り出す感じ。速い。</div></div>
+    </div>
+    <p>いちばん体感が変わるのは、実は<b class=&quot;k&quot;>「HDDからSSDに替えたとき」</b>。起動やアプリの開きが、別のパソコンかと思うくらい速くなります。今のパソコンはほとんどSSDです。</p>
+    <div class=&quot;big-point mint&quot;>HDD＝回る円盤（安い・大容量・遅い）。SSD＝電子で一瞬（速い）。<b class=&quot;kg&quot;>いちばんの差はHDD→SSD</b>。</div>
+  </section>
+
+  <!-- pitfalls -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>5</span>つまずき</div>
+    <h2>ここだけ先に</h2>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意①</span><p style=&quot;margin:0&quot;><b>「容量」と「速さ」は別の話。</b><br><span class=&quot;soft&quot;>1TB（どれだけ入るか）と 7000MB/s（どれだけ速いか）は、まったく別のスペック。次のページは「速さ」の話。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意②</span><p style=&quot;margin:0&quot;><b>最高速度は「いちばん良い条件での数字」。</b><br><span class=&quot;soft&quot;>表示は理想値。普段の使い方ではそこまで出ないのが普通。がっかりしなくて大丈夫。</span></p></div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>倉庫と速さのイメージはOK。<br>次は、スペック表の「呪文」を読み解こう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 規格を読む ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>スペック表の言葉 ・ 読み解く</span>
+    <h1>「Gen4」「NVMe」<br>って何の<span class=&quot;hl&quot;>呪文</span>？</h1>
+    <p class=&quot;lead&quot;>電気屋さんのラベルを、<br>1個ずつ分解して読めるようにします。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kb&quot;>NVMe</b>は「速い通り道」、<b class=&quot;k&quot;>Gen3→4→5</b>は「道の太さの世代」、<b class=&quot;kp&quot;>×4</b>は「車線の数」。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>持ちこむ</div>
+    <h2>こんなラベル、見ますよね</h2>
+    <div class=&quot;label-demo&quot;>
+      <span class=&quot;pc m2&quot;>M.2</span> <span class=&quot;pc nvme&quot;>NVMe</span> <span class=&quot;pc gen&quot;>PCIe Gen4</span> <span class=&quot;pc lane&quot;>×4</span><br>
+      <span class=&quot;pc spd&quot;>読込 7000MB/s</span> <span class=&quot;pc spd&quot;>書込 5000MB/s</span>
+    </div>
+    <p class=&quot;soft&quot; style=&quot;text-align:center; margin-top:12px;&quot;>呪文みたいですが、1個ずつ見れば全部かんたんです。順番にいきましょう。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>2つの道</div>
+    <h2>「SATA」か「NVMe」か</h2>
+    <p class=&quot;lead-line&quot;>SSDがパソコンとつながる「通り道」に、大きく2種類あります。</p>
+    <div class=&quot;twocol&quot;>
+      <div class=&quot;ccard hdd&quot;><div class=&quot;emo&quot;>🛣️</div><div class=&quot;ct&quot;>SATA<br>(サタ)</div><div class=&quot;cs&quot;>昔からある<b>細い道</b>。上限が約 550MB/s。SSDの中では遅め（でもHDDよりずっと速い）。</div></div>
+      <div class=&quot;ccard ssd&quot;><div class=&quot;emo&quot;>🏎️</div><div class=&quot;ct&quot;>NVMe<br>(エヌブイエムイー)</div><div class=&quot;cs&quot;>新しい<b>太い道</b>。数千〜1万MB/s。今の速いSSDはこれ。</div></div>
+    </div>
+    <p>つまり「<b class=&quot;kb&quot;>NVMe</b>」と書いてあれば、まず<b class=&quot;k&quot;>速いタイプ</b>だと思ってOK。「SATA」なら、SSDの中では控えめ、というイメージです。</p>
+    <div class=&quot;big-point blue&quot;><b class=&quot;kb&quot;>NVMe＝速い道</b>、<b>SATA＝昔ながらの細い道</b>。ラベルにNVMeがあれば速いタイプ。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>世代</div>
+    <h2>「PCIe Gen3 → Gen4 → Gen5」＝ 道の太さの世代</h2>
+    <p class=&quot;lead-line&quot;>NVMeが走る道路の名前が <b class=&quot;k&quot;>PCIe（ピーシーアイイー）</b>。この道路には<b class=&quot;k&quot;>世代（Gen）</b>があって、新しいほど太い（速い）。ざっくり<b class=&quot;k&quot;>1世代で約2倍</b>です。</p>
+    <p><b class=&quot;kp&quot;>×4</b>は「車線の数」。ふつうのSSDは4車線（×4）で、これが標準です。道が太く（Gen↑）車線が多い（×4）ほど、たくさん運べます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;w-lab&quot; style=&quot;text-align:center;&quot;>規格をえらぶ（読込の目安）</div>
+      <div class=&quot;seg2&quot; id=&quot;genSeg&quot;>
+        <button data-s=&quot;550&quot; data-n=&quot;SATA&quot;>SATA</button>
+        <button data-s=&quot;3500&quot; data-n=&quot;Gen3&quot;>Gen3</button>
+        <button class=&quot;on&quot; data-s=&quot;7000&quot; data-n=&quot;Gen4&quot;>Gen4</button>
+        <button data-s=&quot;12000&quot; data-n=&quot;Gen5&quot;>Gen5</button>
+      </div>
+      <div class=&quot;nowline&quot;>いまの規格 <b style=&quot;color:var(--sky-deep)&quot; id=&quot;genNow&quot;>Gen4</b>　／　約 <b style=&quot;color:var(--persimmon-deep)&quot; id=&quot;genSpd&quot;>7000</b> MB/s</div>
+      <div class=&quot;speedbar&quot;><div class=&quot;speedfill&quot; id=&quot;genBar&quot; style=&quot;width:60%&quot;></div></div>
+      <div class=&quot;bigout&quot; style=&quot;margin-top:12px;&quot;><div class=&quot;lab&quot;>10GBのファイルをコピーする時間（目安）</div><div class=&quot;v&quot;><span id=&quot;genTime&quot;>1.4</span><small> 秒</small></div></div>
+      <div class=&quot;w-steps&quot; id=&quot;genSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 数値は世代の代表的な目安です。製品ごとに差があり、最高速度どおりには出ないこともあります。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>混乱ポイント</div>
+    <h2>「M.2」は“形”の話。中身とは別</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kp&quot;>M.2（エムドットツー）</b>は、SSDの<b>形・差し込み口</b>の名前。ガム板みたいな細長いスティック型のことです。<b class=&quot;k&quot;>速さの話ではありません。</b></p>
+    <p>ここがいちばん紛らわしい所。<b class=&quot;kp&quot;>M.2という同じ形</b>でも、中身が<b>SATA（遅め）</b>のものと<b>NVMe（速い）</b>のものが両方あります。だから「M.2だから速い」とは限らない。<b class=&quot;k&quot;>形（M.2）と中身（SATA/NVMe）は別々に見る</b>のがコツです。</p>
+    <div class=&quot;big-point plum&quot;><b class=&quot;kp&quot;>M.2＝形</b>、<b class=&quot;kb&quot;>NVMe/SATA＝中身（速さ）</b>。「M.2 NVMe」で初めて「この形で、速いタイプ」と分かる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>分解</div>
+    <h2>さっきのラベルを、ぜんぶ読む</h2>
+    <div class=&quot;label-demo&quot; style=&quot;margin-bottom:14px;&quot;>
+      <span class=&quot;pc m2&quot;>M.2</span> <span class=&quot;pc nvme&quot;>NVMe</span> <span class=&quot;pc gen&quot;>PCIe Gen4</span> <span class=&quot;pc lane&quot;>×4</span> <span class=&quot;pc spd&quot;>読込 7000MB/s</span>
+    </div>
+    <div class=&quot;declist&quot;>
+      <div class=&quot;decitem&quot;><span class=&quot;chip&quot; style=&quot;background:#5C6BC0&quot;>M.2</span><div class=&quot;d&quot;><b>形（スティック型）。</b>差し込み口がこの形、という意味。速さとは別。</div></div>
+      <div class=&quot;decitem&quot;><span class=&quot;chip&quot; style=&quot;background:#26A69A&quot;>NVMe</span><div class=&quot;d&quot;><b>速い通り道のタイプ。</b>これがあれば、まず速いSSD。</div></div>
+      <div class=&quot;decitem&quot;><span class=&quot;chip&quot; style=&quot;background:#EF6C50&quot;>PCIe Gen4</span><div class=&quot;d&quot;><b>道路の世代＝太さ。</b>Gen3より約2倍、Gen5より控えめ。</div></div>
+      <div class=&quot;decitem&quot;><span class=&quot;chip&quot; style=&quot;background:#AB7BC4&quot;>×4</span><div class=&quot;d&quot;><b>車線の数。</b>4車線が標準。</div></div>
+      <div class=&quot;decitem&quot;><span class=&quot;chip&quot; style=&quot;background:#E0A93B; color:#3a2d12&quot;>7000MB/s</span><div class=&quot;d&quot;><b>読み込みの速さ＝7GB/s。</b>1秒で7GB出せる、の意味。</div></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>読み下すと「<b>スティック型の、速いタイプで、4世代目の道路を4車線、1秒に7GB出せるSSD</b>」。もう呪文じゃない🦎</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>ラベルが読めるようになった！<br>最後に、昔と今と「結局どれ買えばいい？」。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 歴史と買い方 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>昔と今 ・ 結局どれを買う？</span>
+    <h1>どんどん<span class=&quot;hl&quot;>速く</span>なってる。<br>で、どれを買う？</h1>
+    <p class=&quot;lead&quot;>昔から今までの伸びと、<br>用途別の「これでいい」を、はっきり。</p>
+  </header>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>歴史</div>
+    <h2>昔から今までの「速さの伸び」</h2>
+    <p class=&quot;lead-line&quot;>読み込み速度の目安を、昔→今で並べると、こんなに伸びています（バーは見やすく調整）。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlrow&quot;><div class=&quot;tlname&quot;>HDD<small>〜2000年代</small></div><div class=&quot;tlbarwrap&quot;><div class=&quot;tlbar&quot; style=&quot;width:11%; background:linear-gradient(90deg,#B0A0BC,#8E7AA0)&quot;>約150</div></div></div>
+      <div class=&quot;tlrow&quot;><div class=&quot;tlname&quot;>SATA SSD<small>2010年代〜</small></div><div class=&quot;tlbarwrap&quot;><div class=&quot;tlbar&quot; style=&quot;width:21%; background:linear-gradient(90deg,#7FB9D6,#5C9BBC)&quot;>約550</div></div></div>
+      <div class=&quot;tlrow&quot;><div class=&quot;tlname&quot;>NVMe Gen3<small>2016年〜</small></div><div class=&quot;tlbarwrap&quot;><div class=&quot;tlbar&quot; style=&quot;width:54%; background:linear-gradient(90deg,#6FB98A,#4E9E6E)&quot;>約3,500</div></div></div>
+      <div class=&quot;tlrow&quot;><div class=&quot;tlname&quot;>NVMe Gen4<small>2019年〜</small></div><div class=&quot;tlbarwrap&quot;><div class=&quot;tlbar&quot; style=&quot;width:76%; background:linear-gradient(90deg,#F0A85C,#DE7E3A)&quot;>約7,000</div></div></div>
+      <div class=&quot;tlrow&quot;><div class=&quot;tlname&quot;>NVMe Gen5<small>2022年〜</small></div><div class=&quot;tlbarwrap&quot;><div class=&quot;tlbar&quot; style=&quot;width:100%; background:linear-gradient(90deg,#E2787F,#C25962)&quot;>約12,000</div></div></div>
+    </div>
+    <p class=&quot;soft&quot; style=&quot;font-size:.86rem;&quot;>単位はMB/s（目安）。HDDからSSDで一気に、その後もGen3→4→5でぐんぐん速くなっています。</p>
+    <div class=&quot;big-point&quot;>大きな流れ：<b class=&quot;kp&quot;>HDD</b> →（ここで激変）→ <b class=&quot;kb&quot;>SATA SSD</b> → <b class=&quot;kg&quot;>Gen3</b> → <b class=&quot;k&quot;>Gen4</b> → <b class=&quot;kr&quot; style=&quot;color:var(--rose-deep)&quot;>Gen5</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>体感の真実</div>
+    <h2>「数字の速さ」と「体感」は別</h2>
+    <p class=&quot;lead-line&quot;>大事な本音。<b class=&quot;k&quot;>普通の使い方（ネット・事務・写真）では、Gen3もGen4もGen5も、体感はほとんど変わりません。</b>すでに全部「一瞬」だからです。</p>
+    <p>差がハッキリ出るのは、<b class=&quot;k&quot;>巨大なファイルをまとめて移すとき</b>。動画編集で何十GBも読み書きする、大量の写真を一気にコピーする——こういう時に、太い道（Gen4/5）の本領が出ます。</p>
+    <div class=&quot;big-point gold&quot;>普段使いなら<b class=&quot;kgo&quot;>Gen3でも十分すぎ</b>。Gen4/5の差が効くのは<b class=&quot;k&quot;>動画編集・大量コピー</b>など重い作業。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>買い方</div>
+    <h2>用途別「これでいい」の目安</h2>
+    <div class=&quot;uselist&quot;>
+      <div class=&quot;useitem&quot;><span class=&quot;emo&quot;>🌐</span><div class=&quot;ut&quot;><div class=&quot;uh&quot;>ネット・事務・動画を見る・写真</div><div class=&quot;us&quot;>SSDなら何でも快適。安く済ませてOK</div></div><span class=&quot;pick&quot; style=&quot;background:var(--mint)&quot;>SATA〜Gen3</span></div>
+      <div class=&quot;useitem&quot;><span class=&quot;emo&quot;>🎮</span><div class=&quot;ut&quot;><div class=&quot;uh&quot;>ゲーム・写真をたくさん・普通に長く使う</div><div class=&quot;us&quot;>バランス重視。今いちばん無難</div></div><span class=&quot;pick&quot; style=&quot;background:var(--sky)&quot;>Gen3〜Gen4</span></div>
+      <div class=&quot;useitem&quot;><span class=&quot;emo&quot;>🎬</span><div class=&quot;ut&quot;><div class=&quot;uh&quot;>動画編集・大容量を毎日扱う</div><div class=&quot;us&quot;>太い道が効く。速さ優先</div></div><span class=&quot;pick&quot; style=&quot;background:var(--persimmon)&quot;>Gen4〜Gen5</span></div>
+      <div class=&quot;useitem&quot;><span class=&quot;emo&quot;>💸</span><div class=&quot;ut&quot;><div class=&quot;uh&quot;>とにかく安く、でもHDDより速くしたい</div><div class=&quot;us&quot;>SATA SSDでもHDDより段違いに速い</div></div><span class=&quot;pick&quot; style=&quot;background:var(--gold)&quot;>SATA SSD</span></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>迷ったら<b class=&quot;kg&quot;>Gen3〜Gen4</b>。多くの人はこれで十分。動画編集など重い人だけGen5を検討。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>買う前の注意</div>
+    <h2>知らないと損する2つ</h2>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意①</span><p style=&quot;margin:0&quot;><b>パソコン側が対応してないと、速度は出ない。</b><br><span class=&quot;soft&quot;>Gen5のSSDを買っても、パソコン（マザーボード）がGen4までなら、<b>Gen4の速さ</b>で動きます。下位互換なので壊れはしませんが、「宝の持ち腐れ」に。買う前にパソコンの対応世代を確認。</span></p></div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>注意②</span><p style=&quot;margin:0&quot;><b>速いSSD（Gen4/5）は熱くなる。</b><br><span class=&quot;soft&quot;>高速なほど発熱します。<b>ヒートシンク（放熱板）</b>付きを選ぶか、付けると安心。熱くなりすぎると、自分で速度を落として身を守る（＝遅くなる）ことがあります。</span></p></div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- E drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>読めるか試す</div>
+    <h2>スペック読みドリル</h2>
+    <p class=&quot;lead-line&quot;>電気屋さんになったつもりで、選んでみてください。</p>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- F closing -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>F</span>まとめ</div>
+    <h2>もう、スペック表が読める</h2>
+    <p class=&quot;lead-line&quot;>倉庫の出し入れの速さ＝<b class=&quot;kb&quot;>読込・書込（MB/s）</b>。通り道は<b class=&quot;kb&quot;>NVMe（速い）/SATA</b>、世代は<b class=&quot;k&quot;>Gen3→4→5</b>で太く、<b class=&quot;kp&quot;>×4</b>は車線、<b class=&quot;kp&quot;>M.2</b>は形。普段使いはGen3〜4で十分、重い作業ならGen5、買う前にパソコンの対応と発熱を確認。</p>
+    <div class=&quot;big-point&quot;>これだけ分かれば、電気屋さんのラベルはもう怖くない🦎</div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    速さ＝<b>読込・書込（MB/s）</b>。<b>NVMe＝速い道</b>、<b>Gen3→4→5＝太さの世代</b>、<b>×4＝車線</b>、<b>M.2＝形</b>。<br>
+    迷ったらGen3〜Gen4。重い作業ならGen5。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 考え方にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+  function fmt(n){ if(!isFinite(n))return '0'; let r=Math.round(n*100)/100; return r.toLocaleString('ja-JP',{maximumFractionDigits:2}); }
+
+  /* P1-3: copy time */
+  (function(){
+    let dev=7000;
+    const S=document.getElementById('cpSize'),now=document.getElementById('cpSizeNow'),seg=document.getElementById('cpDev'),time=document.getElementById('cpTime'),steps=document.getElementById('cpSteps');
+    const nameOf={150:'ハードディスク',550:'古いSSD',7000:'新しいSSD'};
+    function r(){
+      const gb=parseFloat(S.value)||0; now.textContent=fmt(gb);
+      const mb=gb*1000; const t=mb/dev;
+      time.textContent=fmt(t);
+      steps.innerHTML=`${fmt(gb)}GB（＝${fmt(mb)}MB） ÷ ${fmt(dev)}MB/s ＝ <b>約${fmt(t)}秒</b>　（${nameOf[dev]}）`;
+    }
+    S.oninput=r;
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{dev=parseFloat(b.dataset.s);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P2-C: gen selector */
+  (function(){
+    let spd=7000, nm='Gen4';
+    const seg=document.getElementById('genSeg'),now=document.getElementById('genNow'),spdEl=document.getElementById('genSpd'),bar=document.getElementById('genBar'),time=document.getElementById('genTime'),steps=document.getElementById('genSteps');
+    function r(){
+      now.textContent=nm; spdEl.textContent=fmt(spd);
+      bar.style.width=Math.max(4, Math.sqrt(spd)/Math.sqrt(12000)*100)+'%';
+      const t=10000/spd; time.textContent=fmt(t);
+      steps.innerHTML=`10GB（＝10,000MB） ÷ ${fmt(spd)}MB/s ＝ <b>約${fmt(t)}秒</b>`;
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{spd=parseFloat(b.dataset.s);nm=b.dataset.n;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P3-E: drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'「PCIe Gen4」と「PCIe Gen3」、速いのはどっち？', o:['Gen4','Gen3','同じ'], a:0, e:'世代の数字が大きいほど速い。Gen4はGen3の約2倍。'},
+      {q:'ラベルに「M.2」とだけある。これで速いと分かる？', o:['分かる（必ず速い）','分からない（形の話だから）'], a:1, e:'M.2は“形”。中身がSATAかNVMeかで速さは変わる。'},
+      {q:'「読込 7000MB/s」は、何GB/sのこと？', o:['0.7GB/s','7GB/s','70GB/s'], a:1, e:'1000MB/s＝1GB/s。だから7000MB/s＝7GB/s。'},
+      {q:'Gen5のSSDを、Gen4までのパソコンに付けると？', o:['壊れる','Gen4の速さで動く','Gen5のまま動く'], a:1, e:'下位互換。壊れず、パソコン側の上限（Gen4）の速さで動く。'},
+      {q:'ふつうにネットや事務で使う。体感がいちばん変わる乗り換えは？', o:['HDD → SSD','Gen3 → Gen4','Gen4 → Gen5'], a:0, e:'普段使いではGen間の体感差は小さい。激変するのはHDD→SSD。'},
+      {q:'「NVMe」と書いてあったら、ざっくり？', o:['速いタイプのSSD','遅いタイプ','容量が大きい印'], a:0, e:'NVMe＝速い通り道。まず速いSSDだと思ってOK。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
 
 <div id="themeView" hidden>
   <header class="topnav">
@@ -7581,6 +8110,7 @@
     document.getElementById('themeView').hidden=true;
     document.getElementById('home').hidden=true;
     document.querySelectorAll('[id^="subj-"]').forEach(function(d){ d.hidden=true; });
+    document.querySelectorAll('.theme-frame-wrap').forEach(function(d){ d.hidden=true; });
     var e=document.getElementById('entrance'); if(e) e.hidden=false;
     document.getElementById('themeBody').innerHTML='';
     window.scrollTo(0,0);
@@ -7588,6 +8118,7 @@
   function openSubject(s){
     if(s==='drug'){
       var e=document.getElementById('entrance'); if(e) e.hidden=true;
+      document.querySelectorAll('.theme-frame-wrap').forEach(function(d){ d.hidden=true; });
       document.getElementById('home').hidden=false;
       window.scrollTo(0,0);
     }
@@ -7596,7 +8127,17 @@
     var e=document.getElementById('entrance'); if(e) e.hidden=true;
     document.getElementById('home').hidden=true;
     document.querySelectorAll('[id^="subj-"]').forEach(function(d){ d.hidden=true; });
+    document.querySelectorAll('.theme-frame-wrap').forEach(function(d){ d.hidden=true; });
     var t=document.getElementById('subj-'+id); if(t) t.hidden=false;
+    window.scrollTo(0,0);
+  }
+  function openThemeFrame(id){
+    var e=document.getElementById('entrance'); if(e) e.hidden=true;
+    document.getElementById('home').hidden=true;
+    document.getElementById('themeView').hidden=true;
+    document.querySelectorAll('[id^="subj-"]').forEach(function(d){ d.hidden=true; });
+    document.querySelectorAll('.theme-frame-wrap').forEach(function(d){ d.hidden=true; });
+    var t=document.getElementById('theme-'+id); if(t) t.hidden=false;
     window.scrollTo(0,0);
   }
   function updateApp(){
