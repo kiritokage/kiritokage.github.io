@@ -1066,6 +1066,10 @@
   .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
   .pit b{ color:var(--persimmon-deep); }
   .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+  .nvseg{ display:flex; gap:6px; margin:6px 0; flex-wrap:wrap; }
+  .nvseg button{ flex:1; min-width:88px; font-family:"Zen Maru Gothic"; font-weight:700; font-size:.8rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; line-height:1.3; }
+  .nvseg button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .nvseg button small{ display:block; font-size:.66rem; opacity:.85; font-weight:700; }
 
   .formula{ text-align:center; font-family:"Zen Maru Gothic"; font-weight:900; background:#F3ECF5; border-radius:16px; padding:16px; margin:14px 0; color:var(--plum-deep); }
   .formula .big{ font-size:1.6rem; } .formula .sub{ font-size:.82rem; color:var(--ink-soft); font-weight:700; margin-top:4px; }
@@ -7294,6 +7298,36 @@
     </div>
     <div class="formula"><div class="big">C₁ V₁ ＝ C₂ V₂</div><div class="sub">（濃さ×かさ）＝（濃さ×かさ）＝ どちらも“同じ薬の量”</div></div>
     <p class="soft" style="text-align:center;">むずかしい記号に見えて、言ってるのは「<b>薬の量は変わらない</b>」だけです。</p>
+
+    <h3>単位をつけて、実際に「入れて」みる</h3>
+    <p>「C（濃さ）」がずっと記号のままだとモヤッとしますよね。<b class="kb">数字と単位を入れて</b>計算してみると、「C×Vって結局なに？」がハッキリ見えます。</p>
+    <div class="big-point blue">大前提：<b class="kb">C（濃さ）は「mg/mL」という単位の数字</b>（＝1mLあたり何mg）。<b class="kb">V（かさ）は「mL」</b>。この2つをかけ算します。</div>
+
+    <p style="margin-top:1em;"><b class="k">① 原液側　C₁ × V₁</b>　（例：10mg/mL の原液を 20mL）</p>
+    <div class="panel" style="background:#E9F2F7;">
+      <div style="font-family:'Zen Maru Gothic';font-weight:700;font-size:1.02rem;line-height:2.1;">
+        C₁ × V₁ ＝ <b class="kb">10 mg/mL</b> × <b class="kb">20 mL</b><br>
+        　<span class="soft">単位だけ見ると</span>　(mg/<s>mL</s>) × <s>mL</s> → <b class="k">mg</b>　<span class="soft">（“/mL” と “mL” が打ち消し合う）</span><br>
+        　<span class="soft">数字だけ見ると</span>　10 × 20 ＝ 200<br>
+        ＝ <b class="kb">200 mg</b>　<span class="soft">← これが「中の薬の量」</span>
+      </div>
+    </div>
+
+    <p style="margin-top:.8em;"><b class="k">② 薄めた後　C₂ × V₂</b>　（20mLを水で 50mL に薄めた。濃さは 200÷50＝4mg/mL に下がる）</p>
+    <div class="panel" style="background:#E9F2F7;">
+      <div style="font-family:'Zen Maru Gothic';font-weight:700;font-size:1.02rem;line-height:2.1;">
+        C₂ × V₂ ＝ <b class="kb">4 mg/mL</b> × <b class="kb">50 mL</b><br>
+        ＝ 4 × 50 ＝ <b class="kb">200 mg</b>　<span class="soft">← 薄めても薬は 200mg のまま！</span>
+      </div>
+    </div>
+
+    <div class="amount-eq" style="margin-top:14px;">
+      <div class="box"><div class="t">原液側</div><div class="v">200 mg</div></div>
+      <div class="eqsign">＝</div>
+      <div class="box"><div class="t">薄めた後</div><div class="v">200 mg</div></div>
+    </div>
+    <div class="big-point">だから <b class="kb">C₁V₁ ＝ C₂V₂</b> は、ほんとうは「<b class="k">200mg ＝ 200mg</b>」。<br>両辺とも単位は <b class="kb">mg（薬の量）</b>で、それが等しい、と言ってるだけなんです。</div>
+    <div class="note">ポイント：<b>C×V の単位は mg/mL × mL ＝ mg</b>。だから C×V は「薬の量（mg）」そのもの。Cがずっと“濃さ”と呼ばれて何の数字か分かりにくかったのは、単位（mg/mL）が抜けていたからです。<br>※ここでは mg/mL で説明しましたが、％（g/100mL のような割合）でも考え方は同じ。「濃さ×かさ＝中身の量」は変わりません。</div>
   </section>
 
   <hr class="hr">
@@ -7302,7 +7336,25 @@
   <section>
     <div class="step-no"><span class="dot">3</span>式を使う</div>
     <h2>「原液をいくつ取る？」を出す</h2>
-    <p class="lead-line">作りたい濃度C₂・量V₂が決まったら、必要な原液量V₁は <b class="kb">V₁ ＝ C₂V₂ ÷ C₁</b>。<br>（＝ほしい薬の量 ÷ 原液の濃さ）</p>
+    <p class="lead-line">ここが本番。「薄める前後で薬の量は同じ（C₁V₁＝C₂V₂）」を使って、<b class="kb">取る原液の量 V₁</b> を出します。式をいきなり覚えるのではなく、<b class="k">考える順番</b>でいきましょう。</p>
+
+    <h3>考える順番（“あたり算”で出す）</h3>
+    <div class="panel" style="background:#FBF7F0;">
+      <p style="margin:.2em 0;"><b class="k">① ほしい薬の“総量”を先に出す。</b><br>作りたいのは「濃さ C₂ の液を V₂ mL」。その中に入る薬は <b class="kb">C₂ × V₂</b>（濃さ×かさ＝薬の量。①土台でやったあれです）。</p>
+      <p style="margin:.7em 0 .2em;"><b class="k">② 原液は「1mLあたり C₁ mg」と読む。</b><br>「原液 C₁ mg/mL」とは、<b>1mLあたり C₁ mg の薬を積んでいる</b>という意味。これが濃さの正体。</p>
+      <p style="margin:.7em 0 .2em;"><b class="k">③「総量 ÷ 1mLあたり」で、必要なmLが出る。</b><br>ほしい薬の総量を、原液を1mLずつ足して積んでいく——<b>何mL分で足りる？</b> それが必要な原液量。<br>つまり <b class="kb">V₁ ＝ (C₂×V₂) ÷ C₁</b>。「全部で◯mg ÷ 1mLで◯mg ＝ ◯mL」という、ただの<b class="k">あたり算</b>なんです。</p>
+    </div>
+
+    <div class="big-point">だから <b class="kb">V₁ ＝ C₂V₂ ÷ C₁</b>。<br>言葉にすると「<b class="k">ほしい薬の総量 ÷ 原液1mLあたりの薬</b>」。</div>
+
+    <h3>数字で1回、ゆっくり</h3>
+    <div class="panel" style="background:#E9F2F7;">
+      <p style="margin:.2em 0;">例：原液 <b>10mg/mL</b> から、<b>2mg/mL</b> を <b>100mL</b> 作りたい。</p>
+      <p style="margin:.5em 0;">① ほしい薬の総量 ＝ 2 × 100 ＝ <b class="kb">200mg</b><br>② 原液は 1mL に <b>10mg</b><br>③ 200mg を積むのに必要な原液 ＝ 200 ÷ 10 ＝ <b class="kb">20mL</b></p>
+      <p style="margin:.5em 0 0;">→ <b>原液 20mL を取って、水を足して 100mL にする</b>（水は 80mL）。これだけ。</p>
+    </div>
+
+    <h3>自分の数字で確かめる</h3>
     <div class="panel">
       <div class="threein">
         <div><div class="w-lab">原液 C₁</div><div class="w-in"><input type="number" id="svC1" value="10" min="0.1" step="0.1"></div><div class="w-unit" style="font-size:.7rem;">mg/mL</div></div>
@@ -7380,6 +7432,118 @@
 
   <hr class="hr">
 
+  <!-- C noro -->
+  <section>
+    <div class="step-no"><span class="dot">C</span>身近な実例</div>
+    <h2>ノロ対策の消毒液は、これそのもの</h2>
+    <p class="lead-line">感染性胃腸炎（ノロなど）が流行ると、厚労省や自治体から「<b class="k">ハイターを薄めて消毒液を作りましょう</b>」と案内が出ます。あれ、実は <b class="kb">C₁V₁＝C₂V₂</b> そのもの。原液（漂白剤）を薄めて、目的の濃さの消毒液を作る話です。</p>
+
+    <h3>まず、2つの“目的の濃さ”</h3>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🤮</span><span class="txt"><span class="per">0.1％（1000ppm）</span>…嘔吐物・便、それが付いた床やトイレ</span></div>
+      <div class="peritem"><span class="emo">🚪</span><span class="txt"><span class="per">0.02％（200ppm）</span>…ドアノブ・手すり・おもちゃ・調理器具など</span></div>
+    </div>
+    <div class="note">※「％」と「ppm」は同じ濃さの言いかえ。0.1％＝1000ppm、0.02％＝200ppm（1％＝10000ppm）。汚れがひどい所は濃いめ(0.1%)、ふだんの物は薄め(0.02%)。</div>
+
+    <h3>原液（漂白剤）の濃さは商品で違う</h3>
+    <div class="perlist">
+      <div class="peritem"><span class="emo">🧴</span><span class="txt">ハイター／キッチンハイター・<span class="per">約5％</span>（製品で5〜6%）</span></div>
+      <div class="peritem"><span class="emo">🏥</span><span class="txt">ピューラックス・<span class="per">約6％</span>（医療・施設でよく使う）</span></div>
+      <div class="peritem"><span class="emo">🍼</span><span class="txt">ミルトン・<span class="per">約1％</span></span></div>
+    </div>
+
+    <h3>いちばんラクな順番（％は最初に“倍率”へ）</h3>
+    <p class="lead-line">混乱の犯人は<b class="k">「％のまま考えようとすること」</b>。％は割合なので、量に直しづらいんです。コツは——<b class="kb">最初に「％ ÷ ％」で“何倍に薄めるか”だけ出す</b>こと。</p>
+
+    <div class="big-point blue">💡 そもそも、なぜ「％ ÷ ％」で“何倍に薄めるか”が出るの？</div>
+    <p><b class="k">理由①　割り算は「何倍か」を出す道具。</b><br>
+    たとえば「1500円は500円の何倍？」→ 1500 ÷ 500 ＝ <b>3倍</b>。割り算をすると「何倍」が出ますよね。<br>
+    これを濃さでやるだけ：「<b class="kb">5％は0.1％の何倍？</b>」→ 5 ÷ 0.1 ＝ <b class="kb">50倍</b>。<br>
+    → つまり <b>原液(5％)は、目標(0.1％)より「50倍も濃い」</b> と分かる。</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin:16px 0;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="width:70px;height:70px;border-radius:12px;background:#DE6E2F;border:1px solid #C25962;"></div>
+        <div style="font-weight:700;font-size:.82rem;margin-top:5px;">原液 5％<br><span style="color:#6E6672;">濃い</span></div>
+      </div>
+      <div style="font-family:'Zen Maru Gothic';font-weight:900;color:var(--persimmon-deep);font-size:.95rem;text-align:center;line-height:1.3;">50倍<br>ちがう</div>
+      <div style="text-align:center;">
+        <div style="width:70px;height:70px;border-radius:12px;background:#FCEBDC;border:1px solid #EEDFCE;"></div>
+        <div style="font-weight:700;font-size:.82rem;margin-top:5px;">目標 0.1％<br><span style="color:#6E6672;">薄い</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:.84rem;color:#6E6672;margin-top:-4px;">色の濃さ＝薬の濃さ。原液は目標より<b>50倍濃い</b>。</div>
+
+    <p style="margin-top:1.1em;"><b class="k">理由②　「50倍濃い」なら「50倍に薄める」とちょうど元に戻る。</b><br>
+    薄める＝水を足して<b>全体を増やす</b>＝濃さが下がること。<b>全体の量を50倍</b>にすると、同じ薬が50倍の水に散らばるので、<b class="kb">濃さは1/50</b>になります。<br>
+    原液はもともと目標の <b>50倍濃い</b>。それを <b>1/50</b> にする → <b class="kb">ぴったり目標の濃さ</b>。<br>
+    <span class="soft">＝「50倍濃い」と「50倍に薄める」が打ち消し合って、ちょうど0.1％になる。だから “％÷％” で出た数が、そのまま薄める倍率になるんです。</span></p>
+
+    <p class="lead-line" style="margin-top:1.2em;">理由が分かったら、あとは手順。例で超ゆっくりいきます。</p>
+    <div class="panel" style="background:#FBF7F0;">
+      <p style="margin:.2em 0;"><b>例：5％のハイターで、0.1％の消毒液を 500mL 作る。</b></p>
+      <p style="margin:.7em 0 .2em;"><b class="k">STEP 1　何倍に薄める？ ＝ ％ ÷ ％</b><br>
+      5％ ÷ 0.1％ ＝ <b class="kb">50</b>。これだけ。<br>
+      <span class="soft">※ ％どうしを割ると「％」が消えて、<b>ただの数（倍率）</b>になります。だから単位の心配なし。→「<b>50倍に薄める</b>」と決まる。</span></p>
+      <p style="margin:.7em 0 .2em;"><b class="k">STEP 2　「50倍に薄める」ってどういうこと？</b><br>
+      全体の量を <b>50倍</b> にする、ということ。原液を「<b>1こ分</b>」とすると、全体は「<b>50こ分</b>」。<br>
+      → <b class="kb">原液 1こ分 ＋ 水 49こ分</b>（合わせて50こ分）。<br>
+      <span class="soft">※ まだmLは出てきません。「何こ分か（＝割合）」だけ決めた段階です。</span></p>
+
+      <p style="margin:.7em 0 .2em;"><b class="k">STEP 3　その「こ分」を、mL に変える（ここがゴール）</b><br>
+      STEP2で「全体は <b>50こ分</b>」と決まりました。今回は、全体を <b>500mL</b> 作りたい。<br>
+      だから ── <b class="kb">50こ分 ＝ 500mL</b>。<br>
+      では「<b>1こ分</b>」は何mL？ <b>500mL を 50こ に等しく分ける</b>だけです：<br>
+      <b class="kb">500 ÷ 50 ＝ 10mL</b>（＝1こ分）。</p>
+      <p style="margin:.2em 0 .6em;"><span class="soft">この「÷50」は、理由①の「何倍か」とは別の使い方で、<b>“等しく分ける”割り算</b>。<br>「ピザ500mLを50等分したら1切れ何mL？」と同じ。<b class="k">全体 ÷ 個数 ＝ 1個分</b>。</span></p>
+
+      <div style="margin:14px 0;">
+        <div style="display:flex;height:30px;border-radius:8px;overflow:hidden;border:1px solid #EEDFCE;">
+          <div style="flex:1;background:#DE6E2F;"></div>
+          <div style="flex:49;background:#FCEBDC;display:grid;place-items:center;color:#9A7B55;font-size:.74rem;font-weight:700;">水 49こ ＝ 490mL</div>
+        </div>
+        <div style="font-size:.74rem;color:#DE6E2F;font-weight:700;margin-top:5px;">↑ 左はしのオレンジが原液 1こ ＝ 10mL（全体のたった1/50）</div>
+        <div style="text-align:center;font-size:.74rem;color:#6E6672;margin-top:3px;">500mL を 50こに分ける → 1こ＝10mL</div>
+      </div>
+
+      <p style="margin:.4em 0 .2em;">あとは「こ分」に10mLをかけるだけ：<br>
+      原液 ＝ 1こ分 ＝ <b class="kb">10mL</b>。水 ＝ 49こ分 ＝ 49×10 ＝ <b class="kb">490mL</b>（500−10でもOK）。<br>
+      <span class="soft">→ 原液10mL ＋ 水490mL で、0.1％の消毒液が500mL。完成🦎</span></p>
+    </div>
+    <div class="big-point mint">コツは<b class="kg">最初に「％÷％」で倍率を出す</b>（5÷0.1＝50倍）。あとは<b class="k">作る量 ÷ 倍率 ＝ 原液</b>（500÷50＝10mL）、残りが水。もう％で悩まない。</div>
+    <div class="note">同じやり方で：<b>0.02％</b>なら 5÷0.02＝<b>250倍</b> → 500mLは 500÷250＝<b>2mL</b>＋水498mL。<b>6％のピューラックス</b>を0.1％にするなら 6÷0.1＝<b>60倍</b>。原液の％が変わっても「％÷％＝倍率」は同じ。<br><span style="color:#9A8C77;">（これは③の式と同じこと。倍率＝C₁÷C₂、原液V₁＝作る量÷倍率。）</span></div>
+
+    <h3>計算してみる（C₁V₁＝C₂V₂）</h3>
+    <p class="lead-line">上の手順を、自動でやってくれる計算機です。原液の濃さ・目的の濃さ・作る量を選ぶと、<b class="kb">原液を何mL</b>・<b class="kb">水を何mL</b>・<b class="kb">何倍希釈か</b>が出ます。</p>
+    <div class="panel">
+      <div class="w-lab">① 何を消毒する？（目的の濃さ C₂）</div>
+      <div class="nvseg" id="nvUse">
+        <button class="on" data-c="0.1">嘔吐物・便<small>0.1％</small></button>
+        <button data-c="0.02">物品・ドアノブ<small>0.02％</small></button>
+      </div>
+      <div class="w-lab" style="margin-top:12px;">② 使う漂白剤（原液の濃さ C₁）</div>
+      <div class="nvseg" id="nvStock">
+        <button class="on" data-c="5">ハイター等<small>約5％</small></button>
+        <button data-c="6">ピューラックス<small>約6％</small></button>
+        <button data-c="1">ミルトン<small>約1％</small></button>
+      </div>
+      <div class="w-lab" style="margin-top:12px;">③ 作る量 V₂（mL）</div>
+      <div class="threein" style="grid-template-columns:1fr;"><div><div class="w-in"><input type="number" id="nvV2" value="500" min="50" step="50"></div></div></div>
+      <div class="ratiobar" style="margin-top:12px;"><div class="drugseg" id="nvStockSeg" style="flex:1">原液</div><div class="waterseg" id="nvWaterSeg" style="flex:49">水</div></div>
+      <div class="twoin" style="margin-top:8px;">
+        <div class="bigout"><div class="lab">取る原液（漂白剤）</div><div class="v" style="color:var(--sky-deep)"><span id="nvV1">10</span> mL</div></div>
+        <div class="bigout"><div class="lab">足す水</div><div class="v"><span id="nvWater">490</span> mL</div></div>
+      </div>
+      <div class="bigout" style="margin-top:4px;"><div class="lab">希釈倍率／ペットボトルのキャップ換算</div><div class="v" style="font-size:1.3rem;"><span id="nvFold">50</span>倍 ・ キャップ約<span id="nvCap">2</span>杯</div></div>
+      <div class="w-steps" id="nvSteps"></div>
+    </div>
+    <div class="note">※ ペットボトルのキャップ1杯は約5mL（目安）。漂白剤側のキャップは約20〜25mLと大きいので注意。薄めた液は時間で効果が落ちるので<b>使うたびに作り、作り置きしない</b>。</div>
+
+    <div class="pit"><span class="tag">超重要</span><p style="margin:0"><b>酸性のものと絶対に混ぜない。</b><br><span class="soft">「まぜるな危険」。酸性洗剤と混ざると有毒な塩素ガスが出ます。換気し、手袋を。金属は腐食するので拭いたら水で流す。誤飲防止に「消毒液・飲むな」と表示を。</span></p></div>
+    <div class="big-point">ノロの消毒液づくり＝<b class="kb">C₁V₁＝C₂V₂</b>の実地版。例：5％を0.1％に → <b class="k">50倍希釈</b>（500mLなら原液10mL＝キャップ2杯＋水490mL）。</div>
+  </section>
+
+  <hr class="hr">
+
   <!-- C drill -->
   <section>
     <div class="step-no"><span class="dot" style="background:var(--mint)">練</span>手を動かして覚える</div>
@@ -7399,7 +7563,7 @@
 
   <!-- D つまずき -->
   <section>
-    <div class="step-no"><span class="dot">C</span>現場のつまずき</div>
+    <div class="step-no"><span class="dot">D</span>現場のつまずき</div>
     <h2>ここで間違えがち</h2>
     <div class="pit"><span class="tag">注意①</span><p style="margin:0"><b>水の量を直接出そうとしない。</b><br><span class="soft">まず原液V₁＝C₂V₂÷C₁。水はそのあと V₂−V₁。</span></p></div>
     <div class="pit"><span class="tag">注意②</span><p style="margin:0"><b>単位そろえ。</b><br><span class="soft">C₁とC₂は同じ単位。%とmg/mLが混ざってたら先に変換（%×10＝mg/mL）。</span></p></div>
@@ -11043,6 +11207,23 @@ function init_c1v1(){
       });
     }
     next.onclick=newQ; newQ();
+  })();
+  /* P2-C: norovirus hypochlorite dilution */
+  (function(){
+    let c2=0.1, c1=5;
+    const useSeg=document.getElementById('nvUse'),stockSeg=document.getElementById('nvStock'),V2=document.getElementById('nvV2'),
+      V1=document.getElementById('nvV1'),water=document.getElementById('nvWater'),fold=document.getElementById('nvFold'),cap=document.getElementById('nvCap'),
+      sseg=document.getElementById('nvStockSeg'),wseg=document.getElementById('nvWaterSeg'),steps=document.getElementById('nvSteps');
+    function r(){
+      const v2=parseFloat(V2.value)||0;
+      const v1=c2*v2/c1, wa=v2-v1, foldv=c1/c2, capv=v1/5;
+      V1.textContent=fmt(v1); water.textContent=fmt(wa); fold.textContent=fmt(foldv); cap.textContent=fmt(capv);
+      const sf=Math.max(0.02,v1), wf=Math.max(0.0001,wa); sseg.style.flex=String(sf); wseg.style.flex=String(wf);
+      steps.innerHTML=`① 倍率 ＝ ${fmt(c1)}％ ÷ ${fmt(c2)}％ ＝ <b>${fmt(foldv)}倍に薄める</b><br>② 原液 ＝ 作る量 ÷ 倍率 ＝ ${fmt(v2)} ÷ ${fmt(foldv)} ＝ <b>${fmt(v1)}mL</b><br>③ 水 ＝ ${fmt(v2)} − ${fmt(v1)} ＝ <b>${fmt(wa)}mL</b>`;
+    }
+    useSeg.querySelectorAll('button').forEach(b=>b.onclick=()=>{c2=parseFloat(b.dataset.c);useSeg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    stockSeg.querySelectorAll('button').forEach(b=>b.onclick=()=>{c1=parseFloat(b.dataset.c);stockSeg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    V2.oninput=r; r();
   })();
 
 }
