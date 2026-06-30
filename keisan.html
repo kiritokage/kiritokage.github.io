@@ -3006,7 +3006,7 @@
 <div class="lcard soon"><span class="ic">🔢</span><span class="tx"><span class="t">塗る順番</span><span class="s">さらさら→とろとろ、水分→油分</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">処方される塗り薬</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🧴</span><span class="tx"><span class="t">処方の保湿剤</span><span class="s">ヘパリン類似物質・ワセリンなど</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('hoshitsu')"><span class="ic">🧴</span><span class="tx"><span class="t">処方の保湿剤</span><span class="s">ヘパリン類似物質・ワセリン・尿素など</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openThemeFrame('steroidtsuyosa')"><span class="ic">⚠️</span><span class="tx"><span class="t">ステロイドの強さ（ランクと力価換算）</span><span class="s">外用5ランク・部位・全身の力価換算</span></span><span class="badge done">できた</span></button>
 <button class="lcard" onclick="openThemeFrame('steroidfuku')"><span class="ic">🔬</span><span class="tx"><span class="t">ステロイド外用剤の副作用</span><span class="s">皮膚が薄くなる・多毛・色が抜ける等</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">💊</span><span class="tx"><span class="t">その他の薬効成分の塗り薬</span><span class="s">かゆみ・炎症・感染など目的別</span></span><span class="badge soon">準備中</span></div>
@@ -6390,6 +6390,548 @@
       {q:'デキサメタゾン6mgはプレドニゾロン換算で約？', o:['約40mg','約6mg','約5mg'], a:0, e:'6 ÷ 0.75 × 5 ＝ 40mg相当。コロナ治療のデカドロン6mgが好例。'},
       {q:'むくみ(鉱質コルチコイド作用)が強いのは？', o:['ヒドロコルチゾン','デキサメタゾン','ベタメタゾン'], a:0, e:'ヒドロコルチゾンは鉱質作用が強い。デキサ・ベタ・メチルプレドはほぼ無し。'},
       {q:'長時間型で副腎抑制が強く短期・パルス向きなのは？', o:['デキサメタゾン・ベタメタゾン','ヒドロコルチゾン','プレドニゾロン'], a:0, e:'長時間型(半減期36〜72h)。隔日投与には不向き。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-hoshitsu" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('skin')">‹ 化粧品・塗り薬のあれこれ に戻る</button></div><iframe class="theme-frame" title="処方の保湿剤（種類と使い分け）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>処方の保湿剤（種類と使い分け） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.6rem,6.2vw,2.1rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.65rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* two-type compare */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .two{ grid-template-columns:1fr; } }
+  .tcol{ border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .tcol .th{ padding:11px 13px; color:#fff; text-align:center; } .tcol .th .ti{ font-size:1.6rem; } .tcol .th .tn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; line-height:1.25; } .tcol .th .ts{ font-size:.72rem; opacity:.95; }
+  .tcol.moist .th{ background:linear-gradient(135deg,#4FA3C7,#367C9C); } .tcol.emol .th{ background:linear-gradient(135deg,#E0A93B,#C08A1E); }
+  .tcol .tb{ padding:12px 13px; font-size:.86rem; } .tcol .tb b{ color:var(--ink); }
+  .skinmini{ height:74px; border-radius:10px; overflow:hidden; border:1px solid var(--line); position:relative; margin-bottom:9px; }
+  .skinmini .horn{ position:absolute; left:0; right:0; top:0; height:40px; background:#FBE6CD; }
+  .skinmini .deep{ position:absolute; left:0; right:0; bottom:0; height:34px; background:#F3D2A8; }
+  .skinmini .drop{ position:absolute; width:7px; height:7px; border-radius:50% 50% 50% 0; background:#4FA3C7; transform:rotate(-45deg); opacity:.8; }
+  .skinmini .film{ position:absolute; left:0; right:0; top:0; height:9px; background:repeating-linear-gradient(90deg,#E0A93B,#E0A93B 5px,#EAB94E 5px,#EAB94E 10px); }
+
+  /* moisturizer cards */
+  .mcard{ background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; margin:16px 0; }
+  .mcard .mh{ display:flex; align-items:center; gap:11px; padding:12px 15px; color:#fff; }
+  .mcard .memo{ font-size:1.6rem; } .mcard .mn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.08rem; line-height:1.2; } .mcard .mbr{ font-size:.74rem; opacity:.95; }
+  .mcard .mtype{ margin-left:auto; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.66rem; background:rgba(255,255,255,.28); padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .mcard .mb{ padding:13px 15px; }
+  .mcard .row{ display:flex; gap:9px; margin:7px 0; font-size:.88rem; align-items:flex-start; }
+  .mcard .row .lab{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; margin-top:2px; }
+  .mcard .row .v b{ color:var(--ink); }
+  .lab.how{ background:var(--sky); } .lab.for{ background:var(--mint-deep); } .lab.care{ background:var(--rose-deep); } .lab.form{ background:var(--gold); color:#3a2d12; } .lab.feat{ background:var(--persimmon); }
+  .mh.hep{ background:linear-gradient(135deg,#4FA3C7,#367C9C); } .mh.urea{ background:linear-gradient(135deg,#6FB98A,#3E9A63); } .mh.wax{ background:linear-gradient(135deg,#E0A93B,#C08A1E); } .mh.zinc{ background:linear-gradient(135deg,#A87BB5,#7E5A8C); }
+
+  /* symptom selector */
+  .symseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .symseg button{ flex:1; min-width:120px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; padding:9px 7px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; line-height:1.3; text-align:left; }
+  .symseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .symout{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 15px; margin-top:8px; box-shadow:var(--shadow); }
+  .symout .so-name{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; color:var(--persimmon-deep); margin-bottom:3px; } .symout .so-why{ font-size:.9rem; }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.76rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:74px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 2つの系統</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 主役の薬</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 使い分け・塗り方</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>化粧品・塗り薬 ・ とことん版</span>
+    <h1>処方の<span class=&quot;hl&quot;>保湿剤</span><br>（種類と使い分け）</h1>
+    <p class=&quot;lead&quot;>同じ「保湿剤」でも、仕組みは2系統。<br>ここが分かると全部スッキリ。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリ向けの解説です。薬剤の特徴・使い分けは<b>一般的な目安</b>で、適応・濃度・使い方は製品や個人で異なります。<b>実際の選択・使用は医師・薬剤師の指示で</b>（一般の方も自己判断せず相談を）。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「同じ保湿剤なのに、何が違う？」</h2>
+    <p class=&quot;lead-line&quot;>ヒルドイド、ワセリン、尿素…どれも「保湿剤」。でも<b class=&quot;kb&quot;>仕組みも使いどころも違います</b>。このページは、よく処方される保湿剤の種類・特徴・使い分け・使えない場面まで、根っこから整理する回です。</p>
+    <p>カギは最初に——<b class=&quot;kb&quot;>保湿剤には“水分を抱えるタイプ”と“フタをするタイプ”の2系統がある</b>こと。これを押さえると、全部スッキリ並びます。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>なぜ保湿？</div>
+    <h2>皮膚の「バリア機能」を助ける</h2>
+    <p class=&quot;lead-line&quot;>健康な皮膚は、いちばん外側の<b class=&quot;kb&quot;>角質層（バリア）</b>が、水分の蒸発と外からの刺激を防いでいます。乾燥するとこのバリアが弱り、<b class=&quot;k&quot;>水分が逃げ、刺激に弱くなる</b>。保湿剤は、このバリアを助ける薬です。</p>
+    <p>だから保湿は地味でも超重要。<b class=&quot;kg&quot;>新生児期からの保湿でアトピー性皮膚炎の発症リスクが下がる</b>という研究もあり、治療だけでなく予防の土台でもあります。</p>
+    <div class=&quot;big-point blue&quot;>保湿剤＝<b class=&quot;kb&quot;>角質層のバリア機能を助ける薬</b>。乾燥でバリアが弱るのを補う。予防の土台にもなる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>2大分類</div>
+    <h2>「抱える」型 と「フタ」型</h2>
+    <p class=&quot;lead-line&quot;>保湿剤は、作用の仕組みで<b class=&quot;kb&quot;>2つ</b>に分かれます。ここが全ての土台です。</p>
+    <div class=&quot;two&quot;>
+      <div class=&quot;tcol moist&quot;>
+        <div class=&quot;th&quot;><div class=&quot;ti&quot;>💧</div><div class=&quot;tn&quot;>モイスチャライザー</div><div class=&quot;ts&quot;>水分を“抱える”型</div></div>
+        <div class=&quot;tb&quot;>
+          <div class=&quot;skinmini&quot;><div class=&quot;horn&quot;></div><div class=&quot;deep&quot;></div><span class=&quot;drop&quot; style=&quot;left:14px;top:12px&quot;></span><span class=&quot;drop&quot; style=&quot;left:34px;top:20px&quot;></span><span class=&quot;drop&quot; style=&quot;left:54px;top:10px&quot;></span><span class=&quot;drop&quot; style=&quot;left:74px;top:22px&quot;></span><span class=&quot;drop&quot; style=&quot;left:24px;top:28px&quot;></span></div>
+          <b>角質層に水分を与えて抱え込む。</b>スポンジのように、肌の内側を潤す。<br><span class=&quot;soft&quot;>代表＝ヘパリン類似物質・尿素。保湿効果は一般にこちらが高い。</span>
+        </div>
+      </div>
+      <div class=&quot;tcol emol&quot;>
+        <div class=&quot;th&quot;><div class=&quot;ti&quot;>🛡️</div><div class=&quot;tn&quot;>エモリエント</div><div class=&quot;ts&quot;>“フタ”をする型</div></div>
+        <div class=&quot;tb&quot;>
+          <div class=&quot;skinmini&quot;><div class=&quot;horn&quot;></div><div class=&quot;deep&quot;></div><div class=&quot;film&quot;></div></div>
+          <b>表面に油の膜を張り、水分の蒸発を防ぐ。</b>バリアの代わりにフタをする。<br><span class=&quot;soft&quot;>代表＝ワセリン・亜鉛華軟膏。成分自体に強い保湿力はない。</span>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;big-point&quot;>💧<b class=&quot;kb&quot;>モイスチャライザー＝水分を抱える</b>（ヘパリン類似物質・尿素）／🛡️<b class=&quot;kgo&quot;>エモリエント＝フタをする</b>（ワセリン・亜鉛華）。</div>
+    <h3>たとえると</h3>
+    <p>乾いた畑に<b class=&quot;kb&quot;>水をまく</b>のがモイスチャライザー、その水が逃げないように<b class=&quot;kgo&quot;>ビニールハウスをかぶせる</b>のがエモリエント。<b class=&quot;k&quot;>本当は両方を組み合わせるのが理想</b>（後で出てくる「重ね塗り」）。</p>
+    <div class=&quot;big-point mint&quot;>畑に<b class=&quot;kb&quot;>水をまく</b>＋<b class=&quot;kgo&quot;>ビニールハウスでフタ</b>。<b class=&quot;k&quot;>2系統は組み合わせると最強</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>2系統が分かった。<br>では実際の薬を、一つずつ見ていこう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 主役の薬 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>主役の保湿剤 ・ ひとつずつ</span>
+    <h1>よく出る<span class=&quot;hl&quot;>4つ</span>を、<br>おさえる。</h1>
+    <p class=&quot;lead&quot;>仕組み・向く症状や部位・<br>注意（使えない場面）まで。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>💧抱える型＝<b class=&quot;kb&quot;>ヘパリン類似物質・尿素</b>／🛡️フタ型＝<b class=&quot;kgo&quot;>ワセリン・亜鉛華軟膏</b>。タグの色で系統が分かります。</div>
+
+  <!-- A ヘパリン類似物質 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>抱える型</div>
+    <h2>ヘパリン類似物質</h2>
+    <div class=&quot;mcard&quot;>
+      <div class=&quot;mh hep&quot;><span class=&quot;memo&quot;>💧</span><div><div class=&quot;mn&quot;>ヘパリン類似物質</div><div class=&quot;mbr&quot;>ヒルドイド／ビーソフテン など（0.3%）</div></div><span class=&quot;mtype&quot;>モイスチャライザー</span></div>
+      <div class=&quot;mb&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab how&quot;>仕組み</span><span class=&quot;v&quot;>角質層に<b>浸透して水分を抱え込む</b>（保水性が高い）。3つの作用＝<b>①高い保湿 ②血行促進 ③抗炎症</b>。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab feat&quot;>特徴</span><span class=&quot;v&quot;>3大保湿剤の中で<b>角質の水分量を上げる力が最も高い</b>（次に尿素、ワセリン）。刺激が少なく安全性も高い。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab for&quot;>向く</span><span class=&quot;v&quot;>慢性的な<b>乾燥肌・肌荒れ</b>全般。打撲・捻挫の腫れ、ケロイド・肥厚性瘢痕の予防治療にも。<b>顔OK・赤ちゃんOK</b>。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab care&quot;>注意</span><span class=&quot;v&quot;>血行促進で塗った直後に<b>一時的な赤み・かゆみ（温感）</b>のことが。<b>傷・ただれには塗らない</b>。<b>出血しやすい人（血友病・血小板減少など）は要相談</b>（ヘパリン由来で抗凝固性）。目の周りはローションがしみるので注意。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab form&quot;>剤形</span><span class=&quot;v&quot;>軟膏・クリーム・ローション・フォーム（泡）・スプレー。<b>剤形が最も豊富</b>（部位・季節で選べる）。</span></div>
+      </div>
+    </div>
+    <div class=&quot;panel&quot; style=&quot;background:#E7F2F7;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>🔍 なぜ「ヘパリン“類似物質”」？ 血をサラサラにする作用は？</h3>
+      <p style=&quot;margin:.3em 0;&quot;><b class=&quot;kb&quot;>名前の由来：</b>「ヘパリン」という体内成分に<b>化学構造が似ている</b>から「ヘパリン“類似物質”」と名づけられました。どちらも<b>ムコ多糖（糖がつながった物質）</b>の仲間です。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>そもそもヘパリンとは？</b><br>「ヘパ（hepar）」＝<b>肝臓</b>の意味（最初に肝臓から見つかった）。<b>血液を固まりにくくする（抗凝固＝サラサラ）</b>作用があり、注射で<b>全身に効かせて</b>血栓の予防・治療に使う薬です。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>では“類似物質”に、血をサラサラにする作用はある？</b><br>構造が似ているので<b>「わずかに血を固まりにくくする性質」はあります</b>。だから<b class=&quot;kr&quot;>出血しやすい人（血友病・血小板減少など）は注意</b>。ただし——これは<b>塗る保湿剤</b>であって、ヘパリンのように<b>全身の血をサラサラにする目的では使いません</b>。外用での主な働きは<b>①保湿 ②血行促進 ③抗炎症</b>です。</p>
+      <div class=&quot;big-point blue&quot; style=&quot;margin:10px 0 0;&quot;>ヘパリン＝<b class=&quot;kb&quot;>注射の抗凝固薬（全身の血をサラサラ）</b>／ヘパリン類似物質＝<b class=&quot;kb&quot;>塗る保湿剤</b>。構造は似るが<b>用途が全然違う</b>。サラサラ作用はごく弱く、出血しやすい人だけ注意。</div>
+    </div>
+
+    <h3>剤形の違い（保湿力・持続・使用感）</h3>
+    <p class=&quot;lead-line&quot;>ヘパリン類似物質は<b class=&quot;kb&quot;>剤形（基剤）が豊富</b>。中身の成分は同じでも、<b>ベースの違いで使い心地・保湿力・持続が変わります</b>。一般に<b>油分が多いほど保湿力・持続が高く、さっぱり系ほど持続は短め</b>。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>油性クリーム<br>(ソフト軟膏)</span><div class=&quot;tc&quot;><b>こってり・水や汗に落ちにくい・保護作用が高い・刺激は少なめ</b>。ヒルドイドソフト軟膏など。<b>保湿力・持続◎</b>。乾燥が強い時・冬・夜向き。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>クリーム<br>(水性)</span><div class=&quot;tc&quot;><b>なめらかで伸びがよく、吸収されやすい・水で洗い流せる</b>。ただし<b>界面活性剤・防腐剤</b>を含み、バリアが弱った肌には刺激のことも。<b>保湿力○</b>。日常使いに。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>ローション</span><div class=&quot;tc&quot;><b>液状で伸びがよく、頭皮や広範囲に。即効性</b>がある一方、<b>体温で基剤が蒸発しやすく薬効の持続は短め</b>。防腐剤で刺激のことも。<b>持続△</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>フォーム(泡)<br>スプレー</span><div class=&quot;tc&quot;><b>油分が少なくベタつかない・広範囲に塗りやすい</b>。スプレーは背中など手の届きにくい所に。朝や広い範囲に便利。<b>さっぱり、持続は短め</b>。</div></div>
+    </div>
+    <div class=&quot;note&quot;>使い分けのコツ：<b>乾燥が強い・夜は油性クリーム（ソフト軟膏）</b>でしっかり、<b>朝や広範囲・頭皮はローションやフォーム</b>でさっぱり、と基剤を使い分けると快適。中身（ヘパリン類似物質0.3%）は同じです。</div>
+    <div class=&quot;note&quot;>豆知識：ジェネリック（ビーソフテン等）も先発（ヒルドイド）と同じ0.3%配合。市販薬（HPクリーム、さいき等）も同量配合のものがあります。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 尿素 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>抱える型＋α</div>
+    <h2>尿素</h2>
+    <div class=&quot;mcard&quot;>
+      <div class=&quot;mh urea&quot;><span class=&quot;memo&quot;>🧱</span><div><div class=&quot;mn&quot;>尿素</div><div class=&quot;mbr&quot;>ウレパール／パスタロン／ケラチナミンコーワ など</div></div><span class=&quot;mtype&quot;>モイスチャライザー</span></div>
+      <div class=&quot;mb&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab how&quot;>仕組み</span><span class=&quot;v&quot;>2つの作用＝<b>①水分保持</b>（天然保湿因子の一つ）＋<b>②角質を溶かして柔らかくする（角質溶解）</b>。ここがヘパリンと違う独自点。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab feat&quot;>濃度</span><span class=&quot;v&quot;><b>10%</b>＝マイルド（広い乾燥・比較的デリケートな所も）。<b>20%</b>＝角質軟化が強い（かかと・ひじ・ひざ）。<b>20%以上で角質溶解作用</b>。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab for&quot;>向く</span><span class=&quot;v&quot;><b>ゴワゴワ・ガサガサに硬くなった角質</b>。かかとのひび割れ、ひじ・ひざ、魚鱗癬、老人性乾皮症、主婦湿疹（乾燥型）、二の腕のブツブツ（毛孔性苔癬）。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab care&quot;>使えない場面</span><span class=&quot;v&quot;><b>傷・ひび割れ・亀裂・潰瘍・びらん・炎症部位には禁忌（しみる・悪化）</b>。<b>顔やデリケートな部位は基本避ける</b>（特に高濃度）。塗った手で<b>目を触らない</b>。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point gold&quot;>尿素は<b class=&quot;kgo&quot;>水分保持＋角質を溶かして柔らかく</b>。<b>硬いガサガサ向き</b>だが、<b class=&quot;kr&quot;>傷・顔には不向き</b>（しみる）。</div>
+
+    <div class=&quot;panel&quot; style=&quot;background:#FBF7F0;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>📎 トピック：「尿素」って名前、なんで“尿”？</h3>
+      <p style=&quot;margin:.3em 0;&quot;>尿素（英：urea）は、<b>最初に発見されたとき、尿の中から分離して見つかった</b>から「尿」の名がつきました（1773年に発見）。ちょっと損な名前ですよね🦎</p>
+      <p style=&quot;margin:.5em 0;&quot;>体の中では、タンパク質が分解されると<b>アンモニア（有毒）</b>ができます。それを<b>肝臓で無毒な「尿素」に変えて、尿として捨てている</b>（尿素回路）。つまり尿素は「体がアンモニアを安全に処理した姿」。哺乳類や両生類の尿、サメの筋肉にも多く、<b>私たちの皮膚にもともとある天然保湿因子(NMF)の一つ</b>でもあります。だから保湿剤に使われるのは理にかなっているんです。</p>
+      <p class=&quot;soft&quot; style=&quot;margin:.5em 0 0;&quot;>余談：尿素は1828年に<b>世界で初めて「無機物から人工合成された有機化合物」</b>になり、化学の歴史を変えた物質でもあります（ヴェーラー合成）。</p>
+    </div>
+
+    <div class=&quot;panel&quot; style=&quot;background:#FDECEE;border-color:#F3C9CE;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>🔍 「尿素を肌に塗るなんて、角質を溶かすのに」って本当？</h3>
+      <p style=&quot;margin:.3em 0;&quot;><b class=&quot;kr&quot;>キリの記憶は勘違いではありません。</b>尿素は<b>濃度20%以上で“角質溶解作用”（角質を溶かす作用）</b>を持つ、というのは事実です。でも——「溶かす」＝危険、ではないんです。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>何を溶かしている？</b><br>溶かすのは、<b>硬く厚くなった古い角質（垢に近い、いらない層）</b>。硬い角質細胞どうしの“結合”を弱めて、ゴワゴワを柔らかくほぐします。<b>生きた皮膚を溶かして傷つけるわけではありません</b>。だからこそ、かかと・ひじのガサガサを治すのに役立つ。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>医学的にはどう評価？</b><br>尿素は体にもともとある成分(NMF)で、<b>適切な濃度・部位で使えば安全で有用な保湿・角質軟化剤</b>です。「信じられない」と言われがちなのは、<b>傷ついた皮膚や顔・デリケートな所に高濃度を塗ればしみる・悪化する</b>ことや、「溶かす」という言葉のインパクトからくる印象論であることが多い。正しく使えば問題ありません。</p>
+      <div class=&quot;big-point rose&quot; style=&quot;margin:10px 0 0;&quot;>正確には<b class=&quot;kr&quot;>「硬い角質を柔らかくする有用な作用」</b>。ただし<b>傷・薄い皮膚では刺激</b>に。＝<b>使う場所を選べば安全</b>。</div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C ワセリン -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>フタ型</div>
+    <h2>白色ワセリン（プロペト）</h2>
+    <div class=&quot;mcard&quot;>
+      <div class=&quot;mh wax&quot;><span class=&quot;memo&quot;>🛡️</span><div><div class=&quot;mn&quot;>白色ワセリン</div><div class=&quot;mbr&quot;>プロペト／サンホワイト（高精製）</div></div><span class=&quot;mtype&quot;>エモリエント</span></div>
+      <div class=&quot;mb&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab how&quot;>仕組み</span><span class=&quot;v&quot;>石油由来の油。<b>表面に膜を張って水分の蒸発を防ぐ＋外部刺激から保護</b>。肌の奥には浸透せず、それ自体に強い保湿力はない（＝フタ）。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab feat&quot;>精製度</span><span class=&quot;v&quot;>黄色ワセリン→白色ワセリン→<b>プロペト→サンホワイト</b>の順に精製度が高く<b>刺激が少ない</b>。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab for&quot;>向く</span><span class=&quot;v&quot;><b>刺激が極めて少なく、傷・ジュクジュク・どんな状態でも使える</b>。<b>赤ちゃん・敏感肌OK</b>。花粉や刺激からのバリア（鼻の下・目の周り）、口元の保護、重症乾燥の“フタ”に。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab care&quot;>注意</span><span class=&quot;v&quot;><b>ベタつく</b>。量が多いと不快で、夏や広範囲には不向きなことも。基本は<b>安全性の高さ</b>が最大の利点。</span></div>
+      </div>
+    </div>
+    <div class=&quot;big-point&quot;>ワセリンは<b class=&quot;kgo&quot;>フタをして守る</b>。保湿力より<b>守る力・安全性</b>。<b class=&quot;kg&quot;>傷でも赤ちゃんでもOK</b>の万能バリア。</div>
+
+    <div class=&quot;panel&quot; style=&quot;background:#FBF7F0;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>🔍 「ワセリン＝石油を肌に塗ってる」って大丈夫…？</h3>
+      <p style=&quot;margin:.3em 0;&quot;>結論：<b class=&quot;kb&quot;>心配いりません。</b>ワセリンは石油“そのもの”ではなく、<b>石油から得た成分を脱色・精製して、不要なものを取り除いた高純度の保護成分</b>です（日本薬局方の定義）。ガソリンや原油とは別物。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>なぜ安全？</b><br>① <b>分子が大きく（炭素数25以上）、化学的にほとんど反応しない</b>（不活性）。② <b>皮膚の奥には浸透せず、表面に留まって膜を作るだけ</b>。だから体内に入って悪さをしにくく、アレルギーも極めて起こりにくい。やけど・傷の保護や赤ちゃんにも使われ、皮膚科の軟膏のベースにもなるほどです。「ベンゼンのような体に悪い低分子」は、高度精製されたワセリンには含まれません。</p>
+      <p class=&quot;soft&quot; style=&quot;margin:.5em 0 0;&quot;><b>ただし“精製度”は大事：</b>精製の低い安価な工業用ワセリンには不純物（多環芳香族炭化水素など）が残ることがあり、EUは低純度品を規制しています。日本薬局方やFDA基準を満たす<b>白色ワセリン・プロペト・サンホワイト</b>を選べば、不純物は除去されていて安心です。</p>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D 亜鉛華 + その他 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>フタ型（保護）</div>
+    <h2>亜鉛華軟膏 と その他</h2>
+    <div class=&quot;mcard&quot;>
+      <div class=&quot;mh zinc&quot;><span class=&quot;memo&quot;>⚪</span><div><div class=&quot;mn&quot;>亜鉛華軟膏</div><div class=&quot;mbr&quot;>酸化亜鉛</div></div><span class=&quot;mtype&quot;>エモリエント（保護）</span></div>
+      <div class=&quot;mb&quot;>
+        <div class=&quot;row&quot;><span class=&quot;lab how&quot;>仕組み</span><span class=&quot;v&quot;>皮膚を<b>保護・収れん（引き締め）し、ジュクジュクした浸出液を吸う</b>。表面を覆って守るフタ系。</span></div>
+        <div class=&quot;row&quot;><span class=&quot;lab for&quot;>向く</span><span class=&quot;v&quot;><b>びらん・ジュクジュクした湿疹、おむつかぶれ</b>など。浸出液のある所に。</span></div>
+      </div>
+    </div>
+    <p class=&quot;soft&quot; style=&quot;margin-top:14px;&quot;>そのほか、処方される保湿成分には<b>セラミド</b>（バリアを補強。それ自体は保湿力が弱く、モイスチャライザーと組み合わせる）、<b>ビタミンA（ザーネ）・ビタミンA・E（ユベラ）</b>などもあります。<b>ヒアルロン酸・コラーゲン・グリセリン</b>も“抱える型”の仲間です。</p>
+    <div class=&quot;big-point plum&quot;>亜鉛華は<b class=&quot;kp&quot;>ジュクジュクを保護・乾かす</b>フタ。セラミドは<b>バリア補強</b>役（単独より組み合わせ）。</div>
+
+    <div class=&quot;panel&quot; style=&quot;background:#FBF7F0;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>📎 ことばの補足：「収れん（引き締め）」ってなに？</h3>
+      <p style=&quot;margin:.3em 0;&quot;>亜鉛華などで出てくる「<b>収れん（しゅうれん）＝引き締め</b>」。ずっと分かりにくいですよね。とことんやさしく言うと——<b class=&quot;kb&quot;>タンパク質をギュッと固めて、縮める</b>作用です。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>イメージ①：渋柿。</b>渋柿を食べると口の中が<b>キュッ</b>とすぼまりますよね。あれがまさに収れん（渋み成分が口の中のタンパク質を固めるから）。<br><b class=&quot;k&quot;>イメージ②：ゆで卵。</b>透明な生卵の白身（タンパク質）が、加熱で白く固まって縮むのと同じで、収れん成分は皮膚表面のタンパク質を少し固めて縮めます。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>皮膚では何が起きる？</b><br>皮脂腺・汗腺の<b>出口のタンパク質を固めて引き締める</b> → 毛穴が引き締まる、皮脂や汗が出にくくなる、キメが整う、<b>血管を縮めて止血</b>、ジュクジュクの<b>浸出液を抑える</b>。亜鉛華（酸化亜鉛）は金属塩で、この収れん作用が比較的しっかりしているので、<b>ジュクジュクを抑えて保護</b>するのに向くわけです。</p>
+      <div class=&quot;big-point plum&quot; style=&quot;margin:10px 0 0;&quot;>収れん＝<b class=&quot;kp&quot;>タンパク質を固めて“キュッ”と縮める</b>（渋柿・ゆで卵のイメージ）。だから引き締め・止血・浸出液を抑える。</div>
+
+      <h3>キリの疑問：変性＝タンパク質を壊してる？ 戻らないの？</h3>
+      <p style=&quot;margin:.3em 0;&quot;><b class=&quot;kr&quot;>鋭いです。そのとおり、収れんは「タンパク質の変性」</b>。そしてキリの言う通り、<b>強い変性（ゆで卵のように加熱でガチッと固める）は元に戻りません（不可逆）</b>。では肌は壊れっぱなし…？ ——大丈夫。皮膚ではこう考えると安心です。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>① 変性するのは、主に“すでに死んだ角質”の表面。</b><br>収れんが働くのは、皮膚のいちばん外側の<b>角質層（＝もう死んで垢になる手前の細胞）</b>の表面のタンパク質や、傷の<b>浸出液</b>。<b>生きた奥の細胞を変性させているわけではありません</b>。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>② 角質は毎日入れ替わる（ターンオーバー）。</b><br>角質は少しずつはがれて新しく作られます。だから表面が多少変性しても、<b>やがて新しい角質に置き換わる</b>＝壊れっぱなしにはならない。</p>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>③ 弱い収れん（化粧水など）の引き締めは“一時的”。</b><br>毛穴がキュッ→<b>しばらくすると戻ります</b>。永久に縮むわけではない。亜鉛華などの強めの収れんは、<b>表面のタンパク質や浸出液を固めて保護膜を作る</b>（治療的な使い方で、いずれ取れます）。</p>
+      <div class=&quot;big-point&quot; style=&quot;margin:10px 0 0;&quot;>変性は変性。でも対象は<b class=&quot;k&quot;>使い捨ての角質・表面</b>で、<b class=&quot;kb&quot;>弱いものは一時的・強いものは保護膜</b>。<b>生きた皮膚を永久に壊すのとは違う</b>ので安心を🦎</div>
+    </div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>薬は分かった。<br>では「どれをいつ使う？」と「正しい塗り方」へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 使い分け・塗り方 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>使い分け ・ 正しい塗り方</span>
+    <h1>どれを<span class=&quot;hl&quot;>いつ</span>、<br>どう塗る？</h1>
+    <p class=&quot;lead&quot;>症状・部位で選び、<br>正しく塗って効果を出す。</p>
+  </header>
+
+  <!-- A selector -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>使い分け</div>
+    <h2>症状・場面から選ぶ</h2>
+    <p class=&quot;lead-line&quot;>「こういう時はどれ？」を選んでみてください。<b class=&quot;kb&quot;>向く保湿剤と、その理由</b>が出ます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;symseg&quot; id=&quot;symSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>全身の乾燥肌・肌荒れ</button>
+        <button data-i=&quot;1&quot;>かかと・ひじの硬いガサガサ</button>
+        <button data-i=&quot;2&quot;>傷・ジュクジュク／赤ちゃん・敏感肌</button>
+        <button data-i=&quot;3&quot;>おむつかぶれ・びらん</button>
+        <button data-i=&quot;4&quot;>塗っても乾く（重症乾燥）</button>
+        <button data-i=&quot;5&quot;>顔の乾燥</button>
+      </div>
+      <div class=&quot;symout&quot;><div class=&quot;so-name&quot; id=&quot;symName&quot;></div><div class=&quot;so-why&quot; id=&quot;symWhy&quot;></div></div>
+    </div>
+    <div class=&quot;note&quot;>※ あくまで一般的な目安。実際は症状の程度・部位・年齢・好みで医師が選びます。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 部位・年齢 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>部位・年齢</div>
+    <h2>場所と年齢で気をつけること</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>顔・陰部</span><div class=&quot;tc&quot;>刺激の少ないものを。<b>尿素（特に高濃度）は基本さける</b>。ヘパリン類似物質はOKだがローションは目にしみることがある。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>傷・ジュクジュク</span><div class=&quot;tc&quot;><b>尿素・刺激のあるものはNG</b>。ワセリンや亜鉛華など、しみない保護系を。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>かかと・ひじ等</span><div class=&quot;tc&quot;>硬い角質には<b>尿素（20%）</b>が向く。柔らかくして保湿。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>赤ちゃん・高齢者</span><div class=&quot;tc&quot;><b>刺激の少ないワセリンやヘパリン類似物質</b>を中心に。新生児期からの保湿はアトピー予防にも。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>迷ったら<b class=&quot;kr&quot;>「傷・顔には尿素を避ける」</b>。傷・赤ちゃんは<b class=&quot;kg&quot;>ワセリン</b>が安全。硬い角質は<b class=&quot;kgo&quot;>尿素</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B2 傷・ジュクジュク -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--rose-deep)&quot;>★</span>重要</div>
+    <h2>傷・ジュクジュクには、どれを使う？</h2>
+    <p class=&quot;lead-line&quot;>大事なのではっきりさせます。傷口や、ジュクジュク（びらん・浸出液のある所）での<b class=&quot;kb&quot;>使ってよい／いけない</b>です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>⭕ OK</span><div class=&quot;tc&quot;><b>白色ワセリン（プロペト）</b>…刺激がなく、傷の保護（湿潤療法）にも使われる。<br><b>亜鉛華軟膏</b>…むしろジュクジュク向き（浸出液を吸って保護・収れん）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>❌ NG</span><div class=&quot;tc&quot;><b>尿素</b>…傷・びらん・亀裂・炎症には禁忌。<br><b>ヘパリン類似物質のクリーム</b>…傷・ただれにはしみる・かぶれることが（※軟膏は刺激が少なく状態を問わず使えるとの情報もあり、基剤による）。</div></div>
+    </div>
+
+    <h3>なぜ尿素はダメ？「しみるから」だけ？</h3>
+    <p><b class=&quot;kr&quot;>「しみるから」だけではありません。</b>傷口に<b>実際の作用</b>が起きるのが本質です。理由は2つ：</p>
+    <div class=&quot;chain&quot;>
+      <div class=&quot;chrow&quot; style=&quot;display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:var(--shadow);font-size:.9rem;&quot;><span style=&quot;font-family:'Zen Maru Gothic';font-weight:900;color:var(--rose-deep);flex:none;&quot;>作用</span><div><b>① 角質溶解作用が、傷をさらに傷める</b><br><span class=&quot;soft&quot;>尿素は角質（タンパク質の層）の結合を弱めて溶かす。でも傷・びらんは<b>すでに角質バリアが壊れて、守りがない状態</b>。そこに「角質を溶かす作用」が働くと、<b>残った組織を傷め、治りを妨げ、悪化</b>させてしまう。</span></div></div>
+      <div class=&quot;chrow&quot; style=&quot;display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:var(--shadow);font-size:.9rem;&quot;><span style=&quot;font-family:'Zen Maru Gothic';font-weight:900;color:var(--rose-deep);flex:none;&quot;>症状</span><div><b>② しみる（痛い）</b><br><span class=&quot;soft&quot;>露出した組織や神経に刺激がしみる。</span></div></div>
+    </div>
+    <p>つまり<b class=&quot;kr&quot;>「しみる（症状）」＋「角質溶解作用が傷を悪化させる（作用）」の両方</b>。とくに<b>①の“作用”のほうが本質的な理由</b>です。単なる痛みだけの問題ではない、ということ。</p>
+
+    <h3>なぜワセリンはOK？</h3>
+    <p>ワセリンは<b class=&quot;kb&quot;>薬理作用がなく（化学的に不活性）、表面に膜を張って保護するだけ</b>。傷口で化学的な作用を起こさないので、しみず・悪化させず、むしろ守る。だから<b>状態を問わず使える</b>のです。亜鉛華も、浸出液を吸って保護する側なのでジュクジュクに向きます。</p>
+
+    <h3>ヘパリン類似物質が傷でダメなのは、成分？ 剤形？</h3>
+    <p><b class=&quot;kb&quot;>キリの読みが正解です。問題は“成分”ではなく“剤形（基剤）”。</b>ヘパリン類似物質そのものが傷を悪くするのではありません。傷にしみる・かぶれる原因は、<b class=&quot;kr&quot;>クリームやローションの基剤に入っている「界面活性剤（乳化剤）・防腐剤・アルコール」</b>。これらが、バリアの壊れた傷・ジュクジュクを刺激するんです。</p>
+    <p><b class=&quot;k&quot;>じゃあ“何軟膏”なら使える？</b><br>答えは<b class=&quot;kb&quot;>油脂性の軟膏基剤（ワセリンなどの油でできた、界面活性剤・防腐剤の少ない基剤）</b>。添加物が少ないほど刺激がなく、傷・ジュクジュクでも状態を問わず使えます。だから<b>いちばん状態を選ばないのは「白色ワセリン基剤の軟膏」</b>。ヘパリン類似物質製剤の中では、<b>油性の「ソフト軟膏」がクリーム・ローションより刺激が少なく保護的</b>（ただし純粋な無添加の油脂性軟膏ほどではない点は念のため）。</p>
+    <div class=&quot;big-point blue&quot;>傷でしみるのは<b class=&quot;kb&quot;>成分ではなく剤形（基剤の添加物）</b>。<b class=&quot;kr&quot;>クリーム・ローション＝刺激のことが</b>、<b class=&quot;kg&quot;>油脂性の軟膏（無添加に近い）＝状態を問わず使える</b>。「何で出来た軟膏か（基剤）」がカギ。</div>
+
+    <div class=&quot;big-point rose&quot;>傷・ジュクジュクは<b class=&quot;kg&quot;>ワセリン・亜鉛華＝OK</b>、<b class=&quot;kr&quot;>尿素＝NG</b>。尿素がダメなのは「しみる」だけでなく、<b class=&quot;kr&quot;>角質溶解作用が、守りのない傷をさらに傷めるから</b>。ヘパリン類似物質は<b class=&quot;kb&quot;>剤形しだい</b>（クリーム・ローションは刺激、油脂性軟膏は可）。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 塗り方 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>正しい塗り方</div>
+    <h2>タイミング・量・塗り方</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>タイミング</span><div class=&quot;tc&quot;><b>入浴後、肌が湿っているうちに</b>（5〜10分以内が理想。こだわりすぎず<b>入浴後1時間以内</b>を目安でもOK）。洗顔・手洗い後も。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>回数</span><div class=&quot;tc&quot;><b>1日1〜2回</b>。研究では<b>1日2回のほうが保湿効果が高い</b>。乾燥が強い所は複数回。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>量</span><div class=&quot;tc&quot;><b>1FTU（約0.5g）＝大人の手のひら2枚分</b>が目安。ケチらず<b>たっぷり</b>。塗った所がティッシュが貼りつくくらい。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>塗り方</span><div class=&quot;tc&quot;>ゴシゴシこすらず、<b>シワに沿って横方向に</b>やさしく広げる。</div></div>
+    </div>
+    <h3>ステロイドと一緒に出たら？</h3>
+    <p><b class=&quot;kb&quot;>塗る順番はどちらが先でも効果に大差ない</b>との報告があります。一般的には<b>広い乾燥部に保湿剤 → 炎症のある所にだけステロイド</b>。重症乾燥では<b class=&quot;kb&quot;>「ヘパリン類似物質で水分→ワセリンでフタ」の重ね塗り（重層塗布）</b>が有効。迷ったら処方どおり・薬剤師に確認を。</p>
+    <div class=&quot;big-point mint&quot;>塗るのは<b class=&quot;kg&quot;>入浴後・1日2回・たっぷり（1FTU）・シワに沿って</b>。重症は<b class=&quot;kb&quot;>水分→フタの重ね塗り</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>処方の保湿剤 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- D まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>保湿剤は<b class=&quot;kb&quot;>2系統</b>：💧抱える型（<b class=&quot;kb&quot;>ヘパリン類似物質</b>＝保湿力が高く万能・顔や赤ちゃんOK／<b class=&quot;kgo&quot;>尿素</b>＝角質を溶かして硬いガサガサに、ただし傷・顔は不向き）と、🛡️フタ型（<b>ワセリン</b>＝刺激が少なく傷でもOKのバリア／<b class=&quot;kp&quot;>亜鉛華</b>＝ジュクジュク保護）。<b class=&quot;k&quot;>硬い角質は尿素、傷や赤ちゃんはワセリン、全般はヘパリン</b>。塗るのは<b class=&quot;kg&quot;>入浴後・1日2回・たっぷり</b>、重症は<b class=&quot;kb&quot;>水分→フタの重ね塗り</b>。</p>
+    <div class=&quot;big-point&quot;>💧抱える（ヘパリン・尿素）＋🛡️フタ（ワセリン・亜鉛華）。<b class=&quot;kr&quot;>傷・顔に尿素は避ける</b>が合言葉🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>薬剤師のキリ向けの一般的な整理です。濃度・適応・使い方は製品や症状で異なり、個人差もあります。<b>実際の選択・使用・中止は医師・薬剤師の指示で。一般の方は必ず相談を。</b>
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    保湿剤は<b>「水分を抱える」と「フタをする」の2系統</b>。<br>
+    硬い角質は尿素、傷や赤ちゃんはワセリン、全般はヘパリン類似物質。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 2つの系統にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P3 symptom selector */
+  (function(){
+    const data=[
+      {name:'ヘパリン類似物質（ヒルドイド 等）', why:'保湿力が高く刺激が少ない万能型。慢性的な乾燥肌・肌荒れ全般に第一候補。剤形も豊富で部位を選ばない。'},
+      {name:'尿素（ウレパール／ケラチナミン 等・20%）', why:'角質を溶かして柔らかくする作用があり、硬く厚くなったガサガサに向く。ただし傷やひび割れにはしみるので、割れている所は避ける。'},
+      {name:'白色ワセリン（プロペト）', why:'刺激が極めて少なく、傷・ジュクジュク・赤ちゃん・敏感肌でも使える“フタ”。守る力と安全性が最大の利点。'},
+      {name:'亜鉛華軟膏', why:'ジュクジュクした浸出液を吸い、皮膚を保護・乾かす。おむつかぶれやびらんに向く。'},
+      {name:'ヘパリン類似物質 ＋ ワセリン（重ね塗り）', why:'「ヒルドイドを塗っても乾く」のはフタ不足のことが多い。水分を与える(ヘパリン)→上から蒸発を防ぐ(ワセリン)の重層塗布が有効。'},
+      {name:'ヘパリン類似物質（顔は刺激の少ないものを）', why:'顔には刺激の少ないヘパリン類似物質が使いやすい（ローションは目にしみることがあるので注意）。尿素の高濃度や刺激のあるものは顔は避ける。'}
+    ];
+    let i=0;
+    const seg=document.getElementById('symSeg'),name=document.getElementById('symName'),why=document.getElementById('symWhy');
+    function r(){ name.textContent='→ '+data[i].name; why.textContent=data[i].why; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{i=parseInt(b.dataset.i);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'保湿剤の2大分類は？', o:['水分を抱える型（モイスチャライザー）とフタをする型（エモリエント）','強い型と弱い型','内服と外用'], a:0, e:'抱える型＝ヘパリン類似物質・尿素／フタ型＝ワセリン・亜鉛華。'},
+      {q:'「水分を抱える型」の代表は？', o:['ヘパリン類似物質・尿素','ワセリン','亜鉛華軟膏'], a:0, e:'角質に水分を与えて保持。保湿効果は一般にこちらが高い。'},
+      {q:'ワセリン（プロペト）の主な働きは？', o:['表面に膜を張って蒸発を防ぐ（フタ）','角質を溶かす','水分を抱え込む'], a:0, e:'エモリエント。それ自体に強い保湿力はないが、刺激が少なく守る力が高い。'},
+      {q:'尿素がヘパリン類似物質と違う独自の作用は？', o:['角質を溶かして柔らかくする（角質溶解）','血行促進','抗炎症'], a:0, e:'尿素は水分保持＋角質溶解。硬いガサガサ向き。'},
+      {q:'尿素を使わないほうがよい場面は？', o:['傷・ひび割れ・顔などデリケートな所','かかとのガサガサ','ひじ・ひざの乾燥'], a:0, e:'刺激性があり、傷や亀裂にはしみる・悪化。顔や高濃度は基本さける。'},
+      {q:'傷がある所や赤ちゃんにも使いやすいのは？', o:['白色ワセリン（プロペト）','尿素20%','—'], a:0, e:'刺激が極めて少なく、状態を問わず使える安全なフタ。'},
+      {q:'保湿剤を塗るおすすめのタイミングは？', o:['入浴後、肌が湿っているうち','カラカラに乾いてから','汗をかいた直後そのまま'], a:0, e:'入浴後（5〜10分以内が理想、1時間以内目安でもOK）。1日2回が効果的。'},
+      {q:'「ヒルドイドを塗っても乾く」ときの工夫は？', o:['上からワセリンでフタ（重ね塗り）','量を減らす','塗るのをやめる'], a:0, e:'水分を与える→フタをする、の重層塗布。フタ不足を補う。'},
+      {q:'傷・ジュクジュクに尿素を使わない“本質的な”理由は？', o:['ただ高いから','角質溶解作用が、守りのない傷をさらに傷めるから','色がつくから'], a:1, e:'「しみる」だけでなく、角質を溶かす作用が傷を悪化させる。だから禁忌。'},
+      {q:'「ワセリン＝石油を肌に塗る」は危険？', o:['危険、原油そのもの','高純度に精製された不活性な成分。皮膚に浸透せず表面で守るだけで安全','少し危険'], a:1, e:'石油から不純物を除いて精製したもの。薬局方適合品は安全で赤ちゃんにも使える。'},
+      {q:'「尿素」という名前の由来は？', o:['最初に尿の中から見つかったから','尿の色だから','尿に溶けるから'], a:0, e:'発見時に尿から分離されたため。体内ではアンモニアを無毒化した姿で、皮膚のNMFの一つ。'},
+      {q:'「収れん（引き締め）」とは、ざっくり何の作用？', o:['タンパク質を固めて縮める','水分を足す','油でフタをする'], a:0, e:'渋柿で口がキュッとすぼまる、あれ。皮脂腺・汗腺の出口を締め、止血・浸出液抑制にも。'},
+      {q:'ヘパリン類似物質が傷でしみる主な原因は？', o:['ヘパリン類似物質という成分そのもの','クリーム・ローションの基剤（界面活性剤・防腐剤）','水分が多すぎるから'], a:1, e:'成分ではなく剤形。油脂性の軟膏基剤なら刺激が少なく状態を問わず使える。'},
+      {q:'「ヘパリン類似物質」に、血をサラサラにする作用は？', o:['ヘパリンと同じ強さである','ごく弱くある（出血しやすい人は注意）。ただし塗る保湿剤で全身的には使わない','まったくゼロ'], a:1, e:'構造が似るためわずかにあるが、主作用は保湿・血行促進・抗炎症。用途はヘパリンと全然違う。'},
+      {q:'保湿力・持続がいちばん高いヘパリン類似物質の剤形は？', o:['油性クリーム（ソフト軟膏）','ローション','泡スプレー'], a:0, e:'油分が多いほど保湿力・持続が高い。さっぱり系（ローション・泡）は持続が短め。'},
+      {q:'収れんで肌は不可逆的に壊れる？', o:['壊れっぱなしになる','主に死んだ角質・表面が対象で、弱いものは一時的・角質は入れ替わるので大丈夫','一切変化しない'], a:1, e:'変性はするが対象は使い捨ての角質や浸出液。生きた皮膚を永久に壊すのとは違う。'}
     ];
     let i=0, correct=0, total=0, locked=false;
     function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
