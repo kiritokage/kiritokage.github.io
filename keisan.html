@@ -3007,7 +3007,8 @@
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">処方される塗り薬</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">🧴</span><span class="tx"><span class="t">処方の保湿剤</span><span class="s">ヘパリン類似物質・ワセリンなど</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">⚠️</span><span class="tx"><span class="t">ステロイド（強さのランク）</span><span class="s">医師の指示どおりに、が大前提</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('steroidtsuyosa')"><span class="ic">⚠️</span><span class="tx"><span class="t">ステロイドの強さ（ランクと力価換算）</span><span class="s">外用5ランク・部位・全身の力価換算</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openThemeFrame('steroidfuku')"><span class="ic">🔬</span><span class="tx"><span class="t">ステロイド外用剤の副作用</span><span class="s">皮膚が薄くなる・多毛・色が抜ける等</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">💊</span><span class="tx"><span class="t">その他の薬効成分の塗り薬</span><span class="s">かゆみ・炎症・感染など目的別</span></span><span class="badge soon">準備中</span></div>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--gold)">日やけ止め・化粧品</span></div><div class="cards">
@@ -5452,6 +5453,943 @@
       {q:'妊娠中の痛み・熱に、比較的安全で第一選択とされるのは？', o:['アセトアミノフェン','メトトレキサート','イソトレチノイン'], a:0, e:'アセトアミノフェン（カロナール）。後ろ2つは禁忌側の薬。'},
       {q:'催奇形性が明らかな薬でも（サリドマイド以外）、奇形が出る率は？', o:['必ず100%','高くても約25%','0%'], a:1, e:'曝露＝必ず異常ではない。過度に恐れず正確に評価する前提として重要。'},
       {q:'迷ったときに頼れる、国の相談窓口は？', o:['妊娠と薬情報センター','消費者センター','110番'], a:0, e:'国立成育医療研究センターの「妊娠と薬情報センター」。最新情報で相談できる。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-steroidfuku" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('skin')">‹ 化粧品・塗り薬のあれこれ に戻る</button></div><iframe class="theme-frame" title="ステロイド外用剤の副作用" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>ステロイド外用剤の副作用 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.65rem,6.4vw,2.2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.35rem,5.4vw,1.7rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* &quot;抑える力&quot; three effects */
+  .effects{ display:grid; gap:10px; margin:16px 0; }
+  .eff{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line); border-radius:14px; padding:13px 14px; box-shadow:var(--shadow); background:var(--card); }
+  .eff .emo{ font-size:1.5rem; flex:none; } .eff .et{ flex:1; }
+  .eff .et .eh{ font-weight:700; } .eff .et .es{ font-size:.84rem; color:var(--ink-soft); }
+  .eff.good{ background:#E9F6ED; } .eff.side{ background:#FBF1DA; }
+
+  /* skin cross-section */
+  .skinviz{ background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:16px; margin:16px 0; }
+  .skinseg{ display:flex; gap:6px; margin-bottom:12px; }
+  .skinseg button{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.85rem; padding:9px 6px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .skinseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .skin{ position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--line); }
+  .lay{ position:relative; display:flex; align-items:center; padding-left:12px; font-size:.74rem; font-weight:700; color:#5a4632; transition:height .4s ease; overflow:hidden; }
+  .lay.epi{ height:30px; background:repeating-linear-gradient(45deg,#FCE7CF,#FCE7CF 6px,#F8DCBD 6px,#F8DCBD 12px); }
+  .lay.derm{ height:78px; background:#F6D9B6; }
+  .lay.derm .coll{ position:absolute; inset:0; background:radial-gradient(circle at 20% 30%, #E7B98A 2px, transparent 3px), radial-gradient(circle at 55% 60%, #E7B98A 2px, transparent 3px), radial-gradient(circle at 80% 35%, #E7B98A 2px, transparent 3px), radial-gradient(circle at 35% 75%, #E7B98A 2px, transparent 3px), radial-gradient(circle at 70% 80%, #E7B98A 2px, transparent 3px); opacity:.9; }
+  .lay.sub{ height:46px; background:#FBEFD8; }
+  .vessel{ position:absolute; left:0; right:0; height:7px; background:linear-gradient(90deg,#E2787F,#C25962); border-radius:999px; bottom:20px; opacity:.55; transition:.4s; }
+  .skin.atro .lay.epi{ height:14px; } .skin.atro .lay.derm{ height:34px; } .skin.atro .lay.derm .coll{ opacity:.35; }
+  .skin.atro .vessel{ bottom:42px; opacity:1; height:8px; }
+  .skincap{ font-size:.84rem; color:var(--ink-soft); margin-top:10px; text-align:center; }
+  .skincap b{ color:var(--ink); }
+
+  /* chain flow */
+  .chain{ display:grid; gap:8px; margin:14px 0; }
+  .chrow{ display:flex; gap:10px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:13px; padding:11px 13px; box-shadow:var(--shadow); font-size:.9rem; }
+  .chrow .ar{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--rose-deep); flex:none; }
+  .chrow b{ color:var(--ink); }
+
+  /* side effect catalog */
+  .sxlist{ display:grid; gap:10px; margin:14px 0; }
+  .sx{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:13px 15px; }
+  .sx .sh{ display:flex; align-items:center; gap:10px; margin-bottom:5px; }
+  .sx .semo{ font-size:1.35rem; } .sx .sname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; }
+  .sx .stag{ margin-left:auto; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.68rem; color:#fff; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .stag.rev{ background:var(--mint-deep); } .stag.care{ background:var(--gold); color:#3a2d12; } .stag.irr{ background:var(--rose-deep); }
+  .sx .sd{ font-size:.88rem; color:var(--ink-soft); } .sx .sd b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① なぜ起きる</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 皮膚が薄くなる</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 他の副作用と使い方</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>化粧品・塗り薬 ・ とことん版</span>
+    <h1>ステロイド外用剤の<br><span class=&quot;hl&quot;>副作用</span></h1>
+    <p class=&quot;lead&quot;>「皮膚が薄くなる」って、どういうこと？<br>仕組みから、ぜんぶ解きほぐします。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリに向けた、仕組み重視の解説です。副作用は<b>「必要以上に強いものを・長く・不適切に」使った場合</b>に出やすいもので、適切に使えば多くは防げます。<b>自己判断で中止せず、実際の使用は主治医・薬剤師の指示に従ってください</b>（一般の方も必ず相談を）。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「皮膚が薄くなる」など、塗り薬の副作用の回</h2>
+    <p class=&quot;lead-line&quot;>ステロイドの塗り薬で「皮膚が薄くなる」「毛が濃くなる」「色が抜ける」などの副作用を聞きますよね。このページは、それらが<b class=&quot;kb&quot;>なぜ起きるのか</b>を仕組みから解いて、特に<b class=&quot;kb&quot;>「皮膚が薄くなる（皮膚萎縮）」って具体的に何なのか</b>をハッキリさせる回です。</p>
+    <p>結論の入口：副作用の多くは、<b class=&quot;k&quot;>ステロイドの“抑える力”が効きすぎた結果</b>です。まずそこから。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>正体</div>
+    <h2>ステロイドは「抑える」薬</h2>
+    <p class=&quot;lead-line&quot;>ステロイド外用剤の働きは、ひとことで<b class=&quot;kb&quot;>「抑える」</b>。炎症を抑えてくれるから、かゆみや赤みが引きます。でも実は、<b class=&quot;k&quot;>抑える力は“炎症”だけに向かうわけではない</b>んです。</p>
+    <div class=&quot;effects&quot;>
+      <div class=&quot;eff good&quot;><span class=&quot;emo&quot;>🔥</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>炎症を抑える（これが目的）</div><div class=&quot;es&quot;>赤み・かゆみ・腫れを鎮める。これが効果。</div></div></div>
+      <div class=&quot;eff side&quot;><span class=&quot;emo&quot;>🧱</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>細胞が増えるのも抑える（副作用のもと）</div><div class=&quot;es&quot;>皮膚を新しく作る細胞の増殖まで抑えてしまう。→ 皮膚が薄くなる原因。</div></div></div>
+      <div class=&quot;eff side&quot;><span class=&quot;emo&quot;>🛡️</span><div class=&quot;et&quot;><div class=&quot;eh&quot;>免疫も抑える（副作用のもと）</div><div class=&quot;es&quot;>皮膚表面の免疫の働きも落とす。→ 感染症に弱くなる原因。</div></div></div>
+    </div>
+    <p>つまり、ステロイドの副作用の多くは別々の謎ではなく、<b class=&quot;kb&quot;>「抑える力が、炎症以外（細胞増殖・免疫）にも効いてしまう」</b>という1本の幹から枝分かれしています。これを押さえると全部つながります。</p>
+    <div class=&quot;big-point&quot;>ステロイド＝<b class=&quot;kb&quot;>抑える薬</b>。炎症を抑える（効果）と同時に、<b class=&quot;k&quot;>細胞増殖・免疫も抑える</b>（副作用のもと）。</div>
+    <div class=&quot;note&quot;>※ ただし副作用の中には、この3つ<b>以外</b>の作用によるものもあります（多毛＝ホルモン様作用、色素脱失＝メラニン産生の抑制、ニキビ＝皮脂分泌・角化の亢進）。これは③でくわしく扱います。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>大前提</div>
+    <h2>「正しく使えば」多くは防げる</h2>
+    <p class=&quot;lead-line&quot;>大事なバランス。これらの副作用は<b class=&quot;k&quot;>「必要以上に強いものを・長期間・不適切な部位に」</b>使ったときに出やすいもの。<b class=&quot;kb&quot;>適切な強さ・量・期間・部位で使えば、多くは起こりにくい</b>です。</p>
+    <p>日本では医師も患者も副作用に注意しているので、<b class=&quot;kb&quot;>元に戻らない（不可逆な）副作用が出ることは、かなりまれ</b>。多くは<b class=&quot;kg&quot;>中止すれば改善する（可逆的）</b>ものです。逆に、<b class=&quot;kr&quot;>「怖いから」と自己判断でやめると、もとの皮膚病が悪化</b>します。これは前の「使うリスク vs やめるリスク」と同じ考え方です🦎</p>
+    <div class=&quot;big-point mint&quot;>副作用は<b class=&quot;k&quot;>不適切な使い方で出やすい</b>。正しく使えば多くは防げ、<b class=&quot;kg&quot;>可逆的</b>なものが中心。<b class=&quot;kr&quot;>自己判断の中止は逆効果</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>「抑えすぎ」が副作用のもと。<br>では本題、「皮膚が薄くなる」を解剖しよう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 皮膚が薄くなる ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>皮膚萎縮 ・ 解剖する</span>
+    <h1>「皮膚が薄くなる」<br>＝<span class=&quot;hl&quot;>どういうこと</span>？</h1>
+    <p class=&quot;lead&quot;>仕組みと、薄くなると<br>何が起きるかの“連鎖”。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>皮膚が薄くなる（皮膚萎縮）＝<b class=&quot;kb&quot;>皮膚を新しく作る細胞の増殖が抑えられ、表皮も真皮も薄くなる</b>こと。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>仕組み</div>
+    <h2>なぜ薄くなる？</h2>
+    <p class=&quot;lead-line&quot;>①で見た「<b class=&quot;k&quot;>細胞が増えるのを抑える</b>」がここで効きます。皮膚は本来、古い細胞が落ちて新しい細胞が作られて、厚みを保っています。ステロイドが<b class=&quot;kb&quot;>その“新しく作る”働きを抑える</b>と、補充が追いつかず、<b class=&quot;kb&quot;>表皮（表面）も真皮（その下）も薄く</b>なっていきます。</p>
+    <p>さらに、真皮の弾力をつくる<b class=&quot;kb&quot;>コラーゲンなどの産生も抑えられる</b>ので、真皮がやせて弾力も落ちます。「薄くなる」とは、<b class=&quot;k&quot;>皮膚を作る力が抑えられて、層そのものが薄くやせる</b>こと——これが正体です。</p>
+  </section>
+
+  <!-- B viz -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>断面で見る</div>
+    <h2>正常 ⇔ 薄くなった皮膚</h2>
+    <p class=&quot;lead-line&quot;>皮膚の断面で比べてみましょう。ボタンで切り替えられます。</p>
+    <div class=&quot;skinviz&quot;>
+      <div class=&quot;skinseg&quot; id=&quot;skinSeg&quot;>
+        <button class=&quot;on&quot; data-a=&quot;0&quot;>正常な皮膚</button>
+        <button data-a=&quot;1&quot;>薄くなった皮膚（萎縮）</button>
+      </div>
+      <div class=&quot;skin&quot; id=&quot;skin&quot;>
+        <div class=&quot;lay epi&quot;>表皮</div>
+        <div class=&quot;lay derm&quot;><span class=&quot;coll&quot;></span><span style=&quot;position:relative&quot;>真皮（コラーゲン）</span></div>
+        <div class=&quot;lay sub&quot;>皮下</div>
+        <div class=&quot;vessel&quot; id=&quot;vessel&quot;></div>
+      </div>
+      <div class=&quot;skincap&quot; id=&quot;skinCap&quot;><b>正常：</b>表皮・真皮がしっかり厚く、血管は奥にある（表面から透けない）。</div>
+    </div>
+    <div class=&quot;note&quot;>※ 図はイメージです。実際の厚みや見え方には個人差・部位差があります。</div>
+  </section>
+
+  <!-- C chain -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>連鎖</div>
+    <h2>薄くなると、何が起きる？</h2>
+    <p class=&quot;lead-line&quot;>「薄くなる」こと自体より、そこから<b class=&quot;kb&quot;>枝分かれする変化</b>が問題になります。</p>
+    <div class=&quot;chain&quot;>
+      <div class=&quot;chrow&quot;><span class=&quot;ar&quot;>→</span><div><b>毛細血管が浮き出る（毛細血管拡張）</b><br><span class=&quot;soft&quot;>皮膚が薄いので、奥の血管が透けて見える。血管自体も広がる。頬・前胸部・肘・指先に出やすい。</span></div></div>
+      <div class=&quot;chrow&quot;><span class=&quot;ar&quot;>→</span><div><b>軽い刺激で内出血・紫斑</b><br><span class=&quot;soft&quot;>血管を守る組織が脆くなり、少し圧迫しただけで毛細血管が壊れて皮下出血（紫斑）に。</span></div></div>
+      <div class=&quot;chrow&quot;><span class=&quot;ar&quot;>→</span><div><b>裂けやすい・線条（すじ）</b><br><span class=&quot;soft&quot;>少し伸ばしただけで裂けたり、妊娠線のような筋（皮膚線条）ができやすくなる。</span></div></div>
+      <div class=&quot;chrow&quot;><span class=&quot;ar&quot;>→</span><div><b>傷が治りにくい</b><br><span class=&quot;soft&quot;>細胞増殖を抑える＝新しい組織を作る力が落ちるので、いったん傷ができると治癒に時間がかかる。</span></div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>薄くなる → <b class=&quot;kr&quot;>血管が透ける・内出血しやすい・裂けやすい・治りにくい</b>、と連鎖する。だから「薄くなる」は侮れない。</div>
+  </section>
+
+  <!-- D 可逆 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>戻る？</div>
+    <h2>元に戻るのか</h2>
+    <p class=&quot;lead-line&quot;>朗報。皮膚萎縮や毛細血管拡張は、<b class=&quot;kg&quot;>気づいて中止すれば、ある程度は改善します</b>。完全に元通りとは限りませんが、多くは可逆的。</p>
+    <p>元に戻らない（不可逆な）レベルになるのは、<b class=&quot;kr&quot;>強い製品を6か月〜何年も使い続けた</b>ようなケースで、<b class=&quot;kb&quot;>日本では医師・患者ともに注意しているため、かなりまれ</b>です。だからこそ、<b class=&quot;k&quot;>出やすい部位（顔・前胸部・肘・指先）を時々チェックし、傾向があれば早めに相談</b>が大事。</p>
+    <div class=&quot;big-point mint&quot;>皮膚萎縮・毛細血管拡張は<b class=&quot;kg&quot;>早めに中止すればある程度戻る</b>。不可逆は強力・長期でまれ。<b class=&quot;k&quot;>出やすい部位を時々チェック</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>「薄くなる」は攻略completed。<br>多毛・色が抜ける…他の副作用と、正しい使い方へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 他の副作用と使い方 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>副作用カタログ ・ 正しい使い方</span>
+    <h1>他の<span class=&quot;hl&quot;>副作用</span>と、<br>こわがらない使い方</h1>
+    <p class=&quot;lead&quot;>多毛・色が抜ける・ニキビ…<br>まとめて整理します。</p>
+  </header>
+
+  <!-- A catalog -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>カタログ</div>
+    <h2>その他の副作用（部位に出るもの）</h2>
+    <p class=&quot;lead-line&quot;>どれも<b class=&quot;k&quot;>塗った場所に</b>出るのが基本。タグは <span style=&quot;color:var(--mint-deep);font-weight:700;&quot;>可逆（戻りやすい）</span>／<span style=&quot;color:#B6841F;font-weight:700;&quot;>注意</span>／<span style=&quot;color:var(--rose-deep);font-weight:700;&quot;>不可逆寄り</span>の目安。各項目に<b class=&quot;kb&quot;>「なぜ」</b>を付けました。<b class=&quot;k&quot;>ほとんどは①の幹（炎症↓・細胞増殖↓・免疫↓）か「皮膚が薄くなる」で説明がつきます</b>が、<b class=&quot;kr&quot;>多毛・色素脱失だけは“別ルート”</b>なので注目を。</p>
+    <div class=&quot;sxlist&quot;>
+      <div class=&quot;sx&quot;>
+        <div class=&quot;sh&quot;><span class=&quot;semo&quot;>🧔</span><span class=&quot;sname&quot;>多毛（毛が濃くなる）</span><span class=&quot;stag rev&quot;>可逆</span></div>
+        <div class=&quot;sd&quot;>塗った部位のうぶ毛が濃くなる。中止で戻ることが多い。</div>
+        <div style=&quot;margin-top:6px;font-size:.86rem;background:#F3ECF5;border-radius:9px;padding:7px 10px;&quot;><b style=&quot;color:var(--plum-deep);&quot;>なぜ（別ルート）</b> ステロイドの<b>男性ホルモン（アンドロゲン）様作用</b>による。「薄くなる/免疫」とは無関係の独自経路。<b>小児に多く成人にはまれ</b>（小児は内因性の男性ホルモンが少ないため）。strong以上を数か月で出やすい。</div>
+      </div>
+      <div class=&quot;sx&quot;>
+        <div class=&quot;sh&quot;><span class=&quot;semo&quot;>⚪</span><span class=&quot;sname&quot;>色が抜ける（色素脱失）</span><span class=&quot;stag care&quot;>注意</span></div>
+        <div class=&quot;sd&quot;>塗った部位の色が抜けて白っぽくなる。添付文書にも「色素脱失」の記載あり。</div>
+        <div style=&quot;margin-top:6px;font-size:.86rem;background:#F3ECF5;border-radius:9px;padding:7px 10px;&quot;><b style=&quot;color:var(--plum-deep);&quot;>なぜ（別ルート）</b> ステロイド自体に<b>メラニンの産生を抑える（色素脱失）作用</b>があるため。これも独自経路。「塗ると黒くなる」は俗説で、実際は<b>色が抜ける</b>。</div>
+      </div>
+      <div class=&quot;sx&quot;>
+        <div class=&quot;sh&quot;><span class=&quot;semo&quot;>🔴</span><span class=&quot;sname&quot;>ステロイドざ瘡・毛包炎（ニキビ）</span><span class=&quot;stag rev&quot;>可逆</span></div>
+        <div class=&quot;sd&quot;>ニキビができやすくなる。<b>白い面ぽうが多発しやすい</b>のが特徴。</div>
+        <div style=&quot;margin-top:6px;font-size:.86rem;background:#F3ECF5;border-radius:9px;padding:7px 10px;&quot;><b style=&quot;color:var(--plum-deep);&quot;>なぜ（3つの幹とは“別系統”）</b> ステロイドには<b>皮脂の分泌を促す作用</b>と、<b>毛穴の出口の角化が進む（角質がたまる）</b>変化があり、毛穴が詰まって<b>面ぽう</b>ができる。これは「皮膚が薄くなる＝細胞増殖の<b>低下</b>」とは<b>別系統（むしろ逆向き）</b>＝<b style=&quot;color:var(--rose-deep);&quot;>「細胞増殖の低下」では説明できない</b>。さらに<b>膿む・炎症の段階</b>になると<b>免疫抑制（抵抗力↓→アクネ菌が増える）</b>も関与する。</div>
+        <div style=&quot;margin-top:6px;font-size:.84rem;background:#FBF4EB;border-radius:9px;padding:8px 11px;color:var(--ink-soft);&quot;><b style=&quot;color:var(--ink);&quot;>⚠ ここは正直、未解明：</b>「ではなぜ角化が亢進するのか」の正確な分子メカニズムは、実は<b>はっきり分かっていません</b>。専門の文献でも<b>「ステロイドざ瘡の発症機序はいまだ明確でない」</b>とされています。上の説明は<b>「こう考えられている」という範囲</b>で、毛包の角化細胞や脂腺への作用が想定されていますが、確定ではない——というのが正直なところです🦎</div>
+      </div>
+      <div class=&quot;sx&quot;>
+        <div class=&quot;sh&quot;><span class=&quot;semo&quot;>🦠</span><span class=&quot;sname&quot;>感染症に弱くなる（易感染）</span><span class=&quot;stag care&quot;>注意</span></div>
+        <div class=&quot;sd&quot;><b>カンジダ・ヘルペス・水虫(白癬)・とびひ</b>などの感染を誘発・悪化させることがある。</div>
+        <div style=&quot;margin-top:6px;font-size:.86rem;background:#FBF4EB;border-radius:9px;padding:7px 10px;&quot;><b style=&quot;color:var(--persimmon-deep);&quot;>なぜ</b> <b>免疫（細胞性免疫）を抑える</b>から＝①の幹そのもの。免疫抑制系のタクロリムス（プロトピック）でも同様に起こる。</div>
+      </div>
+      <div class=&quot;sx&quot;>
+        <div class=&quot;sh&quot;><span class=&quot;semo&quot;>🩹</span><span class=&quot;sname&quot;>紫斑・皮膚線条</span><span class=&quot;stag irr&quot;>不可逆寄り</span></div>
+        <div class=&quot;sd&quot;>内出血（紫斑）や、妊娠線のような筋（線条）。線条は残りやすい。</div>
+        <div style=&quot;margin-top:6px;font-size:.86rem;background:#FBF4EB;border-radius:9px;padding:7px 10px;&quot;><b style=&quot;color:var(--persimmon-deep);&quot;>なぜ</b> <b>皮膚が薄く脆くなる</b>から（②の結果）。紫斑＝軽い圧で毛細血管が壊れて内出血、線条＝皮膚が伸展に耐えられず裂ける。</div>
+      </div>
+    </div>
+    <div class=&quot;panel&quot; style=&quot;background:#FBF7F0;&quot;>
+      <h3 style=&quot;margin-top:0;&quot;>📎 ことばの補足：「面ぽう（コメド）」ってなに？</h3>
+      <p style=&quot;margin:.3em 0;&quot;><b class=&quot;k&quot;>面ぽう（コメド）＝ニキビのいちばん最初の段階</b>。毛穴（毛包）に<b>皮脂や角質（古い角質）が詰まった状態</b>で、<b>まだ赤みや膿のない</b>ニキビ（非炎症性）。触るとザラザラします。</p>
+      <div style=&quot;display:grid;gap:9px;margin:12px 0;&quot;>
+        <div class=&quot;chrow&quot;><span style=&quot;font-size:1.25rem;flex:none;&quot;>⚪</span><div><b>白い面ぽう（白ニキビ・閉鎖面ぽう）</b><br><span class=&quot;soft&quot;>毛穴の出口が<b>閉じて</b>いて、中に皮脂がたまって白く盛り上がって見える。</span></div></div>
+        <div class=&quot;chrow&quot;><span style=&quot;font-size:1.25rem;flex:none;&quot;>⚫</span><div><b>黒い面ぽう（黒ニキビ・開放面ぽう）</b><br><span class=&quot;soft&quot;>毛穴の出口が<b>開いて</b>いて、詰まった皮脂が酸化したりメラニンで黒く見える。</span></div></div>
+      </div>
+      <p style=&quot;margin:.5em 0;&quot;><b class=&quot;k&quot;>この先どう進む？</b><br>面ぽう（詰まり）→ アクネ菌が増えて炎症 → <b class=&quot;kr&quot;>赤ニキビ</b> → 化膿して <b class=&quot;kgo&quot;>黄ニキビ（膿）</b> → ひどいとニキビ痕。<br><span class=&quot;soft&quot;>＝面ぽうは「ニキビの種」。<b>膿むのは、もっと後の段階</b>です。</span></p>
+      <div class=&quot;note&quot;>だから「ステロイドざ瘡で<b>白い面ぽうが多発</b>」＝<b>炎症の前の“毛穴の詰まり”が増える</b>こと。詰まり（面ぽう）はステロイドの<b>毛包・角化への作用</b>、<b>膿む段階</b>になると<b>免疫抑制</b>も関与、と段階で原因が変わります🦎</div>
+    </div>
+
+    <div class=&quot;big-point plum&quot;>整理：3つの幹で説明しにくい<b class=&quot;kp&quot;>“別系統”が3つ</b>——<b class=&quot;kp&quot;>多毛＝男性ホルモン様作用／色素脱失＝メラニン産生抑制／ステロイドざ瘡の面ぽう＝皮脂分泌・角化の亢進</b>。それ以外は、<b class=&quot;k&quot;>免疫↓</b>（易感染・ざ瘡が膿む段階）か<b class=&quot;k&quot;>「薄くなる＝細胞増殖↓」</b>（毛細血管拡張・紫斑・線条・治りにくい）で説明できる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 酒さ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>顔は要注意</div>
+    <h2>酒さ様皮膚炎・口囲皮膚炎（ステロイド依存）</h2>
+    <p class=&quot;lead-line&quot;>顔（特に長期）で問題になりやすいのがこれ。<b class=&quot;kr&quot;>塗ると赤みが引くが、やめると再発・悪化</b>を繰り返し、だんだん<b class=&quot;k&quot;>やめられなくなる</b>悪循環（ステロイド依存）。顔の赤み・ほてり・ブツブツが出ます。</p>
+    <p>こわいのが<b class=&quot;kr&quot;>リバウンド</b>。中止すると一時的に赤み・ほてり・むくみ・皮むけが強く出る（中止3日目くらいから悪化することも）。これを嫌って塗り続けてしまうと、さらに悪循環に。だから<b class=&quot;kb&quot;>顔は弱めを短期で・医師の管理下で</b>が原則。<b class=&quot;kr&quot;>体用の強いものを自己判断で顔に塗らない</b>（顔は吸収がよく副作用が出やすい）。</p>
+    <div class=&quot;big-point rose&quot;>顔への長期使用は<b class=&quot;kr&quot;>酒さ様皮膚炎・ステロイド依存</b>のもと。中止時の<b class=&quot;kr&quot;>リバウンド</b>に注意。<b class=&quot;kb&quot;>顔は弱め・短期・医師の管理下で</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 正しい使い方 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>こわがらないために</div>
+    <h2>正しく使えば、ちゃんと安全</h2>
+    <div class=&quot;sxlist&quot;>
+      <div class=&quot;sx&quot;><div class=&quot;sh&quot;><span class=&quot;semo&quot;>🪜</span><span class=&quot;sname&quot;>強さは医師が選ぶ</span></div><div class=&quot;sd&quot;>医療用は5段階（ストロンゲスト／ベリーストロング／ストロング／マイルド／ウィーク）。症状・年齢・部位で使い分ける。OTCは3段階。</div></div>
+      <div class=&quot;sx&quot;><div class=&quot;sh&quot;><span class=&quot;semo&quot;>📍</span><span class=&quot;sname&quot;>部位で強さを変える</span></div><div class=&quot;sd&quot;><b>顔・陰部は吸収がよい</b>ので弱めを。体に使う強さをそのまま顔に塗らない。出やすい部位（顔・前胸部・肘・指先）は特に注意。</div></div>
+      <div class=&quot;sx&quot;><div class=&quot;sh&quot;><span class=&quot;semo&quot;>⏳</span><span class=&quot;sname&quot;>だらだら長期に強いものを使わない</span></div><div class=&quot;sd&quot;>必要な強さで、必要な期間。よくなったら計画的に弱める／間隔をあける（医師の指示で）。</div></div>
+      <div class=&quot;sx&quot;><div class=&quot;sh&quot;><span class=&quot;semo&quot;>🚫</span><span class=&quot;sname&quot;>自己判断でやめない・顔に流用しない</span></div><div class=&quot;sd&quot;>怖さからの急な中止は原疾患の悪化やリバウンドのもと。迷ったら必ず相談。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>こわがって避けるより<b class=&quot;kg&quot;>正しく使う</b>のが安全。<b class=&quot;k&quot;>強さ・量・期間・部位</b>を守り、<b class=&quot;kr&quot;>自己判断しない</b>。多くの副作用は防げて可逆的。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>ステロイド外用 副作用ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- D まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>副作用の多くは<b class=&quot;k&quot;>ステロイドの“抑える力”が炎症以外（細胞増殖・免疫）にも効いた結果</b>。<b class=&quot;kb&quot;>皮膚が薄くなる＝皮膚を作る細胞の増殖が抑えられ、表皮も真皮も薄くやせる</b>こと → 血管が透ける・内出血・裂けやすい・治りにくい、と連鎖。ほかに多毛・色素脱失・ニキビ・易感染・紫斑・線条、顔では酒さ様皮膚炎（依存・リバウンド）。でも<b class=&quot;kg&quot;>正しく使えば多くは防げ、可逆的</b>。<b class=&quot;kr&quot;>自己判断で中止しない</b>。</p>
+    <div class=&quot;big-point&quot;>「抑えすぎ」が副作用の幹。<b class=&quot;kb&quot;>薄くなる＝層がやせる</b>。<b class=&quot;kg&quot;>正しく使えばこわくない</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>これは薬剤師のキリ向けの解説です。副作用の出方・可逆性には個人差・部位差があり、強さや使い方は症状によって変わります。<b>一般の方、そして実際の使用・中止は、必ず主治医・薬剤師に相談してください。</b>
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    副作用の幹は<b>「抑えすぎ」</b>。薄くなる＝<b>皮膚を作る力が抑えられ層がやせる</b>。<br>
+    多くは可逆的、正しく使えばこわくない。自己判断で中止しない。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① なぜ起きるにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2-B skin cross-section toggle */
+  (function(){
+    const seg=document.getElementById('skinSeg'),skin=document.getElementById('skin'),cap=document.getElementById('skinCap');
+    const caps=[
+      '<b>正常：</b>表皮・真皮がしっかり厚く、血管は奥にある（表面から透けない）。',
+      '<b>萎縮（薄い）：</b>表皮も真皮も薄く、コラーゲンも減少。血管が浅く・透けて見える（毛細血管拡張）。'
+    ];
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const a=b.dataset.a==='1';
+      skin.classList.toggle('atro',a);
+      cap.innerHTML=caps[a?1:0];
+      seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+    });
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'「皮膚が薄くなる」のは、ステロイドの何の作用？', o:['細胞が増えるのを抑える作用','炎症を抑える作用','保湿作用'], a:0, e:'皮膚を新しく作る細胞の増殖が抑えられ、表皮・真皮が薄くやせる。'},
+      {q:'皮膚が薄くなると起きやすいのは？', o:['毛細血管が透ける・内出血しやすい','皮膚が厚くなる','毛が抜ける'], a:0, e:'薄く脆くなり、血管が透け、軽い刺激で紫斑、裂けやすく治りにくい。'},
+      {q:'感染症（カンジダ・ヘルペス等）に弱くなるのは何の作用？', o:['免疫を抑える作用','細胞増殖を抑える作用','血管拡張作用'], a:0, e:'皮膚表面の免疫が落ちるため。タクロリムス（プロトピック）でも同様。'},
+      {q:'皮膚萎縮や毛細血管拡張は？', o:['早めに中止すればある程度戻る','必ず一生戻らない','薬と無関係'], a:0, e:'多くは可逆的。不可逆は強力・長期使用でまれ（日本では特に）。'},
+      {q:'顔への長期使用で問題になりやすいのは？', o:['酒さ様皮膚炎・ステロイド依存','皮膚が硬くなる','毛が抜ける'], a:0, e:'やめると再発・悪化を繰り返す依存とリバウンド。顔は弱め・短期・医師管理下で。'},
+      {q:'体用の強いステロイドを自己判断で顔に塗るのは？', o:['NG（顔は吸収がよく副作用が出やすい）','OK（同じ薬だから）','むしろ推奨'], a:0, e:'顔は吸収がよく副作用が出やすい。顔は一段弱いものを使うのが一般的。'},
+      {q:'ステロイドざ瘡（面ぽう）の主な原因は？', o:['免疫が落ちて膿むこと','皮脂分泌と毛穴の角化が進んで詰まること','皮膚が薄くなる（細胞増殖の低下）こと'], a:1, e:'皮脂分泌の亢進＋毛穴の角化亢進で詰まる。細胞増殖の低下とは別系統（むしろ逆向き）。膿む段階には免疫抑制も関与。'},
+      {q:'面ぽう（コメド）とは？', o:['膿がたまった赤いニキビ','毛穴に皮脂・角質が詰まった、ニキビの初期（炎症前）','治ったあとのニキビ痕'], a:1, e:'面ぽう＝ニキビの最初の段階。まだ炎症や膿はない。白(閉鎖)・黒(開放)がある。'},
+      {q:'多毛・色素脱失が、他の副作用と違う点は？', o:['「皮膚が薄くなる」せい','男性ホルモン様作用・メラニン抑制という独自ルート','免疫抑制のせい'], a:1, e:'多毛＝アンドロゲン様作用、色素脱失＝メラニン産生抑制。薄くなる/免疫とは別経路。'},
+      {q:'副作用がこわい。どうするのが正しい？', o:['正しい強さ・量・期間・部位で使い、自己判断で中止しない','こわいので全部塗らない','市販の強いものを長く使う'], a:0, e:'避けるより正しく使うのが安全。自己中断は原疾患悪化やリバウンドのもと。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-steroidtsuyosa" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('skin')">‹ 化粧品・塗り薬のあれこれ に戻る</button></div><iframe class="theme-frame" title="ステロイドの強さ（ランクと力価換算）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>ステロイドの強さ（ランクと力価換算） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.74rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.6rem,6.2vw,2.1rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.65rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* rank ladder */
+  .rank{ display:grid; gap:9px; margin:16px 0; }
+  .rk{ border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .rk .rh{ display:flex; align-items:center; gap:10px; padding:10px 13px; color:#fff; }
+  .rk .rnum{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; background:rgba(255,255,255,.25); padding:3px 9px; border-radius:7px; flex:none; }
+  .rk .rname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; } .rk .ren{ font-size:.72rem; opacity:.95; margin-left:auto; }
+  .rk .rb{ padding:11px 14px; font-size:.86rem; line-height:1.95; } .rk .rb b{ color:var(--ink); }
+  .rk1 .rh{ background:#C25962; } .rk2 .rh{ background:#DD7A3A; } .rk3 .rh{ background:#E0A93B; } .rk4 .rh{ background:#6FB98A; } .rk5 .rh{ background:#4FA3C7; }
+  .otc{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.64rem; color:#fff; background:var(--mint-deep); padding:2px 7px; border-radius:999px; margin-left:6px; vertical-align:middle; }
+
+  /* site selector */
+  .siteseg{ display:flex; gap:6px; margin:8px 0; flex-wrap:wrap; }
+  .siteseg button{ flex:1; min-width:74px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.8rem; padding:9px 5px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .siteseg button.on{ border-color:var(--sky); background:#E7F2F7; color:var(--sky-deep); }
+  .gauge{ height:14px; border-radius:999px; background:#EFE4D2; overflow:hidden; margin:10px 0 4px; }
+  .gauge .fill{ height:100%; background:linear-gradient(90deg,#6FB98A,#E0A93B,#C25962); transition:width .4s; }
+  .bigout{ text-align:center; margin:10px 0 2px; } .bigout .lab{ font-size:.82rem; color:var(--ink-soft); } .bigout .v{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.4rem; color:var(--sky-deep); }
+  .w-steps{ font-size:.86rem; color:var(--ink-soft); margin-top:10px; background:#FBF4EB; border-radius:12px; padding:10px 13px; line-height:1.7; } .w-steps b{ color:var(--ink); }
+
+  /* potency drug cards */
+  .dcard{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:13px 14px; margin:10px 0; }
+  .dcard .dh{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+  .dcard .dn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; } .dcard .dbr{ font-size:.78rem; color:var(--ink-soft); }
+  .dcard .dgrid{ display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  .dcard .cell{ background:#FBF4EB; border-radius:9px; padding:7px 9px; font-size:.8rem; }
+  .dcard .cell .cl{ color:var(--ink-soft); font-size:.7rem; display:block; } .dcard .cell .cv{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--ink); }
+  .base{ outline:2px solid var(--persimmon); }
+
+  /* conversion widget */
+  .convseg{ display:flex; gap:5px; flex-wrap:wrap; margin:6px 0; }
+  .convseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; padding:8px 9px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .convseg button.on{ border-color:var(--plum); background:#F3ECF5; color:var(--plum-deep); }
+  .w-in{ display:flex; align-items:center; gap:8px; }
+  .w-in input{ flex:1; font-size:1.1rem; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; padding:9px 12px; border:2px solid var(--line); border-radius:11px; background:#fff; color:var(--ink); width:100%; }
+  .w-in .unit{ font-weight:700; color:var(--ink-soft); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.76rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:78px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 外用5ランク</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 部位と吸収</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 全身の力価換算</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>化粧品・塗り薬 ・ とことん版</span>
+    <h1>ステロイドの<span class=&quot;hl&quot;>強さ</span><br>（ランクと力価換算）</h1>
+    <p class=&quot;lead&quot;>何がどう強い？ そして<br>「オピオイド換算」のステロイド版とは。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリ向けの解説です。ランクや力価の数値は<b>ガイドライン・文献を参考にした目安</b>で、文献により幅があります。<b>実際の処方・変更・中止は必ず医師の判断で</b>（一般の方も自己判断せず相談を）。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>ステロイドの「強さ」は“2種類”ある</h2>
+    <p class=&quot;lead-line&quot;>ここを最初に分けるのが超重要。ステロイドの「強さ」には、<b class=&quot;kb&quot;>まったく別の2つの“ものさし”</b>があります。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>外用</span><div class=&quot;tc&quot;><b>塗り薬の「ランク」</b>＝ストロンゲスト〜ウィークの<b>5段階</b>。塗り薬どうしの強さ比べ。①②で扱う。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>全身</span><div class=&quot;tc&quot;><b>内服・注射の「力価換算」</b>＝プレドニゾロン何mg相当か。<b>オピオイド換算のステロイド版</b>。③で扱う。</div></div>
+    </div>
+    <p><b class=&quot;kr&quot;>この2つは別物</b>です。外用は「ランク」、全身は「mgの換算」。混同しないように、ページを分けて見ていきます。まずは外用のランクから。</p>
+    <div class=&quot;big-point&quot;>ステロイドの強さ＝<b class=&quot;k&quot;>外用の「5ランク」</b>と<b class=&quot;kp&quot;>全身の「力価換算」</b>の2本立て。別のものさし。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>外用の5ランク</div>
+    <h2>ストロンゲスト〜ウィーク</h2>
+    <p class=&quot;lead-line&quot;>外用ステロイドは、<b class=&quot;kb&quot;>抗炎症作用の強さ</b>で5段階（アトピー性皮膚炎診療ガイドライン：Ⅰ〜Ⅴ群）に分かれます。代表的な薬を挙げます（かっこ内は商品名）。</p>
+    <div class=&quot;rank&quot;>
+      <div class=&quot;rk rk1&quot;><div class=&quot;rh&quot;><span class=&quot;rnum&quot;>Ⅰ群</span><span class=&quot;rname&quot;>ストロンゲスト</span><span class=&quot;ren&quot;>最も強い</span></div><div class=&quot;rb&quot;><b>クロベタゾールプロピオン酸エステル</b>（デルモベート）<br>ジフロラゾン酢酸エステル（ダイアコート／ジフラール）</div></div>
+      <div class=&quot;rk rk2&quot;><div class=&quot;rh&quot;><span class=&quot;rnum&quot;>Ⅱ群</span><span class=&quot;rname&quot;>ベリーストロング</span><span class=&quot;ren&quot;>非常に強い</span></div><div class=&quot;rb&quot;>モメタゾンフランカルボン酸エステル（フルメタ）<br>ベタメタゾン酪酸エステルプロピオン酸エステル（アンテベート）<br>ジフルプレドナート（マイザー）<br>酪酸プロピオン酸ヒドロコルチゾン（パンデル）<br>ベタメタゾンジプロピオン酸エステル（リンデロンDP）</div></div>
+      <div class=&quot;rk rk3&quot;><div class=&quot;rh&quot;><span class=&quot;rnum&quot;>Ⅲ群</span><span class=&quot;rname&quot;>ストロング</span><span class=&quot;ren&quot;>強い</span><span class=&quot;otc&quot;>市販あり</span></div><div class=&quot;rb&quot;>ベタメタゾン吉草酸エステル（リンデロンV／ベトネベート）<br>フルオシノロンアセトニド（フルコート）<br>デプロドンプロピオン酸エステル（エクラー）<br>デキサメタゾンプロピオン酸エステル（メサデルム）</div></div>
+      <div class=&quot;rk rk4&quot;><div class=&quot;rh&quot;><span class=&quot;rnum&quot;>Ⅳ群</span><span class=&quot;rname&quot;>ミディアム／マイルド</span><span class=&quot;ren&quot;>中程度</span><span class=&quot;otc&quot;>市販あり</span></div><div class=&quot;rb&quot;>ヒドロコルチゾン酪酸エステル（ロコイド）<br>クロベタゾン酪酸エステル（キンダベート）<br>アルクロメタゾンプロピオン酸エステル（アルメタ）<br>プレドニゾロン吉草酸エステル酢酸エステル（リドメックス）</div></div>
+      <div class=&quot;rk rk5&quot;><div class=&quot;rh&quot;><span class=&quot;rnum&quot;>Ⅴ群</span><span class=&quot;rname&quot;>ウィーク</span><span class=&quot;ren&quot;>弱い</span><span class=&quot;otc&quot;>市販あり</span></div><div class=&quot;rb&quot;>プレドニゾロン<br>ヒドロコルチゾン酢酸エステル　など</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>市販(OTC)の範囲</span><p style=&quot;margin:0&quot;><b>市販で買えるのは「ストロング」以下の3段階（ウィーク・マイルド・ストロング）だけ。</b><br><span class=&quot;soft&quot;>ストロンゲスト・ベリーストロングは<b>医師の処方が必要</b>。市販薬は同じ成分でも濃度を下げている場合があり、必ずしもこのランクと一致しないことも。</span></p></div>
+    <div class=&quot;big-point rose&quot;><b class=&quot;kr&quot;>Ⅰ群ストロンゲスト → Ⅴ群ウィーク</b>の5段階。市販は<b class=&quot;kg&quot;>ストロング以下のみ</b>、強い2つは処方薬。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>何が“強さ”？</div>
+    <h2>強さは「抗炎症作用」で決まる</h2>
+    <p class=&quot;lead-line&quot;>では何をもって「強い」？ ランクは<b class=&quot;kb&quot;>抗炎症作用の強さ</b>で、ヒトの皮膚を使った<b class=&quot;k&quot;>血管収縮試験</b>（塗ると皮膚が一時的に白くなる強さ）で評価されます。でも——<b class=&quot;kb&quot;>なぜ「皮膚を白くする試験」で、炎症を抑える強さが測れるのか？</b> ここをとことん解きます。</p>
+
+    <h3>① そもそも、どんな試験？</h3>
+    <p><b class=&quot;k&quot;>血管収縮試験（McKenzie法、1962年）</b>は、いろいろな濃度のステロイドをヒトの皮膚に塗り、<b>皮膚がどれだけ白くなる（蒼白になる）か</b>を、4段階の目で見る尺度で測る試験です。<b class=&quot;kb&quot;>強いステロイドほど、強く白くなる</b>。この白さの順位づけから、いまの5ランクが作られました。</p>
+    <div style=&quot;display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0;flex-wrap:wrap;&quot;>
+      <div style=&quot;text-align:center;&quot;><div style=&quot;width:74px;height:54px;border-radius:11px;background:#F3B7A6;border:1px solid #E69A86;&quot;></div><div style=&quot;font-size:.78rem;font-weight:700;margin-top:5px;&quot;>塗る前<br><span style=&quot;color:#6E6672;&quot;>ピンク（血流あり）</span></div></div>
+      <div style=&quot;font-family:'Zen Maru Gothic';font-weight:900;color:var(--persimmon-deep);&quot;>塗ると→</div>
+      <div style=&quot;text-align:center;&quot;><div style=&quot;width:74px;height:54px;border-radius:11px;background:#F3E4DC;border:1px solid #E8D4C9;&quot;></div><div style=&quot;font-size:.78rem;font-weight:700;margin-top:5px;&quot;>塗った後<br><span style=&quot;color:#6E6672;&quot;>蒼白（血管が縮む）</span></div></div>
+    </div>
+
+    <h3>② なぜ白くなるの？</h3>
+    <p>ステロイドには<b class=&quot;kb&quot;>血管を収縮させる作用</b>があります。塗った所の毛細血管が縮む → <b>皮膚表面の血流が減る</b> → 赤み（血の色）が引いて<b class=&quot;kb&quot;>白く見える</b>。これが「蒼白化」。一時的で、<b>ふつう24時間ほどで元に戻ります</b>。</p>
+
+    <h3>③ ここが核心：なぜ「白さ」が「抗炎症の強さ」とつながる？</h3>
+    <p class=&quot;lead-line&quot;>一見、別の話に見えますよね。カギは——<b class=&quot;kb&quot;>血管収縮（白くなる）も、抗炎症も、“同じ根っこ”から出ている</b>こと。</p>
+    <p>どちらも、<b class=&quot;k&quot;>ステロイドが皮膚の中に染み込んで、細胞のステロイド受容体に結合して作用した結果</b>です。だから「白くなる強さ」は、<b class=&quot;kb&quot;>皮膚の中で実際にどれだけステロイドが効いているか</b>の“見える代理指標（ものさし）”になります。</p>
+    <div class=&quot;panel&quot; style=&quot;background:#E7F2F7;&quot;>
+      <p style=&quot;margin:.2em 0;font-weight:700;&quot;>白くなる強さが決まる要因＝</p>
+      <p style=&quot;margin:.5em 0;&quot;>㋐ <b class=&quot;kb&quot;>皮膚への染み込みやすさ（浸透）</b><br>㋑ <b class=&quot;kb&quot;>受容体への効きの強さ（パワー）</b></p>
+      <p style=&quot;margin:.5em 0;&quot;>そして<b class=&quot;k&quot;>抗炎症の強さを決める要因も、まったく同じ㋐㋑</b>。<br>→ だから「白さ」と「抗炎症の強さ」は<b class=&quot;kb&quot;>並んで動く</b>＝<b>白さで強さを測れる</b>。</p>
+    </div>
+    <p>つまり、<b>炎症を抑える力を直接測るのは大変</b>だけど、<b class=&quot;kb&quot;>同じ根っこから出る「白さ」なら、目で見て簡単に測れる</b>。だから白さを“ものさし”に使う、というわけです。</p>
+
+    <h3>④ なぜこの試験が選ばれた？</h3>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>生きた皮膚</span><div class=&quot;tc&quot;>試験管ではなく<b>本物のヒト皮膚</b>で測るので、「浸透のしやすさ」も「実際の皮膚での反応」も丸ごと込みで評価できる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>簡単・再現性</span><div class=&quot;tc&quot;>塗って見るだけ。<b>安全・安価・短時間・再現性が高い</b>。濃度を2倍薄めるだけで白さがはっきり落ちるなど、強さの差をよく拾う。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>臨床と相関</span><div class=&quot;tc&quot;>何十年も使われ、<b>実際の効きめ（臨床の抗炎症効果）とよく一致する</b>ことが確かめられている。</div></div>
+    </div>
+
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>混同注意</span><p style=&quot;margin:0&quot;><b>「白くなること」自体は、治療効果ではありません。</b><br><span class=&quot;soft&quot;>白さはあくまで強さを順位づけるための<b>ものさし（代理指標）</b>。塗って白くなったから効いている、という意味ではなく、薬どうしの強さを比べるための指標です。蒼白も一時的で元に戻ります。</span></p></div>
+
+    <p>分子レベルでは、<b class=&quot;kb&quot;>フッ素を加えるなどの構造の工夫</b>で㋐浸透や㋑受容体への結合が高まり、作用が強くなります。だから「強い＝よく効く」が、同時に「強い＝局所の副作用も出やすい」につながる。<b class=&quot;kr&quot;>強さは効果と副作用の両方の目安</b>です。</p>
+    <div class=&quot;big-point&quot;>強さ＝<b class=&quot;kb&quot;>抗炎症作用</b>。それを<b class=&quot;k&quot;>「皮膚の白さ（血管収縮）」という同じ根っこから出る指標</b>で測るのが血管収縮試験。<b class=&quot;kr&quot;>白さ＝皮膚で効いている量のものさし</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>ランクは分かった。でも「同じ薬でも体の場所で効きが変わる」。<br>そこが現場のキモ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 部位と吸収 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>部位と吸収 ・ 実際の効き</span>
+    <h1>同じ薬でも、<br><span class=&quot;hl&quot;>塗る場所</span>で変わる</h1>
+    <p class=&quot;lead&quot;>吸収率は部位で何十倍も違う。<br>だから部位で強さを変える。</p>
+  </header>
+
+  <div class=&quot;big-point blue&quot;>実際の効き＝<b class=&quot;kb&quot;>ランク × その部位の吸収率</b>。同じ薬でも、顔と手のひらでは効きがまるで違う。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>吸収の差</div>
+    <h2>部位で「吸収率」が大違い</h2>
+    <p class=&quot;lead-line&quot;>皮膚の厚さや性質で、薬の吸収率は<b class=&quot;kb&quot;>部位ごとに何十倍も違います</b>。前腕（うで）を「1」とした、吸収のされやすさの目安を見てみましょう。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;siteseg&quot; id=&quot;siteSeg&quot;>
+        <button data-i=&quot;0&quot;>手のひら/足底</button>
+        <button class=&quot;on&quot; data-i=&quot;1&quot;>前腕（基準）</button>
+        <button data-i=&quot;2&quot;>頭皮</button>
+        <button data-i=&quot;3&quot;>顔・頬</button>
+        <button data-i=&quot;4&quot;>わきの下</button>
+        <button data-i=&quot;5&quot;>陰部</button>
+      </div>
+      <div class=&quot;gauge&quot;><div class=&quot;fill&quot; id=&quot;siteFill&quot; style=&quot;width:14%&quot;></div></div>
+      <div class=&quot;bigout&quot;><div class=&quot;lab&quot; id=&quot;siteName&quot;>前腕（基準）</div><div class=&quot;v&quot;><span id=&quot;siteVal&quot;>1</span> 倍</div></div>
+      <div class=&quot;w-steps&quot; id=&quot;siteSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>※ 数値は古典的な吸収試験などに基づく大まかな目安で、文献により幅があります。傾向（手足は低い・顔や陰部は高い）をつかむためのものです。</div>
+  </section>
+
+  <!-- B -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>使い分け</div>
+    <h2>だから、部位でランクを変える</h2>
+    <p class=&quot;lead-line&quot;>吸収が高い所に強いものを塗ると効きすぎ＝副作用。低い所には強くないと届かない。<b class=&quot;kb&quot;>部位の吸収に合わせてランクを選ぶ</b>のが基本です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>顔・陰部</span><div class=&quot;tc&quot;><b>吸収が高い→ミディアム以下（弱め）。</b>強くても症状が強いとき限定で短期。体用の強いものを流用しない。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>体・四肢</span><div class=&quot;tc&quot;><b>通常ストロング、強い炎症ならベリーストロング。</b>標準的な湿疹・皮膚炎の主戦場。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>手のひら・足底</span><div class=&quot;tc&quot;><b>角層が厚く吸収が低い→ストロンゲストを使うことも。</b>掌蹠の頑固な病変など。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>小児・高齢者</span><div class=&quot;tc&quot;><b>皮膚が薄く吸収されやすい→1ランク弱く。</b>赤ちゃんは特に注意。</div></div>
+    </div>
+    <h3>剤形（基剤）でも少し変わる</h3>
+    <p>軟膏＝保湿性が高く刺激が少ない（乾燥・慢性向き）。クリーム＝のびがよく広範囲（しみることも）。ローション＝頭皮や毛のある所。テープ＝密封効果で浸透UP（医師管理下で）。<b class=&quot;kb&quot;>同じ成分でも基剤で効きが少し変わる</b>ので、ランクは「軟膏基準」で決められています。</p>
+    <div class=&quot;big-point gold&quot;>顔・陰部は<b class=&quot;kr&quot;>弱め</b>、体は<b class=&quot;kgo&quot;>ストロング前後</b>、手足は<b class=&quot;kb&quot;>強めも可</b>、小児高齢者は<b class=&quot;kg&quot;>1段下げる</b>。剤形でも微調整。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>外用は攻略。<br>では本題のもう半分、「全身の力価換算」へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 全身の力価換算 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>全身ステロイド ・ 力価換算</span>
+    <h1>「<span class=&quot;hl&quot;>プレドニゾロン換算</span>」<br>＝オピオイド換算の<br>ステロイド版</h1>
+    <p class=&quot;lead&quot;>内服・注射には「ランク」がない。<br>mgを“換算”して比べる。</p>
+  </header>
+
+  <div class=&quot;big-point plum&quot;>内服・注射は<b class=&quot;kp&quot;>用量依存</b>で効くので<b class=&quot;kr&quot;>「ランク」の概念がない</b>。代わりに<b class=&quot;kp&quot;>プレドニゾロン何mg相当か</b>で比べる（＝オピオイド換算と同じ発想）。</div>
+
+  <!-- A -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>等価用量</div>
+    <h2>同じ効果になる量（プレドニゾロン基準）</h2>
+    <p class=&quot;lead-line&quot;>基準は<b class=&quot;kp&quot;>プレドニゾロン</b>。「<b class=&quot;kb&quot;>抗炎症作用が同じになるmg</b>」を並べたのが等価用量です。下の量が、どれも<b>ほぼ同じ抗炎症の強さ</b>。</p>
+    <div class=&quot;dcard base&quot;>
+      <div class=&quot;dh&quot;><span class=&quot;dn&quot;>プレドニゾロン</span><span class=&quot;dbr&quot;>（プレドニン）★基準</span></div>
+      <div class=&quot;dgrid&quot;><div class=&quot;cell&quot;><span class=&quot;cl&quot;>等価用量</span><span class=&quot;cv&quot;>5 mg</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>抗炎症 力価</span><span class=&quot;cv&quot;>4</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>作用時間</span><span class=&quot;cv&quot;>中間型</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>むくみ(鉱質)</span><span class=&quot;cv&quot;>弱い</span></div></div>
+    </div>
+    <div class=&quot;dcard&quot;>
+      <div class=&quot;dh&quot;><span class=&quot;dn&quot;>ヒドロコルチゾン</span><span class=&quot;dbr&quot;>（コートリル／ソル・コーテフ）</span></div>
+      <div class=&quot;dgrid&quot;><div class=&quot;cell&quot;><span class=&quot;cl&quot;>等価用量</span><span class=&quot;cv&quot;>20 mg</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>抗炎症 力価</span><span class=&quot;cv&quot;>1</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>作用時間</span><span class=&quot;cv&quot;>短時間型</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>むくみ(鉱質)</span><span class=&quot;cv&quot;>強い</span></div></div>
+    </div>
+    <div class=&quot;dcard&quot;>
+      <div class=&quot;dh&quot;><span class=&quot;dn&quot;>メチルプレドニゾロン</span><span class=&quot;dbr&quot;>（メドロール／ソル・メドロール）</span></div>
+      <div class=&quot;dgrid&quot;><div class=&quot;cell&quot;><span class=&quot;cl&quot;>等価用量</span><span class=&quot;cv&quot;>4 mg</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>抗炎症 力価</span><span class=&quot;cv&quot;>5</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>作用時間</span><span class=&quot;cv&quot;>中間型</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>むくみ(鉱質)</span><span class=&quot;cv&quot;>ほぼ無</span></div></div>
+    </div>
+    <div class=&quot;dcard&quot;>
+      <div class=&quot;dh&quot;><span class=&quot;dn&quot;>デキサメタゾン</span><span class=&quot;dbr&quot;>（デカドロン）</span></div>
+      <div class=&quot;dgrid&quot;><div class=&quot;cell&quot;><span class=&quot;cl&quot;>等価用量</span><span class=&quot;cv&quot;>0.75 mg</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>抗炎症 力価</span><span class=&quot;cv&quot;>25〜30</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>作用時間</span><span class=&quot;cv&quot;>長時間型</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>むくみ(鉱質)</span><span class=&quot;cv&quot;>ほぼ無</span></div></div>
+    </div>
+    <div class=&quot;dcard&quot;>
+      <div class=&quot;dh&quot;><span class=&quot;dn&quot;>ベタメタゾン</span><span class=&quot;dbr&quot;>（リンデロン）</span></div>
+      <div class=&quot;dgrid&quot;><div class=&quot;cell&quot;><span class=&quot;cl&quot;>等価用量</span><span class=&quot;cv&quot;>0.75 mg</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>抗炎症 力価</span><span class=&quot;cv&quot;>25〜30</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>作用時間</span><span class=&quot;cv&quot;>長時間型</span></div><div class=&quot;cell&quot;><span class=&quot;cl&quot;>むくみ(鉱質)</span><span class=&quot;cv&quot;>ほぼ無</span></div></div>
+    </div>
+    <div class=&quot;note&quot;>※ プレドニゾロン5mg ≒ ヒドロコルチゾン20mg ≒ メチルプレドニゾロン4mg ≒ デキサメタゾン/ベタメタゾン0.75mg が同じ抗炎症の強さ（目安）。力価比は文献で幅があり、デキサ・ベタをプレドニゾロンの約10倍とする総説もあります。</div>
+  </section>
+
+  <!-- B widget -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>換算してみる</div>
+    <h2>プレドニゾロン換算ツール</h2>
+    <p class=&quot;lead-line&quot;>薬を選んでmgを入れると、<b class=&quot;kp&quot;>プレドニゾロン何mg相当か</b>を出します。オピオイド換算と同じ使い方です。</p>
+    <div class=&quot;panel&quot;>
+      <div style=&quot;font-family:'Zen Maru Gothic';font-weight:900;font-size:.8rem;color:var(--ink-soft);margin-bottom:5px;&quot;>① 薬を選ぶ</div>
+      <div class=&quot;convseg&quot; id=&quot;convSeg&quot;>
+        <button class=&quot;on&quot; data-e=&quot;0.75&quot;>デキサメタゾン</button>
+        <button data-e=&quot;0.75&quot;>ベタメタゾン</button>
+        <button data-e=&quot;4&quot;>メチルプレドニゾロン</button>
+        <button data-e=&quot;20&quot;>ヒドロコルチゾン</button>
+        <button data-e=&quot;5&quot;>プレドニゾロン</button>
+      </div>
+      <div style=&quot;font-family:'Zen Maru Gothic';font-weight:900;font-size:.8rem;color:var(--ink-soft);margin:12px 0 5px;&quot;>② 量（mg）</div>
+      <div class=&quot;w-in&quot;><input type=&quot;number&quot; id=&quot;convMg&quot; value=&quot;6&quot; min=&quot;0&quot; step=&quot;0.25&quot;><span class=&quot;unit&quot;>mg</span></div>
+      <div class=&quot;bigout&quot; style=&quot;margin-top:14px;&quot;><div class=&quot;lab&quot;>プレドニゾロン換算</div><div class=&quot;v&quot; style=&quot;color:var(--plum-deep);font-size:1.7rem;&quot;><span id=&quot;convOut&quot;>40</span> mg 相当</div></div>
+      <div class=&quot;w-steps&quot; id=&quot;convSteps&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>例：新型コロナ（中等症Ⅱ以上）のデカドロン6mgは、プレドニゾロン換算で約40mg相当。あくまで抗炎症作用の換算で、作用時間や鉱質作用の違いは別途考慮します。</div>
+  </section>
+
+  <!-- C 作用時間 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>作用時間</div>
+    <h2>もう一つの軸：効いている長さ</h2>
+    <p class=&quot;lead-line&quot;>同じ「換算量」でも、<b class=&quot;kb&quot;>効いている時間（生物学的半減期）</b>が違います。3タイプに分かれます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky)&quot;>短時間型</span><div class=&quot;tc&quot;><b>ヒドロコルチゾン（コートリル）</b>。生理的な補充などに。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>中間型</span><div class=&quot;tc&quot;><b>プレドニゾロン（プレドニン）・メチルプレドニゾロン（メドロール）</b>。半減期12〜36時間。漸減・隔日も組みやすく、外来でいちばん使われる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>長時間型</span><div class=&quot;tc&quot;><b>デキサメタゾン（デカドロン）・ベタメタゾン（リンデロン）</b>。半減期36〜72時間。強力・長く効くが<b>副腎抑制（HPA軸抑制）が強い</b>→短期・パルス向き、隔日には不向き。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>換算量が同じでも<b class=&quot;kg&quot;>作用時間が違う</b>。中間型(プレドニゾロン等)は使いやすく、長時間型(デキサ・ベタ)は強力だが副腎抑制が強い。</div>
+  </section>
+
+  <!-- D 鉱質 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>むくみの軸</div>
+    <h2>鉱質コルチコイド作用（Na貯留）</h2>
+    <p class=&quot;lead-line&quot;>抗炎症（糖質）とは別に、<b class=&quot;kb&quot;>鉱質コルチコイド作用</b>＝塩分(Na)と水をためる作用があります。これが強いと<b class=&quot;kr&quot;>むくみ・血圧上昇・心負荷</b>に。</p>
+    <p><b class=&quot;k&quot;>ヒドロコルチゾンは鉱質作用が強い</b>。プレドニゾロンは弱め。<b class=&quot;kb&quot;>メチルプレドニゾロン・デキサメタゾン・ベタメタゾンはほぼなし</b>。だから<b>むくみや水分貯留を避けたいとき</b>（移植後・パルスなど）は、鉱質作用の少ないメチルプレドニゾロンやデキサメタゾンが選ばれます。</p>
+    <div class=&quot;big-point rose&quot;>抗炎症とは別に<b class=&quot;kr&quot;>鉱質作用（むくみ）</b>の軸がある。ヒドロコルチゾン＝強い、プレドニゾロン＝弱い、デキサ・ベタ・メチルプレド＝ほぼ無し。</div>
+  </section>
+
+  <!-- E 補足 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>知っておくと便利</div>
+    <h2>換算まわりの小ネタ</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>内服↔注射</span><div class=&quot;tc&quot;>ステロイドは<b>生物学的利用率が高い</b>ので、内服と注射を切り替えても<b>用量調整は基本不要</b>（同じmgでよい）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>体の産生量</span><div class=&quot;tc&quot;>体は1日<b>コルチゾール約10〜20mg</b>を作る＝<b>プレドニゾロン約2〜2.5mg/日</b>相当。内服1錠ぶんが、ほぼ生理的な分泌量。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>合剤の例</span><div class=&quot;tc&quot;>セレスタミン（ベタメタゾン＋抗ヒスタミン）1錠＝<b>プレドニゾロン約2.5mg相当</b>。手軽だが長期は要注意。</div></div>
+    </div>
+  </section>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>ステロイドの強さ ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- F まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>F</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>ステロイドの強さは<b class=&quot;kb&quot;>2本立て</b>。<b class=&quot;k&quot;>外用＝5ランク</b>（ストロンゲスト〜ウィーク、市販はストロング以下）で、強さは抗炎症作用、<b class=&quot;kb&quot;>実際の効きはランク×部位の吸収</b>（顔陰部は弱め・手足は強めも）。<b class=&quot;kp&quot;>全身＝力価換算</b>（プレドニゾロン基準。ヒドロコルチゾン20＝プレドニゾロン5＝デキサ/ベタ0.75）で、ランクはなく用量依存。<b class=&quot;kb&quot;>作用時間</b>と<b class=&quot;kr&quot;>鉱質（むくみ）</b>の軸も合わせて選ぶ。</p>
+    <div class=&quot;big-point&quot;>外用は<b class=&quot;k&quot;>ランク×部位</b>、全身は<b class=&quot;kp&quot;>プレドニゾロン換算</b>。同じ「強さ」でも別物🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>薬剤師のキリ向けの解説です。ランク・等価用量・力価比は文献で幅のある目安で、作用時間・鉱質作用・個人差も加味して判断します。<b>実際の選択・換算・変更は医師の判断で。一般の方は必ず相談を。</b>
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    外用は<b>5ランク × 部位の吸収</b>。全身は<b>プレドニゾロン換算</b>（オピオイド換算のステロイド版）。<br>
+    強さのものさしは2種類、混同しない。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 外用5ランクにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 site absorption */
+  (function(){
+    const sites=[
+      {n:'手のひら／足底', v:'0.1〜0.8', w:8, s:'角層が厚く<b>吸収が低い</b>。強いランクが必要なことも。'},
+      {n:'前腕（基準）', v:'1', w:14, s:'比較の<b>基準</b>。ここを1として他を見る。'},
+      {n:'頭皮', v:'約3〜4', w:34, s:'前腕の数倍。ローション剤形が使いやすい。'},
+      {n:'顔・頬', v:'約6〜13', w:62, s:'<b>吸収が高い</b>。副作用が出やすいので<b>弱め</b>を。'},
+      {n:'わきの下', v:'約4', w:42, s:'皮膚が薄く密着。吸収はやや高め。'},
+      {n:'陰部', v:'約40', w:100, s:'<b>非常に高い</b>。強いものを長く塗らない。最も注意。'}
+    ];
+    let i=1;
+    const seg=document.getElementById('siteSeg'),fill=document.getElementById('siteFill'),name=document.getElementById('siteName'),val=document.getElementById('siteVal'),steps=document.getElementById('siteSteps');
+    function r(){ const s=sites[i]; name.textContent=s.n; val.textContent=s.v; fill.style.width=s.w+'%'; steps.innerHTML='前腕を1とすると、ここは <b>約'+s.v+'倍</b>。'+s.s; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{i=parseInt(b.dataset.i);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P3 prednisolone conversion */
+  (function(){
+    let equiv=0.75, name='デキサメタゾン';
+    const seg=document.getElementById('convSeg'),mg=document.getElementById('convMg'),out=document.getElementById('convOut'),steps=document.getElementById('convSteps');
+    function fmt(x){ return (Math.round(x*100)/100).toString(); }
+    function r(){
+      const m=parseFloat(mg.value)||0;
+      const pred=m*5/equiv;
+      out.textContent=fmt(pred);
+      steps.innerHTML=`${name} ${fmt(m)}mg ÷ ${fmt(equiv)}mg（${name}の等価用量）× 5（プレドニゾロン等価）<br>＝ プレドニゾロン <b>約 ${fmt(pred)} mg</b> 相当`;
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{equiv=parseFloat(b.dataset.e);name=b.textContent;seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    mg.oninput=r; r();
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'外用ステロイドのランク、最も強いのは？', o:['ストロンゲスト（Ⅰ群）','ウィーク（Ⅴ群）','マイルド'], a:0, e:'ストロンゲスト→ベリーストロング→ストロング→ミディアム→ウィークの5段階。'},
+      {q:'血管収縮試験で「皮膚の白さ」が強さの指標になるのはなぜ？', o:['白くなること自体が治療効果だから','白さも抗炎症も“同じ根っこ（浸透＋受容体への効き）”から出るから','偶然そうなるだけ'], a:1, e:'血管収縮も抗炎症も、ステロイドが皮膚で受容体に効いた結果。白さは「効いている量」の見えるものさし。'},
+      {q:'市販(OTC)で買える外用ステロイドの範囲は？', o:['ストロング以下の3段階','全5段階','ストロンゲストも'], a:0, e:'市販はウィーク・マイルド・ストロングのみ。強い2つは処方が必要。'},
+      {q:'同じ外用薬でも、吸収が高くて弱めを使うべき部位は？', o:['顔・陰部','手のひら','足の裏'], a:0, e:'顔・陰部は吸収が高い。手のひら・足底は逆に低く強めを使うことも。'},
+      {q:'内服・注射のステロイドに「ランク」は？', o:['ない（用量依存。換算で比べる）','ある（5段階）','外用と同じ'], a:0, e:'全身は用量依存。プレドニゾロン換算で比べる＝オピオイド換算と同じ発想。'},
+      {q:'プレドニゾロン5mgと同じ抗炎症の強さは？', o:['ヒドロコルチゾン20mg','ヒドロコルチゾン5mg','デキサメタゾン5mg'], a:0, e:'ヒドロコルチゾン20≒プレドニゾロン5≒デキサ/ベタ0.75mg（目安）。'},
+      {q:'デキサメタゾン6mgはプレドニゾロン換算で約？', o:['約40mg','約6mg','約5mg'], a:0, e:'6 ÷ 0.75 × 5 ＝ 40mg相当。コロナ治療のデカドロン6mgが好例。'},
+      {q:'むくみ(鉱質コルチコイド作用)が強いのは？', o:['ヒドロコルチゾン','デキサメタゾン','ベタメタゾン'], a:0, e:'ヒドロコルチゾンは鉱質作用が強い。デキサ・ベタ・メチルプレドはほぼ無し。'},
+      {q:'長時間型で副腎抑制が強く短期・パルス向きなのは？', o:['デキサメタゾン・ベタメタゾン','ヒドロコルチゾン','プレドニゾロン'], a:0, e:'長時間型(半減期36〜72h)。隔日投与には不向き。'}
     ];
     let i=0, correct=0, total=0, locked=false;
     function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
