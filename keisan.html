@@ -3003,7 +3003,7 @@
 <div class="ent-note" style="margin-top:0;">下は、この分野の項目（目次）です。<b>「できた」</b>は読めます。<b>「準備中」</b>はこれから作っていく箱です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">基礎スキンケア</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">化粧水・乳液って何？</span><span class="s">水分と油分、それぞれの役割</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">🔢</span><span class="tx"><span class="t">塗る順番</span><span class="s">さらさら→とろとろ、水分→油分</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('nurujunban')"><span class="ic">🔢</span><span class="tx"><span class="t">塗る順番</span><span class="s">水→油の原則・諸説・医薬品の位置</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">処方される塗り薬</span></div><div class="cards">
 <button class="lcard" onclick="openThemeFrame('hoshitsu')"><span class="ic">🧴</span><span class="tx"><span class="t">処方の保湿剤</span><span class="s">ヘパリン類似物質・ワセリン・尿素など</span></span><span class="badge done">できた</span></button>
@@ -6932,6 +6932,505 @@
       {q:'「ヘパリン類似物質」に、血をサラサラにする作用は？', o:['ヘパリンと同じ強さである','ごく弱くある（出血しやすい人は注意）。ただし塗る保湿剤で全身的には使わない','まったくゼロ'], a:1, e:'構造が似るためわずかにあるが、主作用は保湿・血行促進・抗炎症。用途はヘパリンと全然違う。'},
       {q:'保湿力・持続がいちばん高いヘパリン類似物質の剤形は？', o:['油性クリーム（ソフト軟膏）','ローション','泡スプレー'], a:0, e:'油分が多いほど保湿力・持続が高い。さっぱり系（ローション・泡）は持続が短め。'},
       {q:'収れんで肌は不可逆的に壊れる？', o:['壊れっぱなしになる','主に死んだ角質・表面が対象で、弱いものは一時的・角質は入れ替わるので大丈夫','一切変化しない'], a:1, e:'変性はするが対象は使い捨ての角質や浸出液。生きた皮膚を永久に壊すのとは違う。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div>
+<div id="theme-nurujunban" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('skin')">‹ 化粧品・塗り薬のあれこれ に戻る</button></div><iframe class="theme-frame" title="塗る順番（スキンケアの順序）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>塗る順番（スキンケアの順序） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.6rem,6.2vw,2.1rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.65rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* water-oil gradient ladder */
+  .grad{ margin:16px 0; }
+  .gradbar{ height:16px; border-radius:999px; background:linear-gradient(90deg,#4FA3C7,#7FC0D8,#E0C97A,#E0A93B); margin-bottom:6px; }
+  .gradlbl{ display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; color:var(--ink-soft); }
+  .order{ display:grid; gap:8px; margin:16px 0; }
+  .ostep{ display:flex; gap:11px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:13px; padding:11px 13px; box-shadow:var(--shadow); }
+  .ostep .on{ width:26px; height:26px; border-radius:50%; background:var(--persimmon-soft); color:var(--persimmon-deep); font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.85rem; display:grid; place-items:center; flex:none; }
+  .ostep .otx{ flex:1; } .ostep .otx b{ font-family:&quot;Zen Maru Gothic&quot;; } .ostep .otx .os{ font-size:.82rem; color:var(--ink-soft); }
+  .ostep .obadge{ font-size:.66rem; font-weight:900; padding:3px 8px; border-radius:999px; white-space:nowrap; }
+  .ob-water{ background:#E7F2F7; color:var(--sky-deep); } .ob-oil{ background:#FBF1DA; color:#B6841F; } .ob-uv{ background:#FDECEE; color:var(--rose-deep); }
+
+  /* penetration blocked visual */
+  .pv{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .pv{ grid-template-columns:1fr; } }
+  .pvc{ border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .pvc .pvh{ padding:9px 12px; color:#fff; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.9rem; text-align:center; }
+  .pvc.ok .pvh{ background:var(--mint-deep); } .pvc.ng .pvh{ background:var(--rose-deep); }
+  .pvc .pvb{ padding:12px; font-size:.85rem; } .pvc .pvb b{ color:var(--ink); }
+  .pvskin{ height:56px; border-radius:9px; position:relative; overflow:hidden; border:1px solid var(--line); margin-bottom:9px; background:#FBE6CD; }
+  .pvskin .film{ position:absolute; left:0; right:0; top:0; height:11px; background:repeating-linear-gradient(90deg,#E0A93B,#E0A93B 5px,#EAB94E 5px,#EAB94E 10px); }
+  .pvskin .drop{ position:absolute; width:8px; height:8px; border-radius:50% 50% 50% 0; background:#4FA3C7; transform:rotate(-45deg); }
+
+  /* selector */
+  .selseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .selseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; padding:8px 10px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .selseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .selout{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 15px; margin-top:8px; box-shadow:var(--shadow); }
+  .selout .spos{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.02rem; color:var(--persimmon-deep); margin-bottom:4px; } .selout .swhy{ font-size:.9rem; } .selout .swhy b{ color:var(--ink); }
+
+  /* debate cards */
+  .deb{ background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:14px 15px; margin:12px 0; }
+  .deb .dt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; margin-bottom:5px; }
+  .deb .opt{ display:flex; gap:9px; margin:6px 0; font-size:.87rem; align-items:flex-start; }
+  .deb .opt .n{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; margin-top:2px; }
+  .n-a{ background:var(--sky-deep); } .n-b{ background:var(--gold); color:#3a2d12; } .n-c{ background:var(--mint-deep); }
+  .deb .opt b{ color:var(--ink); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.76rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:74px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 大原則</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 割れるエリア</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 日焼け止め・まとめ</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>基礎スキンケア ・ とことん版</span>
+    <h1>スキンケアの<br><span class=&quot;hl&quot;>塗る順番</span></h1>
+    <p class=&quot;lead&quot;>前半はだいたい一致。でも化粧品エリアは諸説あり。<br>その「原則」と「なぜ割れるか」を。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>塗る順番には<b>一つの大原則</b>がありますが、化粧品（美容液・オイル等）の細かい順番は<b>製品・メーカー・目的で変わり、唯一の正解はありません</b>。ここでは原則を押さえつつ、<b>解釈の幅</b>も一緒に示します。実際は<b>各製品・メーカーの説明が最優先</b>、肌トラブル時は皮膚科へ。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>順番、調べる場所で違うのはなぜ？</h2>
+    <p class=&quot;lead-line&quot;>「塗る順番」を調べると、<b class=&quot;kb&quot;>化粧水→乳液→…日焼け止め</b>までは大体どこも同じ。でも<b class=&quot;kb&quot;>美容液やオイルの位置</b>になると、サイトごとに順番が違ったりしますよね。キリの感覚は正しくて、<b>ここは“人による・製品による”エリア</b>なんです。</p>
+    <p>このページでは、①<b class=&quot;k&quot;>まず絶対の大原則</b>（これは一つ）→ ②<b class=&quot;k&quot;>割れる化粧品エリアと、その理由</b>（幅を持って）→ ③<b class=&quot;k&quot;>日焼け止め・下地と総まとめ</b>、の順でいきます。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>大原則</div>
+    <h2>「水分が多い→油分が多い」</h2>
+    <p class=&quot;lead-line&quot;>順番のいちばんの軸は、これ一つ。<b class=&quot;kb&quot;>水分が多いもの → 油分が多いもの</b>の順に塗る。言いかえると——</p>
+    <div class=&quot;grad&quot;>
+      <div class=&quot;gradbar&quot;></div>
+      <div class=&quot;gradlbl&quot;><span>💧 水分が多い（先）</span><span>🛡️ 油分が多い（後）</span></div>
+    </div>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>言い方①</span><div class=&quot;tc&quot;><b>さらさら → とろとろ</b>（軽いテクスチャー→重いテクスチャー）</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>言い方②</span><div class=&quot;tc&quot;><b>浸透させるもの → フタをするもの</b>（届けたい水分・成分が先、閉じ込める油分が後）</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>迷ったらこれだけ：<b class=&quot;kb&quot;>水分が多い順に塗る</b>。さらさら→とろとろ、浸透→フタ。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>なぜ？</div>
+    <h2>油分を先に塗ると、水分をはじく</h2>
+    <p class=&quot;lead-line&quot;>なぜ水分が先なの？ ——<b class=&quot;kb&quot;>油分の多いもの（乳液・クリーム）を先に塗ると、肌の表面に“膜”ができて、後から塗る化粧水をはじいてしまう</b>から。だから水分は、肌がまだ吸える最初のうちに入れます。</p>
+    <div class=&quot;pv&quot;>
+      <div class=&quot;pvc ok&quot;>
+        <div class=&quot;pvh&quot;>◯ 水→油の順</div>
+        <div class=&quot;pvb&quot;><div class=&quot;pvskin&quot;><span class=&quot;drop&quot; style=&quot;left:16px;top:26px&quot;></span><span class=&quot;drop&quot; style=&quot;left:38px;top:32px&quot;></span><span class=&quot;drop&quot; style=&quot;left:60px;top:24px&quot;></span></div><b>先に水分がしみ込み</b>、あとから油分がフタ。うるおいが入って、閉じ込められる。</div>
+      </div>
+      <div class=&quot;pvc ng&quot;>
+        <div class=&quot;pvh&quot;>✕ 油→水の順</div>
+        <div class=&quot;pvb&quot;><div class=&quot;pvskin&quot;><span class=&quot;film&quot;></span><span class=&quot;drop&quot; style=&quot;left:30px;top:4px;opacity:.9&quot;></span><span class=&quot;drop&quot; style=&quot;left:52px;top:2px;opacity:.9&quot;></span></div><b>先に油の膜</b>ができ、後の<b>化粧水がはじかれて浸透しにくい</b>。水滴が膜の上で玉に。</div>
+      </div>
+    </div>
+
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>バランスの話</span><p style=&quot;margin:0&quot;><b>とはいえ、神経質になりすぎなくても大丈夫。</b><br><span class=&quot;soft&quot;>ある専門家は「順番を変えても効果が大きく変わることはない。クリームの後に化粧水でもベタつくだけで、水分が入らないわけではない。<b>いちばん大事なのは“続けること”</b>」とも。原則は原則として、ストレスなく続けられる形が一番です🦎</span></p></div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>基本の流れ</div>
+    <h2>ここまでは、みんなだいたい一致</h2>
+    <p class=&quot;lead-line&quot;>大原則にそった<b class=&quot;kb&quot;>基本の並び</b>がこれ。ここまでは、どこで調べてもほぼ同じです。</p>
+    <div class=&quot;order&quot;>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>1</span><span class=&quot;otx&quot;><b>洗顔</b><span class=&quot;os&quot;>汚れ・皮脂を落として、浸透しやすい肌に</span></span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>2</span><span class=&quot;otx&quot;><b>化粧水</b><span class=&quot;os&quot;>水分を与える。いちばんさらさら</span></span><span class=&quot;obadge ob-water&quot;>水分</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>3</span><span class=&quot;otx&quot;><b>美容液</b><span class=&quot;os&quot;>悩みに効く成分を届ける（省略可のことも）</span></span><span class=&quot;obadge ob-water&quot;>水分寄り</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>4</span><span class=&quot;otx&quot;><b>乳液</b><span class=&quot;os&quot;>水分＋油分でフタを始める</span></span><span class=&quot;obadge ob-oil&quot;>油分寄り</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>5</span><span class=&quot;otx&quot;><b>クリーム</b><span class=&quot;os&quot;>油分が多く、しっかりフタ</span></span><span class=&quot;obadge ob-oil&quot;>油分</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>6</span><span class=&quot;otx&quot;><b>日焼け止め（朝）</b><span class=&quot;os&quot;>スキンケアの最後に</span></span><span class=&quot;obadge ob-uv&quot;>朝のみ</span></div>
+    </div>
+    <div class=&quot;note&quot;>乳液とクリームは<b>どちらか一方でも、両方でもOK</b>（順は油分の少ない乳液→多いクリーム）。夜はクリームでしっかり、朝はさっぱり乳液、など季節・肌質で調整。</div>
+    <div class=&quot;big-point&quot;>基本は<b class=&quot;k&quot;>洗顔→化粧水→美容液→乳液→クリーム→(朝)日焼け止め</b>。ここは大体どこも同じ🦎</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>問題はこの先。<br>「美容液・オイルの位置」が割れる理由へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 割れるエリア ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>諸説あるエリア ・ 幅を持って</span>
+    <h1>なぜ<span class=&quot;hl&quot;>順番が割れる</span>のか</h1>
+    <p class=&quot;lead&quot;>美容液・オイルの位置は<br>製品と目的で変わる。</p>
+  </header>
+
+  <!-- A なぜ割れる -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>理由</div>
+    <h2>割れるのには、3つの理由がある</h2>
+    <p class=&quot;lead-line&quot;>キリの「人によるのかな」は、ほぼ正解。ただ“気まぐれ”ではなく、<b class=&quot;kb&quot;>割れるには理由がある</b>んです。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>理由①</span><div class=&quot;tc&quot;><b>同じ名前でも中身の水/油比が製品ごとに違う。</b>「美容液」も水っぽいものからオイルまで幅がある。だから位置が一つに決まらない。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>理由②</span><div class=&quot;tc&quot;><b>メーカーが“自社ライン”で最適化して設計している。</b>そのライン専用の順番があり、他社と混ぜる前提ではない。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>理由③</span><div class=&quot;tc&quot;><b>同じアイテムでも“目的”で位置が真逆に。</b>オイルは「最初のブースター」にも「最後のフタ」にもなる。</div></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>順番が割れるのは<b class=&quot;kgo&quot;>①製品の水/油比 ②メーカーの設計 ③使う目的</b>のせい。だから<b class=&quot;k&quot;>唯一の正解はない</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B selector -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>位置を調べる</div>
+    <h2>このアイテムはどこに入る？</h2>
+    <p class=&quot;lead-line&quot;>アイテムを選ぶと、<b class=&quot;kb&quot;>入る位置と、その理由</b>が出ます。「同じ美容液でもタイプで違う」のが見えるはず。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;selseg&quot; id=&quot;selSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>導入・ブースター</button>
+        <button data-i=&quot;1&quot;>化粧水</button>
+        <button data-i=&quot;2&quot;>美容液（水性）</button>
+        <button data-i=&quot;3&quot;>美容液（オイル系）</button>
+        <button data-i=&quot;4&quot;>乳液</button>
+        <button data-i=&quot;5&quot;>クリーム</button>
+        <button data-i=&quot;6&quot;>オイル（フタ）</button>
+        <button data-i=&quot;7&quot;>オールインワン</button>
+        <button data-i=&quot;8&quot;>日焼け止め</button>
+        <button data-i=&quot;9&quot;>保湿剤（ヒルドイド等）</button>
+        <button data-i=&quot;10&quot;>ステロイド外用薬</button>
+        <button data-i=&quot;11&quot;>その他の外用薬</button>
+      </div>
+      <div class=&quot;selout&quot;><div class=&quot;spos&quot; id=&quot;selPos&quot;></div><div class=&quot;swhy&quot; id=&quot;selWhy&quot;></div></div>
+    </div>
+    <div class=&quot;note&quot;>※ 迷ったら大原則「水→油」に当てはめればOK。水っぽいものほど先、油っぽいものほど後、と考えると位置が読めます。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 諸説カード -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>代表的な“諸説”</div>
+    <h2>とくに割れる3つ</h2>
+
+    <div class=&quot;deb&quot;>
+      <div class=&quot;dt&quot;>🫧 美容液は、どこ？</div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-a&quot;>説A</span><div><b>水性の美容液</b>→ 化粧水の後・乳液の前（いちばん多い）。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-b&quot;>説B</span><div><b>オイル系の美容液</b>→ 乳液の後・クリームの前（油分が多いので後ろ）。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-c&quot;>説C</span><div><b>導入（ブースター）美容液</b>→ いちばん最初、化粧水の前。</div></div>
+      <p class=&quot;soft&quot; style=&quot;margin:.4em 0 0;&quot;>→ 「美容液」は一つの位置じゃなく、<b>タイプ（水／油／導入）で変わる</b>。これが混乱の最大の原因。</p>
+    </div>
+
+    <div class=&quot;deb&quot;>
+      <div class=&quot;dt&quot;>🫗 オイルは、最初？ 最後？</div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-a&quot;>説A</span><div><b>いちばん最後（フタ）</b>。オイルは水分を閉じ込めるのが得意。皮膚科医もこの立場が多い。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-b&quot;>説B</span><div><b>いちばん最初（ブースター）</b>。親水性の高いオイルは、後の浸透を助ける。乾燥肌に。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-c&quot;>説C</span><div><b>化粧水の後すぐ</b>。水分と油分のバランスを取る。</div></div>
+      <p class=&quot;soft&quot; style=&quot;margin:.4em 0 0;&quot;>→ オイルは<b>目的で真逆</b>。「閉じ込めたい」なら最後、「浸透を助けたい」なら最初。どちらも正解。</p>
+    </div>
+
+    <div class=&quot;deb&quot;>
+      <div class=&quot;dt&quot;>🧴 乳液・クリーム／オールインワン</div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-a&quot;>乳液・クリーム</span><div>どちらか一方でも両方でも。順は<b>油分の少ない乳液→多いクリーム</b>。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-c&quot;>オールインワン</span><div>基本は<b>これ1つで完結</b>（化粧水〜クリームの役割入り）。他と併用時は「オールインワンの後に乳液・クリーム」とするメーカーも（諸説）。</div></div>
+    </div>
+
+    <div class=&quot;big-point plum&quot;>「美容液」も「オイル」も<b class=&quot;kp&quot;>1つの位置に決まらない</b>。<b>タイプと目的</b>で動く。だから答えが割れて見える。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>最後に、日焼け止め・下地の順番と、<br>全体の結論を。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 日焼け止め・まとめ ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>日焼け止め・下地 ・ まとめ</span>
+    <h1>UVとメイクの<br><span class=&quot;hl&quot;>境目</span>、そして結論</h1>
+    <p class=&quot;lead&quot;>日焼け止めの位置と、<br>納得できる結論を。</p>
+  </header>
+
+  <!-- A 日焼け止め -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>日焼け止め</div>
+    <h2>スキンケアの最後、メイクの前</h2>
+    <p class=&quot;lead-line&quot;>日焼け止めは<b class=&quot;kb&quot;>スキンケア（〜乳液・クリーム）の後、メイクの前</b>。乾いた肌に直接塗るのは避けます（皮脂が過剰に出て崩れやすい）。</p>
+    <div class=&quot;order&quot;>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>…</span><span class=&quot;otx&quot;><b>スキンケア（化粧水〜乳液・クリーム）</b></span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>▶</span><span class=&quot;otx&quot;><b>日焼け止め</b><span class=&quot;os&quot;>肌に均一に密着させたいので、下地より先</span></span><span class=&quot;obadge ob-uv&quot;>UV</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>▶</span><span class=&quot;otx&quot;><b>化粧下地</b><span class=&quot;os&quot;>凹凸をならし、ファンデをのせやすく</span></span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>▶</span><span class=&quot;otx&quot;><b>ファンデーション → パウダー</b></span></div>
+    </div>
+    <p><b class=&quot;k&quot;>なぜ日焼け止めが下地より先？</b> 日焼け止めは<b>均一な膜</b>で紫外線を防ぐので、先に肌へ密着させたい。先に下地を塗るとその膜が崩れ、UV効果が落ちることがあります。また白っぽい日焼け止めを最後にすると白浮きするため、という理由も。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>UV機能つき下地・ファンデ</span><p style=&quot;margin:0&quot;><b>「SPF付き下地」だけで日焼け止めは省ける？</b><br><span class=&quot;soft&quot;>日常の短時間なら、<b>SPF30・PA++以上の下地</b>で足りることが多い。ただし<b>屋外に長くいる日や紫外線が強い日は、日焼け止めも併用</b>が安心。下地とファンデのSPFは“塗り重ねても足し算にはならない”ので、しっかり防ぎたい日は専用の日焼け止めを土台に。</span></p></div>
+    <div class=&quot;big-point rose&quot;>日焼け止めは<b class=&quot;kr&quot;>スキンケアの後・メイクの前</b>。順は<b class=&quot;kr&quot;>日焼け止め→下地→ファンデ</b>。しっかり防ぐ日は専用UVを土台に。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 剤形で変わる -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>例外パターン</div>
+    <h2>剤形で順番が動くパターン</h2>
+    <p class=&quot;lead-line&quot;>キリの「剤形で変わることもある」も正解。<b class=&quot;kb&quot;>水/油の比率や“導入”設計</b>で、順番が動きます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>導入系は先頭</span><div class=&quot;tc&quot;><b>ブースター・導入美容液・拭き取り化粧水・乳液先行(ミルク)型</b>は、あえて<b>いちばん最初</b>に使う設計。後の浸透を助ける。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>水性か油性か</span><div class=&quot;tc&quot;>同じ美容液・オイルでも、<b>水っぽければ前、油っぽければ後ろ</b>。パッケージの使用順が正解。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>1本完結型</span><div class=&quot;tc&quot;><b>オールインワン</b>は基本これ1つ。時短だが、しっかり保湿したい時は上からクリームを足しても。</div></div>
+    </div>
+    <div class=&quot;note&quot;>処方薬を挟む場合は、次のセクションでくわしく扱います。基本は<b>医師の指示が最優先</b>です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B2 医薬品の順番 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--rose-deep)&quot;>★</span>医薬品を挟むとき</div>
+    <h2>ヒルドイド・ステロイドは、どこ？</h2>
+    <p class=&quot;lead-line&quot;>キリの疑問。塗り薬（保湿剤・ステロイド等）が加わると順番はどうなる？ 皮膚科で一般的なのは、この流れです。</p>
+    <div class=&quot;order&quot;>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>1</span><span class=&quot;otx&quot;><b>洗顔</b></span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>2</span><span class=&quot;otx&quot;><b>化粧水</b><span class=&quot;os&quot;>水分を与える</span></span><span class=&quot;obadge ob-water&quot;>水分</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>3</span><span class=&quot;otx&quot;><b>保湿剤（ヒルドイド等）</b><span class=&quot;os&quot;>広い範囲に。※乳液の代わり</span></span><span class=&quot;obadge ob-oil&quot;>薬(保湿)</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>4</span><span class=&quot;otx&quot;><b>塗り薬（ステロイド等）</b><span class=&quot;os&quot;>患部だけに</span></span><span class=&quot;obadge ob-uv&quot;>薬(治療)</span></div>
+      <div class=&quot;ostep&quot;><span class=&quot;on&quot;>5</span><span class=&quot;otx&quot;><b>日焼け止め（朝）→ 下地・ファンデ</b></span><span class=&quot;obadge ob-uv&quot;>朝</span></div>
+    </div>
+
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>キリの認識の確認</span><p style=&quot;margin:0&quot;><b>「保湿剤→ステロイド→日焼け止め」の順は合っています🦎</b><br><span class=&quot;soft&quot;>ただし1点補足。<b>ヒルドイド等の保湿剤を使う場所には、乳液は基本不要</b>です（どちらも“うるおいを与えて守る”役割でかぶるため）。なので「乳液の次に保湿剤」と重ねるより、<b>化粧水→保湿剤（乳液の代わり）→塗り薬</b>と考えるのが一般的です。</span></p></div>
+
+    <h3>保湿剤とステロイド、どっちが先？</h3>
+    <p><b class=&quot;kb&quot;>結論：塗る順番で効果はほぼ変わりません</b>（小児アトピーの比較試験や動物実験でも、順番で効果・副作用に差は出なかったと報告）。そのうえで——</p>
+    <div class=&quot;deb&quot;>
+      <div class=&quot;opt&quot;><span class=&quot;n n-a&quot;>保湿が先<br>（主流）</span><div><b>皮膚科医の多くはこちら。</b>広い範囲に保湿剤→患部にだけステロイド。先にステロイドを塗ると、後で保湿剤を塗り広げる時に<b>ステロイドが正常な皮膚まで広がり、皮膚萎縮を起こす</b>おそれがあるため。用法（ステロイド＝塗布／保湿剤＝すり込む）の点でも合理的。</div></div>
+      <div class=&quot;opt&quot;><span class=&quot;n n-b&quot;>薬が先<br>（一部）</span><div><b>小児科や手湿疹では先に塗ることも。</b>「保湿剤で満足してステロイドを塗り忘れる」のを防ぐ／しっかり効かせたい部位のため。</div></div>
+    </div>
+    <div class=&quot;note&quot;>どちらでも効果は同じ。<b>いちばんダメなのは「順番が気になって塗らないこと」</b>。医師の指示があればそれが最優先です。</div>
+
+    <h3>ステロイド以外の薬は？</h3>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>タクロリムス</span><div class=&quot;tc&quot;><b>プロトピック®（タクロリムス）</b>は<b>正常な皮膚からは吸収されず、病変部だけから吸収される</b>特殊な性質。だからステロイドほど「広がり」を気にしなくてよい面も。位置づけは塗り薬の枠（保湿の後・日焼け止めの前）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>その他</span><div class=&quot;tc&quot;>抗真菌薬・抗菌薬・かゆみ止めなども、基本は<b>患部に、保湿の後・日焼け止めの前</b>。薬ごとに事情が違うので、<b>必ず医師・薬剤師の指示で</b>。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>薬を挟むなら<b class=&quot;kr&quot;>化粧水→保湿剤（乳液は不要）→塗り薬→(朝)日焼け止め</b>。保湿とステロイドの順は<b class=&quot;kb&quot;>効果同じ・保湿先が主流</b>。<b class=&quot;k&quot;>医師の指示が最優先</b>🦎</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>塗る順番 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- C 結論 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>結論</div>
+    <h2>納得できる、まとめ</h2>
+    <p class=&quot;lead-line&quot;>「唯一の正解」を探すと迷子になります。代わりに、<b class=&quot;kb&quot;>3つの拠りどころ</b>を持っておくと、どんな並びにも対応できます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>拠りどころ①</span><div class=&quot;tc&quot;><b>製品・メーカーの説明が最優先。</b>そのライン専用に最適化されているから。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>拠りどころ②</span><div class=&quot;tc&quot;><b>迷ったら「水→油」。</b>水っぽいものほど先、油っぽいものほど後。導入系だけ例外で最初。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>拠りどころ③</span><div class=&quot;tc&quot;><b>続けることがいちばん大事。</b>順番の細部より、毎日のケアと保湿・UVの習慣化。</div></div>
+    </div>
+    <div class=&quot;big-point&quot;>大原則は<b class=&quot;kb&quot;>水→油</b>の一本。化粧品エリアは<b class=&quot;kp&quot;>タイプ・目的・メーカーで動く</b>ので、<b class=&quot;k&quot;>メーカー指示＞水油の原則＞続けること</b>で迷わない🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>これは一般的な整理で、細かい順番は製品や肌質で変わります。<b>各製品・メーカーの使用順を最優先</b>に、肌に合わない・トラブルがあるときは皮膚科に相談してください。処方薬は医師の指示に従ってください。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    大原則は<b>「水分が多い→油分が多い」</b>の一本。<br>
+    化粧品エリアはタイプと目的で動く。メーカー指示＞水油＞続けること。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 大原則にもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 position selector */
+  (function(){
+    const data=[
+      {pos:'⓪ いちばん最初（化粧水の前）', why:'導入美容液・ブースター・拭き取り化粧水・乳液先行(ミルク)型は、あえて先頭。後の浸透を高める“地ならし”役。'},
+      {pos:'① 最初のうるおい（洗顔／導入のあと）', why:'水分がいちばん多く、さらさら。肌をやわらげ、後のアイテムの浸透を助ける“土台”。'},
+      {pos:'化粧水の後・乳液の前', why:'水分が多い美容液は、油分より先。悩みに効く成分を、フタをする前に届ける。「美容液」で最も一般的な位置。'},
+      {pos:'乳液の後・クリームの前', why:'オイル系（油分が多め）の美容液は、水性より後ろへ。水→油の原則どおり。'},
+      {pos:'美容液の後・クリームの前', why:'水分＋油分でフタを始める段階。油分は化粧水より多いので、水系アイテムより後。※医薬品の保湿剤（ヒルドイド等）を使う場所には、乳液は基本不要（役割がかぶる）。'},
+      {pos:'乳液の後（保湿の仕上げ）', why:'油分が乳液より多く、いちばんしっかりフタ。乾燥や夜のケアに。'},
+      {pos:'いちばん最後（クリームの後）※諸説あり', why:'「フタ」として使うなら最後。水分を閉じ込めるのが得意だから。ただし親水性オイルは“最初のブースター”として使う説も（目的で真逆）。'},
+      {pos:'基本これ1つで完結', why:'化粧水〜クリームの役割が1本に。他と併用時は「オールインワンの後に乳液・クリーム」とするメーカーも（諸説）。'},
+      {pos:'スキンケアの最後（朝）→この後に下地・ファンデ', why:'乾いた肌に直接はNG（皮脂過剰・崩れ）。保湿の後、メイクの前に。塗り薬を使う場合は、塗り薬の後。'},
+      {pos:'化粧水の後・塗り薬の前（乳液の代わり）', why:'皮膚科では「化粧水→保湿剤→塗り薬→(朝)日焼け止め」が一般的。ヒルドイド等の保湿剤を塗る場所には乳液は基本不要。広い範囲に先に塗る。入浴後すぐが効果的。'},
+      {pos:'保湿剤の後・患部だけに ※順は諸説', why:'「保湿剤→ステロイド」が主流（患部だけに塗り、正常皮膚への広がり＝皮膚萎縮を防ぐ）。ただし塗る順で効果は変わらず、小児科や手湿疹では先に塗ることも。医師の指示が最優先。'},
+      {pos:'塗り薬の位置（保湿の後・日焼け止めの前）', why:'タクロリムス（プロトピック）は正常皮膚からは吸収されず病変部のみ吸収される特殊性あり。抗真菌薬なども基本は患部に。位置づけはステロイドに準じるが、必ず医師の指示で。'}
+    ];
+    let i=0;
+    const seg=document.getElementById('selSeg'),pos=document.getElementById('selPos'),why=document.getElementById('selWhy');
+    function r(){ pos.textContent='→ '+data[i].pos; why.textContent=data[i].why; }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{i=parseInt(b.dataset.i);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r();});
+    r();
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'塗る順番のいちばんの大原則は？', o:['水分が多い→油分が多い','高い→安い','色の濃い→薄い'], a:0, e:'さらさら→とろとろ、浸透→フタ。水っぽいものを先に。'},
+      {q:'なぜ油分の多いものを先に塗るとダメ？', o:['膜ができて後の化粧水をはじくから','高いから','香りが飛ぶから'], a:0, e:'油の膜が水分の浸透を妨げる。だから水分が先。'},
+      {q:'「美容液」の位置が一つに決まらない主な理由は？', o:['同じ美容液でも水/油の比率が製品ごとに違うから','値段が違うから','色が違うから'], a:0, e:'水性は化粧水後、オイル系は乳液後、導入型は最初。タイプで変わる。'},
+      {q:'オイルの位置が「最初」にも「最後」にもなるのはなぜ？', o:['目的が違うから（ブースターかフタか）','間違いだから','季節だけの都合'], a:0, e:'浸透を助けたいなら最初、閉じ込めたいなら最後。どちらも正解。'},
+      {q:'日焼け止めと化粧下地、先に塗るのは？', o:['日焼け止め','化粧下地','どちらでもよい'], a:0, e:'日焼け止めを先に均一に密着。下地→ファンデと続く。'},
+      {q:'乳液とクリーム、両方使うときの順番は？', o:['乳液（油分少）→クリーム（油分多）','クリーム→乳液','同時'], a:0, e:'油分の少ない方が先。水→油の原則どおり。'},
+      {q:'順番で迷ったとき、最優先すべきは？', o:['各製品・メーカーの使用順の説明','ネットの多数派','自分の勘だけ'], a:0, e:'そのライン専用に最適化されている。次点は「水→油」、そして続けること。'},
+      {q:'導入美容液（ブースター）を使うタイミングは？', o:['いちばん最初（化粧水の前）','いちばん最後','クリームの後'], a:0, e:'後のアイテムの浸透を高める地ならし役なので先頭。'},
+      {q:'ヒルドイド等の保湿剤を使う場所に、乳液は？', o:['基本不要（役割がかぶる）','必ず乳液を先に','乳液を2回'], a:0, e:'保湿剤が乳液の役割も果たすため、化粧水→保湿剤→塗り薬が一般的。'},
+      {q:'保湿剤とステロイド外用薬、塗る順番と効果は？', o:['順番で効果はほぼ変わらない（保湿先が主流）','ステロイドが先でないと効かない','保湿が先だと効かない'], a:0, e:'試験でも差はなし。皮膚科は保湿先が主流（患部だけにステロイドを塗り皮膚萎縮を防ぐ）。'},
+      {q:'プロトピック（タクロリムス）の特徴は？', o:['正常な皮膚からは吸収されず、病変部だけから吸収される','どこでも強く吸収される','保湿剤である'], a:0, e:'この特殊性のため、ステロイドほど正常皮膚への広がりを気にしなくてよい面がある。'}
     ];
     let i=0, correct=0, total=0, locked=false;
     function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
