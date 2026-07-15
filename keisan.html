@@ -2932,10 +2932,10 @@
 <p>なぜ効くのか、その仕組みを、やさしく。</p></header>
 <div class="ent-note" style="margin-top:0;">下は、この分野の項目（目次）です。<b>「できた」</b>は読めます。<b>「準備中」</b>はこれから作っていく箱です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🦠</span><span class="tx"><span class="t">抗生剤って何？ 細菌と抗生剤</span><span class="s">人と細菌は作りが違う→狙い撃ち</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('abxintro')"><span class="ic">🦠</span><span class="tx"><span class="t">抗生剤って何？ 細菌と抗生剤</span><span class="s">人と細菌は作りが違う→狙い撃ち</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">どこを攻撃するか（作用機序）</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🏰</span><span class="tx"><span class="t">細胞壁を壊す系（ペニシリン等）</span><span class="s">細菌のよろいを壊す</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('betalactam')"><span class="ic">🏰</span><span class="tx"><span class="t">細胞壁を壊す系（ペニシリン等）</span><span class="s">ニセレンガ・世代・耐性と注意</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">🏭</span><span class="tx"><span class="t">タンパク合成を止める系（マクロライド等）</span><span class="s">細菌の工場を止める</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🧬</span><span class="tx"><span class="t">DNA・葉酸系（ニューキノロン等）</span><span class="s">設計図をいじる</span></span><span class="badge soon">準備中</span></div>
 </div></div>
@@ -3020,7 +3020,955 @@
 </div></div>
 <div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ<br>項目はこれから増減します</div>
 </div></div>
-<div id="theme-ssd" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('spec')">‹ PC・機械のスペック に戻る</button></div><iframe class="theme-frame" title="SSDの速さと規格" srcdoc="<!DOCTYPE html>
+<div id="theme-betalactam" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="細胞壁を壊す系（βラクタム）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>細胞壁を壊す系（βラクタム） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.72rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.5rem,5.6vw,2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* mechanism 3-step */
+  .mech{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; margin:16px 0; }
+  @media (max-width:520px){ .mech{ grid-template-columns:1fr; } }
+  .mechc{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:13px 12px; text-align:center; position:relative; }
+  .mechc .mn{ position:absolute; top:8px; left:10px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.72rem; color:#fff; background:var(--persimmon); width:20px; height:20px; border-radius:50%; display:grid; place-items:center; }
+  .mechc .mi{ font-size:1.9rem; } .mechc .mt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.92rem; margin:2px 0; } .mechc .md{ font-size:.8rem; color:var(--ink-soft); }
+
+  /* generation selector */
+  .genseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .genseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.82rem; padding:9px 14px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .genseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .genout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .genout .gh{ padding:12px 15px; color:#fff; background:var(--sky-deep); } .genout .gh .gnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.1rem; } .genout .gh .grep{ font-size:.8rem; opacity:.93; }
+  .genout .gb{ padding:13px 15px; } .genrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .genrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; background:var(--ink-soft); padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:62px; text-align:center; margin-top:2px; } .genrow .val{ flex:1; } .genrow .val b{ color:var(--ink); }
+  /* spectrum bars */
+  .spbar{ display:flex; align-items:center; gap:8px; margin:4px 0; font-size:.78rem; }
+  .spbar .spl{ width:66px; flex:none; font-weight:700; color:var(--ink-soft); }
+  .spbar .track{ flex:1; height:12px; border-radius:999px; background:#EFE4D2; overflow:hidden; }
+  .spbar .fill{ height:100%; border-radius:999px; }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:80px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① しくみ</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 種類と守備範囲</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 耐性と注意</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>作用機序 ・ 細胞壁を壊す系</span>
+    <h1>🏰 <span class=&quot;hl&quot;>βラクタム</span><br>細胞壁を壊す系</h1>
+    <p class=&quot;lead&quot;>ペニシリン・セフェムの仲間。<br>「壁づくりの職人」を狙う薬。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>入門編「抗生剤って？」の②で見た<b>4つの狙いどころの筆頭＝細胞壁</b>を掘り下げます。薬剤師のキリ向けの整理で、薬は処方薬。要否・選択は医師が判断します。アレルギー歴は必ず申告を。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>抗生剤の「王道」ファミリー</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kb&quot;>ペニシリン系・セフェム系</b>——名前を聞いたことのある抗生剤の多くは、じつは<b class=&quot;kb&quot;>βラクタム系</b>という一つの大家族。共通点は<b class=&quot;kg&quot;>細菌の「細胞壁」を壊して倒す</b>こと。まずは、なぜ壁を壊すと菌が死ぬのかから。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 しくみ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>核心</div>
+    <h2>「ニセのレンガ」で壁づくりを止める</h2>
+    <p class=&quot;lead-line&quot;>細菌は、<b class=&quot;kg&quot;>細胞壁（ペプチドグリカンのよろい）</b>で身を守っています（ヒトの細胞にはない）。この壁を積む職人が<b class=&quot;kb&quot;>PBP（ペニシリン結合タンパク）</b>という酵素。βラクタムは、この職人をだまして止めるんです。</p>
+    <div class=&quot;mech&quot;>
+      <div class=&quot;mechc&quot;><span class=&quot;mn&quot;>1</span><div class=&quot;mi&quot;>🧱</div><div class=&quot;mt&quot;>職人が壁を積む</div><div class=&quot;md&quot;><b>PBP</b>が材料（D-Ala-D-Ala＝レンガ）をつかみ、鎖どうしを<b>架橋</b>して壁を丈夫にする。</div></div>
+      <div class=&quot;mechc&quot;><span class=&quot;mn&quot;>2</span><div class=&quot;mi&quot;>🎭</div><div class=&quot;mt&quot;>ニセのレンガ</div><div class=&quot;md&quot;><b>βラクタムはレンガにそっくり</b>。職人（PBP）が誤ってつかみ、<b>手が塞がって働けない</b>。</div></div>
+      <div class=&quot;mechc&quot;><span class=&quot;mn&quot;>3</span><div class=&quot;mi&quot;>💥</div><div class=&quot;mt&quot;>水圧で破裂</div><div class=&quot;md&quot;>壁が作れず薄くなる→菌の中は外より<b>濃い（浸透圧が高い）</b>→水が入り<b>破裂（溶菌）</b>。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>βラクタム＝<b class=&quot;kg&quot;>材料そっくりのニセレンガ</b>。壁づくりの職人（PBP）の手を塞ぎ、壁を壊す→浸透圧で菌が破裂＝<b class=&quot;kr&quot;>殺菌的</b>。</div>
+    <div class=&quot;note&quot;>壁を「作っている最中」の菌ほどよく効く（＝増殖期に強い）。細胞壁もPBPも<b>ヒトの細胞にはない</b>ので、狙ってもヒトに影響しにくい——入門編で見た<b>選択毒性</b>のいちばん分かりやすい実例です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 構造 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>名前の由来</div>
+    <h2>「βラクタム環」という共通のカギ</h2>
+    <p class=&quot;lead-line&quot;>この仲間の名は、共通してもつ化学構造<b class=&quot;kb&quot;>「βラクタム環」（4つの角の輪）</b>から。この輪が、職人（PBP）に結合する<b>“カギ”の部分</b>。ペニシリンもセフェムもカルバペネムも、みなこの輪を持っています。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>ペニシリン系</span><div class=&quot;tc&quot;>〜シリン（アモキシシリン等）。青カビ生まれ。βラクタム系の原点。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>セフェム系</span><div class=&quot;tc&quot;>セフ〜。別のカビ（Cephalosporium）由来。世代で守備範囲が変わる（②）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>カルバペネム系</span><div class=&quot;tc&quot;>〜ペネム。最も広く強い“切り札”。慎重に使う（②）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>モノバクタム系</span><div class=&quot;tc&quot;>〜ナム（アズトレオナム）。<b>環が1つ（単環）</b>。グラム陰性菌のみに効く。ペニシリンアレルギーでも使える（③）。</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>共通のカギ＝<b class=&quot;kb&quot;>βラクタム環</b>。この輪が壁の職人に結合する。だから<b>効き方の基本は同じ</b>で、守備範囲や耐性への強さが枝分かれする。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>同じ仲間でも、守備範囲はちがう。<br>——世代と種類を見よう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 種類と守備範囲 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>種類と守備範囲 ・ 世代</span>
+    <h1>守備範囲は<br><span class=&quot;hl&quot;>世代</span>で広がる</h1>
+    <p class=&quot;lead&quot;>ペニシリンの発展と、<br>セフェム4世代を見わたす。</p>
+  </header>
+
+  <!-- A ペニシリンの発展 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>ペニシリン系</div>
+    <h2>「陽性だけ」から「広く」へ</h2>
+    <p class=&quot;lead-line&quot;>最初のペニシリン（ペニシリンG）は<b class=&quot;kp&quot;>グラム陽性菌</b>には強いが、大腸菌などの<b class=&quot;k&quot;>グラム陰性菌</b>には無効でした。そこで構造を改良し、守備範囲を広げていきます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>天然</span><div class=&quot;tc&quot;><b>ペニシリンG</b>。グラム陽性・グラム陰性球菌に強い。梅毒・レンサ球菌などに今も重要。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>広域</span><div class=&quot;tc&quot;><b>アモキシシリン・アンピシリン</b>。グラム陰性にも守備範囲が広がった。中耳炎・肺炎などに。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>抗緑膿菌</span><div class=&quot;tc&quot;><b>ピペラシリン</b>。手ごわい緑膿菌までカバー。重症・院内感染に。</div></div>
+    </div>
+    <div class=&quot;big-point plum&quot;>ペニシリンは<b class=&quot;kp&quot;>陽性中心（G）→広域（アモキシシリン）→緑膿菌（ピペラシリン）</b>と、改良で守備範囲を広げてきた。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B セフェム世代 selector -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>セフェム4世代</div>
+    <h2>世代セレクタ</h2>
+    <p class=&quot;lead-line&quot;>セフェム系は<b class=&quot;kb&quot;>第1〜4世代</b>。原則は<b>グラム陽性は 1＞2＞3、グラム陰性は 3＞2＞1</b>、第4は両方強い。世代を選んでみてください。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;genseg&quot; id=&quot;genSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>第1世代</button>
+        <button data-i=&quot;1&quot;>第2世代</button>
+        <button data-i=&quot;2&quot;>第3世代</button>
+        <button data-i=&quot;3&quot;>第4世代</button>
+      </div>
+      <div class=&quot;genout&quot; id=&quot;genOut&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>腸球菌は<b>どの世代のセフェムもカバーしない</b>のが重要な穴。また、経口の第3世代など<b>ピボキシル基</b>を持つ薬は、<b class=&quot;kr&quot;>低カルニチン血症（とくに小児で低血糖・けいれん）</b>に注意です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- MRSAセフェム -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--rose-deep)&quot;>抗</span>世代の枠外</div>
+    <h2>MRSAに効く特別なセフェム</h2>
+    <p class=&quot;lead-line&quot;>ふつう、<b class=&quot;kr&quot;>βラクタムはMRSA（メチシリン耐性黄色ブドウ球菌）には効きません</b>。理由は、MRSAが<b class=&quot;kb&quot;>PBP2a</b>という<b>βラクタムが結合しにくい“改造された職人”</b>を持つから。①のニセレンガ作戦が通じないのです。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>例外の一手</span><p style=&quot;margin:0&quot;><b>セフタロリンは、そのPBP2aにも結合できる。</b><br><span class=&quot;soft&quot;><b>セフタロリン（抗MRSAセフェム。第5世代と呼ばれることも）</b>は、MRSAの改造職人（PBP2a）にも結合できる、数少ない“MRSAに効くβラクタム”。セフトビプロールも同じ仲間です。ただし<b>緑膿菌には無効</b>。</span></p></div>
+    <div class=&quot;big-point rose&quot;>MRSAに普通のβラクタムが効かないのは<b class=&quot;kb&quot;>PBP2a</b>のせい。でも<b class=&quot;kr&quot;>セフタロリン</b>はそこにも結合できる特別なセフェム。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C カルバペネム -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>切り札</div>
+    <h2>カルバペネム＝最後の砦</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kr&quot;>カルバペネム系</b>（メロペネム・イミペネム等）は、βラクタムの中でも<b>もっとも広く強い</b>。重症・原因菌不明の感染症の“切り札”です。</p>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>なぜ「慎重に」？</span><p style=&quot;margin:0&quot;><b>強すぎるからこそ、温存する。</b><br><span class=&quot;soft&quot;>何にでも効くからと乱用すると、<b>カルバペネムまで効かない耐性菌</b>を育ててしまう。そうなると本当に打つ手がなくなる。だから「切り札」は<b>ここぞという時のために取っておく</b>——これも適正使用の大事な考え方です。</span></p></div>
+    <div class=&quot;big-point rose&quot;>カルバペネムは<b class=&quot;kr&quot;>最広域の切り札</b>。だからこそ<b>乱用せず温存</b>し、耐性菌を生まないよう慎重に使う。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 緑膿菌 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint-deep)&quot;>緑</span>手ごわい相手</div>
+    <h2>なぜ緑膿菌は手ごわい？</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kg&quot;>緑膿菌</b>は、健康な人にはほぼ無害でも、免疫が落ちた入院患者などに感染する（＝日和見感染）、<b class=&quot;kr&quot;>院内感染の代表格</b>。そして、とにかく薬が効きにくい。理由は“四重苦”です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>①自然耐性</span><div class=&quot;tc&quot;>もともと多くの薬に耐性（AmpCという酵素を持ち、<b>普通のペニシリン・初期セフェムは元から効かない</b>）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>②固い外膜</span><div class=&quot;tc&quot;>外膜バリアが特に固く<b>薬が入りにくい</b>。さらに薬の入口の穴（ポーリン）を減らす。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>③排出ポンプ</span><div class=&quot;tc&quot;>菌の中に入った薬を<b>強制的にくみ出す</b>ポンプ（efflux pump）で、濃度を下げてしまう。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>④バイオフィルム</span><div class=&quot;tc&quot;>ぬめりの<b>保護膜</b>を作り、薬も免疫もほとんど届かない（カテーテル内などで）。</div></div>
+    </div>
+    <p>だから緑膿菌に効く薬は限られます（<b>抗緑膿菌薬</b>：ピペラシリン/タゾバクタム＝ゾシン、セフタジジム・セフェピム、カルバペネム、アズトレオナム、キノロン、アミノグリコシドなど）。さらに<b class=&quot;kr&quot;>多剤耐性緑膿菌（MDRP）</b>は、キノロン・カルバペネム・アミノグリコシドの<b>3系統すべてに耐性</b>で、打つ手が非常に限られる最難関です。</p>
+    <div class=&quot;big-point mint&quot;>緑膿菌は<b class=&quot;kg&quot;>自然耐性＋固い外膜＋排出ポンプ＋バイオフィルム</b>の四重苦。抗緑膿菌薬は限られ、<b class=&quot;kr&quot;>MDRP</b>は最難関。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>最強の武器にも弱点がある。<br>——菌の「反撃」と注意点へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 耐性と注意 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>耐性と注意 ・ βラクタマーゼ</span>
+    <h1>菌の反撃と、<br><span class=&quot;hl&quot;>使う注意</span></h1>
+    <p class=&quot;lead&quot;>薬のカギを壊す酵素と、<br>その対抗策・アレルギー。</p>
+  </header>
+
+  <!-- A βラクタマーゼ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>菌の反撃</div>
+    <h2>βラクタマーゼ＝「カギを壊す酵素」</h2>
+    <p class=&quot;lead-line&quot;>βラクタムの弱点はこれ。細菌の中には、<b class=&quot;kr&quot;>βラクタマーゼ</b>という<b>「薬のカギ（βラクタム環）を分解する酵素」</b>を作るものがいます。カギを壊された薬は、職人（PBP）に結合できず<b>効かなくなる</b>＝耐性。</p>
+    <div class=&quot;big-point rose&quot;>βラクタマーゼ＝<b class=&quot;kr&quot;>βラクタム環を壊す酵素</b>。これがβラクタム耐性の主役。ペニシリナーゼ、ESBLなど種類がある（詳しくは「耐性菌のしくみ」で）。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 阻害薬 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>対抗策</div>
+    <h2>阻害薬＝「盾を壊す助っ人」</h2>
+    <p class=&quot;lead-line&quot;>そこで登場するのが<b class=&quot;kb&quot;>βラクタマーゼ阻害薬</b>。菌の酵素（盾）に<b>身代わりで結合して失活させ</b>、本体のβラクタムが効くようにする“助っ人”です。単独では抗菌力は弱く、<b>本体とセット（合剤）</b>で使います。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>オーグメンチン</span><div class=&quot;tc&quot;><b>アモキシシリン＋クラブラン酸</b>。内服。市中肺炎・中耳炎などに。日本では「オグサワ」（＋サワシリン）の使い方も。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>ユナシン</span><div class=&quot;tc&quot;><b>アンピシリン＋スルバクタム</b>。注射。誤嚥性肺炎などに。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>ゾシン</span><div class=&quot;tc&quot;><b>ピペラシリン＋タゾバクタム</b>。注射。<b>緑膿菌まで</b>カバーする広域。重症・院内感染に。</div></div>
+    </div>
+    <div class=&quot;note&quot;>阻害薬（クラブラン酸・スルバクタム・タゾバクタム）は万能ではなく、<b>ESBLの一部やカルバペネマーゼには歯が立たない</b>ものもあります。どの耐性にどれが効くかは「耐性菌のしくみ」で扱います。</div>
+    <div class=&quot;big-point blue&quot;>合剤＝<b class=&quot;kb&quot;>本体（βラクタム）＋助っ人（阻害薬）</b>。菌の盾（βラクタマーゼ）を壊して、効かなくなった薬を復活させる作戦。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C アレルギー -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>安全性</div>
+    <h2>アレルギーは必ず確認</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>ペニシリン<br>ショック</span><div class=&quot;tc&quot;>βラクタムは<b>アレルゲンになりやすく</b>、まれに<b>重いアレルギー（アナフィラキシー）</b>を起こす。過去に発疹・かゆみ等が出た人は<b>必ず申告</b>を。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>交差反応</span><div class=&quot;tc&quot;>ペニシリンとセフェムは構造が似るため、<b>ペニシリンアレルギーの人がセフェムでも反応することがある</b>（頻度は低いが注意）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>ピボキシル基</span><div class=&quot;tc&quot;>経口の一部（第3世代セフェム等）は<b>低カルニチン血症</b>のリスク。<b>とくに小児</b>で低血糖・けいれんに注意。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>アレルギーでも使える一手</span><p style=&quot;margin:0&quot;><b>βラクタムアレルギーなら、モノバクタム（アズトレオナム）。</b><br><span class=&quot;soft&quot;>アズトレオナムは<b>ペニシリン・セフェムとの交差反応がほぼない（0.001%未満）</b>ため、βラクタムアレルギーの人でも<b>グラム陰性菌をカバーする貴重な選択肢</b>。ただし<b>セフタジジムだけは側鎖が似ていて交差しうる</b>点に注意です。</span></p></div>
+    <div class=&quot;big-point rose&quot;>βラクタムは<b class=&quot;kr&quot;>アレルギーに要注意</b>。ペニシリン歴は必ず確認、セフェムとの交差反応も念頭に。小児のピボキシル基にも注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>βラクタム ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>βラクタム（ペニシリン・セフェム・カルバペネム）は<b class=&quot;kg&quot;>細胞壁づくりの職人（PBP）をニセレンガでだまして止め</b>、浸透圧で菌を破裂させる<b class=&quot;kr&quot;>殺菌的</b>な薬。共通のカギは<b class=&quot;kb&quot;>βラクタム環</b>。ペニシリンは<b class=&quot;kp&quot;>G→広域→緑膿菌</b>と発展。セフェムは<b class=&quot;kb&quot;>世代が上がるとグラム陰性に強く</b>（陽性は1＞3、陰性は3＞1、第4は両方）。<b class=&quot;kr&quot;>カルバペネムは切り札（温存）</b>。菌は<b class=&quot;kr&quot;>βラクタマーゼでカギを壊して</b>反撃し、<b class=&quot;kb&quot;>阻害薬の合剤（オーグメンチン等）</b>で対抗。<b class=&quot;kr&quot;>ペニシリンアレルギー・交差反応・小児のピボキシル基</b>に注意。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kg&quot;>ニセレンガで壁を壊す</b>／<b class=&quot;kb&quot;>世代で守備範囲が広がる</b>／<b class=&quot;kr&quot;>切り札は温存、アレルギーは確認</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>ここは一般的な整理です。薬の選択・用量・期間は医師が判断します。<b>アレルギー歴は必ず申告</b>し、自己判断でのむ・中止する・使い回すのは避けてください。耐性（βラクタマーゼの種類・ESBL・MRSA等）やPK/PD（時間依存）は、この分野の別項目で掘り下げます。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    βラクタムは<b>壁づくりの職人をニセレンガで止める</b>薬。<br>
+    世代で守備範囲が広がり、菌は<b>カギを壊す酵素</b>で反撃、<b>合剤</b>で対抗する。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① しくみにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 generation selector */
+  (function(){
+    const data=[
+      {nm:'第1世代', rep:'セファゾリン（注）／セファレキシン＝ケフレックス（内服）',
+       pos:88, neg:22,
+       good:'<b>グラム陽性（MSSA・レンサ球菌）に強い</b>。グラム陰性は狭め。',
+       use:'皮膚・軟部組織感染、手術前の予防、単純な尿路感染。'},
+      {nm:'第2世代', rep:'セフォチアム／セフメタゾール（CMZ）',
+       pos:66, neg:48,
+       good:'第1と第3の<b>中間</b>。セフメタゾールは<b>嫌気性菌</b>もカバー。',
+       use:'腹腔内・婦人科など、嫌気性菌がからむ感染。'},
+      {nm:'第3世代', rep:'セフトリアキソン＝ロセフィン（1日1回）／セフタジジム（緑膿菌）',
+       pos:52, neg:82,
+       good:'<b>グラム陰性に強力</b>、<b>髄液へ移行</b>。陽性はやや弱まる。セフタジジムは緑膿菌に。',
+       use:'細菌性髄膜炎、市中肺炎、腎盂腎炎など。経口薬はピボキシル基に注意。'},
+      {nm:'第4世代', rep:'セフェピム（CFPM）',
+       pos:80, neg:88,
+       good:'<b>グラム陽性〜陰性、緑膿菌まで広く強い</b>。',
+       use:'発熱性好中球減少症（FN）、重症感染。耐性誘導のため慎重に。'}
+    ];
+    const seg=document.getElementById('genSeg'),out=document.getElementById('genOut');
+    function bar(label,val,color){
+      return '<div class=&quot;spbar&quot;><span class=&quot;spl&quot;>'+label+'</span><span class=&quot;track&quot;><span class=&quot;fill&quot; style=&quot;width:'+val+'%;background:'+color+'&quot;></span></span></div>';
+    }
+    function r(i){
+      const d=data[i];
+      out.innerHTML =
+        '<div class=&quot;gh&quot;><div class=&quot;gnm&quot;>'+d.nm+'セフェム</div><div class=&quot;grep&quot;>代表：'+d.rep+'</div></div>'+
+        '<div class=&quot;gb&quot;>'+
+        bar('グラム陽性', d.pos, 'var(--plum)')+
+        bar('グラム陰性', d.neg, 'var(--persimmon)')+
+        '<div class=&quot;genrow&quot; style=&quot;margin-top:9px;&quot;><span class=&quot;lbl&quot;>得意</span><span class=&quot;val&quot;>'+d.good+'</span></div>'+
+        '<div class=&quot;genrow&quot;><span class=&quot;lbl&quot;>主な用途</span><span class=&quot;val&quot;>'+d.use+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'βラクタム系が菌を倒すしくみは？', o:['細胞壁づくりの酵素(PBP)を止め、壁を壊す','DNAを切る','水分を奪う'], a:0, e:'材料そっくりのニセレンガでPBPの手を塞ぎ、浸透圧で溶菌させる。'},
+      {q:'βラクタムがヒトに比較的安全な理由は？', o:['ヒトの細胞には細胞壁もPBPもないから','量が少ないから','すぐ分解されるから'], a:0, e:'狙う的が人にない＝選択毒性の好例。'},
+      {q:'ペニシリン系・セフェム系に共通する構造は？', o:['βラクタム環','ステロイド骨格','糖の鎖だけ'], a:0, e:'この輪がPBPに結合するカギ。カルバペネムも同じ仲間。'},
+      {q:'セフェムの世代とグラム陰性菌への強さは？', o:['世代が上がるほど強くなる傾向（3>2>1）','世代が上がると弱くなる','無関係'], a:0, e:'逆に陽性は1>2>3。第4は両方強い。'},
+      {q:'どのセフェム世代もカバーしにくいのは？', o:['腸球菌','大腸菌','レンサ球菌'], a:0, e:'腸球菌はセフェムの穴。覚えておきたいポイント。'},
+      {q:'カルバペネムを「慎重に使う」のはなぜ？', o:['最強の切り札を温存し耐性菌を生まないため','高価だから','効かないから'], a:0, e:'乱用するとカルバペネム耐性菌を育て、打つ手がなくなる。'},
+      {q:'βラクタマーゼとは？', o:['菌が作る、βラクタム環を壊す酵素','抗生物質の一種','ビタミン'], a:0, e:'薬のカギを分解して無効化＝βラクタム耐性の主役。'},
+      {q:'オーグメンチン（アモキシシリン＋クラブラン酸）の狙いは？', o:['阻害薬で菌の酵素を失活させ本体を効かせる','量を増やす','味をよくする'], a:0, e:'助っ人(阻害薬)が盾(βラクタマーゼ)を壊し、βラクタムを復活させる。'},
+      {q:'ペニシリンアレルギーの人でセフェムに注意するのは？', o:['構造が似て交差反応が起こりうるから','全く別物だから','必ず安全だから'], a:0, e:'頻度は低いが交差反応がありうる。アレルギー歴は必ず確認。'},
+      {q:'経口セフェム等のピボキシル基でとくに注意すべき対象は？', o:['小児（低カルニチン血症→低血糖）','高齢者だけ','注射のみ'], a:0, e:'乳幼児は血中カルニチンが少なく、低血糖・けいれんのリスク。'},
+      {q:'MRSAに通常のβラクタムが効かないのは？', o:['PBP2a（結合しにくい改造PBP）を持つから','壁がないから','小さいから'], a:0, e:'ニセレンガ作戦が通じない。セフタロリンは例外的にPBP2aに結合できる。'},
+      {q:'モノバクタム（アズトレオナム）の特徴は？', o:['グラム陰性のみ・ペニシリンアレルギーでも使える','グラム陽性専門','MRSAに効く'], a:0, e:'交差反応がほぼなく、βラクタムアレルギー時のグラム陰性カバーに。セフタジジムだけ例外。'},
+      {q:'緑膿菌が手ごわい理由として誤りは？', o:['細胞壁を持たないから','固い外膜と排出ポンプ','バイオフィルムと自然耐性'], a:0, e:'緑膿菌は自然耐性＋外膜＋ポンプ＋バイオフィルムの四重苦。細胞壁はある。'},
+      {q:'多剤耐性緑膿菌（MDRP）とは？', o:['キノロン・カルバペネム・アミノグリコシドの3系統に耐性','1種類だけ耐性','無害な常在菌'], a:0, e:'主力3系統すべてに耐性で、治療の選択肢が非常に限られる。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-abxintro" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="抗生剤って？" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>抗生剤って？ ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.6rem,6.2vw,2.1rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.65rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* bacteria vs virus compare */
+  .cmp{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .cmp{ grid-template-columns:1fr; } }
+  .cmpc{ border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .cmpc .ch{ padding:11px 12px; color:#fff; text-align:center; } .cmpc .ch .ci{ font-size:1.7rem; } .cmpc .ch .cn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; }
+  .cmpc.bac .ch{ background:linear-gradient(135deg,#6FB98A,#3E9A63); } .cmpc.vir .ch{ background:linear-gradient(135deg,#A87BB5,#7E5A8C); }
+  .cmpc .cb{ padding:0; }
+  .cmpc .cr{ padding:9px 13px; font-size:.84rem; border-top:1px solid var(--line); } .cmpc .cr:first-child{ border-top:none; }
+  .cmpc .cr .rl{ font-size:.68rem; font-weight:700; color:var(--ink-soft); display:block; } .cmpc .cr b{ color:var(--ink); }
+  .cmpc .cr.hit{ background:#E9F6ED; } .cmpc .cr.miss{ background:#FDECEE; }
+
+  /* target selector */
+  .selseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .selseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; padding:9px 11px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; display:flex; align-items:center; gap:5px; }
+  .selseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .selout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .selout .th{ padding:12px 15px; color:#fff; background:var(--sky-deep); } .selout .th .tnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.1rem; } .selout .th .tsys{ font-size:.8rem; opacity:.93; }
+  .selout .tb{ padding:13px 15px; } .selrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .selrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; background:var(--ink-soft); padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:62px; text-align:center; margin-top:2px; } .selrow .val{ flex:1; } .selrow .val b{ color:var(--ink); }
+
+  /* static vs cidal */
+  .sc{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .sc{ grid-template-columns:1fr; } }
+  .scc{ border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:13px 14px; background:var(--card); }
+  .scc .sh{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; margin-bottom:4px; } .scc .sb{ font-size:.85rem; } .scc .sb b{ color:var(--ink); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:72px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#FDE0DC; color:#C2493E; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 抗生剤とは</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② どう効く</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 正しく使う</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>抗生剤のしくみ ・ まず土台</span>
+    <h1><span class=&quot;hl&quot;>抗生剤</span>って？</h1>
+    <p class=&quot;lead&quot;>細菌の薬。でも風邪には効かない。<br>——その理由から始めます。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリ向けの、抗生剤の全体像です。抗生剤（抗菌薬）は<b>処方薬</b>で、要否・種類は医師が判断します。自己判断でのむ・中止する・使い回すのは避けてください。この分野の入り口として、まず大枠をつかむ回です。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「細菌をやっつける薬」の全体像</h2>
+    <p class=&quot;lead-line&quot;>抗生剤は、ざっくり言えば<b class=&quot;kg&quot;>細菌をやっつける薬</b>。でも——<b class=&quot;kr&quot;>ウイルスには効きません</b>。だから風邪の多くには無意味…という、意外と知られていない話から入ります。この回で<b>①正体 →②どう効く →③正しい使い方</b>まで、大枠をつかみましょう。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 正体 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>正体</div>
+    <h2>抗生剤・抗生物質・抗菌薬</h2>
+    <p class=&quot;lead-line&quot;>言葉を整理します。もともと<b class=&quot;kb&quot;>抗生物質</b>は「<b>微生物（青カビなど）が作る、他の菌をやっつける物質</b>」を指しました。今は化学合成のものも含めて、細菌に効く薬をまとめて<b class=&quot;kb&quot;>抗菌薬</b>と呼びます。日常では<b>「抗生剤＝抗生物質≒抗菌薬」</b>とほぼ同じ意味で使われます。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#E7F2F7;color:var(--sky-deep);&quot;>歴史</span><p style=&quot;margin:0&quot;><b>始まりは1本の青カビ。</b><br><span class=&quot;soft&quot;>1928年、フレミングが<b>青カビの周りだけ菌が育たない</b>のを発見→<b>ペニシリン</b>誕生。「微生物が作る物質で菌を抑える」＝抗生物質の原点です。ここから多くの抗生剤が生まれました。</span></p></div>
+    <div class=&quot;big-point blue&quot;>抗生剤＝<b class=&quot;kb&quot;>細菌に効く薬</b>（抗生物質≒抗菌薬）。始まりは青カビのペニシリン。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- ペニシリンの物語 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--gold)&quot;>史</span>奇跡の薬の物語</div>
+    <h2>ペニシリンが、世界を変えた</h2>
+    <p class=&quot;lead-line&quot;>今でこそ当たり前の抗生剤ですが、それ以前は——<b class=&quot;kr&quot;>小さな傷の感染や肺炎で、人がふつうに亡くなっていた</b>時代でした。その運命を変えたのがペニシリンです。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>1928</span><div class=&quot;tc&quot;><b>フレミングの偶然</b>。培養皿に紛れこんだ<b>アオカビの周りだけ、菌が消えていた</b>。ふつうは捨てる汚染皿を見逃さず発見。アオカビの学名からペニシリンと命名。ただし自分では取り出せず、約10年埋もれる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>1940-41</span><div class=&quot;tc&quot;><b>フローリーとチェインが精製に成功（再発見）</b>。患者で効果を確認したが、<b>量が足りず最初の患者は薬切れで亡くなった</b>——「大量に作る」ことが最大の壁に。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>1943-44</span><div class=&quot;tc&quot;>第二次大戦下、<b>アメリカで発酵による量産技術が完成</b>。ノルマンディー上陸作戦で、多くの負傷兵が<b>敗血症やガス壊疽を起こさず回復</b>。「奇跡の薬」と呼ばれた。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>1945</span><div class=&quot;tc&quot;><b>フレミング・フローリー・チェインがノーベル賞</b>（医学生理学賞）。受賞理由は「ペニシリンの発見と、その治療効果の発見」。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#FBF1DA;color:#B6841F;&quot;>偶然？いや観察力</span><p style=&quot;margin:0&quot;><b>「ただの汚染」を、大発見に変えたもの。</b><br><span class=&quot;soft&quot;>カビの混入自体は偶然でも、<b>「なぜこのカビの周りだけ菌がいないのか」と気づいた観察力</b>が本質でした。フレミングは戦地で、傷口の感染に苦しみ亡くなる兵士を見て「菌を倒す薬を」と願っていた——その問題意識が、偶然を発見に変えたのです。</span></p></div>
+    <div class=&quot;big-point gold&quot;>ペニシリンは<b class=&quot;kgo&quot;>「死の感染症」を治せる時代</b>を開いた＝近代医学の夜明け。だからこそ、耐性でこの薬を<b class=&quot;kr&quot;>「効かない時代」に戻さない</b>ことが大切（③で詳しく）。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 微生物の武器 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>そもそも論</div>
+    <h2>抗生物質は「微生物の武器」だった</h2>
+    <p class=&quot;lead-line&quot;>意外かもしれませんが、抗生物質は<b class=&quot;kb&quot;>人間の発明品ではありません</b>。もともと<b class=&quot;kg&quot;>微生物どうしの生存競争のなかで生まれた“化学兵器”</b>。人間はそれを見つけて借りているだけなんです。</p>
+    <p>カビや土の中の菌は、せまい場所で栄養やなわばりを奪い合っています。そこで<b>ライバルの細菌をやっつけるために出す物質</b>——それが抗生物質。フレミングの青カビ（ペニシリウム）も、<b>自分の周りに細菌を寄せ付けないため</b>にペニシリンを出していました。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#E9F6ED;color:var(--mint-deep);&quot;>主役は土の菌</span><p style=&quot;margin:0&quot;><b>抗生物質の“製造王”は放線菌。</b><br><span class=&quot;soft&quot;>土の中にすむ<b>放線菌</b>（雨あがりの土のにおいの元）は、たくさんの抗生物質を作ります。実際、<b>臨床で使う抗生物質の約6割が放線菌由来</b>。結核の特効薬ストレプトマイシンも、放線菌から見つかりました。</span></p></div>
+    <div class=&quot;big-point mint&quot;>抗生物質は<b class=&quot;kg&quot;>微生物が敵の菌を倒すために作る武器</b>。人間はそれを発見して薬に利用している＝<b>自然界からの借り物</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 細菌vsウイルス -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>超重要</div>
+    <h2>ウイルスには効かない</h2>
+    <p class=&quot;lead-line&quot;>ここが最重要。抗生剤が効くのは<b class=&quot;kg&quot;>細菌</b>だけ。<b class=&quot;kp&quot;>ウイルス</b>には効きません。両者は「似て非なるもの」だからです。</p>
+    <div class=&quot;cmp&quot;>
+      <div class=&quot;cmpc bac&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🦠</div><div class=&quot;cn&quot;>細菌</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>大きさ</span>比較的大きい（1〜数µm）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>つくり</span><b>自分の細胞を持つ</b>（細胞壁・工場・DNA）＝生き物</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>ふえ方</span><b>自分で分裂して</b>増える</div>
+          <div class=&quot;cr hit&quot;><span class=&quot;rl&quot;>抗生剤は</span><b>効く</b>（細菌の部品を狙える）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>例</span>肺炎球菌・溶連菌・大腸菌・膀胱炎など</div>
+        </div>
+      </div>
+      <div class=&quot;cmpc vir&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🌀</div><div class=&quot;cn&quot;>ウイルス</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>大きさ</span>ごく小さい（細菌の数十分の1）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>つくり</span><b>細胞を持たない</b>（遺伝子＋殻だけ）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>ふえ方</span><b>ヒトの細胞に入り込み</b>作らせる</div>
+          <div class=&quot;cr miss&quot;><span class=&quot;rl&quot;>抗生剤は</span><b>効かない</b>（狙う部品がない）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>例</span>かぜ・インフル・コロナ・ノロなど</div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;big-point plum&quot;>抗生剤は<b class=&quot;kg&quot;>細菌</b>の部品を攻撃する薬。<b class=&quot;kp&quot;>ウイルスにはその部品がない</b>ので効かない。<b class=&quot;kr&quot;>風邪の多くはウイルス＝抗生剤は無意味</b>。</div>
+    <div class=&quot;note&quot;>「念のため抗生剤」を風邪でのむのは、効かないうえ、あとで出てくる<b>耐性菌</b>や副作用（下痢など）のdemeritだけが残ります。抗生剤が要るのは<b>細菌感染のとき</b>（溶連菌ののどや細菌性の肺炎など）です。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 4 グラム陽性/陰性 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>4</span>細菌の2大タイプ</div>
+    <h2>グラム陽性菌と、グラム陰性菌</h2>
+    <p class=&quot;lead-line&quot;>ひとくちに細菌といっても、大きく<b class=&quot;kb&quot;>2タイプ</b>に分かれます。見分ける方法が<b class=&quot;kb&quot;>グラム染色</b>（1884年、ハンス・グラムが考案）。色素で染めて<b>紫に染まればグラム陽性、赤なら陰性</b>。この違いは、抗生剤の効き方に直結します。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>グラム陽性</span><div class=&quot;tc&quot;><b>壁（ペプチドグリカン）が厚く、外膜がない</b>。だから紫の色素が抜けにくく<b>紫のまま</b>。例：ブドウ球菌・レンサ球菌・肺炎球菌。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>グラム陰性</span><div class=&quot;tc&quot;><b>壁が薄く、その外側に「外膜」というもう一枚のバリア</b>がある。紫が抜けて<b>赤</b>に。例：大腸菌・緑膿菌・サルモネラ。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#E7F2F7;color:var(--sky-deep);&quot;>なぜ薬に関係する？</span><p style=&quot;margin:0&quot;><b>グラム陰性菌は「外膜バリア」で薬が入りにくい。</b><br><span class=&quot;soft&quot;>もう一枚の壁（外膜）があるぶん、<b>抗生剤が菌の中に届きにくく、一般に効きにくい傾向</b>。だから「どの菌に効くか」は抗生剤ごとに違います（＝スペクトラム。別項目でくわしく）。菌を見て薬を選ぶ、の第一歩がこのグラム分類です。</span></p></div>
+    <div class=&quot;big-point plum&quot;>細菌は壁の作りで<b class=&quot;kp&quot;>グラム陽性（厚い壁・紫）</b>と<b class=&quot;k&quot;>グラム陰性（外膜バリア・赤）</b>に二分。陰性は外膜で薬が効きにくい傾向。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>では、細菌のどこを攻撃している？<br>——「効くしくみ」へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② どう効く ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>効くしくみ ・ 選択毒性</span>
+    <h1>どうやって<br><span class=&quot;hl&quot;>効く</span>のか</h1>
+    <p class=&quot;lead&quot;>なぜ細菌だけ倒して、<br>ヒトは無事でいられる？</p>
+  </header>
+
+  <!-- A 選択毒性 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>大原則</div>
+    <h2>「細菌にあって、ヒトにない」を狙う</h2>
+    <p class=&quot;lead-line&quot;>抗生剤のいちばんの知恵は<b class=&quot;kb&quot;>選択毒性</b>。<b>細菌にはあるけれど、ヒトの細胞にはない（または大きく違う）部分</b>だけを狙い撃ちする。だから<b>細菌は倒れ、ヒトの細胞は無事</b>でいられるんです。</p>
+    <div class=&quot;big-point blue&quot;>抗生剤＝<b class=&quot;kb&quot;>細菌とヒトの「作りの違い」を突く</b>薬。違う部分を狙うから、ヒトに比較的安全に効く。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 狙いどころ selector -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>4つの狙いどころ</div>
+    <h2>どこを攻撃する？</h2>
+    <p class=&quot;lead-line&quot;>抗生剤の攻撃先は、大きく<b class=&quot;kb&quot;>4か所</b>。狙いどころを選ぶと、<b>代表的な系統・しくみ・選択毒性</b>が出ます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;selseg&quot; id=&quot;tgtSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>🏰 細胞壁</button>
+        <button data-i=&quot;1&quot;>🏭 タンパク質工場</button>
+        <button data-i=&quot;2&quot;>🧬 DNA・複製</button>
+        <button data-i=&quot;3&quot;>🍃 葉酸</button>
+      </div>
+      <div class=&quot;selout&quot; id=&quot;tgtOut&quot;></div>
+    </div>
+    <div class=&quot;note&quot;>この「狙いどころ」で系統を整理すると、たくさんある抗生剤も地図になります。各系統のくわしい話は、この分野の別の項目（細胞壁系・タンパク合成系・DNA/葉酸系）でも掘り下げていきます。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 名前の由来 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--plum)&quot;>名</span>名前の由来</div>
+    <h2>名前を知ると、仲間が見える</h2>
+    <p class=&quot;lead-line&quot;>抗生剤の名前は、じつは<b class=&quot;kb&quot;>由来（生まれた菌や、化学構造）</b>を表しています。知っておくと、初めて見る薬名でも“仲間”が見当つきます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>〜シリン</span><div class=&quot;tc&quot;><b>ペニシリン系</b>。青カビ<b>Penicillium</b>から生まれたペニシリンの仲間（アモキシシリン等）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>セフェム</span><div class=&quot;tc&quot;><b>セフェム系</b>。カビの一種<b>Cephalosporium</b>由来（セファロスポリン）。「セフ〜」で始まる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>βラクタム</span><div class=&quot;tc&quot;>化学構造<b>「βラクタム環」</b>を持つ仲間の総称。<b>ペニシリン系もセフェム系もこれ</b>。この環が細胞壁づくりを邪魔する。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>マクロライド</span><div class=&quot;tc&quot;><b>「マクロ（大きい）＋環（ラクトン）」</b>＝大きな環の構造。エリスロマイシン・クラリスロマイシン等。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>〜マイシン</span><div class=&quot;tc&quot;><b>放線菌（Streptomyces など）生まれ</b>の目印。ストレプトマイシン・バンコマイシン・エリスロマイシン。</div></div>
+    </div>
+    <div class=&quot;big-point plum&quot;>名前は由来のサイン。<b class=&quot;k&quot;>〜シリン＝ペニシリンの仲間</b>、<b class=&quot;kb&quot;>βラクタム＝環の構造の仲間</b>、<b class=&quot;kp&quot;>〜マイシン＝放線菌生まれ</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 静菌 vs 殺菌 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>効き方のタイプ</div>
+    <h2>「静菌」と「殺菌」</h2>
+    <p class=&quot;lead-line&quot;>抗生剤の効き方には2タイプあります。どちらが優れている、という話ではなく<b class=&quot;kb&quot;>役割の違い</b>です。</p>
+    <div class=&quot;sc&quot;>
+      <div class=&quot;scc&quot;><div class=&quot;sh&quot; style=&quot;color:var(--sky-deep)&quot;>🛑 静菌的</div><div class=&quot;sb&quot;><b>菌の増殖を止める</b>。増えるのを抑えて、あとは<b>自分の免疫が菌を片づける</b>のを助ける。例：マクロライド、テトラサイクリンなど。</div></div>
+      <div class=&quot;scc&quot;><div class=&quot;sh&quot; style=&quot;color:var(--rose-deep)&quot;>💥 殺菌的</div><div class=&quot;sb&quot;><b>菌そのものを殺す</b>。例：ペニシリン・セフェム（細胞壁系）、ニューキノロン、アミノグリコシドなど。免疫が弱っている時などに重要。</div></div>
+    </div>
+    <div class=&quot;big-point&quot;>静菌＝<b class=&quot;kb&quot;>増殖を止めて免疫を助ける</b>／殺菌＝<b class=&quot;kr&quot;>菌を殺す</b>。状況（重症度・免疫）で使い分ける。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>効くしくみが分かった。<br>最後に「正しい使い方」を。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 正しく使う ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>正しく使う ・ 耐性菌</span>
+    <h1>正しく<span class=&quot;hl&quot;>使う</span></h1>
+    <p class=&quot;lead&quot;>薬を効かせ続けるための<br>大事なルール。</p>
+  </header>
+
+  <!-- A 耐性菌 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>耐性菌</div>
+    <h2>「中途半端」がいちばん危ない</h2>
+    <p class=&quot;lead-line&quot;>抗生剤を使ううちに、その薬が効かない<b class=&quot;kr&quot;>耐性菌</b>が現れることがあります。仕組みはシンプル——<b class=&quot;kb&quot;>弱い菌は倒れ、たまたま生き残った強い菌だけが増える</b>から。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>なぜ増える</span><div class=&quot;tc&quot;>中途半端な量・期間だと、<b>弱い菌だけ死んで強い菌が生き残り</b>、そこで増殖。次はその薬が効きにくくなる。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>だから</span><div class=&quot;tc&quot;><b>処方された分は、指示どおり最後までのみきる</b>。「よくなったから途中でやめる」は、いちばん耐性菌を育てやすい。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>耐性菌は<b class=&quot;kr&quot;>生き残った強い菌が増える</b>こと。<b class=&quot;kb&quot;>指示どおり最後までのむ</b>のが、耐性を防ぐ基本。自己判断で止めない・残さない・使い回さない。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- AMR -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--rose-deep)&quot;>世</span>世界の問題</div>
+    <h2>耐性菌は「世界の脅威」（AMR）</h2>
+    <p class=&quot;lead-line&quot;>耐性菌（<b class=&quot;kr&quot;>AMR＝薬剤耐性</b>）は、もう個人の問題ではありません。<b class=&quot;kr&quot;>「サイレントパンデミック」</b>と呼ばれる、世界規模の脅威です。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;tl&quot; style=&quot;margin:0;&quot;>
+        <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>2019年</span><div class=&quot;tc&quot;>耐性菌が<b>直接の死因となったのは世界で約127万人</b>、関連死は約495万人と推計（GRAM研究）。</div></div>
+        <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>2050年</span><div class=&quot;tc&quot;>対策しなければ、<b>年間およそ1,000万人が亡くなる</b>との予測。これは<b>がんの死者を上回る</b>規模。</div></div>
+      </div>
+    </div>
+    <p>さらに、新しい抗生物質の開発は<b>採算などの理由で停滞ぎみ</b>。このままだと<b class=&quot;kr&quot;>「抗生物質のない時代（ペニシリン以前）」に逆戻り</b>しかねない、と国際社会が警鐘を鳴らしています。原因は<b>ヒトでの不適切な使用</b>（風邪に使う等）と、<b>畜産での大量使用</b>。</p>
+    <div class=&quot;big-point rose&quot;>耐性菌は<b class=&quot;kr&quot;>世界の脅威（サイレントパンデミック）</b>。だから一人ひとりの<b class=&quot;kb&quot;>「必要な時だけ・のみきる」</b>が、未来の医療を守る。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 副作用 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>副作用</div>
+    <h2>気をつけたいこと</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>下痢</span><div class=&quot;tc&quot;>抗生剤は<b>腸の善玉菌も一緒に減らす</b>ことがある（菌のバランスが崩れる＝菌交代）。だから下痢が起きやすい。整腸剤が一緒に出ることも。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>アレルギー</span><div class=&quot;tc&quot;>とくに<b>ペニシリン系・セフェム系</b>で、発疹・かゆみ、まれに重いアレルギー（アナフィラキシー）。過去に出た人は必ず申告を。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>飲み合わせ</span><div class=&quot;tc&quot;>薬・食品との相互作用があるものも（例：一部は牛乳・制酸剤で吸収が落ちる）。飲み方は薬剤師の説明どおりに。</div></div>
+    </div>
+    <div class=&quot;note&quot;>「抗生剤＝おなかを壊す」印象の正体は、この<b>菌交代（善玉菌も減る）</b>。ヨーグルトや整腸剤が役立つことがありますが、飲むタイミングは薬剤師に相談を。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 風邪 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>ありがちな誤解</div>
+    <h2>「風邪に抗生剤」をやめる</h2>
+    <p class=&quot;lead-line&quot;>①でみた通り、<b class=&quot;kp&quot;>風邪の多くはウイルス＝抗生剤は効きません</b>。それでも「念のため」と使うと、効果はなく、<b class=&quot;kr&quot;>耐性菌と副作用（下痢など）のリスクだけ</b>が残ります。</p>
+    <div class=&quot;big-point gold&quot;>風邪に抗生剤は<b class=&quot;kgo&quot;>原則いらない</b>。抗生剤が要るのは<b class=&quot;kg&quot;>細菌感染</b>のとき。ほしがらず、必要な時に、正しく使うのが、みんなの薬を守る。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>抗生剤 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>抗生剤＝<b class=&quot;kg&quot;>細菌に効く薬</b>（抗生物質≒抗菌薬）。<b class=&quot;kp&quot;>ウイルス（風邪の多く）には効かない</b>。効くしくみは<b class=&quot;kb&quot;>選択毒性</b>＝細菌とヒトの作りの違いを突く。狙いどころは<b class=&quot;kb&quot;>細胞壁・タンパク質工場・DNA・葉酸</b>の4か所。効き方に<b>静菌／殺菌</b>。正しく使うカギは<b class=&quot;kr&quot;>最後までのみきる（耐性菌を防ぐ）</b>・副作用（下痢＝菌交代／アレルギー）に注意・<b class=&quot;kgo&quot;>風邪でほしがらない</b>。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kg&quot;>効くのは細菌だけ</b>。<b class=&quot;kr&quot;>出された分はのみきる</b>。これが自分と社会の「効く薬」を守る🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>抗生剤は処方薬で、要否・種類・期間は医師が判断します。ここは一般的な整理です。<b>自己判断でのむ・中止する・人の薬を使う</b>のは避け、指示どおりのみきってください。各系統のくわしい話は、この分野の別の項目で掘り下げます。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    抗生剤は<b>細菌の薬</b>、ウイルス（風邪）には効かない。<br>
+    細菌とヒトの違いを突いて効く。<b>最後までのみきる</b>のが耐性を防ぐ。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 抗生剤とはにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 target selector */
+  (function(){
+    const data=[
+      {nm:'細胞壁を壊す', head:'#C46B2E', sys:'ペニシリン系・セフェム系（βラクタム系）',
+       how:'細菌の<b>細胞壁（外側のよろい）</b>を作らせない。壁が保てず菌が壊れる。',
+       sel:'<b>細胞壁はヒトの細胞にはない</b>。だから狙っても人に影響しにくい＝抗生剤の理想形。',
+       type:'殺菌的'},
+      {nm:'タンパク質工場を止める', head:'#367C9C', sys:'マクロライド・テトラサイクリン・アミノグリコシド系',
+       how:'細菌の<b>リボソーム（タンパク質を作る工場）</b>を邪魔して、菌が部品を作れなくする。',
+       sel:'細菌のリボソーム（70S）とヒト（80S）は<b>形が違う</b>。細菌のものだけ狙える。',
+       type:'静菌的が多い（アミノグリコシドは殺菌的）'},
+      {nm:'DNA・複製を邪魔', head:'#7E5A8C', sys:'ニューキノロン系',
+       how:'細菌がDNAを<b>複製（コピー）する時に使う酵素</b>を邪魔して、増えられなくする。',
+       sel:'細菌のその酵素は、ヒトのものと構造が違うので狙い分けられる。',
+       type:'殺菌的'},
+      {nm:'葉酸の合成を止める', head:'#3E9A63', sys:'ST合剤（サルファ剤＋トリメトプリム）',
+       how:'細菌が<b>自分で作る葉酸</b>（DNAの材料に必要）の合成をブロックして、増えられなくする。',
+       sel:'<b>ヒトは葉酸を食事からとる（自分で作らない）</b>が、細菌は自前で作る。だから細菌だけが困る。',
+       type:'静菌的（併用で殺菌的）'}
+    ];
+    const seg=document.getElementById('tgtSeg'),out=document.getElementById('tgtOut');
+    function r(i){
+      const d=data[i];
+      out.innerHTML =
+        '<div class=&quot;th&quot; style=&quot;background:'+d.head+'&quot;><div class=&quot;tnm&quot;>'+d.nm+'</div><div class=&quot;tsys&quot;>代表：'+d.sys+'</div></div>'+
+        '<div class=&quot;tb&quot;>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot;>しくみ</span><span class=&quot;val&quot;>'+d.how+'</span></div>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot;>選択毒性</span><span class=&quot;val&quot;>'+d.sel+'</span></div>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot;>効き方</span><span class=&quot;val&quot;>'+d.type+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'抗生剤（抗菌薬）が効く相手は？', o:['細菌','ウイルス','どちらも同じくらい'], a:0, e:'効くのは細菌。ウイルスには効かない。'},
+      {q:'風邪の多くに抗生剤が効かないのはなぜ？', o:['風邪の多くはウイルスだから','量が少ないから','冷えているから'], a:0, e:'ウイルスには抗生剤が狙う部品がない。'},
+      {q:'抗生剤が細菌だけ倒してヒトに比較的安全なのは？', o:['選択毒性（細菌とヒトの作りの違いを突く）','偶然','量の調整だけ'], a:0, e:'細菌にあってヒトにない部分を狙うから。'},
+      {q:'「細胞壁を壊す」抗生剤が人に安全なのは？', o:['細胞壁はヒトの細胞にないから','壁がやわらかいから','量が少ないから'], a:0, e:'ペニシリン・セフェム系。狙う的がヒトにないので安全。'},
+      {q:'ST合剤（葉酸を止める）が細菌だけに効くのは？', o:['ヒトは葉酸を食事でとるが細菌は自分で作るから','葉酸が毒だから','人に葉酸がないから'], a:0, e:'合成経路を止められて困るのは、自前で作る細菌だけ。'},
+      {q:'「静菌的」な抗生剤とは？', o:['菌の増殖を止め、あとは免疫が片づける','菌を必ず殺す','菌を増やす'], a:0, e:'殺菌的は菌そのものを殺す。役割の違い。'},
+      {q:'耐性菌が生まれる主な理由は？', o:['生き残った強い菌が増えるから','薬が古いから','菌が眠るから'], a:0, e:'中途半端な使い方だと弱い菌だけ死に、強い菌が残って増える。'},
+      {q:'耐性菌を防ぐために大切なのは？', o:['指示どおり最後までのみきる','よくなったら途中でやめる','残して次に使う'], a:0, e:'途中でやめるのが最も耐性を育てやすい。'},
+      {q:'抗生剤で下痢が起きやすいのは？', o:['腸の善玉菌も減る（菌交代）から','水を飲みすぎるから','糖分のせい'], a:0, e:'菌のバランスが崩れる。整腸剤が出ることも。'},
+      {q:'アレルギーにとくに注意する系統は？', o:['ペニシリン系・セフェム系','葉酸系だけ','ない'], a:0, e:'過去に発疹などが出た人は必ず申告を。'},
+      {q:'グラム染色で紫に染まる（グラム陽性）のは、壁が？', o:['厚い（外膜がない）','薄い（外膜がある）','ない'], a:0, e:'厚いペプチドグリカン層で色素が抜けにくい。陰性は外膜があり赤。'},
+      {q:'グラム陰性菌が一般に抗生剤で効きにくい理由は？', o:['外膜というバリアで薬が入りにくいから','壁がないから','小さすぎるから'], a:0, e:'もう一枚の壁（外膜）が薬の侵入を防ぐ。'},
+      {q:'抗生物質は、もともと何？', o:['微生物が敵の菌を倒すために作る物質','人間が一から発明した化学物質','ビタミンの一種'], a:0, e:'自然界の微生物の武器。人間はそれを見つけて利用している。'},
+      {q:'薬名の「〜マイシン」が示すことが多いのは？', o:['放線菌（土の菌）由来','ウイルスに効く','必ず注射薬'], a:0, e:'ストレプトマイシン等。放線菌生まれの目印。'},
+      {q:'薬剤耐性（AMR）について正しいのは？', o:['世界的な脅威で、適正使用が重要','日本だけの問題','もう解決済み'], a:0, e:'2050年に年間1000万人という予測も。飲みきり・不要時に使わないが大切。'},
+      {q:'世界初の抗生物質ペニシリンを発見したのは？', o:['フレミング（1928年・アオカビ）','ノーベル','パスツールだけ'], a:0, e:'培養皿のアオカビの周りだけ菌が消えていた現象から。'},
+      {q:'ペニシリンが発見後すぐ広まらなかった主な理由は？', o:['大量に作るのが難しかったから','効果がなかったから','高すぎたから'], a:0, e:'フローリーとチェインの精製・量産技術の完成まで10年以上かかった。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-ssd" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('spec')">‹ PC・機械のスペック に戻る</button></div><iframe class="theme-frame" title="SSDの速さと規格" srcdoc="<!DOCTYPE html>
 <html lang=&quot;ja&quot;>
 <head>
 <meta charset=&quot;UTF-8&quot;>
