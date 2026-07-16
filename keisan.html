@@ -2936,8 +2936,8 @@
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">どこを攻撃するか（作用機序）</span></div><div class="cards">
 <button class="lcard" onclick="openThemeFrame('betalactam')"><span class="ic">🏰</span><span class="tx"><span class="t">細胞壁を壊す系（ペニシリン等）</span><span class="s">ニセレンガ・世代・耐性と注意</span></span><span class="badge done">できた</span></button>
-<div class="lcard soon"><span class="ic">🏭</span><span class="tx"><span class="t">タンパク合成を止める系（マクロライド等）</span><span class="s">細菌の工場を止める</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">🧬</span><span class="tx"><span class="t">DNA・葉酸系（ニューキノロン等）</span><span class="s">設計図をいじる</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('protein')"><span class="ic">🏭</span><span class="tx"><span class="t">タンパク合成を止める系（マクロライド等）</span><span class="s">リボソーム・3系統・非定型菌</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openThemeFrame('dnafolate')"><span class="ic">🧬</span><span class="tx"><span class="t">DNA・葉酸系（ニューキノロン等）</span><span class="s">DNAの司書・葉酸工場・注意</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--mint)">効かせ方（PK/PD）</span></div><div class="cards">
 <div class="lcard soon"><span class="ic">⏱️</span><span class="tx"><span class="t">時間依存 vs 濃度依存</span><span class="s">AUC・半減期と直結（MIC）</span></span><span class="badge soon">準備中</span></div>
@@ -3020,7 +3020,856 @@
 </div></div>
 <div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ<br>項目はこれから増減します</div>
 </div></div>
-<div id="theme-betalactam" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="細胞壁を壊す系（βラクタム）" srcdoc="<!DOCTYPE html>
+<div id="theme-dnafolate" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="DNA・葉酸系（ニューキノロン等）" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>DNA・葉酸系（ニューキノロン等） ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.72rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.45rem,5.4vw,1.95rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* two-system cards */
+  .sys{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:460px){ .sys{ grid-template-columns:1fr; } }
+  .sysc{ border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .sysc .sh{ padding:11px 12px; color:#fff; text-align:center; } .sysc .sh .si{ font-size:1.6rem; } .sysc .sh .sn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.0rem; }
+  .sysc.dna .sh{ background:linear-gradient(135deg,#A87BB5,#7E5A8C); } .sysc.fol .sh{ background:linear-gradient(135deg,#6FB98A,#3E9A63); }
+  .sysc .sb{ padding:12px 13px; font-size:.85rem; } .sysc .sb b{ color:var(--ink); }
+
+  /* drug selector */
+  .selseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .selseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; padding:9px 11px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .selseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .selout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .selout .dh{ padding:12px 15px; color:#fff; background:var(--sky-deep); } .selout .dh .dnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.08rem; } .selout .dh .dsub{ font-size:.8rem; opacity:.93; }
+  .selout .db{ padding:13px 15px; } .selrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .selrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:58px; text-align:center; margin-top:2px; background:var(--ink-soft); } .selrow .val{ flex:1; } .selrow .val b{ color:var(--ink); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:84px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#F3ECF5; color:#7E5A8C; font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① しくみ</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② ニューキノロン</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 使う注意</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>作用機序 ・ DNA / 葉酸を止める系</span>
+    <h1>🧬 <span class=&quot;hl&quot;>DNA・葉酸</span><br>を止める系</h1>
+    <p class=&quot;lead&quot;>菌の「設計図」と「材料工場」を<br>止める。キノロンとST合剤。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>入門編②の4つの狙いどころの残り<b>「DNA」と「葉酸」</b>を掘り下げます。これで作用機序シリーズが完結。薬は処方薬で、要否・選択は医師が判断します。とくに<b>飲み合わせ・小児・妊娠授乳</b>の注意が多い系統です。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「設計図」まわりを攻める2チーム</h2>
+    <p class=&quot;lead-line&quot;>壁でも工場でもなく、こんどは菌の<b class=&quot;kp&quot;>DNA（設計図）</b>まわりを止める薬。攻め方は2チームあります——<b class=&quot;kp&quot;>DNAのコピーを直接じゃまする</b>ニューキノロンと、<b class=&quot;kg&quot;>DNAの材料（葉酸）づくりを止める</b>ST合剤。まずは2チームのしくみから。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 二系統 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>2つのチーム</div>
+    <h2>「コピー係」か「材料工場」か</h2>
+    <div class=&quot;sys&quot;>
+      <div class=&quot;sysc dna&quot;>
+        <div class=&quot;sh&quot;><div class=&quot;si&quot;>🧬</div><div class=&quot;sn&quot;>DNAを止める</div></div>
+        <div class=&quot;sb&quot;><b>ニューキノロン</b><br>DNAのコピー（複製）に必要な酵素を止める。<b>殺菌的</b>。</div>
+      </div>
+      <div class=&quot;sysc fol&quot;>
+        <div class=&quot;sh&quot;><div class=&quot;si&quot;>🏭</div><div class=&quot;sn&quot;>葉酸を止める</div></div>
+        <div class=&quot;sb&quot;><b>ST合剤</b><br>DNAの材料（葉酸）を作る工場を止める。じわっと<b>静菌的</b>。</div>
+      </div>
+    </div>
+    <p class=&quot;soft&quot;>どちらも最終的には「菌がDNAを作れない・増えられない」に行き着きます。狙う所が<b>コピーの現場</b>か、<b>材料の工場</b>かの違いです。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 キノロン噛み砕き -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>噛み砕き①</div>
+    <h2>キノロン＝「DNAの司書」を邪魔する</h2>
+    <p class=&quot;lead-line&quot;>ニューキノロンが止めるのは<b class=&quot;kp&quot;>DNAジャイレース</b>という酵素。名前は難しいけれど、役割を噛み砕くと<b>「長すぎるDNAを畳んで収納する“司書さん”」</b>です。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>たとえ話</span><p style=&quot;margin:0&quot;><b>DNAは、菌のサイズに対してとてつもなく長い“糸”。</b><br><span class=&quot;soft&quot;>そのままでは絡まって収納も、コピーもできません。<b>DNAジャイレース（司書）</b>が、糸をねじって畳んで整理してくれるおかげで、菌はDNAを扱えます。ニューキノロンはこの司書を邪魔する→<b>DNAが絡まったまま・コピーできず、菌は死ぬ（殺菌的）</b>。しかも<b>ヒトの細胞にこの司書（DNAジャイレース）はいない</b>ので、菌だけを狙えます（選択毒性）。</span></p></div>
+    <div class=&quot;big-point plum&quot;>ニューキノロン＝<b class=&quot;kp&quot;>DNAの司書（ジャイレース）を止めて</b>、コピーをできなくする殺菌薬。司書はヒトにいないから安全に狙える。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 葉酸噛み砕き -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>噛み砕き②</div>
+    <h2>ST合剤＝「材料工場」を2か所で止める</h2>
+    <p class=&quot;lead-line&quot;>もう一方のST合剤が止めるのは<b class=&quot;kg&quot;>葉酸</b>づくり。葉酸は<b>DNAの材料（部品）を作るのに必要なビタミン</b>です。ここに、選択毒性のうまい仕掛けがあります。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#E9F6ED;color:var(--mint-deep);&quot;>たとえ話</span><p style=&quot;margin:0&quot;><b>細菌は葉酸を「自分の工場」で一から作る。ヒトは「食事」から手に入れる。</b><br><span class=&quot;soft&quot;>だから<b>「葉酸を作る工場」を止める薬</b>は、自前で作る<b>細菌だけを困らせ</b>、食事から取るヒトには影響しない＝選択毒性。ST合剤は、その工場を<b>2か所（2段階）で止める</b>ので、より確実に効きます（2つの成分の相乗効果）。</span></p></div>
+    <div class=&quot;big-point mint&quot;>ST合剤＝<b class=&quot;kg&quot;>葉酸（DNAの材料）工場を2段階で止める</b>。ヒトは葉酸を食事で取るので、自前で作る細菌だけに効く。</div>
+    <div class=&quot;note&quot;>「ST」は、成分の<b>ス</b>ルファメトキサゾール＋<b>ト</b>リメトプリム（正しくはS＋T）から。2つが葉酸づくりの別々の段階を止めて相乗効果を出す合剤です（商品名バクタ・バクトラミン）。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>まずは使用頻度の高いニューキノロンを<br>くわしく見よう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② ニューキノロン ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>ニューキノロン ・ 広くて便利</span>
+    <h1><span class=&quot;hl&quot;>ニューキノロン</span><br>の実力と代表薬</h1>
+    <p class=&quot;lead&quot;>広域・経口でよく効く。<br>でも“便利ゆえの注意”も。</p>
+  </header>
+
+  <!-- A 特徴 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>特徴</div>
+    <h2>広くて、飲んでよく効く</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>広域</span><div class=&quot;tc&quot;><b>グラム陰性菌に強く</b>、緑膿菌にも（薬による）。新しい世代は<b>肺炎球菌などグラム陽性や、非定型（マイコ・クラミジア・レジオネラ）</b>にも。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>経口良好</span><div class=&quot;tc&quot;><b>飲み薬でもよく吸収され、組織へよく移行</b>。濃度依存で、多くは<b>1日1回</b>。外来でも使いやすい。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>効かない菌</span><div class=&quot;tc&quot;><b>MRSA・腸球菌は通常耐性</b>。また旧世代は嫌気性菌に弱い。</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>ニューキノロンは<b class=&quot;kb&quot;>広域＋経口でよく効く</b>便利な殺菌薬。ただし<b class=&quot;kr&quot;>MRSA・腸球菌は苦手</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B selector -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>代表薬セレクタ</div>
+    <h2>3剤を見くらべる</h2>
+    <p class=&quot;lead-line&quot;>よく使う3剤を選ぶと、<b class=&quot;kb&quot;>得意・用途・ひとこと</b>が出ます。同じキノロンでも個性があります。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;selseg&quot; id=&quot;drSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>シプロフロキサシン</button>
+        <button data-i=&quot;1&quot;>レボフロキサシン</button>
+        <button data-i=&quot;2&quot;>モキシフロキサシン</button>
+      </div>
+      <div class=&quot;selout&quot; id=&quot;drOut&quot;></div>
+    </div>
+    <div class=&quot;note&quot;><b>レスピラトリーキノロン</b>（レボ・モキシ等）＝呼吸器でよく使う新世代の呼び名。肺炎球菌や非定型もカバーします。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 結核注意 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>便利ゆえの落とし穴</div>
+    <h2>「とりあえずキノロン」の危うさ</h2>
+    <p class=&quot;lead-line&quot;>広くてよく効くので<b>つい使いたくなる</b>——でもそれが落とし穴。とくに<b class=&quot;kr&quot;>結核にも効いてしまう</b>ことが、思わぬ問題を生みます。</p>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>なぜ危ういか</span><p style=&quot;margin:0&quot;><b>結核を“少しだけ”たたいて、診断を遅らせる。</b><br><span class=&quot;soft&quot;>肺炎と思ってキノロンを出したら実は結核だった——という時、キノロンは結核菌にも効くので<b>症状が一時的に良くなり、発見が遅れる</b>。しかも結核を1剤だけで中途半端に治療する形になり、<b>耐性結核</b>を生むおそれも。だから広域キノロンは<b>安易に使わず、必要な場面を見極める</b>のが鉄則です（耐性を守るうえでも）。</span></p></div>
+    <div class=&quot;big-point rose&quot;>広域キノロンは<b class=&quot;kr&quot;>便利だからこそ乱用しない</b>。結核を隠す・耐性を生むリスクがある。使いどころの見極めが大事。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>この系統は「飲み合わせ・副作用」が濃い。<br>薬剤師の出番です。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 使う注意 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>使う注意 ・ 飲み合わせと副作用</span>
+    <h1>飲み合わせと<br><span class=&quot;hl&quot;>副作用</span></h1>
+    <p class=&quot;lead&quot;>キノロンもST合剤も“くせ”が濃い。<br>確認が効く系統です。</p>
+  </header>
+
+  <!-- A キノロン注意 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>ニューキノロン</div>
+    <h2>キノロンの注意点</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>金属キレート</span><div class=&quot;tc&quot;><b>Ca・Mg・Al・鉄・制酸剤</b>と一緒だと吸収低下（テトラサイクリンと同じ）。<b>2時間ほど間隔をあける</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>腱障害</span><div class=&quot;tc&quot;><b>アキレス腱炎・腱断裂</b>。高齢・ステロイド併用・運動でリスク上昇。痛みが出たら中止し受診。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>けいれん</span><div class=&quot;tc&quot;>中枢を刺激し<b>けいれん</b>を起こすことがある。<b>NSAIDsとの併用で増強</b>。腎機能低下・大量で注意。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>その他</span><div class=&quot;tc&quot;><b>QT延長・血糖異常・光線過敏・大動脈瘤/解離</b>。<b>小児・妊婦は原則避ける</b>（軟骨への影響）。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>キノロンは<b class=&quot;kr&quot;>金属で吸収ダウン・腱障害・けいれん(NSAIDs注意)・小児妊婦回避</b>。QT・血糖・光線過敏も。確認ポイントが多い。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B ST合剤注意 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>ST合剤</div>
+    <h2>ST合剤の注意点と“得意技”</h2>
+    <p class=&quot;lead-line&quot;>ST合剤には、他にない<b class=&quot;kg&quot;>大事な出番</b>があります——<b>ニューモシスチス肺炎（PCP）</b>の治療・予防。免疫が落ちた人に起こる肺炎で、ここではST合剤が第一選択です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>PCPに</span><div class=&quot;tc&quot;><b>ニューモシスチス肺炎の治療・予防</b>。免疫抑制中の患者などで予防内服。ほか尿路・腸管など。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>薬疹</span><div class=&quot;tc&quot;>発疹が多め。まれに<b>重症薬疹（SJS/TEN）</b>。発熱・のどの痛み・広がる発疹はすぐ受診。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>高K・血液</span><div class=&quot;tc&quot;><b>高カリウム血症</b>、腎障害、<b>骨髄抑制</b>（葉酸欠乏で貧血・血小板減少）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>禁忌ぎみ</span><div class=&quot;tc&quot;><b>サルファアレルギー・妊娠授乳・G6PD欠乏（溶血）</b>に注意。「他剤が無効・使えない時に考慮」の位置づけ。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>ST合剤は<b class=&quot;kg&quot;>PCPの治療・予防が得意技</b>。一方<b class=&quot;kr&quot;>薬疹（重症も）・高K・骨髄抑制・サルファアレルギー</b>に注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>DNA・葉酸系 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>このグループは<b class=&quot;kp&quot;>DNAの設計図まわり</b>を攻める2チーム。<b class=&quot;kp&quot;>ニューキノロン＝DNAの司書（ジャイレース）を止めて</b>コピーを断つ殺菌薬（司書はヒトにいない＝選択毒性）。<b class=&quot;kg&quot;>ST合剤＝葉酸（DNAの材料）工場を2段階で止める</b>（ヒトは葉酸を食事で取るので細菌だけに効く）。キノロンは<b class=&quot;kb&quot;>広域＋経口で便利</b>だが<b class=&quot;kr&quot;>MRSA・腸球菌は苦手</b>、乱用は<b class=&quot;kr&quot;>結核隠し・耐性</b>のもと。注意は<b class=&quot;kr&quot;>キノロン＝金属キレート・腱障害・けいれん・小児妊婦回避</b>、<b class=&quot;kr&quot;>ST＝PCPが得意技／薬疹・高K・サルファアレルギー</b>。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kp&quot;>キノロンは“司書”を止める</b>／<b class=&quot;kg&quot;>STは“材料工場”を止める</b>／<b class=&quot;kr&quot;>便利でも乱用しない・くせに注意</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>ここは一般的な整理です。薬の選択・用量・期間は医師が判断します。とくに<b>飲み合わせ（金属・NSAIDs）、小児・妊娠授乳、アレルギー</b>を確認し、自己判断でのむ・中止するのは避けてください。効かせ方（濃度依存など）や耐性・スペクトルは、この分野の別項目で掘り下げます。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    DNAの設計図まわりを攻める2チーム。<b>キノロン＝司書（ジャイレース）</b>、<b>ST＝材料（葉酸）工場</b>。<br>
+    便利でも乱用せず、飲み合わせと副作用に気を配る。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① しくみにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 drug selector */
+  (function(){
+    const data=[
+      {head:'var(--sky-deep)', nm:'シプロフロキサシン', sub:'CPFX ／ 旧世代寄り',
+       good:'<b>グラム陰性・緑膿菌に強い</b>。グラム陽性球菌は限定的。',
+       use:'尿路・腸管感染、緑膿菌感染など。',
+       memo:'テオフィリンの血中濃度を上げる（中枢作用に注意）。'},
+      {head:'var(--mint-deep)', nm:'レボフロキサシン', sub:'LVFX＝クラビット ／ 呼吸器キノロン',
+       good:'グラム陰性＋<b>肺炎球菌などグラム陽性＋非定型</b>まで<b>広域</b>。1日1回。',
+       use:'呼吸器（肺炎）・尿路など幅広く。外来でも頻用。',
+       memo:'広域ゆえ乱用注意。結核をマスクしうる。'},
+      {head:'var(--plum-deep)', nm:'モキシフロキサシン', sub:'MFLX ／ 呼吸器キノロン',
+       good:'グラム陽性に強く、<b>一部の嫌気性菌</b>にも。',
+       use:'呼吸器感染など。腎機能低下でも減量不要（腎排泄でない）。',
+       memo:'QT延長が比較的強め。心疾患・併用薬に注意。'}
+    ];
+    const seg=document.getElementById('drSeg'),out=document.getElementById('drOut');
+    function r(i){
+      const d=data[i];
+      out.innerHTML =
+        '<div class=&quot;dh&quot; style=&quot;background:'+d.head+'&quot;><div class=&quot;dnm&quot;>'+d.nm+'</div><div class=&quot;dsub&quot;>'+d.sub+'</div></div>'+
+        '<div class=&quot;db&quot;>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--mint-deep)&quot;>得意</span><span class=&quot;val&quot;>'+d.good+'</span></div>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--sky-deep)&quot;>用途</span><span class=&quot;val&quot;>'+d.use+'</span></div>'+
+        '<div class=&quot;selrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--persimmon-deep)&quot;>ひとこと</span><span class=&quot;val&quot;>'+d.memo+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'ニューキノロンが止める酵素は？', o:['DNAジャイレース（とトポイソメラーゼIV）','リボソーム','細胞壁の酵素'], a:0, e:'DNAを畳んで扱う“司書”。止めるとコピーできず殺菌的。'},
+      {q:'キノロンがヒトに比較的安全な理由は？', o:['DNAジャイレースがヒトにないから','量が少ないから','すぐ壊れるから'], a:0, e:'狙う的が人にない＝選択毒性。'},
+      {q:'ST合剤が止めるのは？', o:['葉酸（DNAの材料）の合成','細胞壁','リボソーム'], a:0, e:'葉酸工場を2段階で止める。相乗効果。'},
+      {q:'ST合剤が細菌だけに効くのは？', o:['ヒトは葉酸を食事で取り自分で作らないから','人に葉酸がないから','葉酸が毒だから'], a:0, e:'自前で作る細菌だけが困る＝選択毒性。'},
+      {q:'ニューキノロンの吸収が落ちる組み合わせは？', o:['Ca・Mg・鉄・制酸剤（金属キレート）','水','糖'], a:0, e:'テトラサイクリンと同じ。2時間ほど間隔をあける。'},
+      {q:'キノロンで注意する神経系の副作用は？', o:['けいれん（NSAIDs併用で増強）','眠気だけ','味覚だけ'], a:0, e:'中枢刺激。腎機能低下・大量投与でリスク。'},
+      {q:'キノロンで有名な運動器の副作用は？', o:['アキレス腱炎・腱断裂','関節が増える','筋肉が太る'], a:0, e:'高齢・ステロイド併用でリスク上昇。'},
+      {q:'ニューキノロンを小児・妊婦で原則避けるのは？', o:['軟骨への影響が懸念されるから','眠くなるから','高いから'], a:0, e:'発育中の軟骨への影響。原則ほかの薬を選ぶ。'},
+      {q:'広域キノロンの乱用で起こりうる問題は？', o:['結核を隠し診断を遅らせる・耐性を生む','便秘','眠気'], a:0, e:'結核にも効くため症状が隠れ、単剤で耐性結核のおそれ。'},
+      {q:'ST合剤の“得意技”といえる用途は？', o:['ニューモシスチス肺炎（PCP）の治療・予防','水虫','高血圧'], a:0, e:'免疫低下者のPCPに第一選択。薬疹・高Kには注意。'},
+      {q:'ST合剤で注意する副作用は？', o:['重症薬疹・高カリウム血症・骨髄抑制','眠気だけ','便秘だけ'], a:0, e:'サルファアレルギーやG6PD欠乏にも注意。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-protein" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="タンパク合成を止める系" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>タンパク合成を止める系 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.72rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.5rem,5.6vw,2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* ribosome diagram */
+  .ribo{ background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:18px 16px; margin:16px 0; }
+  .ribowrap{ display:flex; gap:16px; align-items:center; justify-content:center; flex-wrap:wrap; }
+  .ribocol{ text-align:center; }
+  .ribostack{ display:inline-flex; flex-direction:column; align-items:center; gap:3px; }
+  .ribobig{ width:120px; height:52px; border-radius:60px 60px 40px 40px; display:grid; place-items:center; color:#fff; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.9rem; }
+  .ribosmall{ width:96px; height:34px; border-radius:40px; display:grid; place-items:center; color:#fff; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.82rem; }
+  .ribolbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.95rem; margin-bottom:6px; }
+  .ribonote{ font-size:.78rem; color:var(--ink-soft); margin-top:5px; }
+  .riboarrow{ font-size:1.5rem; color:var(--ink-soft); }
+
+  /* class selector */
+  .clsseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .clsseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.8rem; padding:9px 12px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .clsseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .clsout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .clsout .ch{ padding:12px 15px; color:#fff; } .clsout .ch .cnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.12rem; } .clsout .ch .csub{ font-size:.8rem; opacity:.93; }
+  .clsout .cb{ padding:13px 15px; } .clsrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .clsrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:58px; text-align:center; margin-top:2px; }
+  .clsrow .val{ flex:1; } .clsrow .val b{ color:var(--ink); }
+  .badge-cidal{ display:inline-block; font-size:.72rem; font-weight:900; padding:2px 9px; border-radius:999px; }
+  .b-static{ background:#E7F2F7; color:var(--sky-deep); } .b-cidal{ background:#FDECEE; color:var(--rose-deep); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:86px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① しくみ</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 3つの系統</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 使う注意</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>作用機序 ・ タンパク合成を止める系</span>
+    <h1>🏭 <span class=&quot;hl&quot;>タンパク質工場</span><br>を止める系</h1>
+    <p class=&quot;lead&quot;>菌の「工場（リボソーム）」を狙う。<br>マクロライド・テトラサイクリンなど。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>入門編②の4つの狙いどころのうち<b>「タンパク質工場（リボソーム）」</b>を掘り下げます。βラクタム（細胞壁系）に続く作用機序トピックです。薬は処方薬で、要否・選択は医師が判断します。妊娠・授乳・小児や飲み合わせは特に確認を。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>「壁」の次は「工場」を狙う</h2>
+    <p class=&quot;lead-line&quot;>βラクタムが<b class=&quot;kb&quot;>細胞壁</b>を壊す薬なら、こちらは細菌の<b class=&quot;kg&quot;>タンパク質を作る工場＝リボソーム</b>を止める薬。マクロライド・テトラサイクリン・アミノグリコシドなどが、この仲間です。菌はタンパク質を作れないと生きて増えられません。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 選択毒性 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>核心</div>
+    <h2>工場の「型」がヒトと違う</h2>
+    <p class=&quot;lead-line&quot;>「ヒトの細胞にもタンパク質工場があるのに、なぜ菌だけ止まる？」——答えは<b class=&quot;kb&quot;>工場の型（サイズ）が違う</b>から。細菌のリボソームは<b class=&quot;kb&quot;>70S</b>、ヒトは<b class=&quot;kp&quot;>80S</b>。この違いを利用して、細菌の工場だけを狙い撃ちします（＝選択毒性）。</p>
+    <div class=&quot;ribo&quot;>
+      <div class=&quot;ribowrap&quot;>
+        <div class=&quot;ribocol&quot;>
+          <div class=&quot;ribolbl&quot; style=&quot;color:var(--sky-deep)&quot;>細菌 70S</div>
+          <div class=&quot;ribostack&quot;>
+            <div class=&quot;ribosmall&quot; style=&quot;background:var(--sky)&quot;>30S</div>
+            <div class=&quot;ribobig&quot; style=&quot;background:var(--sky-deep)&quot;>50S</div>
+          </div>
+          <div class=&quot;ribonote&quot;>狙える！</div>
+        </div>
+        <div class=&quot;riboarrow&quot;>≠</div>
+        <div class=&quot;ribocol&quot;>
+          <div class=&quot;ribolbl&quot; style=&quot;color:var(--plum-deep)&quot;>ヒト 80S</div>
+          <div class=&quot;ribostack&quot;>
+            <div class=&quot;ribosmall&quot; style=&quot;background:var(--plum)&quot;>40S</div>
+            <div class=&quot;ribobig&quot; style=&quot;background:var(--plum-deep)&quot;>60S</div>
+          </div>
+          <div class=&quot;ribonote&quot;>形が違う</div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;big-point blue&quot;>細菌の工場は<b class=&quot;kb&quot;>70S（30S＋50S）</b>、ヒトは<b class=&quot;kp&quot;>80S（40S＋60S）</b>。<b>型が違うから細菌のだけ止められる</b>＝選択毒性。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 30S/50S -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>狙う場所</div>
+    <h2>「30S」か「50S」か</h2>
+    <p class=&quot;lead-line&quot;>細菌の工場（70S）は、<b class=&quot;kb&quot;>30S（小さいパーツ）</b>と<b class=&quot;kb&quot;>50S（大きいパーツ）</b>の2つでできています。薬はどちらかにくっついて工場を止める。<b>どこを狙うかで系統が分かれます</b>。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky)&quot;>30Sを狙う</span><div class=&quot;tc&quot;><b>アミノグリコシド</b>（ゲンタマイシン等）と<b>テトラサイクリン</b>（ドキシサイクリン等）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>50Sを狙う</span><div class=&quot;tc&quot;><b>マクロライド</b>（クラリス等）と<b>クリンダマイシン</b>。ペプチド鎖の伸長を止める。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>意外なポイント</span><p style=&quot;margin:0&quot;><b>ふつうは「静菌」。でもアミノグリコシドだけ「殺菌」。</b><br><span class=&quot;soft&quot;>タンパク合成を止める薬は、菌の増殖を止める<b>静菌的</b>が基本（マクロライド・テトラサイクリン）。ところが<b>アミノグリコシドだけは殺菌的</b>——同じ30Sを狙うテトラサイクリンとも効き方が違う、覚えておきたい例外です。</span></p></div>
+    <div class=&quot;big-point&quot;>30S＝<b class=&quot;kb&quot;>アミノグリコシド・テトラサイクリン</b>／50S＝<b class=&quot;kb&quot;>マクロライド・クリンダマイシン</b>。基本は静菌、<b class=&quot;kr&quot;>アミノグリコシドだけ殺菌</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>3つの系統、それぞれ個性がある。<br>——特徴を見わけよう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 3つの系統 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>3系統 ・ 個性を知る</span>
+    <h1>3つの<span class=&quot;hl&quot;>系統</span>を<br>見わける</h1>
+    <p class=&quot;lead&quot;>マクロライド／テトラサイクリン／<br>アミノグリコシド。</p>
+  </header>
+
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>系統セレクタ</div>
+    <h2>選んで見くらべる</h2>
+    <p class=&quot;lead-line&quot;>系統を選ぶと、<b class=&quot;kb&quot;>狙う場所・効き方・得意な菌・代表薬・特徴</b>が出ます。同じ「工場を止める」でも、個性はかなり違います。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;clsseg&quot; id=&quot;clsSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>マクロライド</button>
+        <button data-i=&quot;1&quot;>テトラサイクリン</button>
+        <button data-i=&quot;2&quot;>アミノグリコシド</button>
+      </div>
+      <div class=&quot;clsout&quot; id=&quot;clsOut&quot;></div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>使いどころ</div>
+    <h2>この系統が輝く場面</h2>
+    <p class=&quot;lead-line&quot;>この系統がとくに輝くのが<b class=&quot;kg&quot;>「非定型菌」</b>。むずかしい名前ですが、噛み砕くと<b>「ふつうの細菌とは“作り”が違う菌」</b>のことです。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#E9F6ED;color:var(--mint-deep);&quot;>噛み砕き：非定型菌ってなに？</span><p style=&quot;margin:0&quot;><b>① 壁を持たない菌（マイコプラズマ）。</b><br><span class=&quot;soft&quot;>前ページのβラクタムは「細胞壁を壊す薬」でした。でもマイコプラズマは<b>そもそも壁がない</b>ので、<b>壊す壁がなくて効かない</b>！ だから“工場を止める”この系統の出番。マイコプラズマ肺炎にマクロライドやテトラサイクリン、が定番なのはこのためです。</span><br><br><b>② 細胞の中に隠れて増える菌（クラミジア・レジオネラ）。</b><br><span class=&quot;soft&quot;>ヒトの細胞の中にもぐり込むので、<b>細胞の中まで入っていける薬</b>でないと届きません。組織へよくしみ込むマクロライド・テトラサイクリンが得意なんです。</span></p></div>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>非定型に</span><div class=&quot;tc&quot;><b>マクロライド・テトラサイクリン</b>は、βラクタムが効かない<b>「非定型」菌（マイコプラズマ・クラミジア・レジオネラ）</b>の切り札。マイコプラズマ肺炎などに。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>重症の陰性菌</span><div class=&quot;tc&quot;><b>アミノグリコシド</b>は、緑膿菌など手ごわいグラム陰性菌に。単独より<b>βラクタムと併用</b>して相乗効果（感染性心内膜炎など）で使うのが典型。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>+αの顔</span><div class=&quot;tc&quot;>マクロライドは<b>抗炎症作用</b>（びまん性汎細気管支炎に少量長期）やピロリ除菌にも。テトラサイクリンは<b>ニキビ</b>にも使われる。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>βラクタムが苦手な<b class=&quot;kg&quot;>非定型菌にはマクロライド・テトラサイクリン</b>、<b class=&quot;kr&quot;>重症の陰性菌にはアミノグリコシド（併用）</b>。役割がすみ分けられている。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 50Sの仲間 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--sky-deep)&quot;>他</span>50Sの仲間</div>
+    <h2>50Sを狙う、ほかの薬たち</h2>
+    <p class=&quot;lead-line&quot;>50S（大きいパーツ）を狙うのは、マクロライドだけではありません。同じ場所を狙う<b class=&quot;kb&quot;>個性的な仲間</b>がいます。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>クリンダマイシン</span><div class=&quot;tc&quot;>グラム陽性・<b>嫌気性菌（酸素のない所を好む菌）</b>に。歯性感染や皮膚軟部組織に。マクロライドと<b>同じ場所を取り合う</b>ので併用は効果が減る。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>リネゾリド</span><div class=&quot;tc&quot;><b>MRSA・VRE（バンコマイシン耐性腸球菌）に効く切り札</b>の一つ。めずらしく<b>飲み薬でも注射と同じくらい効く</b>。長期で<b>血小板が減る</b>ことがあり2週間以内が目安。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>クロラム<br>フェニコール</span><div class=&quot;tc&quot;>古くからの広域薬だが、<b>再生不良性貧血やグレー症候群（新生児）</b>など重い副作用のため、今は<b>限られた場面だけ</b>使う。</div></div>
+    </div>
+    <div class=&quot;note&quot;>リネゾリドは<b>オキサゾリジノン系</b>。50Sで「工場の組み立ての“最初のボタン”（70S開始複合体）」を邪魔する、ちょっと変わった効き方です。だから他の系統と<b>交差耐性が出にくく</b>、耐性菌の切り札になります（グレー症候群＝新生児が薬を代謝できず全身が灰色にぐったり、の意味）。</div>
+    <div class=&quot;big-point blue&quot;>50Sの仲間：<b class=&quot;kg&quot;>クリンダマイシン（嫌気性菌）</b>／<b class=&quot;kr&quot;>リネゾリド（MRSA・VRE・飲み薬でも効く）</b>／<b class=&quot;kgo&quot;>クロラムフェニコール（限定使用）</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>個性が強いぶん、注意点も濃い。<br>——飲み合わせ・副作用へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 使う注意 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>使う注意 ・ 相互作用と副作用</span>
+    <h1>飲み合わせと<br><span class=&quot;hl&quot;>副作用</span></h1>
+    <p class=&quot;lead&quot;>この系統は“くせ”が強い。<br>薬剤師の腕の見せどころ。</p>
+  </header>
+
+  <!-- A テトラサイクリン -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>テトラサイクリン</div>
+    <h2>金属と手をつなぐと効かない</h2>
+    <p class=&quot;lead-line&quot;>テトラサイクリンの最重要ポイント。<b class=&quot;kr&quot;>カルシウム・鉄・マグネシウム・アルミなどの金属イオンと“キレート”を作る</b>と、吸収されなくなって効かなくなります。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>キレート</span><div class=&quot;tc&quot;><b>牛乳・乳製品、制酸剤、鉄剤、Mg/Al</b>と一緒だと吸収低下。<b>2時間ほど間隔をあける</b>のが基本。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>歯牙黄染</span><div class=&quot;tc&quot;>Caとキレートして<b>骨や歯に沈着し黄色く</b>なる。<b>8歳未満の小児・妊婦・授乳婦は避ける</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>光線過敏</span><div class=&quot;tc&quot;>日光で<b>皮膚炎</b>が出ることがある。日焼け対策を。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>テトラサイクリンは<b class=&quot;kr&quot;>牛乳・鉄・制酸剤で吸収ダウン（間隔をあける）</b>、<b class=&quot;kr&quot;>小児・妊婦は歯牙黄染で避ける</b>、光線過敏にも注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B マクロライド -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>マクロライド</div>
+    <h2>飲み合わせ（CYP）とQTに注意</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>CYP3A4阻害</span><div class=&quot;tc&quot;>とくに<b>エリスロマイシン・クラリスロマイシン</b>は肝臓の代謝酵素CYP3A4を抑え、<b>他の薬の血中濃度を上げる</b>（相互作用が多い）。アジスロマイシンは弱め。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>QT延長</span><div class=&quot;tc&quot;>心電図の<b>QTが延び</b>、まれに危険な不整脈のことも。QTを延ばす他剤との併用に注意。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>併用の注意</span><div class=&quot;tc&quot;><b>クリンダマイシンとは作用部位が競合</b>して効果が減弱しうる（併用は避ける）。</div></div>
+    </div>
+    <div class=&quot;big-point&quot;>マクロライド（特にクラリス・エリスロ）は<b class=&quot;kr&quot;>CYP3A4阻害で飲み合わせ多い</b>・<b class=&quot;kr&quot;>QT延長</b>に注意。お薬手帳の確認が効く。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C アミノグリコシド -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>アミノグリコシド</div>
+    <h2>腎臓・耳への毒性とTDM</h2>
+    <p class=&quot;lead-line&quot;>効果は強いぶん、<b class=&quot;kr&quot;>腎臓と耳（第8脳神経）への毒性</b>が要注意。だから血中濃度を測りながら（TDM）慎重に使います。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>腎毒性</span><div class=&quot;tc&quot;>腎機能低下（尿が減る・むくみ）に注意。<b>ループ利尿薬との併用で耳毒性が増強</b>することも。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>耳毒性</span><div class=&quot;tc&quot;><b>第8脳神経</b>への障害で<b>難聴・耳鳴り・めまい</b>。妊娠では胎児の難聴リスク。<b>元に戻らないことも</b>ある。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>濃度依存<br>TDM</span><div class=&quot;tc&quot;><b>濃度が高いほど効く（濃度依存）＋効果が残る（PAE）</b>ので<b>1日1回投与</b>が主流。ピーク・トラフを測る<b>TDM</b>で効果と安全を両立。</div></div>
+    </div>
+    <div class=&quot;note&quot;>アミノグリコシドは<b>経口ではほとんど吸収されず、注射で使う</b>のが基本（腸管を殺菌する目的の内服は例外）。ストレプトマイシンは結核、アルベカシンはMRSAにも。</div>
+    <div class=&quot;big-point rose&quot;>アミノグリコシドは<b class=&quot;kr&quot;>腎毒性・耳毒性（不可逆のことも）</b>に要注意。<b class=&quot;kb&quot;>濃度依存で1日1回＋TDM</b>が使い方のキモ。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- ミトコンドリア 副作用のなぜ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--plum-deep)&quot;>謎</span>副作用のなぜ</div>
+    <h2>「ヒトに安全」なはずが、なぜ副作用？</h2>
+    <p class=&quot;lead-line&quot;>①で「細菌の工場（70S）とヒト（80S）は型が違うから安全」と言いました。なのに、なぜ副作用が出るのでしょう？ ——ここには<b class=&quot;kp&quot;>生命の壮大な物語</b>が隠れています。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#F3ECF5;color:#7E5A8C;&quot;>噛み砕き：体の中の“元・細菌”</span><p style=&quot;margin:0&quot;><b>ヒトの細胞の中には、大むかしは細菌だった部品がいます。</b><br><span class=&quot;soft&quot;>それが<b>ミトコンドリア</b>（エネルギーを作る工場）。約20億年前、ある細菌がヒトの祖先の細胞に住みつき、共生した名残——という説（<b>細胞内共生説</b>）が定説です。証拠に、ミトコンドリアは今も<b>独自のDNAと、細菌そっくりのリボソーム</b>を持っています。</span></p></div>
+    <p>つまり、抗菌薬が狙う「細菌のリボソーム」に、<b class=&quot;kp&quot;>ヒトのミトコンドリアのリボソームが似ている</b>。だから、細菌を狙ったつもりの薬が、身内の<b class=&quot;kr&quot;>ミトコンドリアまで巻き込んで</b>しまうことがある。これが副作用の正体の一つです。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>アミノグリコシド</span><div class=&quot;tc&quot;>内耳の細胞のミトコンドリアが傷つき<b>難聴</b>（遺伝的に起こりやすい人もいる）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>リネゾリド</span><div class=&quot;tc&quot;>長期投与で<b>乳酸アシドーシス・視神経障害</b>など。ミトコンドリア毒性が一因とされる。</div></div>
+    </div>
+    <div class=&quot;big-point plum&quot;>副作用の“なぜ”＝ヒトの細胞の中の<b class=&quot;kp&quot;>「元・細菌」＝ミトコンドリア</b>が、細菌に似たリボソームを持つから。狙った相手にそっくりなものが、身内にいた——という話🦎</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>タンパク合成系 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>この系統は、菌の<b class=&quot;kg&quot;>タンパク質工場（リボソーム）</b>を止める薬。細菌<b class=&quot;kb&quot;>70S</b>とヒト<b class=&quot;kp&quot;>80S</b>の型の違いを突く（選択毒性）。狙う場所で分かれ、<b class=&quot;kb&quot;>30S＝アミノグリコシド・テトラサイクリン／50S＝マクロライド・クリンダマイシン</b>。基本は静菌だが<b class=&quot;kr&quot;>アミノグリコシドだけ殺菌</b>。<b class=&quot;kg&quot;>非定型菌にはマクロライド・テトラサイクリン</b>、<b class=&quot;kr&quot;>重症の陰性菌にはアミノグリコシド（併用）</b>。注意は<b class=&quot;kr&quot;>テトラ＝金属キレート・歯牙黄染、マクロ＝CYP3A4・QT、アミノ＝腎耳毒性・TDM</b>。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kb&quot;>工場（リボソーム）を止める</b>／<b class=&quot;kg&quot;>30Sと50S</b>／<b class=&quot;kr&quot;>くせ（飲み合わせ・毒性）が濃い</b>ので確認が効く🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>ここは一般的な整理です。薬の選択・用量・期間は医師が判断します。とくに<b>妊娠・授乳・小児、飲み合わせ（お薬手帳）</b>を確認し、自己判断でのむ・中止するのは避けてください。耐性やPK/PD（濃度依存・時間依存）は、この分野の別項目でも掘り下げます。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    菌の<b>タンパク質工場（リボソーム）</b>を止める薬。<br>
+    30Sと50Sで分かれ、非定型に強く、飲み合わせと毒性の“くせ”が濃い。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① しくみにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 class selector */
+  (function(){
+    const data=[
+      {head:'var(--mint-deep)', nm:'マクロライド', sub:'エリスロ／クラリス／アジスロマイシン',
+       site:'<b>50S</b>（ペプチド鎖の伸長を止める）', type:'static',
+       good:'<b>グラム陽性＋非定型菌（マイコプラズマ・クラミジア・レジオネラ）</b>。組織移行が良い。大型で外膜を通れず、グラム陰性桿菌は苦手。',
+       feat:'アジスロマイシンは<b>1日1回3日で約1週間効く</b>長時間型。抗炎症作用・ピロリ除菌にも。CYP3A4・QTに注意（③）。'},
+      {head:'var(--persimmon-deep)', nm:'テトラサイクリン', sub:'ドキシサイクリン／ミノサイクリン',
+       site:'<b>30S</b>（tRNAの結合を止める）', type:'static',
+       good:'<b>広域</b>。とくに<b>マイコプラズマ・リケッチア・クラミジアの第一選択</b>。ニキビにも。',
+       feat:'<b>金属イオンとキレート</b>して吸収低下（牛乳・鉄・制酸剤）。<b>歯牙黄染で小児・妊婦は避ける</b>、光線過敏も（③）。'},
+      {head:'var(--rose-deep)', nm:'アミノグリコシド', sub:'ゲンタマイシン／アミカシン／トブラマイシン',
+       site:'<b>30S</b>（タンパク合成を止める）', type:'cidal',
+       good:'<b>グラム陰性・緑膿菌に強い</b>。グラム陽性には<b>βラクタムと併用で相乗</b>（感染性心内膜炎など）。',
+       feat:'<b>経口はほぼ吸収されず注射</b>。<b>濃度依存で1日1回＋TDM</b>。腎毒性・耳毒性に注意（③）。ストレプトマイシン＝結核、アルベカシン＝MRSA。'}
+    ];
+    const seg=document.getElementById('clsSeg'),out=document.getElementById('clsOut');
+    function r(i){
+      const d=data[i];
+      const badge = d.type==='cidal'
+        ? '<span class=&quot;badge-cidal b-cidal&quot;>殺菌的</span>'
+        : '<span class=&quot;badge-cidal b-static&quot;>静菌的</span>';
+      out.innerHTML =
+        '<div class=&quot;ch&quot; style=&quot;background:'+d.head+'&quot;><div class=&quot;cnm&quot;>'+d.nm+'</div><div class=&quot;csub&quot;>代表：'+d.sub+'</div></div>'+
+        '<div class=&quot;cb&quot;>'+
+        '<div class=&quot;clsrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--sky-deep)&quot;>狙う場所</span><span class=&quot;val&quot;>'+d.site+'</span></div>'+
+        '<div class=&quot;clsrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--ink-soft)&quot;>効き方</span><span class=&quot;val&quot;>'+badge+'</span></div>'+
+        '<div class=&quot;clsrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--mint-deep)&quot;>得意</span><span class=&quot;val&quot;>'+d.good+'</span></div>'+
+        '<div class=&quot;clsrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--gold)&quot;>特徴</span><span class=&quot;val&quot;>'+d.feat+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'この系統が狙う細菌の器官は？', o:['リボソーム（タンパク質工場）','細胞壁','細胞膜'], a:0, e:'タンパク質が作れないと菌は増えられない。'},
+      {q:'ヒトに比較的安全なのはなぜ？', o:['細菌70Sとヒト80Sで工場の型が違うから','量が少ないから','すぐ壊れるから'], a:0, e:'型の違いを利用して細菌のリボソームだけ狙う＝選択毒性。'},
+      {q:'50Sを狙う系統は？', o:['マクロライド・クリンダマイシン','アミノグリコシドのみ','βラクタム'], a:0, e:'30Sはアミノグリコシド・テトラサイクリン。'},
+      {q:'タンパク合成阻害で「例外的に殺菌的」なのは？', o:['アミノグリコシド','マクロライド','テトラサイクリン'], a:0, e:'ほかは基本静菌。アミノグリコシドだけ殺菌的。'},
+      {q:'マイコプラズマなど「非定型菌」に使うのは？', o:['マクロライド・テトラサイクリン','アミノグリコシドのみ','ペニシリンのみ'], a:0, e:'βラクタムが効きにくい非定型菌の切り札。'},
+      {q:'テトラサイクリンの吸収が落ちる組み合わせは？', o:['牛乳・鉄剤・制酸剤（金属とキレート）','水','糖'], a:0, e:'金属イオンとキレートを作る。2時間ほど間隔をあける。'},
+      {q:'テトラサイクリンを小児・妊婦で避ける主な理由は？', o:['歯牙黄染（歯や骨に沈着）','眠くなる','高いから'], a:0, e:'Caとキレートして沈着。8歳未満・妊婦・授乳婦は避ける。'},
+      {q:'クラリスロマイシン等で注意する相互作用は？', o:['CYP3A4阻害で他剤の血中濃度が上がる','吸収が良くなりすぎる','無関係'], a:0, e:'QT延長にも注意。お薬手帳の確認が効く。'},
+      {q:'アミノグリコシドの代表的な副作用は？', o:['腎毒性・耳毒性（第8脳神経）','眠気だけ','便秘だけ'], a:0, e:'難聴・めまいは不可逆のことも。TDMで慎重に。'},
+      {q:'アミノグリコシドの投与設計の特徴は？', o:['濃度依存で1日1回＋TDM','時間依存で1日4回','食後に必ず'], a:0, e:'濃度が高いほど効き、PAEも長い。ピーク・トラフを測る。'},
+      {q:'マイコプラズマにβラクタムが効かない理由は？', o:['細胞壁を持たない（壊す壁がない）から','小さすぎるから','増えないから'], a:0, e:'壁を壊す薬なので、壁がないと効きようがない。工場を止める系の出番。'},
+      {q:'リネゾリド（オキサゾリジノン）が効く耐性菌は？', o:['MRSA・VRE','緑膿菌のみ','ウイルス'], a:0, e:'数少ないVRE用薬。飲み薬でもよく効く。長期で血小板減少に注意。'},
+      {q:'タンパク合成阻害薬でヒトに副作用が出る一因は？', o:['ミトコンドリアが細菌似のリボソームを持つから','水を飲むから','光のせい'], a:0, e:'ミトコンドリアは大昔の細菌の名残（細胞内共生説）。だから巻き込まれる。'},
+      {q:'クリンダマイシンがとくに得意な菌は？', o:['嫌気性菌','ウイルス','真菌'], a:0, e:'グラム陽性・嫌気性菌に。マクロライドとは併用で効果が減る。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-betalactam" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="細胞壁を壊す系（βラクタム）" srcdoc="<!DOCTYPE html>
 <html lang=&quot;ja&quot;>
 <head>
 <meta charset=&quot;UTF-8&quot;>
