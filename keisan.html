@@ -3017,10 +3017,555 @@
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--rose)">肌トラブル</span></div><div class="cards">
 <button class="lcard" onclick="openThemeFrame('nikibi')"><span class="ic">🔴</span><span class="tx"><span class="t">ニキビ・吹き出物</span><span class="s">仕組み・白黒赤黄の段階・薬とケア</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openThemeFrame('hasshin')"><span class="ic">🧩</span><span class="tx"><span class="t">発疹・湿疹・蕁麻疹のちがい</span><span class="s">総称と病名・見わけ方・薬が逆</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ<br>項目はこれから増減します</div>
 </div></div>
-<div id="theme-dnafolate" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="DNA・葉酸系（ニューキノロン等）" srcdoc="<!DOCTYPE html>
+<div id="theme-hasshin" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('skin')">‹ 化粧品・塗り薬のあれこれ に戻る</button></div><iframe class="theme-frame" title="発疹・湿疹・蕁麻疹のちがい" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>発疹・湿疹・蕁麻疹のちがい ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.74rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.5rem,5.6vw,2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* nesting box (発疹の入れ子) */
+  .nest{ background:#F3ECF5; border:2px solid #DEC9E6; border-radius:20px; padding:14px 13px 16px; margin:16px 0; }
+  .nest .nlab{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.95rem; color:var(--plum-deep); text-align:center; margin-bottom:3px; }
+  .nest .nsub{ font-size:.76rem; color:#7E5A8C; text-align:center; margin-bottom:11px; }
+  .nestin{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  @media (max-width:430px){ .nestin{ grid-template-columns:1fr; } }
+  .nestc{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:11px 12px; text-align:center; box-shadow:var(--shadow); }
+  .nestc .ni{ font-size:1.5rem; } .nestc .nn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.98rem; } .nestc .nd{ font-size:.76rem; color:var(--ink-soft); }
+  .nestmore{ text-align:center; font-size:.76rem; color:#7E5A8C; margin-top:9px; }
+
+  /* 原発疹 selector */
+  .lesseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .lesseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; padding:8px 11px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .lesseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .lesout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .lesout .lh{ padding:12px 15px; color:#fff; } .lesout .lh .lnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.1rem; } .lesout .lh .lyomi{ font-size:.8rem; opacity:.93; }
+  .lesout .lb{ padding:13px 15px; }
+  .lesrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .lesrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; background:var(--ink-soft); padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:58px; text-align:center; margin-top:2px; }
+  .lesrow .val{ flex:1; } .lesrow .val b{ color:var(--ink); }
+
+  /* 比較 2カラム */
+  .cmp{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .cmp{ grid-template-columns:1fr; } }
+  .cmpc{ border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .cmpc .ch{ padding:11px 12px; color:#fff; text-align:center; } .cmpc .ch .ci{ font-size:1.6rem; } .cmpc .ch .cn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.02rem; }
+  .cmpc.shi .ch{ background:linear-gradient(135deg,#F08A4B,#DE6E2F); } .cmpc.jin .ch{ background:linear-gradient(135deg,#E2787F,#C25962); }
+  .cmpc .cb{ padding:0; }
+  .cmpc .cr{ padding:9px 13px; font-size:.84rem; border-top:1px solid var(--line); } .cmpc .cr:first-child{ border-top:none; }
+  .cmpc .cr .rl{ font-size:.68rem; font-weight:700; color:var(--ink-soft); display:block; } .cmpc .cr b{ color:var(--ink); }
+
+  /* タイムライン帯 */
+  .tbar{ margin:14px 0; }
+  .tbarrow{ display:flex; align-items:center; gap:9px; margin:7px 0; font-size:.8rem; }
+  .tbarrow .tl2{ width:74px; flex:none; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; }
+  .tbarrow .track{ flex:1; height:16px; border-radius:999px; background:#EFE4D2; overflow:hidden; position:relative; }
+  .tbarrow .fill{ display:block; height:100%; border-radius:999px; }
+  .tscale{ display:flex; justify-content:space-between; font-size:.68rem; color:var(--ink-soft); padding-left:83px; }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:80px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 発疹とは</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 見わけ方</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 原因と薬</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>肌トラブル ・ とことん版</span>
+    <h1><span class=&quot;hl&quot;>発疹・湿疹・蕁麻疹</span><br>のちがい</h1>
+    <p class=&quot;lead&quot;>この3つ、じつは<br>「並べて比べる相手」ではありません。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>薬剤師のキリ向けの整理です。皮膚の病気の<b>診断は皮膚科医</b>が行います。ここは言葉と考え方の地図で、自己診断のためのものではありません。広がる・強い・長引く・全身症状がある発疹は受診を。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>説明できないのは、当然かも</h2>
+    <p class=&quot;lead-line&quot;>「発疹と湿疹と蕁麻疹、どう違うんですか？」——この質問がむずかしいのには、はっきりした理由があります。<b class=&quot;kp&quot;>3つが同じ土俵にいないから</b>です。</p>
+    <p>並べて比べようとすると、必ずこんがらがる。まずは<b class=&quot;kb&quot;>言葉の階層を整理</b>するところから始めましょう。ここさえ通れば、あとは一気にほどけます。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 入れ子 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>核心</div>
+    <h2>「発疹」は総称、あとの2つは病名</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kp&quot;>発疹＝皮膚に出るあらゆる変化の総称（カテゴリ名）</b>。<b class=&quot;k&quot;>湿疹</b>と<b class=&quot;kr&quot;>蕁麻疹</b>は、その中にある<b>具体的な病気の名前</b>です。つまり<b>入れ子</b>の関係。</p>
+    <div class=&quot;nest&quot;>
+      <div class=&quot;nlab&quot;>🗂️ 発疹（＝皮膚に出る変化の総称）</div>
+      <div class=&quot;nsub&quot;>赤み・ブツブツ・水ぶくれ・かさぶた…ぜんぶ含む「カテゴリ」</div>
+      <div class=&quot;nestin&quot;>
+        <div class=&quot;nestc&quot;><div class=&quot;ni&quot;>🟠</div><div class=&quot;nn&quot;>湿疹</div><div class=&quot;nd&quot;>皮膚炎。ザラザラ続く</div></div>
+        <div class=&quot;nestc&quot;><div class=&quot;ni&quot;>🔴</div><div class=&quot;nn&quot;>蕁麻疹</div><div class=&quot;nd&quot;>膨疹。すーっと消える</div></div>
+      </div>
+      <div class=&quot;nestmore&quot;>ほかにも：あせも・ニキビ・水虫・帯状疱疹・薬疹・とびひ… ぜんぶ「発疹」の仲間</div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>たとえ話</span><p style=&quot;margin:0&quot;><b>「乗り物」と「自転車・電車」の関係。</b><br><span class=&quot;soft&quot;>「乗り物と自転車ってどう違うの？」と聞かれたら困りますよね。<b>自転車は乗り物の一種</b>だから。同じで、<b>湿疹も蕁麻疹も「発疹」の一種</b>。だから「発疹 vs 湿疹」は比べようがない。比べるべきは<b class=&quot;k&quot;>湿疹 vs 蕁麻疹</b>——この2つは同じ階層にいます（②でとことん）。</span></p></div>
+    <div class=&quot;big-point plum&quot;>発疹＝<b class=&quot;kp&quot;>大きなカゴ（総称）</b>。湿疹・蕁麻疹＝<b class=&quot;k&quot;>そのカゴに入っている具体的な病気</b>。比べるなら湿疹と蕁麻疹。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 読み方 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>ことばの話</div>
+    <h2>「ほっしん」？「はっしん」？</h2>
+    <p class=&quot;lead-line&quot;>キリの疑問への答え🦎 <b class=&quot;kb&quot;>どちらも正しい</b>です。<b>同じ言葉の読み方が2つある</b>だけで、意味の違いはありません。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>はっしん</span><div class=&quot;tc&quot;>学術用語集「医学編」や放送（NHK）で<b>第一とされる読み</b>。辞書でも本来の読みとされることが多い。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>ほっしん</span><div class=&quot;tc&quot;>こちらも<b>正しい読み</b>（許容）。現場の医師・看護師では<b>こちらを使う人が多い</b>印象も。<b>発疹チフス</b>は「ほっしん〜」と読む。</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>「発疹」は<b class=&quot;kb&quot;>はっしん／ほっしん どちらでもOK</b>。意味は同じ。</div>
+
+    <h3>おまけ：先生がよく使う「皮疹」とは</h3>
+    <p class=&quot;lead-line&quot;>皮膚科の先生が「<b class=&quot;kp&quot;>皮疹（ひしん）</b>」を多用するのには、ちゃんと理由があります。<b class=&quot;kp&quot;>皮疹＝皮膚に現れる、目に見える変化の総称</b>。赤み・ブツブツ・水ぶくれだけでなく、<b>しみ・あざ・できもの</b>まで、ぜんぶ含む一番広い言葉なんです。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>皮疹</span><div class=&quot;tc&quot;>皮膚に見える変化<b>すべて</b>。急に出たものも、昔からあるしみも含む。<b>いちばん広くて中立</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>発疹</span><div class=&quot;tc&quot;>皮疹のうち、とくに<b>数時間〜数日で急に出てきたもの</b>を指すニュアンスがある（ほぼ同義で使われることも多い）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>粘膜疹</span><div class=&quot;tc&quot;>同じ変化が<b>口の中や目、陰部などの粘膜</b>に出たときの呼び方。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot; style=&quot;background:#F3ECF5;color:#7E5A8C;&quot;>なぜ皮膚科で多用されるか</span><p style=&quot;margin:0&quot;><b>「皮疹」は、皮膚科医どうしの“共通言語”だから。</b><br><span class=&quot;soft&quot;>皮膚科では、見たものを言葉で正確に記録・共有します。たとえば<b>「境界がはっきりした手のひら大の紅斑があり、一部にびらんを伴う」</b>——このように書けば、写真がなくても状態が伝わる。この記述に使う用語のセットが「皮疹」の体系（次のセクションの原発疹・続発疹）です。<br>また<b>「発疹」だと“急に出た”という響きがある</b>ため、慢性の変化やしみ・あざまで含めて中立に言いたいとき、<b>「皮疹」のほうが使い勝手がいい</b>——これが多用される理由です🦎</span></p></div>
+    <div class=&quot;big-point plum&quot;>先生の「皮疹」＝<b class=&quot;kp&quot;>皮膚に見える変化の総称（いちばん広い言葉）</b>。「発疹」は急に出たものを指す響きがある。粘膜に出れば<b class=&quot;kg&quot;>粘膜疹</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 原発疹・続発疹 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>発疹の中身</div>
+    <h2>発疹には「形の名前」がある</h2>
+    <p class=&quot;lead-line&quot;>皮膚科医は、発疹の<b class=&quot;kb&quot;>形・色・触り心地</b>から病気を推理します。そのために、形ごとに名前がついている。大きく<b class=&quot;kp&quot;>原発疹（最初に出るもの）</b>と<b class=&quot;k&quot;>続発疹（そこから変化したもの）</b>に分かれます。</p>
+    <p>下のボタンで、代表的な形を見てみてください。<b>湿疹も蕁麻疹も、この「部品」の組み合わせ</b>で説明できます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;lesseg&quot; id=&quot;lesSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>紅斑</button>
+        <button data-i=&quot;1&quot;>丘疹</button>
+        <button data-i=&quot;2&quot;>水疱</button>
+        <button data-i=&quot;3&quot;>膿疱</button>
+        <button data-i=&quot;4&quot;>膨疹</button>
+        <button data-i=&quot;5&quot;>鱗屑・痂皮</button>
+        <button data-i=&quot;6&quot;>びらん・苔癬化</button>
+      </div>
+      <div class=&quot;lesout&quot; id=&quot;lesOut&quot;></div>
+    </div>
+    <div class=&quot;big-point&quot;>発疹は<b class=&quot;kp&quot;>原発疹（紅斑・丘疹・水疱・膿疱・膨疹…）</b>と<b class=&quot;k&quot;>続発疹（鱗屑・痂皮・びらん・苔癬化…）</b>の部品でできている。<b class=&quot;kb&quot;>形の名前が分かると、病気が見えてくる</b>。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>土俵がそろった。<br>いよいよ「湿疹 vs 蕁麻疹」へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 見わけ方 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>湿疹 vs 蕁麻疹 ・ 3つの決定打</span>
+    <h1>見わける<br><span class=&quot;hl&quot;>3つの決定打</span></h1>
+    <p class=&quot;lead&quot;>時間・表面・深さ。<br>これだけで、ほぼ分かれます。</p>
+  </header>
+
+  <div class=&quot;big-point&quot;>見わけの合言葉は<b class=&quot;kr&quot;>「時間・表面・深さ」</b>。とくに<b class=&quot;kr&quot;>時間</b>が最強の決定打です。</div>
+
+  <!-- A 時間 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>決定打①</div>
+    <h2>時間——消えるか、居座るか</h2>
+    <p class=&quot;lead-line&quot;>いちばん確実な見わけ方がこれ。<b class=&quot;kr&quot;>蕁麻疹の一つひとつの発疹は、長くても24時間以内に、跡形もなく消えます</b>（多くは数十分〜数時間）。一方<b class=&quot;k&quot;>湿疹は同じ場所に数日〜数週間、居座ります</b>。</p>
+    <div class=&quot;tbar&quot;>
+      <div class=&quot;tbarrow&quot;><span class=&quot;tl2&quot; style=&quot;color:var(--rose-deep)&quot;>🔴 蕁麻疹</span><span class=&quot;track&quot;><span class=&quot;fill&quot; style=&quot;width:8%;background:var(--rose)&quot;></span></span></div>
+      <div class=&quot;tbarrow&quot;><span class=&quot;tl2&quot; style=&quot;color:var(--persimmon-deep)&quot;>🟠 湿疹</span><span class=&quot;track&quot;><span class=&quot;fill&quot; style=&quot;width:100%;background:var(--persimmon)&quot;></span></span></div>
+      <div class=&quot;tscale&quot;><span>数分</span><span>24時間</span><span>数日〜数週間</span></div>
+    </div>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>ここで引っかかる</span><p style=&quot;margin:0&quot;><b>「でも私の蕁麻疹、1週間続いてます」——それでも蕁麻疹です。</b><br><span class=&quot;soft&quot;>見るべきは<b>「全体」ではなく「1個」</b>。蕁麻疹は<b>次々に新しい膨疹が出ては消える</b>ので、全体としては何日も続いているように見えます。でも<b>1つの発疹に注目すると、その日のうちに消えている</b>。ここが判別の急所です。<br>ちなみに、<b>発症6週間以内を急性蕁麻疹、6週間以上くり返すものを慢性蕁麻疹</b>と呼びます。「1個は消えるのに、ずっと出続ける」——これが慢性蕁麻疹の姿です。</span></p></div>
+    <div class=&quot;note&quot;>逆に、<b>1つの膨疹が24時間以上ずっと消えない</b>・押すと痛い・治ったあとに色素沈着が残る——こうした場合は、ふつうの蕁麻疹ではない可能性（蕁麻疹様血管炎など）があり、皮膚科での確認が必要です。</div>
+    <div class=&quot;big-point rose&quot;>蕁麻疹＝<b class=&quot;kr&quot;>1つ1つは24時間以内に跡形なく消える</b>（でも次々出る）。湿疹＝<b class=&quot;k&quot;>同じ場所に居座り、じわじわ変化する</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 表面 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>決定打②</div>
+    <h2>表面——ツルツルか、ザラザラか</h2>
+    <p class=&quot;lead-line&quot;>触ったとき（見たとき）の質感も、はっきり違います。<b class=&quot;kr&quot;>蕁麻疹はツルッとなめらかに盛り上がる</b>。<b class=&quot;k&quot;>湿疹はザラザラ・カサカサ・ジュクジュク</b>。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>蕁麻疹</span><div class=&quot;tc&quot;><b>膨疹（ぼうしん）</b>＝境界がくっきりした、なめらかな盛り上がり。<b>蚊に刺された跡</b>そっくり。皮がむけたり、ジュクジュクしたりは<b>しない</b>。地図のように広がることも。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>湿疹</span><div class=&quot;tc&quot;><b>いろいろな形が混ざる（多形性）</b>。赤み・ブツブツ・小さな水ぶくれ・ジュクジュク・かさぶた・皮むけが<b>同時に、または順番に</b>現れる。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>噛み砕き</span><p style=&quot;margin:0&quot;><b>湿疹は「一枚の絵が時間で描き変わる」。蕁麻疹は「スタンプがポンと押されて、消える」。</b><br><span class=&quot;soft&quot;>湿疹は <b>赤み → ブツブツ → 水ぶくれ → ジュクジュク → かさぶた → 皮むけ</b> と姿を変えながら進みます。しかも同じ場所に<b>いくつもの段階が混在する</b>のが最大の特徴（これを湿疹の「多形性」と言います）。<br>対して蕁麻疹は、いつ見ても<b>「なめらかな盛り上がり」一択</b>。段階もなければ、変化もしません。ポンと出て、すーっと消えるだけ。</span></p></div>
+    <div class=&quot;big-point&quot;>蕁麻疹＝<b class=&quot;kr&quot;>なめらかな盛り上がり一種類だけ</b>。湿疹＝<b class=&quot;k&quot;>いろいろな形が混ざり、姿を変える</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 深さ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>決定打③</div>
+    <h2>深さ——なぜ、そうなるのか</h2>
+    <p class=&quot;lead-line&quot;>見た目の違いには、ちゃんと理由があります。<b class=&quot;kb&quot;>起きている場所（深さ）と、起きていること（中身）が違う</b>んです。</p>
+    <div class=&quot;cmp&quot;>
+      <div class=&quot;cmpc shi&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🟠</div><div class=&quot;cn&quot;>湿疹</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>場所</span><b>表皮（皮膚の表面の層）</b>が中心</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>中身</span><b>炎症</b>。免疫細胞が集まって皮膚が荒れる</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>だから</span>表面が<b>ザラザラ・皮むけ</b>する</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>治り方</span>時間がかかり、<b>色素沈着が残る</b>ことも</div>
+        </div>
+      </div>
+      <div class=&quot;cmpc jin&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🔴</div><div class=&quot;cn&quot;>蕁麻疹</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>場所</span><b>真皮（一段深い層）</b>の血管まわり</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>中身</span><b>むくみ</b>。血管から水がしみ出す</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>だから</span>表面はいじられず<b>ツルツルのまま盛り上がる</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>治り方</span>水が引けば<b>跡形なく消える</b></div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>噛み砕き</span><p style=&quot;margin:0&quot;><b>蕁麻疹は「皮膚の下の水たまり」、湿疹は「皮膚そのもののただれ」。</b><br><span class=&quot;soft&quot;>蕁麻疹では、<b>ヒスタミン</b>という物質が血管をゆるませ、血液の水分が外へしみ出します。すると皮膚の下に一時的な<b>水たまり（むくみ）</b>ができて、ぷくっと盛り上がる。表面の皮膚自体は傷んでいないので<b>ツルツル</b>で、水が吸収されれば<b>何もなかったように消える</b>。<br>一方の湿疹は、<b>皮膚の表面そのものが炎症で傷んでいる</b>状態。だから治るのに時間がかかり、皮がむけ、跡も残りやすい。<b>「水たまり」か「ただれ」か</b>——この一言で、全部つながります🦎</span></p></div>
+    <div class=&quot;big-point blue&quot;>違いの根っこは<b class=&quot;kb&quot;>「真皮の水たまり（蕁麻疹）」か「表皮のただれ（湿疹）」か</b>。ここから時間も表面も、ぜんぶ説明できる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D まざる -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>ややこしい現実</div>
+    <h2>混ざることもある</h2>
+    <p class=&quot;lead-line&quot;>最後に、現実的な話をひとつ。<b class=&quot;kr&quot;>蕁麻疹を掻きこわすと、そこに湿疹ができる</b>ことがあります。すると「消えるはずの蕁麻疹」の上に「居座る湿疹」が乗って、見わけが難しくなる。</p>
+    <div class=&quot;note&quot;>窓口では「<b>いつ出て、いつ消えたか</b>」を聞くのがいちばん強い武器です。<b>出た時間・消えた時間・跡が残ったか</b>——この3つで、かなり絞れます。写真を撮っておいてもらうのも有効（受診時には消えていることが多いので）。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>見わけがついた。<br>じつは「薬」がまるで違います。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 原因と薬 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>原因と薬 ・ ここが決定的</span>
+    <h1>原因と<span class=&quot;hl&quot;>薬</span>の<br>決定的な違い</h1>
+    <p class=&quot;lead&quot;>飲むのか、塗るのか。<br>取り違えると、効きません。</p>
+  </header>
+
+  <!-- A 蕁麻疹 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>蕁麻疹</div>
+    <h2>ヒスタミンの仕業＝飲んで止める</h2>
+    <p class=&quot;lead-line&quot;>蕁麻疹の主役は<b class=&quot;kr&quot;>ヒスタミン</b>。皮膚にいる<b>マスト細胞</b>という細胞が刺激を受けて<b>ヒスタミンを放出</b>→血管がゆるんで水がしみ出し→<b>膨疹＋強いかゆみ</b>。この一本道です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>原因</span><div class=&quot;tc&quot;><b>じつは大半が原因不明</b>（特発性）。ガイドラインでは患者の約9割ともされる。「何を食べたから」と犯人探しをしても、見つからないことが多い。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>誘発型</span><div class=&quot;tc&quot;>原因がはっきりするタイプも：<b>食物・薬・寒冷・温熱・日光・こすれや圧迫（機械性）・汗（コリン性）・運動</b>など。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>期間</span><div class=&quot;tc&quot;><b>6週間以内＝急性</b>／<b>6週間以上くり返す＝慢性</b>。慢性でも根気よく続ければコントロールできる。</div></div>
+    </div>
+    <h3>薬：第一選択は「飲む抗ヒスタミン薬」</h3>
+    <p><b class=&quot;kr&quot;>第二世代抗ヒスタミン薬の内服</b>（フェキソフェナジン、セチリジンなど）が第一選択。効果が足りなければ増量・変更・追加を検討します。</p>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>よくある誤解</span><p style=&quot;margin:0&quot;><b>「蕁麻疹にステロイド軟膏を塗る」——これは基本、効きません。</b><br><span class=&quot;soft&quot;>日本皮膚科学会のガイドラインでも、<b>外用ステロイドに蕁麻疹を抑える効果はない</b>とされています。理由は②で見たとおり。蕁麻疹は<b>真皮の血管で起きている水漏れ</b>なので、表面に塗る薬では届かないし、そもそも止める相手が違うのです。<br>ではステロイド外用の出番は？ ——<b>掻きこわして「湿疹」ができてしまった時</b>。つまり、塗り薬は蕁麻疹そのものではなく、<b>その傷あと（湿疹）</b>に対して使うわけです🦎</span></p></div>
+    <div class=&quot;big-point rose&quot;>蕁麻疹は<b class=&quot;kr&quot;>飲む抗ヒスタミン薬</b>が主役。<b class=&quot;kr&quot;>ステロイド外用は蕁麻疹自体には効かない</b>（掻き壊してできた湿疹には使う）。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 湿疹 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>湿疹</div>
+    <h2>皮膚の炎症＝塗って抑える</h2>
+    <p class=&quot;lead-line&quot;>湿疹は<b class=&quot;k&quot;>皮膚のバリアが弱ったところに刺激やアレルゲンが入り、炎症が起きた</b>状態。原因は一つではなく、体質・乾燥・摩擦・洗剤・金属・汗など、いくつも重なります。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>接触皮膚炎</span><div class=&quot;tc&quot;>いわゆる<b>かぶれ</b>。触れたもの（金属・化粧品・植物・薬）が原因。原因を離すのが治療の一歩。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>アトピー性</span><div class=&quot;tc&quot;>バリア機能の弱さと体質が背景。<b>慢性にくり返す</b>。保湿と炎症コントロールが両輪。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>乾燥・手湿疹</span><div class=&quot;tc&quot;><b>皮脂欠乏性湿疹</b>（冬のすねなど）、水仕事の<b>手湿疹</b>。バリアの回復＝保湿がとくに重要。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>脂漏性</span><div class=&quot;tc&quot;>皮脂の多い所（頭・鼻まわり）に。マラセチアという常在菌も関与。</div></div>
+    </div>
+    <h3>薬：主役は「塗るステロイド」＋保湿</h3>
+    <p><b class=&quot;k&quot;>ステロイド外用薬</b>で炎症を抑え、<b class=&quot;kg&quot;>保湿</b>でバリアを立て直し、<b class=&quot;kb&quot;>原因を減らす</b>。この3点セットが基本です。飲む抗ヒスタミン薬は、かゆみを和らげる<b>補助</b>の位置づけ（炎症そのものは抑えません）。</p>
+    <div class=&quot;note&quot;>湿疹で掻き続けると、皮膚が厚くゴワゴワになる（<b>苔癬化</b>）・色素沈着が残る、と悪循環に入ります。「かゆい→掻く→悪化」の輪を、薬で早めに断つのが結局いちばんの近道です。ステロイドの強さや副作用は、この分野の<b>別の項目</b>でくわしく扱っています。</div>
+    <div class=&quot;big-point&quot;>湿疹は<b class=&quot;k&quot;>塗るステロイド</b>が主役＋<b class=&quot;kg&quot;>保湿</b>＋原因を減らす。飲む抗ヒスタミン薬は<b>かゆみの補助</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 対比 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>ここが決定的</div>
+    <h2>薬が、まるで逆</h2>
+    <p class=&quot;lead-line&quot;>見わけが大事な理由は、これに尽きます——<b class=&quot;kr&quot;>同じ「かゆい赤いブツブツ」でも、効く薬が違う</b>。取り違えると、いくら使っても効きません。</p>
+    <div class=&quot;cmp&quot;>
+      <div class=&quot;cmpc jin&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🔴</div><div class=&quot;cn&quot;>蕁麻疹</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr hit&quot;><span class=&quot;rl&quot;>主役</span><b>💊 飲む（抗ヒスタミン薬）</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>塗り薬</span>ステロイド外用は<b>効果なし</b>（掻き壊した湿疹には使う）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>狙い</span>ヒスタミンをブロックして<b>水漏れを止める</b></div>
+        </div>
+      </div>
+      <div class=&quot;cmpc shi&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🟠</div><div class=&quot;cn&quot;>湿疹</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr hit&quot;><span class=&quot;rl&quot;>主役</span><b>🧴 塗る（ステロイド外用）</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>飲み薬</span>抗ヒスタミン薬は<b>かゆみの補助</b>どまり</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>狙い</span>炎症を抑え、<b>保湿でバリアを回復</b></div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;big-point gold&quot;>合言葉：<b class=&quot;kr&quot;>蕁麻疹は飲む</b>／<b class=&quot;k&quot;>湿疹は塗る</b>。この一言が、窓口でいちばん効きます🦎</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D 受診 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>見逃さない</div>
+    <h2>すぐ受診したいサイン</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>救急</span><div class=&quot;tc&quot;>蕁麻疹に加えて<b>息苦しい・のどや舌の腫れ・声がかすれる・お腹の痛み・血圧低下やぐったり</b>——<b>アナフィラキシー</b>の可能性。ためらわず救急へ。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>早めに</span><div class=&quot;tc&quot;><b>発熱をともなう発疹</b>、<b>粘膜（口・目・陰部）にも出る</b>、<b>水ぶくれが広がる</b>、薬を飲み始めてから出た（<b>薬疹</b>の疑い）。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>相談を</span><div class=&quot;tc&quot;>市販薬で改善しない、<b>くり返す・長引く</b>、痛みがある、左右どちらかに帯状に出る（<b>帯状疱疹</b>の疑い）。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>呼吸・のど・全身症状をともなう蕁麻疹は<b class=&quot;kr&quot;>アナフィラキシーを疑って救急</b>。発熱・粘膜・薬の開始後、も要注意。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>発疹・湿疹・蕁麻疹 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kp&quot;>発疹は総称（大きなカゴ）</b>で、<b class=&quot;k&quot;>湿疹</b>と<b class=&quot;kr&quot;>蕁麻疹</b>はその中の病気。だから比べるなら湿疹と蕁麻疹。読み方は<b class=&quot;kb&quot;>はっしん／ほっしん どちらも正解</b>。見わけは<b class=&quot;kr&quot;>時間・表面・深さ</b>——蕁麻疹は<b class=&quot;kr&quot;>1つ1つが24時間以内に跡形なく消え、表面はツルツル、正体は真皮の水たまり</b>。湿疹は<b class=&quot;k&quot;>同じ場所に居座り、いろいろな形が混ざってザラザラ、正体は表皮のただれ</b>。そして薬は逆で、<b class=&quot;kr&quot;>蕁麻疹は飲む抗ヒスタミン薬</b>（ステロイド外用は効かない）、<b class=&quot;k&quot;>湿疹は塗るステロイド＋保湿</b>。</p>
+    <div class=&quot;big-point&quot;>説明する時の一言：<b class=&quot;kp&quot;>「発疹は総称。湿疹はただれて居座る、蕁麻疹は水たまりで消える。だから薬も逆」</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>ここは言葉と考え方の整理です。実際の診断は皮膚科医が行います。見た目が似ていても、白癬・乾癬・薬疹・帯状疱疹・皮膚がんなど<b>別の病気</b>のことがあります。市販薬で改善しない、広がる、発熱や粘膜症状をともなうときは受診してください。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    <b>発疹</b>は総称。<b>湿疹</b>は表皮のただれで居座り、<b>蕁麻疹</b>は真皮の水たまりで消える。<br>
+    だから——<b>湿疹は塗る、蕁麻疹は飲む</b>。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 発疹とはにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P1 lesion selector */
+  (function(){
+    const data=[
+      {nm:'紅斑', yomi:'こうはん ／ 原発疹', head:'#C1504A',
+       look:'皮膚が<b>赤くなる</b>だけで、盛り上がりはない（平ら）。押すと一時的に色が引く。',
+       why:'皮膚の<b>血管が広がって</b>血が透けて赤く見える。',
+       ex:'湿疹の始まり、日焼け、薬疹、多くの感染症の発疹。'},
+      {nm:'丘疹', yomi:'きゅうしん ／ 原発疹', head:'#DE6E2F',
+       look:'<b>米粒より小さい、盛り上がったブツブツ</b>。触るとザラッとする。',
+       why:'皮膚に<b>細胞や液がたまって</b>持ち上がる。',
+       ex:'湿疹、あせも、ニキビの初期、虫刺され。'},
+      {nm:'水疱', yomi:'すいほう ／ 原発疹', head:'#367C9C',
+       look:'中に<b>透明な液がたまった水ぶくれ</b>。破れるとジュクジュク（びらん）になる。',
+       why:'表皮の中や下に<b>水がたまる</b>。',
+       ex:'あせも、水ぼうそう、帯状疱疹、やけど、ひどい湿疹。'},
+      {nm:'膿疱', yomi:'のうほう ／ 原発疹', head:'#B6841F',
+       look:'水ぶくれの中身が<b>黄色い膿</b>になったもの。',
+       why:'<b>白血球（と細菌）</b>が集まった結果。必ずしも感染とは限らない。',
+       ex:'ニキビ（黄ニキビ）、とびひ、膿疱性の皮膚病。'},
+      {nm:'膨疹', yomi:'ぼうしん ／ 原発疹', head:'#C25962',
+       look:'<b>境界がくっきり、なめらかに盛り上がる</b>。蚊に刺された跡そっくり。<b>数時間で消える</b>。',
+       why:'<b>真皮のむくみ</b>。血管から水がしみ出してできる一時的な水たまり。',
+       ex:'まさに<b>蕁麻疹</b>。これが出ていれば蕁麻疹をまず考える。'},
+      {nm:'鱗屑・痂皮', yomi:'りんせつ・かひ ／ 続発疹', head:'#7E5A8C',
+       look:'<b>鱗屑＝フケのような皮むけ</b>。<b>痂皮＝かさぶた</b>。',
+       why:'炎症のあと、<b>角層がはがれる／浸出液が乾いて固まる</b>。',
+       ex:'湿疹の後半、乾燥肌、脂漏性皮膚炎、とびひ。'},
+      {nm:'びらん・苔癬化', yomi:'びらん・たいせんか ／ 続発疹', head:'#3E9A63',
+       look:'<b>びらん＝表皮がめくれてジュクジュク</b>（跡は残りにくい）。<b>苔癬化＝掻き続けて厚くゴワゴワ</b>。',
+       why:'水疱が破れる／慢性的な<b>掻き壊し</b>の結果。',
+       ex:'ひどい湿疹、アトピー性皮膚炎の慢性期。'}
+    ];
+    const seg=document.getElementById('lesSeg'),out=document.getElementById('lesOut');
+    function r(i){
+      const d=data[i];
+      out.innerHTML =
+        '<div class=&quot;lh&quot; style=&quot;background:'+d.head+'&quot;><div class=&quot;lnm&quot;>'+d.nm+'</div><div class=&quot;lyomi&quot;>'+d.yomi+'</div></div>'+
+        '<div class=&quot;lb&quot;>'+
+        '<div class=&quot;lesrow&quot;><span class=&quot;lbl&quot;>見た目</span><span class=&quot;val&quot;>'+d.look+'</span></div>'+
+        '<div class=&quot;lesrow&quot;><span class=&quot;lbl&quot;>正体</span><span class=&quot;val&quot;>'+d.why+'</span></div>'+
+        '<div class=&quot;lesrow&quot;><span class=&quot;lbl&quot;>例</span><span class=&quot;val&quot;>'+d.ex+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'「発疹」と「湿疹」の関係は？', o:['発疹は総称で、湿疹はその一種','まったく別物','湿疹の方が広い言葉'], a:0, e:'乗り物と自転車の関係。比べるなら湿疹と蕁麻疹。'},
+      {q:'「発疹」の読み方は？', o:['はっしん・ほっしん どちらも正しい','はっしんだけ','ほっしんだけ'], a:0, e:'意味は同じ。学術用語集ではハッシン、発疹チフスはホッシン。'},
+      {q:'蕁麻疹を見わける最強の決定打は？', o:['1つ1つが24時間以内に跡形なく消える','かゆみが強い','赤い'], a:0, e:'多くは数十分〜数時間。次々出るので全体は長く見える。'},
+      {q:'蕁麻疹の「膨疹」の表面は？', o:['ツルツルでなめらかに盛り上がる','ザラザラで皮がむける','かさぶただらけ'], a:0, e:'表面の皮膚は傷んでいない。だからツルツル。'},
+      {q:'湿疹の見た目の最大の特徴は？', o:['いろいろな形が混ざり、姿を変える（多形性）','いつも同じ形','必ず消える'], a:0, e:'赤み→ブツブツ→水疱→ジュクジュク→かさぶた→皮むけ。'},
+      {q:'蕁麻疹の正体（起きていること）は？', o:['真皮の血管から水がしみ出すむくみ','表皮のただれ','脂の詰まり'], a:0, e:'ヒスタミンで血管がゆるむ。水が引けば跡形なく消える。'},
+      {q:'湿疹の正体（起きていること）は？', o:['主に表皮で起きている炎症','真皮の一時的なむくみ','血管が切れた'], a:0, e:'だから表面がザラザラし、治りに時間がかかる。'},
+      {q:'蕁麻疹の治療の第一選択は？', o:['第二世代抗ヒスタミン薬の内服','ステロイド外用','保湿だけ'], a:0, e:'ヒスタミンをブロックする。飲み薬が主役。'},
+      {q:'蕁麻疹にステロイド外用薬は？', o:['蕁麻疹そのものを抑える効果はない','第一選択である','必ず併用する'], a:0, e:'ガイドラインでも効果なしとされる。掻き壊してできた湿疹には使う。'},
+      {q:'湿疹の治療の主役は？', o:['ステロイド外用＋保湿','抗ヒスタミン内服だけ','抗生物質'], a:0, e:'炎症を抑え、バリアを回復し、原因を減らす3点セット。'},
+      {q:'特発性の蕁麻疹（原因不明）はどのくらい？', o:['大半（約9割とされる）','ほとんどない','半分未満'], a:0, e:'犯人探しをしても見つからないことが多い。'},
+      {q:'蕁麻疹で急いで受診すべきサインは？', o:['息苦しさ・のどの腫れ・ぐったり','かゆみが強い','赤みが目立つ'], a:0, e:'アナフィラキシーの可能性。ためらわず救急へ。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-dnafolate" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="DNA・葉酸系（ニューキノロン等）" srcdoc="<!DOCTYPE html>
 <html lang=&quot;ja&quot;>
 <head>
 <meta charset=&quot;UTF-8&quot;>
@@ -3946,7 +4491,7 @@
   .spbar{ display:flex; align-items:center; gap:8px; margin:4px 0; font-size:.78rem; }
   .spbar .spl{ width:66px; flex:none; font-weight:700; color:var(--ink-soft); }
   .spbar .track{ flex:1; height:12px; border-radius:999px; background:#EFE4D2; overflow:hidden; }
-  .spbar .fill{ height:100%; border-radius:999px; }
+  .spbar .fill{ display:block; height:100%; border-radius:999px; }
 
   .tl{ display:grid; gap:9px; margin:14px 0; }
   .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
