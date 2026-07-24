@@ -2877,12 +2877,12 @@
 <p>電化製品のラベルが、ぜんぶ読めるように。</p></header>
 <div class="ent-note" style="margin-top:0;">下は、この分野の項目（目次）です。<b>「できた」</b>は読めます。<b>「準備中」</b>はこれから作っていく箱です。</div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--sky)">まず土台</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">💧</span><span class="tx"><span class="t">電気って何？ V・A・W の関係</span><span class="s">水の流れのたとえ</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('denkivaw')"><span class="ic">💧</span><span class="tx"><span class="t">電気って何？ V・A・W の関係</span><span class="s">水のたとえ・W＝V×A・抵抗と発熱</span></span><span class="badge done">できた</span></button>
 </div></div>
 <div class="levelblock"><div class="levelhead"><span class="levelpill" style="background:var(--persimmon)">電化製品のラベルを完全に読む</span></div><div class="cards">
-<div class="lcard soon"><span class="ic">🔄</span><span class="tx"><span class="t">「IN（入力）」と「OUT（出力）」の違い</span><span class="s">来る→受け止め調節→先で使う流れ</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">🏷️</span><span class="tx"><span class="t">定格の見方（電圧・電流・消費電力）</span><span class="s">この条件で使ってね、の約束</span></span><span class="badge soon">準備中</span></div>
-<div class="lcard soon"><span class="ic">🔢</span><span class="tx"><span class="t">V・A・W・Hz の各表記</span><span class="s">100V/15A/1500W/50-60Hz を1つずつ</span></span><span class="badge soon">準備中</span></div>
+<button class="lcard" onclick="openThemeFrame('denkiinout')"><span class="ic">🔄</span><span class="tx"><span class="t">「IN（入力）」と「OUT（出力）」の違い</span><span class="s">AC→DC変換・ラベル解読・選び方</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openThemeFrame('denkiteikaku')"><span class="ic">🏷️</span><span class="tx"><span class="t">定格の見方（電圧・電流・消費電力）</span><span class="s">メーカーの約束・弱い輪ルール</span></span><span class="badge done">できた</span></button>
+<button class="lcard" onclick="openThemeFrame('denkiteikaku')"><span class="ic">🔢</span><span class="tx"><span class="t">V・A・W・Hz の各表記</span><span class="s">1つずつ・mAとkW・実物ラベル</span></span><span class="badge done">できた</span></button>
 <div class="lcard soon"><span class="ic">🌏</span><span class="tx"><span class="t">「100-240V」表記と海外</span><span class="s">国・地域で電圧が違う</span></span><span class="badge soon">準備中</span></div>
 <div class="lcard soon"><span class="ic">🔌</span><span class="tx"><span class="t">合計で考える（タコ足・延長コード）</span><span class="s">「1500Wまで」の意味・発熱の危険</span></span><span class="badge soon">準備中</span></div>
 </div></div>
@@ -3021,7 +3021,1510 @@
 </div></div>
 <div class="home-foot">🦎 霧人影／化粧品・塗り薬のあれこれ<br>項目はこれから増減します</div>
 </div></div>
-<div id="theme-spectrum" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="スペクトル（広い・狭い）" srcdoc="<!DOCTYPE html>
+<div id="theme-denkiteikaku" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('denki')">‹ 家庭の電気 に戻る</button></div><iframe class="theme-frame" title="定格の見方と各表記" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>定格の見方と各表記 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.74rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.5rem,5.6vw,2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* 3点セット */
+  .set3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:9px; margin:16px 0; }
+  @media (max-width:460px){ .set3{ grid-template-columns:1fr; } }
+  .set3c{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:12px 10px; text-align:center; }
+  .set3c .si{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.3rem; } .set3c .sn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.86rem; } .set3c .sd{ font-size:.76rem; color:var(--ink-soft); line-height:1.55; }
+
+  /* chain (weakest link) */
+  .chain{ display:flex; align-items:stretch; gap:0; margin:16px 0; overflow-x:auto; padding-bottom:4px; }
+  .chainc{ flex:1; min-width:74px; text-align:center; position:relative; padding:0 4px; }
+  .chainc .cb{ background:var(--card); border:2px solid var(--line); border-radius:12px; padding:9px 5px; box-shadow:var(--shadow); }
+  .chainc.weak .cb{ border-color:var(--rose-deep); background:#FDECEE; }
+  .chainc .ci{ font-size:1.3rem; } .chainc .cn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; } .chainc .cv{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.95rem; color:var(--sky-deep); }
+  .chainc.weak .cv{ color:var(--rose-deep); }
+  .chainc .clink{ position:absolute; top:34px; right:-5px; color:var(--ink-soft); font-size:.8rem; }
+
+  /* notation selector */
+  .nseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .nseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.82rem; padding:9px 13px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .nseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .nout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .nout .nh{ padding:12px 15px; color:#fff; } .nout .nh .nnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.25rem; } .nout .nh .nyomi{ font-size:.78rem; opacity:.93; }
+  .nout .nb{ padding:13px 15px; }
+  .nrow{ display:flex; gap:9px; margin:6px 0; font-size:.88rem; align-items:flex-start; }
+  .nrow .lbl{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.7rem; color:#fff; padding:3px 8px; border-radius:7px; white-space:nowrap; flex:none; min-width:60px; text-align:center; margin-top:2px; background:var(--ink-soft); }
+  .nrow .val{ flex:1; } .nrow .val b{ color:var(--ink); }
+
+  /* label plate */
+  .plate{ background:#4A4550; border-radius:14px; padding:14px 13px; margin:12px 0; box-shadow:var(--shadow); }
+  .plate .ptitle{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.78rem; color:#C9BFD2; margin-bottom:7px; letter-spacing:.06em; }
+  .plate .pbig{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.25rem; color:#fff; line-height:1.7; letter-spacing:.03em; }
+  .plate .psub{ font-size:.78rem; color:#B7ACC0; margin-top:5px; }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:84px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  /* danger case */
+  .case{ background:var(--card); border:2px solid #F0C4C0; border-radius:18px; padding:16px 15px; margin:16px 0; box-shadow:var(--shadow); }
+  .caserow{ display:flex; justify-content:space-between; align-items:center; padding:7px 2px; border-bottom:1px dashed var(--line); font-size:.9rem; }
+  .caserow:last-of-type{ border-bottom:none; }
+  .caserow .cv2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--sky-deep); }
+  .casetotal{ display:flex; justify-content:space-between; align-items:center; padding:10px 2px 2px; margin-top:6px; border-top:2px solid var(--rose); font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; }
+  .casetotal .ct{ color:var(--rose-deep); }
+
+  .formula{ text-align:center; background:linear-gradient(180deg,#FFF3E9,#FFE5CF); border:1px solid var(--line); border-radius:18px; padding:18px 14px; margin:16px 0; box-shadow:var(--shadow); }
+  .formula .f1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.15rem,5.2vw,1.5rem); color:var(--persimmon-deep); line-height:1.6; }
+  .formula .f2{ font-size:.86rem; color:var(--ink-soft); margin-top:5px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 定格とは</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② 各表記</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 実物を読む</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>家庭の電気 ・ ラベルを完全に読む</span>
+    <h1>🏷️ <span class=&quot;hl&quot;>定格</span>の見方</h1>
+    <p class=&quot;lead&quot;>あの銀色のシールは、<br>メーカーからの「約束」です。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>家電やコンセントに書かれた<b>定格表示</b>の読み方です。前の2回（V・A・Wの関係／IN と OUT）を土台に使います。数値は一般的な例。<b>配線・コンセントの工事は必ず電気工事士（有資格者）へ</b>。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>裏の銀色のシール</h2>
+    <p class=&quot;lead-line&quot;>家電をひっくり返すと貼ってある、小さな文字だらけの銀色のシール（<b class=&quot;kb&quot;>銘板</b>）。コンセントの穴の横にも「15A 125V」と刻まれています。この数字たちが<b class=&quot;k&quot;>定格</b>です。</p>
+    <p>ほとんどの人が素通りしますが、ここには<b class=&quot;kr&quot;>安全に使うための条件が全部書いてある</b>。読めるようになると、タコ足の危険もブレーカーの理屈も、いっぺんに腑に落ちます。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 定格とは -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>核心</div>
+    <h2>定格＝メーカーの「約束」</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;k&quot;>定格</b>とは、<b class=&quot;kb&quot;>「この条件の範囲でなら、安全に、ちゃんと働けます」とメーカーが保証した値</b>のこと。性能の保証であり、同時に<b class=&quot;kr&quot;>安全のための上限</b>でもあります。</p>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>たとえ話</span><p style=&quot;margin:0&quot;><b>エレベーターの「定員」と同じ。</b><br><span class=&quot;soft&quot;>「定員9名・積載600kg」——10人乗ったら即墜落するわけではありません。でも<b>それは保証の外</b>で、続ければワイヤーは傷み、いつか事故になる。<br>電気の定格もまったく同じです。<b class=&quot;kr&quot;>少し超えてもすぐ壊れないことが多い。だからこそ気づかないうちに危険が積み上がる</b>。ここが怖いところなんです🦎</span></p></div>
+    <div class=&quot;big-point&quot;>定格＝<b class=&quot;kb&quot;>「ここまでなら安全に働けます」というメーカーの約束</b>。超えても即壊れないことが多いが、<b class=&quot;kr&quot;>保証の外＝危険が積み上がる</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 3点セット -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>3点セット</div>
+    <h2>定格は3つで1組</h2>
+    <p class=&quot;lead-line&quot;>定格として書かれるのは、たいてい<b class=&quot;kb&quot;>電圧・電流・消費電力</b>の3つ。そして——この3つは<b class=&quot;kr&quot;>バラバラの数字ではありません</b>。</p>
+    <div class=&quot;set3&quot;>
+      <div class=&quot;set3c&quot;><div class=&quot;si&quot; style=&quot;color:var(--sky-deep)&quot;>V</div><div class=&quot;sn&quot;>定格電圧</div><div class=&quot;sd&quot;>この電圧で使ってね<br>（日本は100V）</div></div>
+      <div class=&quot;set3c&quot;><div class=&quot;si&quot; style=&quot;color:var(--mint-deep)&quot;>A</div><div class=&quot;sn&quot;>定格電流</div><div class=&quot;sd&quot;>ここまでしか<br>流しちゃダメ</div></div>
+      <div class=&quot;set3c&quot;><div class=&quot;si&quot; style=&quot;color:var(--persimmon-deep)&quot;>W</div><div class=&quot;sn&quot;>定格消費電力</div><div class=&quot;sd&quot;>フルで働くと<br>これだけ使う</div></div>
+    </div>
+    <div class=&quot;formula&quot;>
+      <div class=&quot;f1&quot;>定格W ＝ 定格V × 定格A</div>
+      <div class=&quot;f2&quot;>2つ分かれば、3つ目は計算で出る</div>
+    </div>
+    <p>だから<b class=&quot;kb&quot;>「1500W」と「15A」は同じことを言っています</b>（100V×15A＝1500W）。表示がWだったりAだったりするのは、<b>その製品で分かりやすいほうを書いている</b>だけ。前の回でやった<b class=&quot;k&quot;>W＝V×A</b> が、そのまま効いてきます。</p>
+    <div class=&quot;note&quot;><b>定格消費電力＝いつもその値を使う、ではありません。</b>エアコンは設定温度に届けば消費電力がぐっと下がるし、炊飯器も保温中は数十Wです。定格は<b>「フルで働いたときの値」</b>＝上限の目安と考えてください。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 3 弱いところ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>3</span>大事なルール</div>
+    <h2>いちばん弱い所が、全体の上限</h2>
+    <p class=&quot;lead-line&quot;>ここが実用でいちばん効くルール。<b class=&quot;kr&quot;>プラグ・コード・タップ・コンセントをつないだとき、全体の定格は「いちばん低い値」になります</b>。</p>
+    <div class=&quot;chain&quot;>
+      <div class=&quot;chainc&quot;><div class=&quot;cb&quot;><div class=&quot;ci&quot;>🔌</div><div class=&quot;cn&quot;>コンセント</div><div class=&quot;cv&quot;>15A</div></div><span class=&quot;clink&quot;>–</span></div>
+      <div class=&quot;chainc weak&quot;><div class=&quot;cb&quot;><div class=&quot;ci&quot;>🧵</div><div class=&quot;cn&quot;>細い延長コード</div><div class=&quot;cv&quot;>7A</div></div><span class=&quot;clink&quot;>–</span></div>
+      <div class=&quot;chainc&quot;><div class=&quot;cb&quot;><div class=&quot;ci&quot;>🔲</div><div class=&quot;cn&quot;>タップ</div><div class=&quot;cv&quot;>15A</div></div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>この組み合わせの上限は<b class=&quot;kr&quot;>15Aではなく7A</b>。<b>鎖はいちばん弱い輪で切れる</b>——電気もまったく同じです。</div>
+    <p>「タップに1500Wと書いてあるから大丈夫」と思っても、<b class=&quot;kr&quot;>間に入れた細い延長コードが7Aなら、そこが全体の上限</b>。そして弱い所ほど発熱します（前の回のジュール熱）。<b class=&quot;kb&quot;>組み合わせるときは、いちばん低い数字を探す</b>のがコツです。</p>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>では、表記を1つずつ。<br>V・A・W・Hz、そして mA や kW。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② 各表記 ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>各表記 ・ 1つずつ</span>
+    <h1>表記を<span class=&quot;hl&quot;>1つずつ</span></h1>
+    <p class=&quot;lead&quot;>100V・15A・1500W・50/60Hz<br>——そして mA と kW。</p>
+  </header>
+
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>表記セレクタ</div>
+    <h2>選んで読む</h2>
+    <p class=&quot;lead-line&quot;>よく見る表記を選ぶと、<b class=&quot;kb&quot;>読み方・意味・どこで見るか・注意点</b>が出ます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;nseg&quot; id=&quot;nSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>100V</button>
+        <button data-i=&quot;1&quot;>125V</button>
+        <button data-i=&quot;2&quot;>15A</button>
+        <button data-i=&quot;3&quot;>1500W</button>
+        <button data-i=&quot;4&quot;>50/60Hz</button>
+        <button data-i=&quot;5&quot;>mA</button>
+        <button data-i=&quot;6&quot;>kW</button>
+      </div>
+      <div class=&quot;nout&quot; id=&quot;nOut&quot;></div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 換算 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>換算</div>
+    <h2>単位の大きさを合わせる</h2>
+    <p class=&quot;lead-line&quot;>数字を比べるとき、単位がそろっていないと間違えます。よく出る2つだけ覚えれば十分です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>m（ミリ）</span><div class=&quot;tc&quot;><b>1000分の1</b>。<b>2000mA ＝ 2A</b>／<b>500mA ＝ 0.5A</b>。小さい機器の表示でよく使う。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>k（キロ）</span><div class=&quot;tc&quot;><b>1000倍</b>。<b>1.5kW ＝ 1500W</b>／<b>0.6kW ＝ 600W</b>。エアコンや電気代の話で出てくる。</div></div>
+    </div>
+    <div class=&quot;note&quot;>迷ったら<b>「mは小さく、kは大きく」</b>。そして<b>小数点を3つ動かす</b>と覚えると早いです（mA→Aは左に3つ、kW→Wは右に3つ）。</div>
+    <div class=&quot;big-point blue&quot;><b class=&quot;kb&quot;>1000mA＝1A</b>／<b class=&quot;k&quot;>1kW＝1000W</b>。単位をそろえてから比べる。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 消費電力の種類 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>紛らわしい</div>
+    <h2>「消費電力」にも種類がある</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>定格消費電力</span><div class=&quot;tc&quot;><b>フルで働いたときの値</b>。カタログや銘板の代表値。実際は状況で上下する。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>最大消費電力</span><div class=&quot;tc&quot;><b>いちばん食うときの値</b>。エアコンの立ち上がりなど。タコ足の可否はこちらで考えると安全。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>待機電力</span><div class=&quot;tc&quot;>使っていないのに<b>コンセントに刺さっているだけで消費する電力</b>。1台では小さいが台数と時間で効く。</div></div>
+    </div>
+    <div class=&quot;note&quot;>エアコンの表示が「消費電力 <b>600W（100〜1300W）</b>」のようにカッコ付きなのは、<b>ふだんは600Wくらいだけれど、最小100W・最大1300Wまで変動する</b>という意味。カッコの中の<b>大きいほうの数字</b>が、タコ足を考えるときの本当の相手です。</div>
+    <div class=&quot;big-point&quot;>ラベルのWは<b class=&quot;k&quot;>「フルで働いたとき」の目安</b>。<b class=&quot;kr&quot;>安全を考えるときは最大の数字で</b>見る。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>読み方がそろった。<br>——実物のラベルを読んでみよう。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 実物を読む ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>実物を読む ・ そして落とし穴</span>
+    <h1>実物の<span class=&quot;hl&quot;>ラベル</span>を<br>読んでみる</h1>
+    <p class=&quot;lead&quot;>最後に、いちばん危ない<br>落とし穴の話をします。</p>
+  </header>
+
+  <!-- A 実物 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>読んでみる</div>
+    <h2>3種類のラベル</h2>
+
+    <h3>① コンセント（壁）</h3>
+    <div class=&quot;plate&quot;>
+      <div class=&quot;ptitle&quot;>壁のコンセントの刻印</div>
+      <div class=&quot;pbig&quot;>15A　125V</div>
+      <div class=&quot;psub&quot;>定格電流15A ／ 定格電圧125V</div>
+    </div>
+    <p><b class=&quot;kb&quot;>「この穴には15Aまで流していい」</b>という意味。125Vは規格上の値で、<b>実際に来ているのは100V</b>なので気にしなくて大丈夫。<b class=&quot;kr&quot;>気にすべきは15Aのほう</b>です。</p>
+
+    <h3>② テーブルタップ</h3>
+    <div class=&quot;plate&quot;>
+      <div class=&quot;ptitle&quot;>タップ本体やコードの表示</div>
+      <div class=&quot;pbig&quot;>125V　15A　1500W</div>
+      <div class=&quot;psub&quot;>3つとも同じことを別の言い方で書いている</div>
+    </div>
+    <p>100V×15A＝1500W。<b class=&quot;kb&quot;>「1500Wまで」と「15Aまで」は同じ意味</b>。つないだ家電の<b>合計</b>がこれを超えないように使います。</p>
+
+    <h3>③ 家電の銘板</h3>
+    <div class=&quot;plate&quot;>
+      <div class=&quot;ptitle&quot;>家電の裏の銀色シール</div>
+      <div class=&quot;pbig&quot;>AC100V　50/60Hz<br>消費電力 1200W</div>
+      <div class=&quot;psub&quot;>交流100V ／ 東西どちらでも可 ／ フルで1200W</div>
+    </div>
+    <p>1200W ÷ 100V ＝ <b class=&quot;kg&quot;>12A</b>。この1台だけで、コンセント1つの上限15Aの<b class=&quot;kr&quot;>8割</b>を使います。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 落とし穴 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>最重要</div>
+    <h2>ブレーカーが落ちないのに、危ない</h2>
+    <p class=&quot;lead-line&quot;>ここが、この回でいちばん伝えたいことです。<b class=&quot;kr&quot;>「ブレーカーが落ちないから安全」——これは間違い</b>。落ちないのに危険、という状況が実際にあります。</p>
+    <div class=&quot;case&quot;>
+      <div class=&quot;caserow&quot;><span>🍞 トースター 600W</span><span class=&quot;cv2&quot;>6A</span></div>
+      <div class=&quot;caserow&quot;><span>📡 電子レンジ 1000W</span><span class=&quot;cv2&quot;>10A</span></div>
+      <div class=&quot;casetotal&quot;><span>合計</span><span class=&quot;ct&quot;>16A</span></div>
+    </div>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>コンセント</span><div class=&quot;tc&quot;>定格<b>15A</b> → <b class=&quot;kr&quot;>16Aは超過！</b> 危険な状態。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>ブレーカー</span><div class=&quot;tc&quot;>安全ブレーカーは通常<b>20A</b> → <b>16Aでは落ちない</b>。</div></div>
+    </div>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>なぜ危ないのか</span><p style=&quot;margin:0&quot;><b>見張り役の目盛りが、コンセントより大きいから。</b><br><span class=&quot;soft&quot;>ブレーカーは<b>その回路全体</b>を見ています（20Aまで）。一方、<b class=&quot;kr&quot;>コンセント1つが耐えられるのは15Aまで</b>。だから<b>16Aという「コンセントには過剰、ブレーカーには足りない」量</b>が流れると、誰も止めてくれません。<br>そのまま使い続けると<b class=&quot;kr&quot;>コンセント部分が過負荷で発熱し、最悪は火災</b>に。<b>「ブレーカーが落ちない＝安全」ではない</b>——これは覚えて帰ってほしい一点です🦎</span></p></div>
+    <div class=&quot;big-point rose&quot;>大きな家電（<b>レンジ・トースター・ケトル・ドライヤー・IH</b>）は、<b class=&quot;kr&quot;>同じコンセントで同時に使わない</b>。別のコンセント（できれば別の回路）に分ける。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C チェック -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>点検</div>
+    <h2>ラベルを見るクセをつける</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>買う前</span><div class=&quot;tc&quot;>タップや延長コードは<b>「15A・1500W」の表示があるもの</b>を選ぶ。細く安いものは定格が低いことがある。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>つなぐ前</span><div class=&quot;tc&quot;>使う家電の<b>W数を足して1500Wを超えないか</b>。超えるならコンセントを分ける。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>ときどき</span><div class=&quot;tc&quot;>プラグやコードが<b>熱い・変色・ホコリだらけ</b>でないか。ホコリと湿気は<b>トラッキング火災</b>のもと。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>習慣は3つ——<b class=&quot;kg&quot;>定格表示のあるものを選ぶ／合計W数を足す／ときどき触って確かめる</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>定格・表記 ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;k&quot;>定格＝「ここまでなら安全に働けます」というメーカーの約束</b>。書かれるのは<b class=&quot;kb&quot;>V・A・W</b>の3点セットで、<b class=&quot;k&quot;>定格W＝定格V×定格A</b>だから「1500W」と「15A」は同じこと。組み合わせたときは<b class=&quot;kr&quot;>いちばん低い定格が全体の上限</b>（鎖は弱い輪で切れる）。<b class=&quot;kb&quot;>125Vは規格値で、実際は100V</b>——気にすべきは<b class=&quot;kr&quot;>15Aのほう</b>。単位は<b class=&quot;kb&quot;>1000mA＝1A・1kW＝1000W</b>。そしてラベルのWは<b>フルで働いたときの目安</b>なので、安全を考えるときは<b class=&quot;kr&quot;>最大の数字</b>で。最重要は——<b class=&quot;kr&quot;>ブレーカーが落ちなくても、コンセントは過負荷になりうる</b>。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kb&quot;>定格は約束</b>／<b class=&quot;kr&quot;>弱い輪が全体の上限</b>／<b class=&quot;kr&quot;>ブレーカーが落ちない＝安全ではない</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>数値は一般的な例です。実際の定格は<b>お使いの製品の表示</b>を確認してください。<b>コンセントの増設・回路の変更などの工事は必ず電気工事士（有資格者）へ</b>。プラグやコードの異常な発熱・変色・においがあれば、使用をやめて点検を。合計の考え方は、次の「タコ足・延長コード」「アンペアとブレーカー」でさらにくわしく扱います。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    定格は<b>メーカーの約束</b>。<b>いちばん弱い輪</b>が全体の上限。<br>
+    そして——<b>ブレーカーが落ちないから安全、ではありません</b>。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 定格とはにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 notation selector */
+  (function(){
+    const data=[
+      {head:'#367C9C', nm:'100V', yomi:'ひゃくボルト ／ 定格電圧',
+       mean:'この機器が<b>使うことを前提にしている電圧</b>。日本の家庭のコンセントは100Vなので、国内向け家電はほぼこの表示。',
+       where:'家電の銘板、ACアダプターの入力側。',
+       memo:'エアコンやIHには<b>200V</b>のものもあり、専用の工事が必要です。<b>200V用の機器を100Vにつないでも動きません</b>（逆は故障）。'},
+      {head:'#7E5A8C', nm:'125V', yomi:'ひゃくにじゅうごボルト ／ 配線器具の定格電圧',
+       mean:'コンセントやタップなど<b>配線器具の規格値</b>。「125Vまで耐えられる」という意味で、余裕を持たせた設計になっています。',
+       where:'壁のコンセントの刻印、テーブルタップ。',
+       memo:'<b>実際に来ているのは100V</b>なので、家庭では気にしなくて大丈夫。<b class=&quot;kr&quot;>見るべきは同じ場所に書いてある15Aのほう</b>です。'},
+      {head:'#3E9A63', nm:'15A', yomi:'じゅうごアンペア ／ 定格電流',
+       mean:'<b>ここまでしか流してはいけない</b>という電流の上限。コンセント1口（正確には1か所）の一般的な上限です。',
+       where:'壁のコンセント、テーブルタップ、ブレーカー。',
+       memo:'家電のW数を100で割ればAが出ます（<b>A＝W÷100</b>）。<b class=&quot;kr&quot;>つないだ家電の合計</b>がこれを超えないように。'},
+      {head:'#DE6E2F', nm:'1500W', yomi:'せんごひゃくワット ／ 定格消費電力',
+       mean:'<b>使える電力の上限</b>。100V×15A＝1500Wなので、<b>「15Aまで」と同じこと</b>を言っています。',
+       where:'テーブルタップ、延長コード。',
+       memo:'家電側のWは<b>その機器が使う量</b>、タップ側のWは<b>受け入れられる上限</b>。同じ「W」でも<b class=&quot;kb&quot;>意味が逆</b>なので注意。'},
+      {head:'#4FA3C7', nm:'50/60Hz', yomi:'ヘルツ ／ 定格周波数',
+       mean:'交流のプラスとマイナスが<b>1秒間に入れかわる回数</b>。日本は<b>東日本が50Hz、西日本が60Hz</b>に分かれています。',
+       where:'家電の銘板、ACアダプターの入力側。',
+       memo:'<b>「50/60Hz」ならどちらでも使える</b>。片方だけの表示（例：50Hz）の家電を反対側の地域で使うと、<b class=&quot;kr&quot;>性能が落ちる・過熱する・使えない</b>ことがあります。電子レンジ・洗濯機・時計など、モーターやタイマーを使う古い機器は特に注意。'},
+      {head:'#B6841F', nm:'mA', yomi:'ミリアンペア',
+       mean:'<b>1000分の1アンペア</b>。小さな機器の電流を表すときに使います。',
+       where:'ACアダプターの出力、小型機器。',
+       memo:'<b>2000mA＝2A</b>、<b>500mA＝0.5A</b>。単位をそろえないと桁を間違えます。'},
+      {head:'#C25962', nm:'kW', yomi:'キロワット',
+       mean:'<b>1000ワット</b>。大きな電力や電気代の計算で使います。',
+       where:'エアコンの能力表示、電気代の明細（kWh）。',
+       memo:'<b>1.5kW＝1500W</b>。電気代の<b>kWh（キロワットアワー）</b>は「1kWを1時間使った量」で、これは電気代の項目でくわしく。'}
+    ];
+    const seg=document.getElementById('nSeg'),out=document.getElementById('nOut');
+    function r(i){
+      const d=data[i];
+      out.innerHTML =
+        '<div class=&quot;nh&quot; style=&quot;background:'+d.head+'&quot;><div class=&quot;nnm&quot;>'+d.nm+'</div><div class=&quot;nyomi&quot;>'+d.yomi+'</div></div>'+
+        '<div class=&quot;nb&quot;>'+
+        '<div class=&quot;nrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--sky-deep)&quot;>意味</span><span class=&quot;val&quot;>'+d.mean+'</span></div>'+
+        '<div class=&quot;nrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--mint-deep)&quot;>どこで</span><span class=&quot;val&quot;>'+d.where+'</span></div>'+
+        '<div class=&quot;nrow&quot;><span class=&quot;lbl&quot; style=&quot;background:var(--persimmon-deep)&quot;>注意</span><span class=&quot;val&quot;>'+d.memo+'</span></div>'+
+        '</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'「定格」とは？', o:['この条件なら安全に働けるとメーカーが保証した値','必ずその値を消費するという意味','最低限必要な値'], a:0, e:'性能の保証であり、安全の上限でもある。'},
+      {q:'定格を少し超えて使うと？', o:['すぐ壊れないことも多いが、保証の外で危険が積み上がる','必ずその場で壊れる','まったく問題ない'], a:0, e:'エレベーターの定員と同じ。気づかないうちに危険が積み上がる。'},
+      {q:'定格V・A・Wの関係は？', o:['定格W＝定格V×定格A','3つは無関係','WとAは同じ数字'], a:0, e:'だから「1500W」と「15A」は同じことを言っている。'},
+      {q:'プラグ15A・延長コード7A・タップ15Aをつないだ。全体の上限は？', o:['7A（いちばん低い値）','15A','37A'], a:0, e:'鎖はいちばん弱い輪で切れる。'},
+      {q:'コンセントの「125V」の意味は？', o:['配線器具の規格値。実際に来ているのは100V','家に125Vが来ている','125Wのこと'], a:0, e:'家庭で気にすべきは、同じ場所にある15Aのほう。'},
+      {q:'2000mAは何アンペア？', o:['2A','0.2A','20A'], a:0, e:'mは1000分の1。小数点を左に3つ。'},
+      {q:'1.5kWは何ワット？', o:['1500W','150W','15000W'], a:0, e:'kは1000倍。小数点を右に3つ。'},
+      {q:'家電の「定格消費電力」は？', o:['フルで働いたときの目安（常にその値ではない）','常にその値を消費する','待機中の消費電力'], a:0, e:'エアコンは設定温度に届くと大きく下がる。'},
+      {q:'タコ足の可否を考えるとき見るべき数字は？', o:['最大消費電力（大きいほうの数字）','待機電力','平均値だけ'], a:0, e:'エアコンの「600W（100〜1300W）」なら1300Wで考える。'},
+      {q:'トースター600Wと電子レンジ1000Wを同じコンセントで使うと？', o:['合計16Aでコンセントの15Aを超え危険','ちょうど安全','ブレーカーが必ず落ちる'], a:0, e:'安全ブレーカーは20Aなので落ちない。だから気づきにくい。'},
+      {q:'「ブレーカーが落ちないから安全」は？', o:['間違い。コンセント側が過負荷でも落ちないことがある','正しい','ブレーカー次第で常に安全'], a:0, e:'コンセントは15A、ブレーカーは20A。16Aは誰も止めてくれない。'},
+      {q:'テーブルタップを選ぶときは？', o:['「15A・1500W」の定格表示があるものを選ぶ','安ければ何でもよい','長さだけで選ぶ'], a:0, e:'細く安いものは定格が低いことがある。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-denkiinout" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('denki')">‹ 家庭の電気 に戻る</button></div><iframe class="theme-frame" title="IN（入力）と OUT（出力）の違い" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>IN（入力）と OUT（出力）の違い ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.72rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.45rem,5.4vw,1.95rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* flow 3 steps */
+  .flow3{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:6px; align-items:center; margin:16px 0; }
+  @media (max-width:520px){ .flow3{ grid-template-columns:1fr; } .flow3 .far{ transform:rotate(90deg); } }
+  .f3c{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:12px 10px; text-align:center; }
+  .f3c .fi{ font-size:1.8rem; } .f3c .fn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.92rem; } .f3c .fd{ font-size:.76rem; color:var(--ink-soft); line-height:1.55; }
+  .far{ color:var(--ink-soft); font-size:1.1rem; text-align:center; }
+
+  /* AC/DC compare */
+  .cmp{ display:grid; grid-template-columns:1fr 1fr; gap:11px; margin:16px 0; }
+  @media (max-width:430px){ .cmp{ grid-template-columns:1fr; } }
+  .cmpc{ border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; background:var(--card); }
+  .cmpc .ch{ padding:11px 12px; color:#fff; text-align:center; } .cmpc .ch .ci{ font-size:1.5rem; } .cmpc .ch .cn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.02rem; }
+  .cmpc.ac .ch{ background:linear-gradient(135deg,#4FA3C7,#367C9C); } .cmpc.dc .ch{ background:linear-gradient(135deg,#6FB98A,#3E9A63); }
+  .cmpc .cb{ padding:0; }
+  .cmpc .cr{ padding:9px 13px; font-size:.84rem; border-top:1px solid var(--line); } .cmpc .cr:first-child{ border-top:none; }
+  .cmpc .cr .rl{ font-size:.68rem; font-weight:700; color:var(--ink-soft); display:block; } .cmpc .cr b{ color:var(--ink); }
+
+  /* label plate */
+  .plate{ background:#3A3540; border-radius:14px; padding:14px 13px; margin:14px 0; box-shadow:var(--shadow); }
+  .plate .prow{ display:block; padding:7px 10px; border-radius:8px; color:#E8E0D4; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.92rem; letter-spacing:.02em; transition:.2s; cursor:pointer; border:2px solid transparent; text-align:left; width:100%; background:none; }
+  .plate .prow .pk{ color:#9FD3E8; }
+  .plate .prow.on{ background:#544C5C; border-color:#E0A93B; color:#fff; }
+  .plate .phint{ text-align:center; font-size:.72rem; color:#9A8FA4; margin-top:6px; }
+  .labout{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 15px; margin-top:10px; box-shadow:var(--shadow); }
+  .labout .lnm{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.04rem; color:var(--persimmon-deep); margin-bottom:3px; }
+  .labout .lbd{ font-size:.89rem; } .labout .lbd b{ color:var(--ink); }
+
+  /* verdict selector */
+  .vseg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .vseg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.76rem; padding:8px 10px; border-radius:9px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .vseg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+  .vout{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:0; margin-top:10px; box-shadow:var(--shadow); overflow:hidden; }
+  .vout .vh{ padding:11px 15px; color:#fff; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; }
+  .vout .vb{ padding:13px 15px; font-size:.89rem; } .vout .vb b{ color:var(--ink); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:84px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .formula{ text-align:center; background:linear-gradient(180deg,#FFF3E9,#FFE5CF); border:1px solid var(--line); border-radius:18px; padding:18px 14px; margin:16px 0; box-shadow:var(--shadow); }
+  .formula .f1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.1rem,5vw,1.45rem); color:var(--persimmon-deep); line-height:1.6; }
+  .formula .f2{ font-size:.86rem; color:var(--ink-soft); margin-top:5px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 来る・変える・使う</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② ラベルを読む</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 選び方</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>家庭の電気 ・ まず土台</span>
+    <h1>🔄 <span class=&quot;hl&quot;>IN と OUT</span><br>の違い</h1>
+    <p class=&quot;lead&quot;>あの黒い箱の中で、<br>何が起きているのか。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>ACアダプター（充電器）の<b>「INPUT」と「OUTPUT」</b>を読み解く回です。前の項目「V・A・W の関係」を土台に使います。数値は一般的な例で、実際は必ず<b>お使いの機器と付属品の表示</b>を確認してください。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>2行の数字、なぜ違う？</h2>
+    <p class=&quot;lead-line&quot;>スマホの充電器やノートPCのアダプター。あの黒い箱をひっくり返すと、小さな字で<b class=&quot;kb&quot;>2行</b>書いてあります。</p>
+    <div class=&quot;plate&quot; style=&quot;cursor:default;&quot;>
+      <span class=&quot;prow&quot; style=&quot;cursor:default;&quot;><span class=&quot;pk&quot;>INPUT</span>　AC 100-240V　50/60Hz　0.35A</span>
+      <span class=&quot;prow&quot; style=&quot;cursor:default;&quot;><span class=&quot;pk&quot;>OUTPUT</span>　DC 5V　2A</span>
+    </div>
+    <p>同じ箱の話なのに、<b class=&quot;kr&quot;>電圧も電流もまるで違う数字</b>。しかも入口は0.35A、出口は2Aと、<b class=&quot;kr&quot;>出るほうが多い</b>。増えてる？ ——この不思議、全部この回で解けます。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 3ステップ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>全体の流れ</div>
+    <h2>「来る → 変える → 使う」</h2>
+    <p class=&quot;lead-line&quot;>電気は、家に来たままの姿では機器に使えません。だから間に<b class=&quot;kb&quot;>通訳</b>が入ります。それがアダプターです。</p>
+    <div class=&quot;flow3&quot;>
+      <div class=&quot;f3c&quot;><div class=&quot;fi&quot;>🔌</div><div class=&quot;fn&quot;>IN（入力）</div><div class=&quot;fd&quot;>コンセントから<b>来る電気</b><br>AC 100V</div></div>
+      <div class=&quot;far&quot;>▶</div>
+      <div class=&quot;f3c&quot;><div class=&quot;fi&quot;>📦</div><div class=&quot;fn&quot;>アダプター</div><div class=&quot;fd&quot;><b>受け止めて調節</b><br>ACをDCに・電圧を下げる</div></div>
+      <div class=&quot;far&quot;>▶</div>
+      <div class=&quot;f3c&quot;><div class=&quot;fi&quot;>📱</div><div class=&quot;fn&quot;>OUT（出力）</div><div class=&quot;fd&quot;>機器が<b>実際に使う電気</b><br>DC 5V</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>IN＝<b class=&quot;kb&quot;>コンセントから来る電気の条件</b>／OUT＝<b class=&quot;kg&quot;>機器に渡す電気の条件</b>。アダプターは<b>その間で姿を変える通訳</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 AC/DC -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>核心</div>
+    <h2>AC（交流）と DC（直流）</h2>
+    <p class=&quot;lead-line&quot;>通訳がまずやる大仕事が、<b class=&quot;kb&quot;>AC を DC に変える</b>こと。この2つは、同じ電気でも性格がまったく違います。</p>
+    <div class=&quot;cmp&quot;>
+      <div class=&quot;cmpc ac&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>🌊</div><div class=&quot;cn&quot;>AC（交流）</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>流れ方</span><b>プラスとマイナスが行ったり来たり</b>（1秒に50回か60回）</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>どこに</span><b>家庭のコンセント</b>。発電所から届く電気</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>利点</span><b>電圧を上げ下げしやすく、遠くまで送るのに向く</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>記号</span>波線（～）で表す</div>
+        </div>
+      </div>
+      <div class=&quot;cmpc dc&quot;>
+        <div class=&quot;ch&quot;><div class=&quot;ci&quot;>➡️</div><div class=&quot;cn&quot;>DC（直流）</div></div>
+        <div class=&quot;cb&quot;>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>流れ方</span><b>いつも一方向に、一定に流れる</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>どこに</span><b>電池・スマホ・PCの中身</b>。電子部品はこれ</div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>利点</span><b>安定していて、細かい制御ができる</b></div>
+          <div class=&quot;cr&quot;><span class=&quot;rl&quot;>記号</span>実線と破線を重ねた記号で表す</div>
+        </div>
+      </div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>噛み砕き</span><p style=&quot;margin:0&quot;><b>なぜ機器はDCでないと困るのか。</b><br><span class=&quot;soft&quot;>スマホやPCの中身は、<b>ごく小さな部品が「0か1か」を高速で切り替えて</b>動いています。そこへ<b class=&quot;kb&quot;>1秒に50回もプラスとマイナスが入れかわるAC</b>を流したら、電圧がグラグラ揺れて仕事になりません。<br>一方、発電所から家まで長い距離を送るには<b>電圧を自在に上げ下げできるAC</b>が圧倒的に有利。<br>——つまり、<b class=&quot;kr&quot;>送るのに便利なAC</b>と、<b class=&quot;kg&quot;>使うのに便利なDC</b>。その食い違いを埋めるために、あの黒い箱が必要なんです🦎</span></p></div>
+    <div class=&quot;big-point mint&quot;>コンセントは<b class=&quot;kb&quot;>AC（送るのに便利）</b>、機器の中身は<b class=&quot;kg&quot;>DC（使うのに便利）</b>。アダプターは<b class=&quot;k&quot;>AC→DCの変換＋電圧下げ</b>をしている。</div>
+    <div class=&quot;note&quot;>ドライヤーや電気ケトルのように<b>ACのまま使える家電</b>もあります（熱を出すだけ・モーターを回すだけなら向きは関係ない）。だからそういう家電に黒い箱は付いていません。<b>「アダプターが付いている＝中に電子回路がある」</b>と読めます。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>流れが分かったら、<br>いよいよラベルを1行ずつ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② ラベルを読む ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>ラベル解読 ・ 1行ずつ</span>
+    <h1>ラベルを<br><span class=&quot;hl&quot;>1行ずつ</span>読む</h1>
+    <p class=&quot;lead&quot;>タップすると、その行の<br>意味が出ます。</p>
+  </header>
+
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>解読セレクタ</div>
+    <h2>触って読む</h2>
+    <div class=&quot;plate&quot; id=&quot;plate&quot;>
+      <button class=&quot;prow on&quot; data-i=&quot;0&quot;><span class=&quot;pk&quot;>INPUT</span>　AC 100-240V　50/60Hz　0.35A</button>
+      <button class=&quot;prow&quot; data-i=&quot;1&quot;>　　　　　<b>AC 100-240V</b></button>
+      <button class=&quot;prow&quot; data-i=&quot;2&quot;>　　　　　<b>50/60Hz</b></button>
+      <button class=&quot;prow&quot; data-i=&quot;3&quot;>　　　　　<b>0.35A</b></button>
+      <button class=&quot;prow&quot; data-i=&quot;4&quot;><span class=&quot;pk&quot;>OUTPUT</span>　DC 5V　2A</button>
+      <button class=&quot;prow&quot; data-i=&quot;5&quot;>　　　　　<b>DC 5V</b></button>
+      <button class=&quot;prow&quot; data-i=&quot;6&quot;>　　　　　<b>2A</b></button>
+      <div class=&quot;phint&quot;>▲ 行をタップしてください</div>
+    </div>
+    <div class=&quot;labout&quot;><div class=&quot;lnm&quot; id=&quot;labName&quot;></div><div class=&quot;lbd&quot; id=&quot;labBody&quot;></div></div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 謎解き -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>謎解き</div>
+    <h2>入口0.35A、出口2A。増えてる？</h2>
+    <p class=&quot;lead-line&quot;>①で気になったこの謎。答えは<b class=&quot;kb&quot;>増えていません</b>。前の項目でやった<b class=&quot;k&quot;>W＝V×A</b> を当てはめると、きれいに解けます。</p>
+    <div class=&quot;formula&quot;>
+      <div class=&quot;f1&quot;>IN　100V × 0.35A ＝ 約35W<br>OUT　5V × 2A ＝ 10W</div>
+      <div class=&quot;f2&quot;>仕事の大きさ（W）で見ると、増えるどころか減っている</div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>なるほど</span><p style=&quot;margin:0&quot;><b>電圧を20分の1にしたから、電流は多く出せる。</b><br><span class=&quot;soft&quot;>100Vを5Vに下げれば、同じ仕事量なら電流は20倍まで出せる計算になります（水圧を下げて、そのぶん太く流すイメージ）。<b>アンペアだけを見比べると増えたように見える</b>けれど、<b class=&quot;kb&quot;>W（仕事）で見れば、ちゃんとつじつまが合っている</b>んです。<br>そして<b class=&quot;kr&quot;>IN（約35W）＞ OUT（10W）</b>。この差は<b>変換のときに熱として逃げる分</b>と、余裕を見た表示です。充電器がほんのり温かくなるのは、この差の正体🦎</span></p></div>
+    <div class=&quot;big-point&quot;>アンペアの大小は<b class=&quot;kr&quot;>電圧とセットで見る</b>。<b class=&quot;k&quot;>W＝V×A</b> で見れば、入口＞出口。増えているように見えるのは<b class=&quot;kb&quot;>電圧を下げたから</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C どっちを見る -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>実用のコツ</div>
+    <h2>結局どっちを見ればいい？</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>ふだんは<br>OUT</span><div class=&quot;tc&quot;><b>機器に直接関係するのは出力側</b>。電圧・電流・プラグの形・極性——選ぶときに見るのはここ。急速充電できるかも出力で判断。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>海外なら<br>IN</span><div class=&quot;tc&quot;><b>入力の電圧範囲</b>が、その国のコンセントで使えるかを決める。「100-240V」なら世界のほとんどでOK（この話は別の項目でくわしく）。</div></div>
+    </div>
+    <div class=&quot;big-point mint&quot;>選ぶときは<b class=&quot;kg&quot;>OUT（出力）</b>を見る。海外に持って行くときだけ<b class=&quot;kb&quot;>IN（入力）</b>を見る。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>読めるようになったら、<br>「使い回していいの？」の話へ。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 選び方 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>選び方 ・ 使い回しの可否</span>
+    <h1>この<span class=&quot;hl&quot;>アダプター</span>、<br>使っていい？</h1>
+    <p class=&quot;lead&quot;>合わせる所と、<br>合わなくていい所がある。</p>
+  </header>
+
+  <!-- A 2大ルール -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>2大ルール</div>
+    <h2>Vはぴったり、Aは以上でOK</h2>
+    <p class=&quot;lead-line&quot;>使い回しの可否は、たった2つのルールでほぼ決まります。しかも<b class=&quot;kr&quot;>電圧と電流でルールが違う</b>——ここが最重要ポイント。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>電圧V</span><div class=&quot;tc&quot;><b>ぴったり同じ</b>にする。<b>高いと機器が壊れ、低いと動かない</b>。9Vなら9V、12Vなら12V。ここは妥協できない。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--mint-deep)&quot;>電流A</span><div class=&quot;tc&quot;><b>同じか、大きければOK</b>。足りないとアダプター側が過熱して危険。少し余裕がある方が安全。</div></div>
+    </div>
+    <div class=&quot;pit&quot;><span class=&quot;tag&quot;>なぜAは大きくていいのか</span><p style=&quot;margin:0&quot;><b>アダプターのAは「押し込む量」ではなく「出せる上限」だから。</b><br><span class=&quot;soft&quot;>水道でいえば、<b class=&quot;kg&quot;>アダプターのA＝蛇口の太さ（最大どれだけ流せるか）</b>。実際に流れる量を決めるのは<b>機器側</b>で、機器は<b>必要な分だけ引いて使います</b>。<br>だから2A必要な機器に3Aのアダプターをつないでも、勝手に3A流れ込むわけではなく、機器は2Aだけ使う。逆に<b class=&quot;kr&quot;>1Aのアダプターにつなぐと、能力を超えて絞り出すことになり、アダプターが熱を持って壊れる・燃える</b>。<br>——<b class=&quot;kb&quot;>電圧は「押し付けられる」、電流は「引き出される」</b>。この非対称が、ルールが違う理由です🦎</span></p></div>
+    <div class=&quot;big-point rose&quot;>合言葉：<b class=&quot;kr&quot;>Vはぴったり、Aは以上</b>。電圧は押し付けられるが、電流は機器が必要な分だけ引く。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 判定セレクタ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>判定してみる</div>
+    <h2>このケース、使える？</h2>
+    <p class=&quot;lead-line&quot;>機器が求めるのは<b class=&quot;kb&quot;>DC 12V 2A・センタープラス</b>。手元のアダプターを当てはめて、判定を見てみましょう。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;vseg&quot; id=&quot;vSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>12V 3A</button>
+        <button data-i=&quot;1&quot;>12V 1A</button>
+        <button data-i=&quot;2&quot;>19V 2A</button>
+        <button data-i=&quot;3&quot;>5V 2A</button>
+        <button data-i=&quot;4&quot;>極性が逆</button>
+        <button data-i=&quot;5&quot;>プラグが太い</button>
+      </div>
+      <div class=&quot;vout&quot; id=&quot;vOut&quot;></div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C その他 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>あと3つ</div>
+    <h2>電圧・電流以外の落とし穴</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--plum-deep)&quot;>極性</span><div class=&quot;tc&quot;><b>センタープラス／センターマイナス</b>。プラグの真ん中がプラスかマイナスか。<b>逆だと故障のもと</b>。差込口の近くのマークで確認。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>プラグ形状</span><div class=&quot;tc&quot;>太さ・内径が<b>統一されていない</b>。数字が合っても物理的に刺さらない・ゆるいことがある。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>W数だけで<br>選ばない</span><div class=&quot;tc&quot;>同じ30Wでも<b>15V 2A と 5V 6A は別物</b>。必ず<b>VとAの組み合わせ</b>で見る。</div></div>
+    </div>
+    <div class=&quot;note&quot;><b>USB Type-C（PD）</b>は少し事情が違います。機器と充電器が<b>話し合って電圧を決める</b>しくみで、5V・9V・15V・20Vなどに切り替わります。だから1つの充電器でスマホもノートPCも充電できる。ただし<b>ケーブルの対応や機器の要求規格が合わないと、本来の速さが出ない</b>ことがあります。</div>
+    <div class=&quot;big-point gold&quot;>見るのは<b class=&quot;kgo&quot;>V・A・極性・プラグ形状</b>の4点。<b class=&quot;kr&quot;>W数だけで判断しない</b>。迷ったら純正か、機器メーカーの指定品を。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D 安全 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>安全</div>
+    <h2>やめどきのサイン</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>すぐ中止</span><div class=&quot;tc&quot;><b>異常な発熱・焦げくさい・異音・変形・被覆の破れ</b>。使用をやめて点検を。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>確認</span><div class=&quot;tc&quot;><b>PSEマーク</b>（安全基準）の表示があるものを。ただしPSEは安全の目安であって、<b>その機器に合う証明ではない</b>点に注意。</div></div>
+    </div>
+    <div class=&quot;big-point rose&quot;>熱い・くさい・音がする——<b class=&quot;kr&quot;>迷わず使用中止</b>。安いから、刺さるから、で選ばない。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>IN と OUT ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;><b class=&quot;kb&quot;>IN＝コンセントから来る電気の条件</b>、<b class=&quot;kg&quot;>OUT＝機器に渡す電気の条件</b>。間のアダプターは<b class=&quot;k&quot;>AC（送るのに便利）をDC（使うのに便利）に変え、電圧を下げる通訳</b>。入口より出口のアンペアが大きいのは<b class=&quot;kb&quot;>電圧を下げたから</b>で、<b class=&quot;k&quot;>W＝V×A</b> で見れば入口＞出口（差は熱）。選ぶときは<b class=&quot;kg&quot;>OUT</b>を見て、<b class=&quot;kr&quot;>Vはぴったり・Aは同じか大きめ</b>。理由は<b class=&quot;kb&quot;>電圧は押し付けられ、電流は機器が必要な分だけ引く</b>から。あとは<b class=&quot;kp&quot;>極性とプラグ形状</b>。海外に行くときだけ<b class=&quot;kb&quot;>IN</b>を見る。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kg&quot;>見るのはOUT</b>／<b class=&quot;kr&quot;>Vはぴったり、Aは以上</b>／<b class=&quot;kb&quot;>Aは電圧とセットで見る</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>数値は一般的な例です。実際は<b>機器の取扱説明書と、元の付属アダプターの表示</b>を優先してください。仕様が不明なときは、無理に流用せずメーカーに確認を。<b>異常な発熱・におい・音があれば直ちに使用を中止</b>してください。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    IN は<b>来る電気</b>、OUT は<b>使う電気</b>。あいだの箱は<b>ACをDCに変える通訳</b>。<br>
+    選ぶときは<b>OUTを見て、Vはぴったり、Aは以上</b>。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 来る・変える・使うにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P2 label reader */
+  (function(){
+    const data=[
+      {nm:'INPUT（入力）', bd:'<b>コンセントから、このアダプターに入ってくる電気の条件</b>。ここに書かれているのは「受け入れられる範囲」で、日本のコンセント（AC100V）が範囲内なら使えます。'},
+      {nm:'AC 100-240V', bd:'<b>受け入れられる電圧の範囲</b>。ACは交流の意味。100Vから240Vまでの間ならOK、ということ。<b>日本（100V）はもちろん、世界の多くの国のコンセントでも使える</b>という表示です（プラグの形は別問題）。'},
+      {nm:'50/60Hz', bd:'<b>受け入れられる周波数</b>。ACはプラスとマイナスが行き来しますが、その回数が1秒間に50回か60回か。<b>日本は東日本が50Hz、西日本が60Hz</b>で分かれています。「50/60Hz」なら<b>どちらでも使える</b>。'},
+      {nm:'0.35A（入力電流）', bd:'<b>コンセント側から引く電流</b>。全力で使ったときの代表値です。<b>100V × 0.35A ＝ 約35W</b>——このアダプターがコンセントから受け取る仕事の大きさ。数字が小さいのは、電圧が高い（100V）ぶん少ない電流で足りるからです。'},
+      {nm:'OUTPUT（出力）', bd:'<b>アダプターが機器に渡す電気の条件</b>。<b>選ぶときに見るのはこちら</b>。機器が求める条件と、ここが合っているかどうかが全てです。'},
+      {nm:'DC 5V（出力電圧）', bd:'<b>機器に渡す電圧</b>。DCは直流の意味。<b>この数字は機器の要求とぴったり合っていないといけません</b>。高ければ壊れ、低ければ動かない。いちばん大事な1行です。'},
+      {nm:'2A（出力電流）', bd:'<b>出せる電流の上限</b>。「2A流し込む」のではなく「<b>最大2Aまで出せる</b>」という意味。実際にどれだけ流れるかは機器が決めます。<b>5V × 2A ＝ 10W</b> がこのアダプターの実力です。'}
+    ];
+    const plate=document.getElementById('plate'),nm=document.getElementById('labName'),bd=document.getElementById('labBody');
+    function r(i){ nm.textContent=data[i].nm; bd.innerHTML=data[i].bd; }
+    plate.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      plate.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
+      r(parseInt(b.dataset.i));
+    });
+    r(0);
+  })();
+
+  /* P3 verdict selector */
+  (function(){
+    const data=[
+      {nm:'12V 3A のアダプター', ok:true, head:'var(--mint-deep)', v:'⭕ 使える',
+       bd:'<b>電圧はぴったり、電流は上限が大きいだけ</b>。機器は必要な2Aだけ引くので、3Aが押し込まれることはありません。むしろ余裕があって安心。'},
+      {nm:'12V 1A のアダプター', ok:false, head:'var(--rose-deep)', v:'❌ 危険',
+       bd:'電圧は合っていますが、<b>機器が求める2Aに足りない</b>。能力以上を絞り出すことになり、<b>アダプターが過熱して故障・発火のおそれ</b>。動いても使わないこと。'},
+      {nm:'19V 2A のアダプター', ok:false, head:'var(--rose-deep)', v:'❌ 故障',
+       bd:'<b>電圧が高すぎます</b>。電流と違い、電圧は機器に押し付けられるので、<b>一瞬で回路が壊れる</b>ことがあります。刺さってしまうことがあるので特に注意。'},
+      {nm:'5V 2A のアダプター', ok:false, head:'#B6841F', v:'❌ 動かない',
+       bd:'<b>電圧が低すぎます</b>。壊れはしませんが、必要な力が足りず<b>起動しない・不安定になる</b>。「動かないから壊れた」と勘違いしやすいケース。'},
+      {nm:'極性が逆（センターマイナス）', ok:false, head:'var(--plum-deep)', v:'❌ 故障',
+       bd:'数字が全部合っていても、<b>プラスとマイナスが逆</b>では通電の向きが逆さま。<b>機器が壊れる可能性が高い</b>。差込口の近くのマークを必ず確認。'},
+      {nm:'プラグの太さが違う', ok:false, head:'var(--sky-deep)', v:'❌ 使えない',
+       bd:'プラグの規格は<b>統一されていません</b>。刺さらないならまだ安全で、<b>ゆるく刺さってしまう場合は接触不良で発熱</b>のおそれ。無理に使わない。'}
+    ];
+    const seg=document.getElementById('vSeg'),out=document.getElementById('vOut');
+    function r(i){
+      const d=data[i];
+      out.innerHTML='<div class=&quot;vh&quot; style=&quot;background:'+d.head+'&quot;>'+d.v+'　'+d.nm+'</div><div class=&quot;vb&quot;>'+d.bd+'</div>';
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'ACアダプターのINPUTとは？', o:['コンセントから入ってくる電気の条件','機器に渡す電気の条件','電気代の目安'], a:0, e:'OUTPUTが機器に渡す条件。選ぶときに見るのはOUTPUT。'},
+      {q:'家庭のコンセントの電気は？', o:['AC（交流）','DC（直流）','どちらでもない'], a:0, e:'スマホやPCの中身はDC。だから変換が要る。'},
+      {q:'ACアダプターの主な仕事は？', o:['ACをDCに変え、電圧を下げる','電気を増やす','電気をためる'], a:0, e:'送るのに便利なACを、使うのに便利なDCへ。'},
+      {q:'交流（AC）が送電に向く理由は？', o:['電圧を上げ下げしやすいから','安定しているから','電池と同じだから'], a:0, e:'一方、電子回路は安定したDCでないと困る。'},
+      {q:'入力0.35A・出力2Aのアダプター。電気が増えている？', o:['増えていない（電圧を下げたぶん電流を多く出せる）','増えている','壊れている'], a:0, e:'100V×0.35A＝約35W、5V×2A＝10W。Wで見れば入口が大きい。'},
+      {q:'入力のWが出力のWより大きいのはなぜ？', o:['変換のときに熱として逃げる分があるから','表示ミス','電池を充電しているから'], a:0, e:'充電器がほんのり温かくなるのはこの差。'},
+      {q:'アダプターを選ぶとき、電圧（V）は？', o:['機器の指定とぴったり同じにする','大きければ大きいほどよい','何でもよい'], a:0, e:'高いと壊れ、低いと動かない。'},
+      {q:'アダプターの電流（A）は？', o:['同じか、大きいものならよい','必ずぴったり','小さいほどよい'], a:0, e:'Aは「出せる上限」。機器は必要な分だけ引く。'},
+      {q:'必要より小さいAのアダプターを使うと？', o:['アダプターが過熱し故障や発火のおそれ','ゆっくり充電されるだけで安全','機器が壊れる'], a:0, e:'能力を超えて絞り出すことになる。'},
+      {q:'「センタープラス／センターマイナス」とは？', o:['プラグの極性（真ん中がプラスかマイナスか）','プラグの太さ','電圧の種類'], a:0, e:'逆だと機器が壊れる可能性が高い。'},
+      {q:'W数が同じアダプターなら使い回せる？', o:['使えない場合がある（VとAの組み合わせが違う）','必ず使える','Wは無関係'], a:0, e:'15V2Aと5V6Aはどちらも30Wだが別物。'},
+      {q:'ラベルの「50/60Hz」の意味は？', o:['どちらの周波数でも使える（東日本50・西日本60）','50から60ワット','50分から60分'], a:0, e:'交流の向きが1秒に入れかわる回数。'},
+      {q:'アダプターが焦げくさい・異常に熱いときは？', o:['直ちに使用を中止して点検','冷ましてから使う','様子を見る'], a:0, e:'異音・変形・被覆の破れも同様に中止。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-denkivaw" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('denki')">‹ 家庭の電気 に戻る</button></div><iframe class="theme-frame" title="電気って何？ V・A・W の関係" srcdoc="<!DOCTYPE html>
+<html lang=&quot;ja&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>電気って何？ V・A・W の関係 ／ とことん版</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+<style>
+  :root{
+    --paper:#FCF5EA; --card:#FFFDF8; --ink:#322E36; --ink-soft:#6E6672;
+    --line:#ECE0CE; --grid-empty:#F1E6D4;
+    --persimmon:#F08A4B; --persimmon-deep:#DE6E2F; --persimmon-soft:#FFE3CE;
+    --sky:#4FA3C7; --sky-deep:#367C9C; --mint:#6FB98A; --mint-deep:#3E9A63;
+    --plum:#A87BB5; --plum-deep:#7E5A8C; --gold:#E0A93B; --rose:#E2787F; --rose-deep:#C25962;
+    --shadow:0 8px 24px rgba(120,80,40,.10);
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important; animation:none!important;} }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ margin:0; color:var(--ink);
+    background:radial-gradient(130% 70% at 50% -6%, #FFF8EE 0%, var(--paper) 48%) fixed;
+    font-family:&quot;Zen Kaku Gothic New&quot;,&quot;Hiragino Maru Gothic ProN&quot;,&quot;Hiragino Sans&quot;,&quot;Yu Gothic&quot;,sans-serif;
+    line-height:1.9; letter-spacing:.01em; }
+  header.topnav{ position:sticky; top:0; z-index:30; background:rgba(252,245,234,.93); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topnav .inner{ max-width:680px; margin:0 auto; padding:8px 12px; display:flex; align-items:center; gap:8px; }
+  .topnav .lz{ font-size:1.2rem; }
+  .tabs{ display:flex; gap:5px; flex:1; }
+  .tab{ flex:1; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.74rem; border:1.5px solid var(--line); background:#fff; color:var(--ink-soft); padding:8px 4px; border-radius:999px; cursor:pointer; text-align:center; transition:.15s; }
+  .tab.on{ background:var(--persimmon); border-color:var(--persimmon); color:#fff; }
+  .tab:focus-visible{ outline:3px solid rgba(79,163,199,.45); outline-offset:2px; }
+  .page{ display:none; } .page.active{ display:block; }
+  .wrap{ max-width:680px; margin:0 auto; padding:24px 18px 90px; }
+  .hero{ text-align:center; padding:14px 4px 6px; }
+  .eyebrow{ display:inline-block; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.78rem; letter-spacing:.14em; color:var(--persimmon-deep); background:var(--persimmon-soft); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  h1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.5rem,5.6vw,2rem); line-height:1.24; margin:.1em 0 .3em; }
+  h1 .hl{ color:var(--persimmon); }
+  .lead{ color:var(--ink-soft); font-size:1.03rem; margin:0 auto; max-width:32ch; }
+  section{ margin:50px 0; }
+  .step-no{ display:inline-flex; align-items:center; gap:8px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; color:var(--persimmon-deep); font-size:.82rem; letter-spacing:.08em; margin-bottom:2px; }
+  .step-no .dot{ width:24px; height:24px; border-radius:50%; background:var(--persimmon); color:#fff; display:grid; place-items:center; font-size:.85rem; }
+  h2{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.3rem,5.2vw,1.6rem); line-height:1.34; margin:.1em 0 .5em; }
+  h3{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:1.05rem; margin:1.5em 0 .3em; }
+  p{ margin:.7em 0; } .soft{ color:var(--ink-soft); }
+  .lead-line{ font-size:1.1rem; font-weight:500; }
+  .big-point{ background:var(--persimmon-soft); border-left:6px solid var(--persimmon); border-radius:0 16px 16px 0; padding:15px 17px; margin:18px 0; font-weight:700; font-size:1.05rem; }
+  .big-point.blue{ background:#E7F2F7; border-left-color:var(--sky); }
+  .big-point.mint{ background:#E9F6ED; border-left-color:var(--mint); }
+  .big-point.plum{ background:#F3ECF5; border-left-color:var(--plum); }
+  .big-point.rose{ background:#FDECEE; border-left-color:var(--rose); }
+  .big-point.gold{ background:#FBF1DA; border-left-color:var(--gold); }
+  b.k{ color:var(--persimmon-deep); } b.kb{ color:var(--sky-deep); } b.kg{ color:var(--mint-deep); } b.kp{ color:var(--plum-deep); } b.kr{ color:var(--rose-deep); } b.kgo{ color:#B6841F; }
+  .hr{ height:1px; background:var(--line); border:none; margin:44px 0; }
+  .panel{ background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow); padding:20px 16px; margin:16px 0; }
+  .disc{ background:#F3ECF5; border:1px solid #DEC9E6; border-radius:16px; padding:14px 16px; font-size:.86rem; color:#5E4A68; margin:18px 0; }
+  .disc b{ color:#7E5A8C; }
+
+  /* water figure */
+  .fig{ background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); padding:14px 12px 12px; margin:16px 0; }
+  .fig svg{ width:100%; height:auto; display:block; }
+  .figcap{ font-size:.86rem; color:var(--ink-soft); margin-top:10px; padding:0 3px; } .figcap b{ color:var(--ink); }
+
+  .seg{ display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .seg button{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.8rem; padding:9px 13px; border-radius:10px; border:2px solid var(--line); background:#fff; color:var(--ink-soft); cursor:pointer; }
+  .seg button.on{ border-color:var(--persimmon); background:var(--persimmon-soft); color:var(--persimmon-deep); }
+
+  /* unit cards */
+  .u4{ display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:16px 0; }
+  @media (max-width:430px){ .u4{ grid-template-columns:1fr; } }
+  .u4c{ background:var(--card); border:1px solid var(--line); border-radius:15px; box-shadow:var(--shadow); padding:12px 13px; }
+  .u4c .un{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.05rem; } .u4c .uw{ font-size:.78rem; color:var(--ink-soft); } .u4c .ud{ font-size:.84rem; margin-top:3px; } .u4c .ud b{ color:var(--ink); }
+
+  /* appliance calc */
+  .appout{ background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:14px 15px; margin-top:10px; }
+  .appname{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; color:var(--persimmon-deep); }
+  .appcalc{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.15rem; margin:7px 0 3px; }
+  .appcalc .big{ font-size:1.5rem; color:var(--sky-deep); }
+  .bar{ height:20px; border-radius:999px; background:#EFE4D2; overflow:hidden; margin:9px 0 3px; border:1px solid var(--line); }
+  .bar .fill{ display:block; height:100%; border-radius:999px; transition:.35s; }
+  .barlbl{ display:flex; justify-content:space-between; font-size:.72rem; color:var(--ink-soft); }
+  .appmemo{ font-size:.85rem; color:var(--ink-soft); margin-top:9px; padding-top:9px; border-top:1px dashed var(--line); } .appmemo b{ color:var(--ink); }
+
+  .tl{ display:grid; gap:9px; margin:14px 0; }
+  .tlcard{ display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; box-shadow:var(--shadow); }
+  .tlcard .wk{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:.74rem; color:#fff; padding:5px 9px; border-radius:9px; white-space:nowrap; flex:none; min-width:84px; text-align:center; }
+  .tlcard .tc{ font-size:.88rem; } .tlcard .tc b{ color:var(--ink); }
+
+  .pit{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px 16px; margin:12px 0; box-shadow:var(--shadow); }
+  .pit .tag{ display:inline-block; background:#E7F2F7; color:var(--sky-deep); font-weight:700; font-size:.74rem; padding:3px 10px; border-radius:999px; margin-bottom:6px; }
+  .pit.warn .tag{ background:#FDE0DC; color:#C2493E; }
+  .pit b{ color:var(--persimmon-deep); }
+  .note{ background:#FBF4EB; border:1px dashed var(--line); border-radius:12px; padding:10px 13px; font-size:.84rem; color:var(--ink-soft); margin-top:10px; }
+
+  .formula{ text-align:center; background:linear-gradient(180deg,#FFF3E9,#FFE5CF); border:1px solid var(--line); border-radius:18px; padding:18px 14px; margin:16px 0; box-shadow:var(--shadow); }
+  .formula .f1{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:clamp(1.25rem,5.6vw,1.7rem); color:var(--persimmon-deep); }
+  .formula .f2{ font-size:.86rem; color:var(--ink-soft); margin-top:5px; }
+
+  .quiz{ background:var(--card); border:2px solid var(--persimmon-soft); border-radius:20px; box-shadow:var(--shadow); padding:18px 16px; }
+  .quiz .q{ text-align:center; font-weight:700; margin-bottom:8px; font-size:1.02rem; }
+  .quiz .opts{ display:grid; gap:10px; margin-top:8px; }
+  .quiz .opt{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.96rem; padding:13px; border-radius:14px; border:2px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; text-align:left; }
+  .quiz .opt.correct{ background:#E9F6ED; border-color:var(--mint); color:var(--mint-deep); }
+  .quiz .opt.wrong{ background:#FDECEA; border-color:#E0897F; color:#C2493E; }
+  .quiz .fb{ text-align:center; min-height:1.6em; font-weight:700; margin-top:10px; font-size:.92rem; }
+  .quiz .score{ text-align:center; font-size:.82rem; color:var(--ink-soft); margin-top:4px; }
+  .quiz .next{ display:block; margin:12px auto 0; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:10px 22px; cursor:pointer; }
+
+  .jumpwrap{ text-align:center; margin:34px 0 6px; padding:24px 18px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(180deg,#FFF3E9,#FFE5CF); box-shadow:var(--shadow); }
+  .jumphint{ font-weight:700; color:var(--persimmon-deep); margin-bottom:12px; font-size:1.02rem; }
+  .jumpbtn{ font-family:&quot;Zen Maru Gothic&quot;; font-weight:900; font-size:1.06rem; background:var(--persimmon); color:#fff; border:none; border-radius:999px; padding:15px 26px; cursor:pointer; box-shadow:0 6px 16px rgba(222,110,47,.36); }
+  .jumpbtn:active{ transform:translateY(1px); }
+  .backtop{ margin-top:18px; font-family:&quot;Zen Maru Gothic&quot;; font-weight:700; font-size:.88rem; color:var(--sky-deep); background:#fff; border:1.5px solid var(--line); border-radius:999px; padding:9px 18px; cursor:pointer; }
+  .closing{ text-align:center; color:var(--ink-soft); margin-top:48px; font-size:.96rem; }
+  .closing .leaf{ font-size:1.5rem; } .closing b{ color:var(--persimmon-deep); }
+</style>
+</head>
+<body>
+<header class=&quot;topnav&quot;>
+  <div class=&quot;inner&quot;>
+    <span class=&quot;lz&quot;>🦎</span>
+    <div class=&quot;tabs&quot;>
+      <button class=&quot;tab on&quot; data-p=&quot;1&quot; onclick=&quot;goPage(1)&quot;>① 水でわかる</button>
+      <button class=&quot;tab&quot; data-p=&quot;2&quot; onclick=&quot;goPage(2)&quot;>② W＝V×A</button>
+      <button class=&quot;tab&quot; data-p=&quot;3&quot; onclick=&quot;goPage(3)&quot;>③ 抵抗と発熱</button>
+    </div>
+  </div>
+</header>
+
+<div class=&quot;wrap&quot;>
+
+<!-- ============ PAGE 1 ============ -->
+<div id=&quot;page1&quot; class=&quot;page active&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>家庭の電気 ・ まず土台</span>
+    <h1>電気って何？<br><span class=&quot;hl&quot;>V・A・W</span> の関係</h1>
+    <p class=&quot;lead&quot;>目に見えないから難しい。<br>——なら、水に置きかえよう。</p>
+  </header>
+
+  <div class=&quot;disc&quot;>
+    🦎 <b>このページについて：</b>家庭の電気を読み解くための<b>いちばんの土台</b>です。ここが分かると、家電のラベル・タコ足の危険・ブレーカー・電気代まで、全部つながります。数値は<b>一般的な目安</b>。工事や配線の変更は必ず電気工事士（有資格者）へ。
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>0</span>まず、何の話？</div>
+    <h2>電気が分かりにくい理由</h2>
+    <p class=&quot;lead-line&quot;>電気の単位——<b class=&quot;kb&quot;>V（ボルト）</b>・<b class=&quot;kg&quot;>A（アンペア）</b>・<b class=&quot;k&quot;>W（ワット）</b>。なんとなく分かるようで、説明しろと言われると詰まる。理由ははっきりしていて、<b class=&quot;kr&quot;>電気は目に見えないから</b>です。</p>
+    <p>そこで昔から使われる、いちばん効く方法が<b class=&quot;kb&quot;>「水の流れ」に置きかえること</b>。水なら目で見えます。この置きかえを一度きちんと入れておくと、あとの話が全部ラクになります。</p>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 1 水のたとえ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>1</span>置きかえ</div>
+    <h2>電気を「水道」で見る</h2>
+    <p class=&quot;lead-line&quot;>タンクから水が流れ、水車を回す——この絵で、電気の4つの言葉が全部説明できます。ボタンで1つずつ光らせてみてください。</p>
+    <div class=&quot;seg&quot; id=&quot;wSeg&quot;>
+      <div></div>
+    </div>
+    <div class=&quot;fig&quot;>
+      <svg viewBox=&quot;0 0 320 150&quot; role=&quot;img&quot; aria-label=&quot;電気を水の流れにたとえた図&quot;>
+        <!-- ground -->
+        <line x1=&quot;8&quot; y1=&quot;132&quot; x2=&quot;312&quot; y2=&quot;132&quot; stroke=&quot;#D9CBB4&quot; stroke-width=&quot;1.5&quot;></line>
+        <!-- tank -->
+        <rect x=&quot;16&quot; y=&quot;18&quot; width=&quot;60&quot; height=&quot;96&quot; rx=&quot;4&quot; fill=&quot;#EAF5F9&quot; stroke=&quot;#C9B48C&quot; stroke-width=&quot;1.5&quot;></rect>
+        <rect x=&quot;18&quot; y=&quot;30&quot; width=&quot;56&quot; height=&quot;82&quot; fill=&quot;#8FCBE0&quot;></rect>
+        <text x=&quot;22&quot; y=&quot;24&quot; font-size=&quot;8.5&quot; fill=&quot;#6E6672&quot;>タンク</text>
+        <!-- pipe -->
+        <rect x=&quot;76&quot; y=&quot;86&quot; width=&quot;152&quot; height=&quot;16&quot; fill=&quot;#BFE0EC&quot; stroke=&quot;#C9B48C&quot; stroke-width=&quot;1.2&quot;></rect>
+        <!-- narrow (resistance) -->
+        <rect x=&quot;132&quot; y=&quot;89&quot; width=&quot;36&quot; height=&quot;10&quot; fill=&quot;#E8D9BE&quot; stroke=&quot;#B99B68&quot; stroke-width=&quot;1.2&quot;></rect>
+        <!-- wheel -->
+        <circle cx=&quot;258&quot; cy=&quot;94&quot; r=&quot;27&quot; fill=&quot;#FFE3CE&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2.5&quot;></circle>
+        <line x1=&quot;258&quot; y1=&quot;67&quot; x2=&quot;258&quot; y2=&quot;121&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2&quot;></line>
+        <line x1=&quot;231&quot; y1=&quot;94&quot; x2=&quot;285&quot; y2=&quot;94&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2&quot;></line>
+        <line x1=&quot;239&quot; y1=&quot;75&quot; x2=&quot;277&quot; y2=&quot;113&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2&quot;></line>
+        <line x1=&quot;239&quot; y1=&quot;113&quot; x2=&quot;277&quot; y2=&quot;75&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2&quot;></line>
+        <text x=&quot;238&quot; y=&quot;136&quot; font-size=&quot;8.5&quot; fill=&quot;#6E6672&quot;>水車＝家電</text>
+
+        <!-- highlight V -->
+        <g id=&quot;hlV&quot; opacity=&quot;0&quot;>
+          <line x1=&quot;9&quot; y1=&quot;30&quot; x2=&quot;9&quot; y2=&quot;112&quot; stroke=&quot;#367C9C&quot; stroke-width=&quot;3&quot;></line>
+          <path d=&quot;M9 30 L5 38 L13 38 Z&quot; fill=&quot;#367C9C&quot;></path>
+          <path d=&quot;M9 112 L5 104 L13 104 Z&quot; fill=&quot;#367C9C&quot;></path>
+          <rect x=&quot;22&quot; y=&quot;42&quot; width=&quot;86&quot; height=&quot;20&quot; rx=&quot;6&quot; fill=&quot;#367C9C&quot;></rect>
+          <text x=&quot;30&quot; y=&quot;56&quot; font-size=&quot;11&quot; fill=&quot;#fff&quot; font-weight=&quot;bold&quot;>水圧＝V</text>
+        </g>
+        <!-- highlight A -->
+        <g id=&quot;hlA&quot; opacity=&quot;0&quot;>
+          <path d=&quot;M92 94 L108 94 M104 90 L108 94 L104 98&quot; stroke=&quot;#3E9A63&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot;></path>
+          <path d=&quot;M186 94 L202 94 M198 90 L202 94 L198 98&quot; stroke=&quot;#3E9A63&quot; stroke-width=&quot;3&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot;></path>
+          <rect x=&quot;96&quot; y=&quot;56&quot; width=&quot;104&quot; height=&quot;20&quot; rx=&quot;6&quot; fill=&quot;#3E9A63&quot;></rect>
+          <text x=&quot;104&quot; y=&quot;70&quot; font-size=&quot;11&quot; fill=&quot;#fff&quot; font-weight=&quot;bold&quot;>水の量＝A</text>
+        </g>
+        <!-- highlight R -->
+        <g id=&quot;hlR&quot; opacity=&quot;0&quot;>
+          <rect x=&quot;127&quot; y=&quot;84&quot; width=&quot;46&quot; height=&quot;20&quot; rx=&quot;5&quot; fill=&quot;none&quot; stroke=&quot;#B6841F&quot; stroke-width=&quot;2.5&quot;></rect>
+          <rect x=&quot;112&quot; y=&quot;112&quot; width=&quot;112&quot; height=&quot;20&quot; rx=&quot;6&quot; fill=&quot;#B6841F&quot;></rect>
+          <text x=&quot;120&quot; y=&quot;126&quot; font-size=&quot;11&quot; fill=&quot;#fff&quot; font-weight=&quot;bold&quot;>細さ＝抵抗Ω</text>
+        </g>
+        <!-- highlight W -->
+        <g id=&quot;hlW&quot; opacity=&quot;0&quot;>
+          <circle cx=&quot;258&quot; cy=&quot;94&quot; r=&quot;32&quot; fill=&quot;none&quot; stroke=&quot;#DE6E2F&quot; stroke-width=&quot;2.5&quot; stroke-dasharray=&quot;5 4&quot;></circle>
+          <rect x=&quot;196&quot; y=&quot;20&quot; width=&quot;118&quot; height=&quot;20&quot; rx=&quot;6&quot; fill=&quot;#DE6E2F&quot;></rect>
+          <text x=&quot;204&quot; y=&quot;34&quot; font-size=&quot;11&quot; fill=&quot;#fff&quot; font-weight=&quot;bold&quot;>回す仕事＝W</text>
+        </g>
+      </svg>
+      <div class=&quot;figcap&quot; id=&quot;wCap&quot;></div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- 2 4つまとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>2</span>まとめ</div>
+    <h2>4つの言葉、これだけ</h2>
+    <div class=&quot;u4&quot;>
+      <div class=&quot;u4c&quot;><div class=&quot;un&quot; style=&quot;color:var(--sky-deep)&quot;>V（ボルト）</div><div class=&quot;uw&quot;>電圧＝水圧</div><div class=&quot;ud&quot;>電気を<b>押し出す力の強さ</b>。日本の家庭は<b>100V</b>で固定。</div></div>
+      <div class=&quot;u4c&quot;><div class=&quot;un&quot; style=&quot;color:var(--mint-deep)&quot;>A（アンペア）</div><div class=&quot;uw&quot;>電流＝水の量</div><div class=&quot;ud&quot;>1秒あたりに<b>流れる電気の量</b>。ブレーカーの上限はこれ。</div></div>
+      <div class=&quot;u4c&quot;><div class=&quot;un&quot; style=&quot;color:#B6841F&quot;>Ω（オーム）</div><div class=&quot;uw&quot;>抵抗＝ホースの細さ</div><div class=&quot;ud&quot;>電気の<b>流れにくさ</b>。表には出ないが<b>黒幕</b>。発熱のもと（③）。</div></div>
+      <div class=&quot;u4c&quot;><div class=&quot;un&quot; style=&quot;color:var(--persimmon-deep)&quot;>W（ワット）</div><div class=&quot;uw&quot;>電力＝仕事の大きさ</div><div class=&quot;ud&quot;><b>どれだけ働けるか</b>。家電のラベルでおなじみ。<b>W＝V×A</b>。</div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>V＝<b class=&quot;kb&quot;>押す力</b>／A＝<b class=&quot;kg&quot;>流れる量</b>／Ω＝<b class=&quot;kgo&quot;>流れにくさ</b>／W＝<b class=&quot;k&quot;>仕事の大きさ</b>。この4つで家庭の電気はほぼ読める。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>4つのうち、いちばん使うのが<br>「W＝V×A」の関係です。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(2)&quot;>② W＝V×A ›</button>
+  </div>
+
+</div><!-- /page1 -->
+
+<!-- ============ PAGE 2 ============ -->
+<div id=&quot;page2&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>暮らしの計算 ・ 日本は100V</span>
+    <h1><span class=&quot;hl&quot;>W＝V×A</span><br>暮らしで使う</h1>
+    <p class=&quot;lead&quot;>日本には、暗算できる<br>とっておきの裏ワザがあります。</p>
+  </header>
+
+  <!-- A 式 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>意味</div>
+    <h2>「勢い」×「量」＝「仕事」</h2>
+    <div class=&quot;formula&quot;>
+      <div class=&quot;f1&quot;>W ＝ V × A</div>
+      <div class=&quot;f2&quot;>仕事の大きさ ＝ 押す力 × 流れる量</div>
+    </div>
+    <p class=&quot;lead-line&quot;>水車をたくさん回したいなら、<b class=&quot;kb&quot;>水圧を上げる</b>か<b class=&quot;kg&quot;>水の量を増やす</b>か。どちらでも仕事は増えます。電気もまったく同じで、<b class=&quot;k&quot;>W（仕事）は V と A の掛け算</b>で決まります。</p>
+    <div class=&quot;note&quot;>同じ1500Wでも、<b>100Vなら15A</b>、<b>200Vなら7.5A</b>で済みます。エアコンやIHが200Vを使いたがるのは、<b class=&quot;kb&quot;>電圧を上げれば、同じ仕事を少ない電流でこなせる</b>から（電流が少ない＝コードの発熱も少ない）。この話は③につながります。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 裏ワザ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>裏ワザ</div>
+    <h2>日本なら「÷100」で暗算できる</h2>
+    <p class=&quot;lead-line&quot;>ここが日本の便利なところ。<b class=&quot;kb&quot;>家庭のコンセントは100Vで固定</b>なので、W＝100×A の式が、そのまま——</p>
+    <div class=&quot;formula&quot; style=&quot;background:linear-gradient(180deg,#E7F2F7,#D5E9F1);&quot;>
+      <div class=&quot;f1&quot; style=&quot;color:var(--sky-deep)&quot;>A ＝ W ÷ 100</div>
+      <div class=&quot;f2&quot;>ワット数の小数点を、左に2つずらすだけ</div>
+    </div>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>1200W</span><div class=&quot;tc&quot;>ドライヤー → <b>12A</b></div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>600W</span><div class=&quot;tc&quot;>エアコン（冷房中） → <b>6A</b></div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>40W</span><div class=&quot;tc&quot;>扇風機 → <b>0.4A</b></div></div>
+    </div>
+    <div class=&quot;big-point blue&quot;>日本の家庭では<b class=&quot;kb&quot;>A ＝ W ÷ 100</b>。ラベルのワット数を見れば、<b>何アンペア使うかが暗算で分かる</b>。これが電気の読み書きの第一歩。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C 家電セレクタ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>体感する</div>
+    <h2>家電のアンペアを見る</h2>
+    <p class=&quot;lead-line&quot;>家電を選ぶと、<b class=&quot;kg&quot;>何アンペア使うか</b>と、<b class=&quot;kr&quot;>コンセント1つの上限（1500W）</b>に対してどれくらいかが出ます。</p>
+    <div class=&quot;panel&quot;>
+      <div class=&quot;seg&quot; id=&quot;appSeg&quot;>
+        <button class=&quot;on&quot; data-i=&quot;0&quot;>ドライヤー</button>
+        <button data-i=&quot;1&quot;>電子レンジ</button>
+        <button data-i=&quot;2&quot;>電気ケトル</button>
+        <button data-i=&quot;3&quot;>炊飯器</button>
+        <button data-i=&quot;4&quot;>こたつ</button>
+        <button data-i=&quot;5&quot;>テレビ</button>
+        <button data-i=&quot;6&quot;>扇風機</button>
+        <button data-i=&quot;7&quot;>LED電球</button>
+      </div>
+      <div class=&quot;appout&quot;>
+        <div class=&quot;appname&quot; id=&quot;appName&quot;></div>
+        <div class=&quot;appcalc&quot; id=&quot;appCalc&quot;></div>
+        <div class=&quot;bar&quot;><div class=&quot;fill&quot; id=&quot;appFill&quot;></div></div>
+        <div class=&quot;barlbl&quot;><span>0W</span><span>コンセント1つの上限 1500W</span></div>
+        <div class=&quot;appmemo&quot; id=&quot;appMemo&quot;></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D 1500 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>あの数字の正体</div>
+    <h2>なぜ「1500Wまで」なのか</h2>
+    <p class=&quot;lead-line&quot;>延長コードやタップに必ず書いてある<b class=&quot;kr&quot;>「1500Wまで」</b>。この数字、じつは<b class=&quot;kb&quot;>W＝V×A</b> から出てきています。</p>
+    <div class=&quot;formula&quot;>
+      <div class=&quot;f1&quot;>100V × 15A ＝ 1500W</div>
+      <div class=&quot;f2&quot;>コンセント1つに流していい電流の上限が15A → だから1500W</div>
+    </div>
+    <p>つまり<b class=&quot;kb&quot;>「1500Wまで」は「15Aまで」と同じこと</b>を言っています。ワットで書いてあるのは、家電のラベルにワット表示が多いから。<b class=&quot;kg&quot;>同じ話を、違う単位で言っているだけ</b>なんです。</p>
+    <div class=&quot;big-point rose&quot;>「1500Wまで」＝<b class=&quot;kr&quot;>「15Aまで」</b>。<b class=&quot;kb&quot;>100V×15A</b> から来た数字。<b>合計</b>で考える話は、この分野の別の項目（タコ足・ブレーカー）でくわしく。</div>
+  </section>
+
+  <div class=&quot;jumpwrap&quot;>
+    <div class=&quot;jumphint&quot;>最後は「なぜ危ないのか」。<br>——抵抗と発熱の話です。</div>
+    <button class=&quot;jumpbtn&quot; onclick=&quot;goPage(3)&quot;>③ 抵抗と発熱 ›</button>
+  </div>
+
+</div><!-- /page2 -->
+
+<!-- ============ PAGE 3 ============ -->
+<div id=&quot;page3&quot; class=&quot;page&quot;>
+
+  <header class=&quot;hero&quot;>
+    <span class=&quot;eyebrow&quot;>抵抗と発熱 ・ 危険の正体</span>
+    <h1><span class=&quot;hl&quot;>抵抗</span>と、<br>熱くなる理由</h1>
+    <p class=&quot;lead&quot;>電気を「使う」とは何か。<br>そしてなぜ、コードは燃えるのか。</p>
+  </header>
+
+  <!-- A オームの法則 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>A</span>3つ目の関係</div>
+    <h2>オームの法則</h2>
+    <div class=&quot;formula&quot; style=&quot;background:linear-gradient(180deg,#FBF1DA,#F4E4C0);&quot;>
+      <div class=&quot;f1&quot; style=&quot;color:#B6841F&quot;>V ＝ A × Ω</div>
+      <div class=&quot;f2&quot;>押す力 ＝ 流れる量 × 流れにくさ</div>
+    </div>
+    <p class=&quot;lead-line&quot;>水道でいえば——<b class=&quot;kgo&quot;>ホースが細い（抵抗が大きい）ほど、同じ量を流すのに強い水圧が要る</b>。逆に言えば、<b class=&quot;kb&quot;>同じ水圧なら、細いホースには少ししか流れない</b>。これがオームの法則です。</p>
+    <div class=&quot;note&quot;>家庭では<b>電圧が100Vで固定</b>なので、実際に効いてくるのは「その家電の抵抗がいくつか」。抵抗が小さい家電ほど大きな電流が流れ、たくさん仕事をします（＝消費電力が大きい）。ドライヤーやレンジがたくさん電気を食うのは、そういう作りだから。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- B 使うとは -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>B</span>核心</div>
+    <h2>電気を「使う」＝抵抗で変える</h2>
+    <p class=&quot;lead-line&quot;>じつは<b class=&quot;kr&quot;>電気そのものは消えません</b>。家電がやっているのは、<b class=&quot;kb&quot;>電気を別のものに変えること</b>。その変換の現場が<b class=&quot;kgo&quot;>抵抗</b>です。</p>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>熱に</span><div class=&quot;tc&quot;><b>ドライヤー・ヒーター・電気ケトル・こたつ</b>。抵抗が大きい線にわざと電気を流し、<b>熱を作るのが仕事</b>。だから消費電力が大きい。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>光に</span><div class=&quot;tc&quot;><b>電球・LED</b>。LEDが省エネなのは、<b>熱に化ける分が少なく、光への変換がうまい</b>から。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--sky-deep)&quot;>動きに</span><div class=&quot;tc&quot;><b>洗濯機・扇風機・冷蔵庫</b>。モーターを回す＝機械の動きに変える。</div></div>
+    </div>
+    <div class=&quot;big-point gold&quot;>電気を使う＝<b class=&quot;kgo&quot;>抵抗のところで、熱・光・動きに変えている</b>。「熱を作る家電」がいちばん電気を食う、という法則はここから来る。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- C ジュール熱 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>C</span>危険の正体</div>
+    <h2>コードが熱くなるのは「ムダな抵抗」</h2>
+    <p class=&quot;lead-line&quot;>問題は、<b class=&quot;kr&quot;>熱を作りたくない場所（コード）にも、わずかな抵抗がある</b>こと。そこで生まれる熱を<b class=&quot;kr&quot;>ジュール熱</b>といいます。そして——この熱の出かたには、こわい性質があります。</p>
+    <div class=&quot;formula&quot; style=&quot;background:linear-gradient(180deg,#FDECEE,#F8D9DC);&quot;>
+      <div class=&quot;f1&quot; style=&quot;color:var(--rose-deep)&quot;>発熱 ∝ 電流² × 抵抗</div>
+      <div class=&quot;f2&quot;>電流が2倍になると、発熱は4倍になる</div>
+    </div>
+    <div class=&quot;pit warn&quot;><span class=&quot;tag&quot;>ここが急所</span><p style=&quot;margin:0&quot;><b>発熱は「電流の2乗」に比例する。</b><br><span class=&quot;soft&quot;>つまり<b class=&quot;kr&quot;>アンペアが大きい家電ほど、コードの発熱は跳ね上がる</b>。5A→10Aと2倍にしただけで、発熱は<b>4倍</b>です。<br>だから危ないのは、ドライヤー・電気ストーブ・こたつ・電気ケトルのような<b>大きなワット数＝大きなアンペア</b>の家電。「なんとなく熱いな」の正体は、たいていこれです。</span></p></div>
+    <div class=&quot;big-point rose&quot;>コードの発熱は<b class=&quot;kr&quot;>電流の2乗に比例</b>。<b>ワット数の大きい家電ほど、けた違いに熱を持つ</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- D 実践 -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>D</span>暮らしで効く</div>
+    <h2>だから、これは危ない</h2>
+    <div class=&quot;tl&quot;>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--rose-deep)&quot;>束ねる</span><div class=&quot;tc&quot;>コードを束ねると<b>熱が逃げられずこもる</b>。被覆が溶けてショート→発火のおそれ。<b>大きな家電のコードは特に束ねない</b>。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:#8A2B2B&quot;>巻いたまま</span><div class=&quot;tc&quot;><b>コードリールは巻いたまま使わない</b>。ぐるぐる巻きは熱がこもる典型。使う分は伸ばす。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--persimmon-deep)&quot;>細いコード</span><div class=&quot;tc&quot;><b>細い＝抵抗が大きい＝発熱が大きい</b>。安価で細い延長コードに、大きな家電をつながない。</div></div>
+      <div class=&quot;tlcard&quot;><span class=&quot;wk&quot; style=&quot;background:var(--gold)&quot;>熱をさわる</span><div class=&quot;tc&quot;><b>コードやプラグが熱い・変色・焦げくさい</b>のは危険信号。使用をやめて点検を。</div></div>
+    </div>
+    <div class=&quot;note&quot;>200Vのエアコンが「大きな家電なのにコードは意外と細い」のは、②で見たとおり<b>電圧が倍なら電流は半分</b>で済むから。<b class=&quot;kb&quot;>電圧を上げるのは、発熱を抑える工夫でもある</b>——ここまでつながると、電気の設計思想が見えてきます🦎</div>
+    <div class=&quot;big-point&quot;>危険の正体はすべて<b class=&quot;kr&quot;>「電流 × 抵抗 × 熱がこもる」</b>。<b>束ねない・巻いたまま使わない・細いコードに大物をつながない</b>。</div>
+  </section>
+
+  <hr class=&quot;hr&quot;>
+
+  <!-- drill -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot; style=&quot;background:var(--mint)&quot;>練</span>確かめる</div>
+    <h2>V・A・W ドリル</h2>
+    <div class=&quot;quiz&quot;>
+      <div class=&quot;q&quot; id=&quot;drillQ&quot;></div>
+      <div class=&quot;opts&quot; id=&quot;drillOpts&quot;></div>
+      <div class=&quot;fb&quot; id=&quot;drillFb&quot;></div>
+      <div class=&quot;score&quot; id=&quot;drillScore&quot;>正解 0 / 0</div>
+      <button class=&quot;next&quot; id=&quot;drillNext&quot; style=&quot;display:none;&quot;>つぎの問題 ›</button>
+    </div>
+  </section>
+
+  <!-- まとめ -->
+  <section>
+    <div class=&quot;step-no&quot;><span class=&quot;dot&quot;>E</span>まとめ</div>
+    <h2>地図として持っておきたいこと</h2>
+    <p class=&quot;lead-line&quot;>電気は水で考える——<b class=&quot;kb&quot;>V＝水圧（押す力）</b>、<b class=&quot;kg&quot;>A＝水の量</b>、<b class=&quot;kgo&quot;>Ω＝ホースの細さ（流れにくさ）</b>、<b class=&quot;k&quot;>W＝水車を回す仕事</b>。関係は<b class=&quot;k&quot;>W＝V×A</b>と<b class=&quot;kgo&quot;>V＝A×Ω</b>の2本だけ。日本の家庭は<b class=&quot;kb&quot;>100V固定</b>なので<b class=&quot;kb&quot;>A＝W÷100</b>で暗算でき、<b class=&quot;kr&quot;>「1500Wまで」＝「15Aまで」</b>（100V×15A）。電気を使うとは<b class=&quot;kgo&quot;>抵抗で熱・光・動きに変えること</b>で、コードのムダな発熱＝<b class=&quot;kr&quot;>ジュール熱は電流の2乗に比例</b>。だから<b class=&quot;kr&quot;>大きな家電のコードは束ねない・巻いたまま使わない</b>。</p>
+    <div class=&quot;big-point&quot;>合言葉：<b class=&quot;kb&quot;>電気は水</b>／<b class=&quot;k&quot;>W＝V×A</b>／<b class=&quot;kb&quot;>日本はA＝W÷100</b>／<b class=&quot;kr&quot;>熱は電流の2乗</b>🦎</div>
+    <div class=&quot;disc&quot; style=&quot;margin-top:18px;&quot;>
+      🦎 <b>もう一度：</b>数値は一般的な目安で、実際の消費電力は製品のラベルを確認してください。<b>配線・コンセントの増設や200V化などの工事は、必ず電気工事士（有資格者）に</b>。コードやプラグの異常な発熱・変色・においがあれば、使用をやめて点検を。
+    </div>
+  </section>
+
+  <p class=&quot;closing&quot;>
+    <span class=&quot;leaf&quot;>🦎</span><br>
+    電気は<b>水</b>。押す力がV、流れる量がA、仕事がW。<br>
+    <b>W＝V×A</b>、日本なら<b>A＝W÷100</b>——ここから全部つながります。
+  </p>
+  <div style=&quot;text-align:center;&quot;><button class=&quot;backtop&quot; onclick=&quot;goPage(1)&quot;>‹ ① 水でわかるにもどる</button></div>
+
+</div><!-- /page3 -->
+
+</div>
+
+<script>
+  function goPage(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const pg=document.getElementById('page'+n); if(pg) pg.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.dataset.p===String(n)));
+    window.scrollTo(0,0);
+  }
+
+  /* P1 water analogy */
+  (function(){
+    const seg=document.getElementById('wSeg'),cap=document.getElementById('wCap');
+    const items=[
+      {lb:'💧 V（水圧）', id:'hlV',
+       tx:'<b>V（ボルト）＝水圧。</b>タンクの水位が高いほど、水を押し出す力が強い。日本の家庭は<b>100V</b>で一定です。押す力が同じなら、あとは「どれだけ流すか」で仕事量が決まります。'},
+      {lb:'🌊 A（水の量）', id:'hlA',
+       tx:'<b>A（アンペア）＝1秒あたりに流れる水の量。</b>たくさん流せば水車はよく回るが、<b>パイプに流せる量には上限</b>がある。ブレーカーが見張っているのは、この量です。'},
+      {lb:'🚧 Ω（細さ）', id:'hlR',
+       tx:'<b>Ω（オーム）＝抵抗＝ホースの細さ。</b>細いほど流れにくい。家電のラベルには出てこないのに全部を裏で決めている<b>黒幕</b>で、<b>発熱の原因</b>にもなります（③）。'},
+      {lb:'⚙️ W（仕事）', id:'hlW',
+       tx:'<b>W（ワット）＝水車を回す仕事の大きさ。</b>水圧×水量で決まります。家電のラベルの「消費電力〇〇W」は、<b>その家電がどれだけ働く（電気を食う）か</b>を表しています。'}
+    ];
+    seg.innerHTML = items.map((it,i)=>'<button'+(i===0?' class=&quot;on&quot;':'')+' data-i=&quot;'+i+'&quot;>'+it.lb+'</button>').join('');
+    function set(i){
+      items.forEach((it,k)=>{ document.getElementById(it.id).setAttribute('opacity', k===i ? '1' : '0'); });
+      cap.innerHTML=items[i].tx;
+      seg.querySelectorAll('button').forEach(b=>b.classList.toggle('on', parseInt(b.dataset.i)===i));
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>set(parseInt(b.dataset.i)));
+    set(0);
+  })();
+
+  /* P2 appliance calculator */
+  (function(){
+    const data=[
+      {nm:'ドライヤー', w:1200, memo:'家庭でトップクラスの大食い。<b>短時間でも一気に12A</b>使うので、他の大きな家電との同時使用に注意。'},
+      {nm:'電子レンジ', w:1400, memo:'<b>ほぼ上限いっぱい</b>。専用のコンセントで使いたい家電の代表。タコ足はとくに危険。'},
+      {nm:'電気ケトル', w:1250, memo:'「お湯を沸かす＝熱を作る」ので当然の大食い。<b>熱を作る家電は例外なく大きい</b>。'},
+      {nm:'炊飯器', w:1300, memo:'炊飯中はフルパワー。保温中は<b>15〜30W程度</b>とぐっと下がります（家電は「常に定格」ではない）。'},
+      {nm:'こたつ', w:600, memo:'弱運転ならもっと少ない。ただし<b>長時間つけっぱなし</b>になりがちで、コードを束ねやすいので発熱に注意。'},
+      {nm:'テレビ', w:150, memo:'画面サイズで幅があります。つけっぱなしの時間が長いぶん、電気代では効いてきます。'},
+      {nm:'扇風機', w:40, memo:'モーターで風を送るだけなので<b>非常に小さい</b>。エアコンとの併用が効率的といわれる理由の一つ。'},
+      {nm:'LED電球', w:10, memo:'白熱電球の<b>60W相当でも7〜10W程度</b>。「熱に化ける分が少ない」ので、これだけ省エネになります。'}
+    ];
+    const seg=document.getElementById('appSeg'),nm=document.getElementById('appName'),cal=document.getElementById('appCalc'),fill=document.getElementById('appFill'),memo=document.getElementById('appMemo');
+    function r(i){
+      const d=data[i], a=d.w/100, pct=Math.min(100, d.w/1500*100);
+      let color='var(--mint)';
+      if(pct>80) color='var(--rose)'; else if(pct>50) color='var(--gold)';
+      nm.textContent=d.nm;
+      cal.innerHTML=d.w+'W ÷ 100V ＝ <span class=&quot;big&quot;>'+(a%1===0? a : a.toFixed(1))+'A</span>';
+      fill.style.width=pct+'%'; fill.style.background=color;
+      memo.innerHTML='<b>上限1500Wのうち約'+Math.round(pct)+'％。</b> '+d.memo;
+    }
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));r(parseInt(b.dataset.i));});
+    r(0);
+  })();
+
+  /* P3 drill */
+  (function(){
+    const Q=document.getElementById('drillQ'),opts=document.getElementById('drillOpts'),fb=document.getElementById('drillFb'),score=document.getElementById('drillScore'),next=document.getElementById('drillNext');
+    const bank=[
+      {q:'V（ボルト）を水にたとえると？', o:['水圧（押し出す力）','水の量','ホースの細さ'], a:0, e:'日本の家庭は100Vで固定。'},
+      {q:'A（アンペア）を水にたとえると？', o:['1秒あたりに流れる水の量','水圧','水車の大きさ'], a:0, e:'ブレーカーが見張っているのはこれ。'},
+      {q:'Ω（オーム）＝抵抗を水にたとえると？', o:['ホースの細さ（流れにくさ）','水圧','水の量'], a:0, e:'ラベルには出ないが全部を裏で決める黒幕。'},
+      {q:'W（ワット）とV・Aの関係は？', o:['W＝V×A','W＝V÷A','W＝V＋A'], a:0, e:'押す力×流れる量＝仕事の大きさ。'},
+      {q:'1200Wのドライヤーは何アンペア？（100V）', o:['12A','120A','1.2A'], a:0, e:'A＝W÷100。日本は100V固定だから暗算できる。'},
+      {q:'延長コードの「1500Wまで」の正体は？', o:['100V×15A＝1500W（15Aまで、という意味）','1500円まで','1500時間まで'], a:0, e:'ワットとアンペアで同じことを言っている。'},
+      {q:'オームの法則は？', o:['V＝A×Ω','V＝A÷Ω','V＝A＋Ω'], a:0, e:'細いホースほど、同じ量を流すのに強い水圧が要る。'},
+      {q:'電気を「使う」とは、つまり何をしている？', o:['抵抗のところで熱・光・動きに変えている','電気を消滅させている','電気をためている'], a:0, e:'だから熱を作る家電がいちばん電気を食う。'},
+      {q:'コードが熱くなる「ジュール熱」の大きさは？', o:['電流の2乗に比例する','電流に反比例する','電流と無関係'], a:0, e:'電流が2倍なら発熱は4倍。大きな家電ほど危ない。'},
+      {q:'コードを束ねると危ないのはなぜ？', o:['熱がこもって被覆が溶け、ショートや発火のおそれ','電気が漏れるから','電圧が上がるから'], a:0, e:'コードリールも巻いたまま使わない。'},
+      {q:'エアコンやIHが200Vを使う利点は？', o:['同じ仕事を少ない電流でこなせる（発熱も減る）','電気代が必ず半分になる','音が静かになる'], a:0, e:'W＝V×Aなので、Vが倍ならAは半分で済む。'},
+      {q:'LED電球が省エネなのはなぜ？', o:['熱に化ける分が少なく、光への変換がうまいから','光らないから','電圧が低いから'], a:0, e:'白熱60W相当でも7〜10W程度で済む。'}
+    ];
+    let i=0, correct=0, total=0, locked=false;
+    function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+    let order=shuffle(bank.map((_,k)=>k));
+    function show(){
+      locked=false; fb.textContent=''; next.style.display='none';
+      const item=bank[order[i%order.length]];
+      Q.textContent=item.q; opts.innerHTML='';
+      item.o.forEach((txt,idx)=>{
+        const b=document.createElement('button'); b.className='opt'; b.textContent=txt;
+        b.onclick=()=>{
+          if(locked)return; locked=true; total++;
+          if(idx===item.a){ b.classList.add('correct'); correct++; fb.textContent='⭕ せいかい！ '+item.e; fb.style.color='var(--mint-deep)'; }
+          else{ b.classList.add('wrong'); [...opts.children][item.a].classList.add('correct'); fb.textContent='❌ '+item.e; fb.style.color='#C2493E'; }
+          score.textContent=`正解 ${correct} / ${total}`; next.style.display='block';
+        };
+        opts.appendChild(b);
+      });
+    }
+    next.onclick=()=>{ i++; if(i%order.length===0) order=shuffle(order); show(); };
+    show();
+  })();
+</script>
+</body>
+</html>
+"></iframe></div><div id="theme-spectrum" class="theme-frame-wrap" hidden><div class="frame-bar"><button class="toentbtn" onclick="openSubjectHome('abx')">‹ 抗生剤のしくみ に戻る</button></div><iframe class="theme-frame" title="スペクトル（広い・狭い）" srcdoc="<!DOCTYPE html>
 <html lang=&quot;ja&quot;>
 <head>
 <meta charset=&quot;UTF-8&quot;>
